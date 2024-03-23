@@ -1,6 +1,6 @@
 'use client';
 
-import Layout from '../components/Background';
+import Layout from '../SharedComponent/Background';
 import { Frame, LandingPageFrame } from './components/Frame';
 import addChannel from '../../../public/image/addChannel.svg';
 import LandingFirst from '../../../public/image/LandingFirst.svg';

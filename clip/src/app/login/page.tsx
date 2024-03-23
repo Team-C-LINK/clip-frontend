@@ -1,5 +1,5 @@
 'use client';
-import Layout from '../components/Background';
+import Layout from '../SharedComponent/Background';
 import * as C from './C.style';
 import giftBox from '../../../public/image/giftBox.svg';
 import kakao from '../../../public/image/KakaoLogin.svg';
