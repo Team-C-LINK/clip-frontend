@@ -8,7 +8,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Background value={vh}>{children}</Background>
+      <Background>{children}</Background>
     </>
   );
 };
@@ -16,6 +16,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 const Background = styled.body`
   position: relative;
   width: 100dvw;
+  left: 50%;
+  transform: translateX(-50%);
   height: ${(props) => 100 * props.value}px;
   font-size: 62.5%;
   line-height: 1.285;

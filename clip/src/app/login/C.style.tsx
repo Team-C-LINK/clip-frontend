@@ -271,7 +271,7 @@ export const BannerImage = styled.img`
   position: relative;
   width: 12.2rem;
   height: 10.2rem;
-  top: 2rem;
+  top: 1.8rem;
   background: url(${(props) => props.src});
 `;
 

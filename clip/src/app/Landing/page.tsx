@@ -59,9 +59,9 @@ const LandingPageWeb = () => {
 const Join = styled.img`
   position: fixed;
   bottom: -0.3dvh;
+  width: 37rem;
   left: 50%;
   transform: translateX(-50%);
-
   z-index: 100;
   background: url(${(props) => props.src});
 `;
