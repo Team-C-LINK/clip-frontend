@@ -1,6 +1,6 @@
 'use client';
 
-import Layout from '../components/Background';
+import Layout from '../SharedComponent/Background';
 import { Frame, LandingPageFrame } from './components/Frame';
 import addChannel from '../../../public/image/addChannel.svg';
 import LandingFirst from '../../../public/image/LandingFirst.svg';
@@ -59,9 +59,9 @@ const LandingPageWeb = () => {
 const Join = styled.img`
   position: fixed;
   bottom: -0.3dvh;
+  width: 37rem;
   left: 50%;
   transform: translateX(-50%);
-
   z-index: 100;
   background: url(${(props) => props.src});
 `;
