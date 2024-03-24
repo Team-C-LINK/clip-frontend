@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface IMGTYPE {
+  src: any;
+}
+
 export const LandingWrapper = styled.div`
   position: relative;
   display: flex;
@@ -63,12 +67,12 @@ export const MiddleImageFrame = styled.div`
   justify-content: center;
 `;
 
-export const MiddleImage = styled.div`
+export const MiddleImage = styled.div<IMGTYPE>`
   position: relative;
   width: 31.8rem;
   height: 27.9rem;
 
-  background: url(${(props: any) => props.src});
+  background: url(${(props) => props.src});
   background-size: cover;
 `;
 
