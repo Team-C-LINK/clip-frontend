@@ -68,7 +68,7 @@ export const MiddleImage = styled.div`
   width: 31.8rem;
   height: 27.9rem;
 
-  background: url(${(props) => props.src});
+  background: url(${(props: any) => props.src});
   background-size: cover;
 `;
 
