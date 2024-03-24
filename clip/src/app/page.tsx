@@ -123,7 +123,7 @@ const Join = styled.img`
   background: url(${(props) => props.src});
 `;
 
-export const LandingPageFrame = styled.div`
+const LandingPageFrame = styled.div`
   position: relatve;
   display: flex;
   flex-direction: column;
