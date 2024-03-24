@@ -136,7 +136,7 @@ export const AddChannelButton = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
+  cursor: pointer;
   gap: 1.6rem;
   margin-top: 2rem;
   position: relative;

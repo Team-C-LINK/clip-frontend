@@ -65,6 +65,10 @@ const LandingPageMobile = () => {
 };
 
 const LandingPageWeb = () => {
+  const moveToChannel = () => {
+    window.location.href = 'https://pf.kakao.com/_uRgmG';
+  };
+
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -96,7 +100,7 @@ const LandingPageWeb = () => {
                   베타 테스트 신청 혜택은 아래 설명을 참고해 주세요.
                 </C.BottomLowText>
               </C.BottomFrame>
-              <C.AddChannelButton>
+              <C.AddChannelButton onClick={moveToChannel}>
                 <img src={KaKaoChannel.src}></img>채널 추가 바로가기
               </C.AddChannelButton>
             </C.LeftInner>
