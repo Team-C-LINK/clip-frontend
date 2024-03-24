@@ -50,12 +50,12 @@ const LandingPageMobile = () => {
           <C.Join onClick={moveToChannel} src={addChannel.src}></C.Join>
           <Layout>
             <C.LandingPageFrame>
-              <img src={LandingFirst.src}></img>
-              <img src={LandingSecond.src}></img>
-              <img src={LandingThird.src}></img>
-              <img src={LandingFourth.src}></img>
-              <img src={LandingFifth.src}></img>
-              <img src={LandingSixth.src}></img>
+              <object data={LandingFirst.src}></object>
+              <object data={LandingSecond.src}></object>
+              <object data={LandingThird.src}></object>
+              <object data={LandingFourth.src}></object>
+              <object data={LandingFifth.src}></object>
+              <object data={LandingSixth.src}></object>
             </C.LandingPageFrame>
           </Layout>
         </>
@@ -106,11 +106,11 @@ const LandingPageWeb = () => {
             </C.LeftInner>
           </C.LeftWrapper>
           <C.RightWrapper>
-            <img src={LandingSecond.src}></img>
-            <img src={LandingThird.src}></img>
-            <img src={LandingFourth.src}></img>
-            <img src={LandingFifth.src}></img>
-            <img src={LandingSixth.src}></img>
+            <object data={LandingSecond.src}></object>
+            <object data={LandingThird.src}></object>
+            <object data={LandingFourth.src}></object>
+            <object data={LandingFifth.src}></object>
+            <object data={LandingSixth.src}></object>
           </C.RightWrapper>
         </C.LandingWrapper>
       </>
