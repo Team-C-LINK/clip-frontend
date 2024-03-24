@@ -1,7 +1,6 @@
 'use client';
 
 import Layout from './SharedComponent/Background';
-import { Frame, LandingPageFrame } from './Landing/components/Frame';
 import addChannel from '../../public/image/addChannel.svg';
 import KaKaoChannel from '../../public/image/KaKaoChannel.svg';
 import LandingFirst from '../../public/image/LandingFirst.svg';
@@ -122,6 +121,22 @@ const Join = styled.img`
   transform: translateX(-50%);
   z-index: 1;
   background: url(${(props) => props.src});
+`;
+
+export const LandingPageFrame = styled.div`
+  position: relatve;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  align-items: center;
+  overflow: scroll;
+  gap: 0rem;
+  left: 50%;
+  tranform: translateX(-50%);
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  margin-top: 5rem;
 `;
 
 export default Landing;
