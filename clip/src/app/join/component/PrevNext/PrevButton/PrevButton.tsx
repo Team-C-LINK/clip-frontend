@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const PrevBtn = styled.div`
   display: flex;
   flex-direction: row;
-  width: 43dvw;
+  width: 45dvw;
   height: 4.4rem;
   border-radius: 0.4rem;
   font-family: Pretendard;

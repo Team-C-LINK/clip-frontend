@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const NextBtn = styled.div`
-  width: 43dvw;
+  width: 45dvw;
   height: 4.4rem;
   display: flex;
   flex-direction: row;
