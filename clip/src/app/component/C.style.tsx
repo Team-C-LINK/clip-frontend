@@ -152,3 +152,29 @@ export const AddChannelButton = styled.div`
   line-height: 3.6rem;
   color: #fff;
 `;
+
+export const Join = styled.img`
+  position: fixed;
+  bottom: -0.3dvh;
+  width: 37rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  background: url(${(props) => props.src});
+`;
+
+export const LandingPageFrame = styled.div`
+  position: relatve;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  align-items: center;
+  overflow: scroll;
+  gap: 0rem;
+  left: 50%;
+  tranform: translateX(-50%);
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  z-index: 1;
+`;

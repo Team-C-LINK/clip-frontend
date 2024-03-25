@@ -47,16 +47,16 @@ const LandingPageMobile = () => {
     <>
       {isClient && (
         <>
-          <Join onClick={moveToChannel} src={addChannel.src}></Join>
+          <C.Join onClick={moveToChannel} src={addChannel.src}></C.Join>
           <Layout>
-            <LandingPageFrame>
-              <img src={LandingFirst.src}></img>
-              <img src={LandingSecond.src}></img>
-              <img src={LandingThird.src}></img>
-              <img src={LandingFourth.src}></img>
-              <img src={LandingFifth.src}></img>
-              <img src={LandingSixth.src}></img>
-            </LandingPageFrame>
+            <C.LandingPageFrame>
+              <object data={LandingFirst.src}></object>
+              <object data={LandingSecond.src}></object>
+              <object data={LandingThird.src}></object>
+              <object data={LandingFourth.src}></object>
+              <object data={LandingFifth.src}></object>
+              <object data={LandingSixth.src}></object>
+            </C.LandingPageFrame>
           </Layout>
         </>
       )}
@@ -106,41 +106,15 @@ const LandingPageWeb = () => {
             </C.LeftInner>
           </C.LeftWrapper>
           <C.RightWrapper>
-            <img src={LandingSecond.src}></img>
-            <img src={LandingThird.src}></img>
-            <img src={LandingFourth.src}></img>
-            <img src={LandingFifth.src}></img>
-            <img src={LandingSixth.src}></img>
+            <object data={LandingSecond.src}></object>
+            <object data={LandingThird.src}></object>
+            <object data={LandingFourth.src}></object>
+            <object data={LandingFifth.src}></object>
+            <object data={LandingSixth.src}></object>
           </C.RightWrapper>
         </C.LandingWrapper>
       </>
     );
 };
-
-const Join = styled.img`
-  position: fixed;
-  bottom: -0.3dvh;
-  width: 37rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-  background: url(${(props) => props.src});
-`;
-
-const LandingPageFrame = styled.div`
-  position: relatve;
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  align-items: center;
-  overflow: scroll;
-  gap: 0rem;
-  left: 50%;
-  tranform: translateX(-50%);
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  margin-top: 5rem;
-`;
 
 export default Landing;
