@@ -4,6 +4,8 @@ import ProgressBar from '../component/ProgressBar/ProgressBar';
 import Layout from '@/app/SharedComponent/Background';
 import * as C from './component/C.style';
 import PrevNext from '../component/PrevNext/PrevNext';
+import NextButton from '../component/PrevNext/NextButton/NextButton';
+import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState, useRef } from 'react';
 import check from './assets/image/check.svg';
@@ -93,7 +95,10 @@ const Auth = () => {
               <img src={check.src}></img>인증이 완료되었습니다.
             </C.auth_done_text>
           </C.auth_wrap>
-          <PrevNext next={'/join/address'}></PrevNext>
+          <PrevNext>
+            <PrevButton>이전으로</PrevButton>
+            <NextButton>다음으로</NextButton>
+          </PrevNext>
         </C.Wrapper>
       </Layout>
     </>
