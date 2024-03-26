@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const NextBtn = styled.div`
+const NextButton = styled.div`
   width: 45dvw;
   height: 4.4rem;
   display: flex;
@@ -15,13 +15,5 @@ const NextBtn = styled.div`
   background: #1d2939;
   color: white;
 `;
-
-const NextButton = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <>
-      <NextBtn>{children}</NextBtn>
-    </>
-  );
-};
 
 export default NextButton;

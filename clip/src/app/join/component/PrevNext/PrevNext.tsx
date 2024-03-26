@@ -15,13 +15,10 @@ const PrevNextFrame = styled.div`
   gap: 2rem;
 `;
 
-const PrevNext = () => {
+const PrevNext = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <PrevNextFrame>
-        <PrevButton>이전으로</PrevButton>
-        <NextButton>다음으로</NextButton>
-      </PrevNextFrame>
+      <PrevNextFrame>{children}</PrevNextFrame>
     </>
   );
 };
