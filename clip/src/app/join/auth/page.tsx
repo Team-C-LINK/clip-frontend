@@ -93,8 +93,7 @@ const Auth = () => {
               <img src={check.src}></img>인증이 완료되었습니다.
             </C.auth_done_text>
           </C.auth_wrap>
-
-          <PrevNext></PrevNext>
+          <PrevNext next={'/join/address'}></PrevNext>
         </C.Wrapper>
       </Layout>
     </>

@@ -15,12 +15,12 @@ const PrevNextFrame = styled.div`
   gap: 2rem;
 `;
 
-const PrevNext = () => {
+const PrevNext = ({ next }: { next: string }) => {
   return (
     <>
       <PrevNextFrame>
         <PrevButton>이전으로</PrevButton>
-        <NextButton>다음으로</NextButton>
+        <NextButton targetAddress={next}>다음으로</NextButton>
       </PrevNextFrame>
     </>
   );

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useRouter } from 'next/navigation';
 
 const NextBtn = styled.div`
   width: 45dvw;
@@ -16,10 +17,18 @@ const NextBtn = styled.div`
   color: white;
 `;
 
-const NextButton = ({ children }: { children: React.ReactNode }) => {
+const NextButton = ({
+  children,
+  targetAddress,
+}: {
+  children: React.ReactNode;
+  targetAddress: string;
+}) => {
+  const router = useRouter();
+
   return (
     <>
-      <NextBtn>{children}</NextBtn>
+      <NextBtn onClick={() => router.push(targetAddress)}>{children}</NextBtn>
     </>
   );
 };

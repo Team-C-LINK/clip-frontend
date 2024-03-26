@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useRouter } from 'next/navigation';
 
 const PrevBtn = styled.div`
   display: flex;
@@ -20,9 +21,10 @@ const PrevBtn = styled.div`
 `;
 
 const PrevButton = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
   return (
     <>
-      <PrevBtn>{children}</PrevBtn>
+      <PrevBtn onClick={() => router.back()}>{children}</PrevBtn>
     </>
   );
 };
