@@ -112,3 +112,17 @@ export const getAuthDisable = styled.span`
   border: 0.1rem solid #d9d9d9;
   border-radius: 0.2rem;
 `;
+
+export const auth_done_text = styled.div`
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.6rem;
+  text-align: left;
+  color: #790de4;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.8rem;
+`;

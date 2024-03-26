@@ -6,6 +6,7 @@ import * as C from './component/C.style';
 import PrevNext from '../component/PrevNext/PrevNext';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState, useRef } from 'react';
+import check from './assets/image/check.svg';
 
 const PHONE_REGEX = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/i;
 const AUTH_REGEX = /^\d{4}$/i;
@@ -88,6 +89,9 @@ const Auth = () => {
             <C.authsend_text>
               인증번호가 발송되었습니다. 유효시간 {getTime(timeState)}
             </C.authsend_text>
+            <C.auth_done_text>
+              <img src={check.src}></img>인증이 완료되었습니다.
+            </C.auth_done_text>
           </C.auth_wrap>
 
           <PrevNext></PrevNext>
