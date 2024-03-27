@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
-const NextButton = styled.div`
-  width: 45dvw;
+type button = {
+  $size: string;
+};
+
+const NextButton = styled.div<button>`
+  width: ${(props) => props.$size};
   height: 4.4rem;
   display: flex;
   flex-direction: row;

@@ -66,8 +66,10 @@ const Address = () => {
           </C.Dropdown_wrap>
 
           <PrevNext>
-            <PrevButton>이전으로</PrevButton>
-            <NextButton onClick={next}>다음으로</NextButton>
+            <PrevButton $size={'45dvw'}>이전으로</PrevButton>
+            <NextButton $size={'45dvw'} onClick={next}>
+              다음으로
+            </NextButton>
           </PrevNext>
         </C.Wrapper>
       </Layout>

@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 
-const PrevBtn = styled.div`
+type button = {
+  $size: string;
+};
+
+const PrevBtn = styled.div<button>`
   display: flex;
   flex-direction: row;
-  width: 45dvw;
+  width: ${(props) => props.$size};
   height: 4.4rem;
   border-radius: 0.4rem;
   font-family: Pretendard;
@@ -20,13 +24,4 @@ const PrevBtn = styled.div`
   border-radius: 4px;
 `;
 
-const PrevButton = ({ children }: { children: React.ReactNode }) => {
-  const router = useRouter();
-  return (
-    <>
-      <PrevBtn onClick={() => router.back()}>{children}</PrevBtn>
-    </>
-  );
-};
-
-export default PrevButton;
+export default PrevBtn;

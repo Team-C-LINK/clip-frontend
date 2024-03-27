@@ -62,9 +62,11 @@ const Education = () => {
           </C.Dropdown_wrap>
 
           <PrevNext>
-            <PrevButton>이전으로</PrevButton>
+            <PrevButton $size={'45dvw'}>이전으로</PrevButton>
             {dropdown.job ? (
-              <NextButton onClick={next}>다음으로</NextButton>
+              <NextButton $size={'45dvw'} onClick={next}>
+                다음으로
+              </NextButton>
             ) : (
               <NextButtonDisabled>다음으로</NextButtonDisabled>
             )}
