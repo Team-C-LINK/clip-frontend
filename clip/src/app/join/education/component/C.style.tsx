@@ -60,7 +60,7 @@ export const Dropdown_title = styled.span`
   flex-grow: 0;
 `;
 
-export const Dropdown = styled.select<selectBox>`
+export const Dropdown = styled.select<any>`
   /*  Check list */
 
   box-sizing: border-box;

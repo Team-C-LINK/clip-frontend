@@ -14,7 +14,14 @@ import PrevNext from '../component/PrevNext/PrevNext';
 const Address = () => {
   const { register, watch } = useForm();
 
-  const { sidoList } = useGetSidoAddress();
+  const EDUCATION_LEVEL_LIST = [
+    '중학교',
+    '고등학교',
+    '대학교(2년제)',
+    '대학교(4년제)',
+    '석사, 박사',
+  ];
+  const EDUCATION_STATE = ['재학', '졸업', '자퇴'];
 
   const next = () => {
     // 다음 버튼 눌렀을 때 동작
@@ -34,23 +41,25 @@ const Address = () => {
             <C.Dropdown_title>거주지를 선택해주세요</C.Dropdown_title>
             <C.Dropdown_list_wrap>
               <C.Dropdown
-                {...register('sido')}
-                backgroundColor={watch('sido') ? '#ffffff' : '#d9d9d9'}
-                textColor={watch('sido') ? '#252525' : '#8a8a8a'}
+                {...register('educationLevel')}
+                backgroundcolor={
+                  watch('educationLevel') ? '#ffffff' : '#d9d9d9'
+                }
+                textcolor={watch('educationLevel') ? '#252525' : '#8a8a8a'}
                 src={arrow.src}
               >
-                {sidoList?.map((val) => {
-                  return <option value={val.name}>{val.name}</option>;
+                {EDUCATION_LEVEL_LIST?.map((val: string) => {
+                  return <option value={val}>{val}</option>;
                 })}
               </C.Dropdown>
               <C.Dropdown
-                {...register('gu')}
-                backgroundColor={watch('gu') ? '#ffffff' : '#d9d9d9'}
-                textColor={watch('gu') ? '#252525' : '#8a8a8a'}
+                {...register('ee')}
+                backgroundcolor={watch('ee') ? '#ffffff' : '#d9d9d9'}
+                textcolor={watch('ee') ? '#252525' : '#8a8a8a'}
                 src={arrow.src}
               >
-                {sidoList?.map((val) => {
-                  return <option value={val.name}>{val.name}</option>;
+                {EDUCATION_STATE?.map((val: string) => {
+                  return <option value={val}>{val}</option>;
                 })}
               </C.Dropdown>
             </C.Dropdown_list_wrap>
