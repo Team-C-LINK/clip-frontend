@@ -12,14 +12,7 @@ import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import PrevNext from '../component/PrevNext/PrevNext';
 import { useEffect, useState } from 'react';
 
-const EDUCATION_LEVEL_LIST = [
-  '중학교',
-  '고등학교',
-  '대학교(2년제)',
-  '대학교(4년제)',
-  '석사, 박사',
-];
-const EDUCATION_STATE = ['재학', '졸업', '자퇴'];
+const JOB_LIST = ['직장인', '자영업', '학생', '무직', '전업 주부', '은퇴'];
 
 const Education = () => {
   const {
@@ -29,8 +22,7 @@ const Education = () => {
   } = useForm();
 
   const [dropdown, setDropdown] = useState({
-    educationLevel: '',
-    educationState: '',
+    job: '',
   });
 
   const next = () => {};
@@ -46,38 +38,23 @@ const Education = () => {
     <>
       <Layout>
         <C.Wrapper>
-          <ProgressBar page={4}></ProgressBar>
+          <ProgressBar page={5}></ProgressBar>
           <TopText
             top={'정보 입력'}
             bottom={'나에게 맞는 연구정보만 모아볼 수 있어요'}
           ></TopText>
           <C.Dropdown_wrap>
             {errors.educationLevel?.message?.toString()}
-            <C.Dropdown_title>최종학력을 선택해주세요</C.Dropdown_title>
+            <C.Dropdown_title>근무 형태를 선택해주세요</C.Dropdown_title>
             <C.Dropdown_list_wrap>
               <C.Dropdown
-                {...register('educationLevel')}
-                backgroundcolor={
-                  watch('educationLevel') ? '#ffffff' : '#d9d9d9'
-                }
+                {...register('job')}
+                $background={dropdown.job ? '#ffffff' : '#F9FAFC'}
                 onClick={setDropdownState}
-                textcolor={dropdown.educationLevel ? '#252525' : '#8a8a8a'}
+                $textcolor={dropdown.job ? '#252525' : '#8a8a8a'}
                 src={arrow.src}
               >
-                {EDUCATION_LEVEL_LIST?.map((val: string) => {
-                  return <option value={val}>{val}</option>;
-                })}
-              </C.Dropdown>
-              <C.Dropdown
-                {...register('educationState')}
-                backgroundcolor={
-                  watch('educationState') ? '#ffffff' : '#d9d9d9'
-                }
-                textcolor={dropdown.educationState ? '#252525' : '#8a8a8a'}
-                src={arrow.src}
-                onClick={setDropdownState}
-              >
-                {EDUCATION_STATE?.map((val: string) => {
+                {JOB_LIST?.map((val: string) => {
                   return <option value={val}>{val}</option>;
                 })}
               </C.Dropdown>
@@ -86,7 +63,7 @@ const Education = () => {
 
           <PrevNext>
             <PrevButton>이전으로</PrevButton>
-            {dropdown.educationLevel && dropdown.educationState ? (
+            {dropdown.job ? (
               <NextButton onClick={next}>다음으로</NextButton>
             ) : (
               <NextButtonDisabled>다음으로</NextButtonDisabled>
