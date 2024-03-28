@@ -10,15 +10,17 @@ import useGetSidoAddress from './hooks/useGetSido';
 import NextButton from '../component/PrevNext/NextButton/NextButton';
 import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import PrevNext from '../component/PrevNext/PrevNext';
+import { useRouter } from 'next/navigation';
 
 const Address = () => {
   const { register, watch } = useForm();
-
-  const { sidoList } = useGetSidoAddress();
+  const router = useRouter();
+  const { data, sidoList, setSidoList } = useGetSidoAddress();
 
   const next = () => {
     // 다음 버튼 눌렀을 때 동작
     // 거주지 로컬 스토리지에 저장하기
+    router.push('/join/education');
   }; //
 
   return (
@@ -34,9 +36,11 @@ const Address = () => {
             <C.Dropdown_title>거주지를 선택해주세요</C.Dropdown_title>
             <C.Dropdown_list_wrap>
               <C.Dropdown
-                {...register('sido')}
-                backgroundColor={watch('sido') ? '#ffffff' : '#d9d9d9'}
-                textColor={watch('sido') ? '#252525' : '#8a8a8a'}
+                {...register('educationLevel')}
+                backgroundcolor={
+                  watch('educationLevel') ? '#ffffff' : '#d9d9d9'
+                }
+                textcolor={watch('educationLevel') ? '#252525' : '#8a8a8a'}
                 src={arrow.src}
               >
                 {sidoList?.map((val) => {
@@ -44,9 +48,9 @@ const Address = () => {
                 })}
               </C.Dropdown>
               <C.Dropdown
-                {...register('gu')}
-                backgroundColor={watch('gu') ? '#ffffff' : '#d9d9d9'}
-                textColor={watch('gu') ? '#252525' : '#8a8a8a'}
+                {...register('ee')}
+                backgroundcolor={watch('ee') ? '#ffffff' : '#d9d9d9'}
+                textcolor={watch('ee') ? '#252525' : '#8a8a8a'}
                 src={arrow.src}
               >
                 {sidoList?.map((val) => {
@@ -57,8 +61,10 @@ const Address = () => {
           </C.Dropdown_wrap>
 
           <PrevNext>
-            <PrevButton>이전으로</PrevButton>
-            <NextButton onClick={next}>다음으로</NextButton>
+            <PrevButton $size={'45dvw'}>이전으로</PrevButton>
+            <NextButton $size={'45dvw'} onClick={next}>
+              다음으로
+            </NextButton>
           </PrevNext>
         </C.Wrapper>
       </Layout>

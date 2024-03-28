@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 type selectBox = {
   src: any;
-  textcolor: string;
-  backgroundcolor: string;
+  $textcolor: string;
+  $background: string;
 };
 
 export const Wrapper = styled.div`
@@ -15,6 +15,11 @@ export const Wrapper = styled.div`
   height: 100%;
   overflow: scroll;
   gap: 5rem;
+`;
+
+export const Title_wrap = styled.div`
+  position: relative;
+  margin-top: 10rem;
 `;
 
 export const Dropdown_wrap = styled.div`
@@ -75,9 +80,9 @@ export const Dropdown = styled.select<selectBox>`
   width: 91.1dvw;
   height: 4.4rem;
 
-  background-color: ${(props) => props.backgroundcolor};
-  background: url(${(props) => props.src}) no-repeat right 1.3rem center;
-  color: ${(props) => props.textcolor};
+  background: url(${($props) => $props.src}) no-repeat right 1.3rem center;
+  background-color: ${(props) => props.$background};
+  color: ${($props) => $props.$textcolor};
   border: 0.1rem solid #d9d9d9;
   border-radius: 0.4rem;
 
@@ -103,4 +108,31 @@ export const Dropdown = styled.select<selectBox>`
   appearance: none;
 
   outline: none;
+`;
+
+export const Middle_text = styled.span`
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+
+  /* Medium/B1 */
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+  /* identical to box height, or 156% */
+  display: flex;
+  align-items: center;
+
+  /* Text/01 */
+  color: #252525;
+`;
+
+export const Btn_wrap = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  bottom: 2dvh; // 고정값
 `;

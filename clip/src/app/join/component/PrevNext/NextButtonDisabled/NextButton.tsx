@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
-type button = {
-  $size: string;
-};
-
-const NextButton = styled.div<button>`
-  width: ${(props) => props.$size};
+const NextButtonDisabled = styled.div`
+  width: 45dvw;
   height: 4.4rem;
   display: flex;
   flex-direction: row;
@@ -18,6 +14,7 @@ const NextButton = styled.div<button>`
   align-items: center;
   background: #1d2939;
   color: white;
+  opacity: 0.4;
 `;
 
-export default NextButton;
+export default NextButtonDisabled;

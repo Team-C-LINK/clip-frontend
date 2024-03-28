@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 type selectBox = {
   src: any;
-  textcolor: string;
-  backgroundcolor: string;
+  $textcolor: string;
+  $background: string;
 };
 
 export const Wrapper = styled.div`
@@ -75,9 +75,9 @@ export const Dropdown = styled.select<selectBox>`
   width: 91.1dvw;
   height: 4.4rem;
 
-  background-color: ${(props) => props.backgroundcolor};
-  background: url(${(props) => props.src}) no-repeat right 1.3rem center;
-  color: ${(props) => props.textcolor};
+  background: url(${($props) => $props.src}) no-repeat right 1.3rem center;
+  background-color: ${(props) => props.$background};
+  color: ${($props) => $props.$textcolor};
   border: 0.1rem solid #d9d9d9;
   border-radius: 0.4rem;
 

@@ -9,6 +9,7 @@ import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState, useRef } from 'react';
 import check from './assets/image/check.svg';
+import { useRouter } from 'next/navigation';
 
 const PHONE_REGEX = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/i;
 const AUTH_REGEX = /^\d{4}$/i;
@@ -23,7 +24,7 @@ const Auth = () => {
     setValue,
     formState: { errors },
   } = useForm({ mode: 'onChange' });
-
+  const router = useRouter();
   const [timeState, setTimeState] = useState(5);
   const timerRef = useRef<any>(0);
 
@@ -31,6 +32,10 @@ const Auth = () => {
     timerRef.current = setInterval(() => {
       setTimeState((prevTime) => prevTime - 1);
     }, 1000);
+  };
+
+  const next = () => {
+    router.push('/join/address');
   };
 
   const getTime = (time: number) => {
@@ -96,8 +101,10 @@ const Auth = () => {
             </C.auth_done_text>
           </C.auth_wrap>
           <PrevNext>
-            <PrevButton>이전으로</PrevButton>
-            <NextButton>다음으로</NextButton>
+            <PrevButton $size={'45dvw'}>이전으로</PrevButton>
+            <NextButton onClick={next} $size={'45dvw'}>
+              다음으로
+            </NextButton>
           </PrevNext>
         </C.Wrapper>
       </Layout>
