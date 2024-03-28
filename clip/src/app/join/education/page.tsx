@@ -11,6 +11,7 @@ import NextButtonDisabled from '../component/PrevNext/NextButtonDisabled/NextBut
 import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import PrevNext from '../component/PrevNext/PrevNext';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const EDUCATION_LEVEL_LIST = [
   '중학교',
@@ -28,12 +29,16 @@ const Education = () => {
     formState: { errors },
   } = useForm();
 
+  const router = useRouter();
+
   const [dropdown, setDropdown] = useState({
     educationLevel: '',
     educationState: '',
   });
 
-  const next = () => {};
+  const next = () => {
+    router.push('/join/job');
+  };
 
   const setDropdownState = (e: any) => {
     const target = e.target.name;

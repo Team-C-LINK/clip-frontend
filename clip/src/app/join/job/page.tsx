@@ -11,6 +11,7 @@ import NextButtonDisabled from '../component/PrevNext/NextButtonDisabled/NextBut
 import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import PrevNext from '../component/PrevNext/PrevNext';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const JOB_LIST = ['직장인', '자영업', '학생', '무직', '전업 주부', '은퇴'];
 
@@ -25,7 +26,11 @@ const Education = () => {
     job: '',
   });
 
-  const next = () => {};
+  const router = useRouter();
+
+  const next = () => {
+    router.push('/join/complete');
+  };
 
   const setDropdownState = (e: any) => {
     const target = e.target.name;

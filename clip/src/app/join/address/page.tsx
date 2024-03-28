@@ -10,22 +10,17 @@ import useGetSidoAddress from './hooks/useGetSido';
 import NextButton from '../component/PrevNext/NextButton/NextButton';
 import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import PrevNext from '../component/PrevNext/PrevNext';
+import { useRouter } from 'next/navigation';
 
 const Address = () => {
   const { register, watch } = useForm();
-
-  const EDUCATION_LEVEL_LIST = [
-    '중학교',
-    '고등학교',
-    '대학교(2년제)',
-    '대학교(4년제)',
-    '석사, 박사',
-  ];
-  const EDUCATION_STATE = ['재학', '졸업', '자퇴'];
+  const router = useRouter();
+  const { data, sidoList, setSidoList } = useGetSidoAddress();
 
   const next = () => {
     // 다음 버튼 눌렀을 때 동작
     // 거주지 로컬 스토리지에 저장하기
+    router.push('/join/education');
   }; //
 
   return (
@@ -48,8 +43,8 @@ const Address = () => {
                 textcolor={watch('educationLevel') ? '#252525' : '#8a8a8a'}
                 src={arrow.src}
               >
-                {EDUCATION_LEVEL_LIST?.map((val: string) => {
-                  return <option value={val}>{val}</option>;
+                {sidoList?.map((val) => {
+                  return <option value={val.name}>{val.name}</option>;
                 })}
               </C.Dropdown>
               <C.Dropdown
@@ -58,8 +53,8 @@ const Address = () => {
                 textcolor={watch('ee') ? '#252525' : '#8a8a8a'}
                 src={arrow.src}
               >
-                {EDUCATION_STATE?.map((val: string) => {
-                  return <option value={val}>{val}</option>;
+                {sidoList?.map((val) => {
+                  return <option value={val.name}>{val.name}</option>;
                 })}
               </C.Dropdown>
             </C.Dropdown_list_wrap>
