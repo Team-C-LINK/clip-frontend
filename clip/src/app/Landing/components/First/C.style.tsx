@@ -83,7 +83,7 @@ export const TopText = styled.div`
   /* 연구 참여, 참 쉬운 부업이 되다 */
 
   position: relative;
-  width: 27.4rem;
+  width: fit-content;
   height: 9.6rem;
   top: 9.4rem;
 

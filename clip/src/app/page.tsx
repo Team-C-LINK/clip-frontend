@@ -45,7 +45,12 @@ const LandingPageMobile = () => {
     <>
       {isClient && (
         <>
-          <C.Join onClick={moveToChannel} src={addChannel.src}></C.Join>
+          <C.join_wrap>
+            <C.Join onClick={moveToChannel}>
+              <img src={KaKaoChannel.src}></img>채널 추가 바로가기
+            </C.Join>
+          </C.join_wrap>
+
           <Layout>
             <C.LandingPageFrame>
               <LandingPage></LandingPage>

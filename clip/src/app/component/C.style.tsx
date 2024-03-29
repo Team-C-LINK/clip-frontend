@@ -153,14 +153,39 @@ export const AddChannelButton = styled.div`
   color: #fff;
 `;
 
-export const Join = styled.img`
+export const join_wrap = styled.div`
   position: fixed;
   bottom: -0.3dvh;
   width: 37rem;
+  height: 6.6rem;
   left: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   transform: translateX(-50%);
+  background-color: #ffffff;
   z-index: 1;
-  background: url(${(props) => props.src});
+`;
+
+export const Join = styled.div`
+  display: flex;
+  gap: 1.6rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 91.1dvw;
+  height: 4.4rem;
+
+  z-index: 1;
+  background: #252525;
+  border-radius: 4px;
+
+  font-family: Pretendard;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 3.6rem;
+  color: #fff;
 `;
 
 export const LandingPageFrame = styled.div`
