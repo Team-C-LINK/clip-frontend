@@ -1,0 +1,42 @@
+'use client';
+
+import { useParams, usePathname, useSearchParams } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import api from '@/app/api/api';
+import { useEffect } from 'react';
+
+const oauth = () => {
+  const params = useParams();
+  const pathname = useSearchParams();
+
+  const { data } = useQuery({
+    queryKey: ['use'],
+    queryFn: async () => {
+      const res = await api(
+        `/oauth/${params.service}/member?code=${pathname.get('code')}`
+      );
+
+      if (!res.data.isMember) {
+        window.location.href = `http://localhost:3000/join/agreement`;
+        const { isMember, ...other } = res.data;
+        localStorage.setItem(
+          'signInfo',
+          JSON.stringify(res.data.oauthMemberInformation)
+        );
+      } else {
+        window.location.href = `http://localhost:3000`;
+      }
+
+      return res.data;
+    },
+  });
+
+  return (
+    <>
+      {params.service}
+      {pathname.get('code')}
+    </>
+  );
+};
+
+export default oauth;
