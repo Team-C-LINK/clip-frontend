@@ -69,8 +69,12 @@ const Education = () => {
                 textcolor={dropdown.educationLevel ? '#252525' : '#8a8a8a'}
                 src={arrow.src}
               >
-                {EDUCATION_LEVEL_LIST?.map((val: string) => {
-                  return <option value={val}>{val}</option>;
+                {EDUCATION_LEVEL_LIST?.map((val: string, idx) => {
+                  return (
+                    <option key={idx} value={val}>
+                      {val}
+                    </option>
+                  );
                 })}
               </C.Dropdown>
               <C.Dropdown
@@ -82,8 +86,12 @@ const Education = () => {
                 src={arrow.src}
                 onClick={setDropdownState}
               >
-                {EDUCATION_STATE?.map((val: string) => {
-                  return <option value={val}>{val}</option>;
+                {EDUCATION_STATE?.map((val: string, idx) => {
+                  return (
+                    <option key={idx} value={val}>
+                      {val}
+                    </option>
+                  );
                 })}
               </C.Dropdown>
             </C.Dropdown_list_wrap>

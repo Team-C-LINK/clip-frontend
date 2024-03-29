@@ -59,8 +59,12 @@ const Education = () => {
                 $textcolor={dropdown.job ? '#252525' : '#8a8a8a'}
                 src={arrow.src}
               >
-                {JOB_LIST?.map((val: string) => {
-                  return <option value={val}>{val}</option>;
+                {JOB_LIST?.map((val: string, idx) => {
+                  return (
+                    <option key={idx} value={val}>
+                      {val}
+                    </option>
+                  );
                 })}
               </C.Dropdown>
             </C.Dropdown_list_wrap>

@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import api from '@/app/api/api';
 import { useEffect } from 'react';
 
-const oauth = () => {
+const Oauth = () => {
   const params = useParams();
   const pathname = useSearchParams();
 
@@ -39,4 +39,4 @@ const oauth = () => {
   );
 };
 
-export default oauth;
+export default Oauth;
