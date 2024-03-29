@@ -4,6 +4,10 @@ interface IMGTYPE {
   src: any;
 }
 
+type isMobile = {
+  isMobile: boolean;
+};
+
 export const LandingWrapper = styled.div`
   position: relative;
   display: flex;
@@ -188,15 +192,18 @@ export const Join = styled.div`
   color: #fff;
 `;
 
-export const LandingPageFrame = styled.div`
+export const LandingPageFrame = styled.div<isMobile>`
   position: relatve;
+
   display: flex;
   flex-direction: column;
+  width: ${(props) => (props.isMobile ? '100%;' : '60.1%')};
   height: auto;
   align-items: center;
   overflow: scroll;
   gap: 5rem;
   left: 50%;
+  background: #ffffff;
   tranform: translateX(-50%);
   &::-webkit-scrollbar {
     display: none;

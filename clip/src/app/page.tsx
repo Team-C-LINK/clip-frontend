@@ -50,9 +50,8 @@ const LandingPageMobile = () => {
               <img src={KaKaoChannel.src}></img>채널 추가 바로가기
             </C.Join>
           </C.join_wrap>
-
           <Layout>
-            <C.LandingPageFrame>
+            <C.LandingPageFrame isMobile={true}>
               <LandingPage></LandingPage>
             </C.LandingPageFrame>
           </Layout>
@@ -103,7 +102,7 @@ const LandingPageWeb = () => {
             </C.LeftInner>
           </C.LeftWrapper>
           <C.RightWrapper>
-            <C.LandingPageFrame>
+            <C.LandingPageFrame isMobile={false}>
               <Second></Second>
               <Third></Third>
               <Fourth></Fourth>

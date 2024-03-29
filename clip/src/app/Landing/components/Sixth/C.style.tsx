@@ -8,7 +8,7 @@ export const Frame = styled.div`
   /* 5 */
 
   position: relative;
-  width: 35.9rem;
+  width: 100%
   height: fit-content;
   display: flex;
   flex-direction: column;

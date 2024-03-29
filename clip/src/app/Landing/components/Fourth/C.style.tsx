@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 
+type src = {
+  src: string;
+  mb: string;
+};
+
 export const Frame = styled.div`
   /* 5 */
 
   position: relative;
-  width: 35.9rem;
+  width: 100%;
+  z-index: 1;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -74,30 +80,31 @@ export const tail_right_wrap = styled.img`
   position: absolute;
   height: fit-content;
   width: fit-content;
+  right: -0.5rem;
   bottom: 0rem;
-  right: -0.6rem;
 `;
 
 export const conversation_wrap_left = styled.div`
   /* Vector 1 */
 
-  position: absolute;
-  width: fit-content;
+  position: relative;
+  width: 91.1%;
   height: fit-content;
   display: flex;
-  left: 2rem;
   flex-direction: row;
+  justify-content: left;
+  right: 5%;
 `;
 
 export const conversation_wrap_right = styled.div`
   /* Vector 1 */
-  position: absolute;
-  width: fit-content;
+  position: relative;
+  width: 70%;
   height: fit-content;
   display: flex;
+
   flex-direction: row;
-  right: 6rem;
-  top: 6.5rem;
+  justify-content: right;
 `;
 
 export const ConversationQuestionFrame_right = styled.div`
@@ -160,35 +167,44 @@ export const conversation_set_wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 36rem;
+  width: 91.1%;
   height: 23rem;
   align-items: center;
   gap: 2rem;
 `;
 
+export const clippy_wrap = styled.div`
+  position: relative;
+  height: fit-content;
+  width: 91.1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+`;
+
 export const conversation_clippy_1 = styled.img`
   position: relative;
-  left: 14.5rem;
-  top: 11.5rem;
+  right: -3.5rem;
+  bottom: 5rem;
 `;
 
 export const conversation_clippy_2 = styled.img`
   position: relative;
-  left: 14.5rem;
-  top: 12.5rem;
+  right: -3.5rem;
+  bottom: 4rem;
 `;
 
 export const conversation_clippy_3 = styled.img`
   position: relative;
-  left: 11.5rem;
-  top: 9.8rem;
+  right: -3.5rem;
+  bottom: 5rem;
 `;
 
 export const conversation_all_wrap = styled.div`
   position relative;
   display : flex;
   flex-direction : column;
-  width : fit-content;
+  width : 100%;
   align-items : center;
   gap : 0rem;
   margin-top : 7rem;
