@@ -83,10 +83,10 @@ export const TopText = styled.div`
   /* 연구 참여, 참 쉬운 부업이 되다 */
 
   position: relative;
-  width: fit-content;
+  width: 91.1dvw;
   height: 9.6rem;
   top: 9.4rem;
-
+  margin-bottom: 1rem;
   font-family: 'Gmarket Sans Bold';
   font-weight: 700;
   font-size: 3.2rem;
