@@ -32,7 +32,11 @@ const Sixth = () => {
         <C.present_wrapper>
           <C.present_frame>
             <C.present_wrap>
-              <C.present_img src={airpod.src}></C.present_img>
+              <C.present_img
+                src={airpod.src}
+                height={'5.404rem'}
+                width={'6.805rem'}
+              ></C.present_img>
               <C.present_person>1명</C.present_person>
             </C.present_wrap>
             <C.present_text>
@@ -41,7 +45,11 @@ const Sixth = () => {
           </C.present_frame>
           <C.present_frame>
             <C.present_wrap>
-              <C.present_img src={baemin.src}></C.present_img>
+              <C.present_img
+                src={baemin.src}
+                width={'6.538rem'}
+                height={'4.346rem'}
+              ></C.present_img>
               <C.present_person>5명</C.present_person>
             </C.present_wrap>
             <C.present_text>
@@ -50,7 +58,11 @@ const Sixth = () => {
           </C.present_frame>
           <C.present_frame>
             <C.present_wrap>
-              <C.present_img src={starbucks.src}></C.present_img>
+              <C.present_img
+                src={starbucks.src}
+                width={'5.604rem'}
+                height={'7.539rem'}
+              ></C.present_img>
               <C.present_person>10명</C.present_person>
             </C.present_wrap>
             <C.present_text>

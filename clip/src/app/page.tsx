@@ -9,7 +9,10 @@ import * as C from './component/C.style';
 import { useMediaQuery } from 'react-responsive';
 import { useState, useEffect } from 'react';
 import LandingPage from './Landing/page';
-
+import Second from './Landing/components/Second/Second';
+import Third from './Landing/components/Third/Third';
+import Fourth from './Landing/components/Fourth/Fourth';
+import Sixth from './Landing/components/Sixth/Sixth';
 const Landing = () => {
   const isMobile = useMediaQuery({
     query: '(max-width:899px)',
@@ -77,7 +80,6 @@ const LandingPageWeb = () => {
               <C.MiddleImageFrame>
                 <C.MiddleImage src={clipPhoneImage.src}></C.MiddleImage>
               </C.MiddleImageFrame>
-
               <C.BottomFrame>
                 <C.BottomTopText>
                   지금 클립 카카오 채널 추가하면,<br></br>
@@ -97,7 +99,10 @@ const LandingPageWeb = () => {
           </C.LeftWrapper>
           <C.RightWrapper>
             <C.LandingPageFrame>
-              <LandingPage></LandingPage>
+              <Second></Second>
+              <Third></Third>
+              <Fourth></Fourth>
+              <Sixth></Sixth>
             </C.LandingPageFrame>
           </C.RightWrapper>
         </C.LandingWrapper>
