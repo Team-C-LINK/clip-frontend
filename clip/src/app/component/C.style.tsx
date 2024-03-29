@@ -170,7 +170,7 @@ export const LandingPageFrame = styled.div`
   height: auto;
   align-items: center;
   overflow: scroll;
-  gap: 0rem;
+  gap: 5rem;
   left: 50%;
   tranform: translateX(-50%);
   &::-webkit-scrollbar {
