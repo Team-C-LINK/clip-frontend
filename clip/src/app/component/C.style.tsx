@@ -160,7 +160,7 @@ export const AddChannelButton = styled.div`
 export const join_wrap = styled.div`
   position: fixed;
   bottom: -0.3dvh;
-  width: 37rem;
+  width: 100%;
   height: 6.6rem;
   left: 50%;
   display: flex;
@@ -197,7 +197,7 @@ export const LandingPageFrame = styled.div<isMobile>`
 
   display: flex;
   flex-direction: column;
-  width: ${(props) => (props.isMobile ? '100%;' : '60.1%')};
+  width: ${(props) => (props.isMobile ? '100%' : '60.1%')};
   height: auto;
   align-items: center;
   overflow: scroll;

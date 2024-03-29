@@ -176,7 +176,7 @@ export const conversation_set_wrap = styled.div`
 export const clippy_wrap = styled.div`
   position: relative;
   height: fit-content;
-  width: 91.1%;
+  width: 89.1%;
   display: flex;
   flex-direction: row;
   justify-content: right;
