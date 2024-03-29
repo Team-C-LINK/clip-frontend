@@ -3,17 +3,12 @@
 import Layout from './SharedComponent/Background';
 import addChannel from '../../public/image/addChannel.svg';
 import KaKaoChannel from '../../public/image/KaKaoChannel.svg';
-import LandingFirst from '../../public/image/LandingFirst.svg';
-import LandingSecond from '../../public/image/LandingSecond.svg';
-import LandingThird from '../../public/image/LandingThird.svg';
-import LandingFourth from '../../public/image/LandingFourth.svg';
-import LandingFifth from '../../public/image/LandingFifth.svg';
-import LandingSixth from '../../public/image/LandingSixth.svg';
 import clipPhoneImage from '../../public/image/ClipPhoneImage.svg';
 import styled from 'styled-components';
 import * as C from './component/C.style';
 import { useMediaQuery } from 'react-responsive';
 import { useState, useEffect } from 'react';
+import LandingPage from './Landing/page';
 
 const Landing = () => {
   const isMobile = useMediaQuery({
@@ -50,12 +45,7 @@ const LandingPageMobile = () => {
           <C.Join onClick={moveToChannel} src={addChannel.src}></C.Join>
           <Layout>
             <C.LandingPageFrame>
-              <object data={LandingFirst.src}></object>
-              <object data={LandingSecond.src}></object>
-              <object data={LandingThird.src}></object>
-              <object data={LandingFourth.src}></object>
-              <object data={LandingFifth.src}></object>
-              <object data={LandingSixth.src}></object>
+              <LandingPage></LandingPage>
             </C.LandingPageFrame>
           </Layout>
         </>
@@ -106,11 +96,9 @@ const LandingPageWeb = () => {
             </C.LeftInner>
           </C.LeftWrapper>
           <C.RightWrapper>
-            <object data={LandingSecond.src}></object>
-            <object data={LandingThird.src}></object>
-            <object data={LandingFourth.src}></object>
-            <object data={LandingFifth.src}></object>
-            <object data={LandingSixth.src}></object>
+            <C.LandingPageFrame>
+              <LandingPage></LandingPage>
+            </C.LandingPageFrame>
           </C.RightWrapper>
         </C.LandingWrapper>
       </>

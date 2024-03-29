@@ -43,8 +43,12 @@ const Address = () => {
                 textcolor={watch('educationLevel') ? '#252525' : '#8a8a8a'}
                 src={arrow.src}
               >
-                {sidoList?.map((val) => {
-                  return <option value={val.name}>{val.name}</option>;
+                {sidoList?.map((val, idx) => {
+                  return (
+                    <option key={idx} value={val.name}>
+                      {val.name}
+                    </option>
+                  );
                 })}
               </C.Dropdown>
               <C.Dropdown
@@ -53,8 +57,12 @@ const Address = () => {
                 textcolor={watch('ee') ? '#252525' : '#8a8a8a'}
                 src={arrow.src}
               >
-                {sidoList?.map((val) => {
-                  return <option value={val.name}>{val.name}</option>;
+                {sidoList?.map((val, idx) => {
+                  return (
+                    <option key={idx} value={val.name}>
+                      {val.name}
+                    </option>
+                  );
                 })}
               </C.Dropdown>
             </C.Dropdown_list_wrap>
