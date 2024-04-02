@@ -12,6 +12,8 @@ import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import PrevNext from '../component/PrevNext/PrevNext';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import jsonToString from '../utils/jsonToString';
+import stringToJson from '../utils/stringToJson';
 
 const EDUCATION_LEVEL_LIST = [
   '중학교',
@@ -31,14 +33,10 @@ const Education = () => {
 
   const router = useRouter();
 
-  const [dropdown, setDropdown] = useState({
+  const [dropdown, setDropdown] = useState<{ [key: string]: string }>({
     educationLevel: '',
     educationState: '',
   });
-
-  const next = () => {
-    router.push('/join/job');
-  };
 
   const setDropdownState = (e: any) => {
     const target = e.target.name;
@@ -46,6 +44,15 @@ const Education = () => {
       return { ...prev, [target]: e.target.value };
     });
   };
+
+  const next = () => {
+    const signInfo = stringToJson(localStorage.getItem('signInfo')!);
+    let education = '';
+    for (const key in dropdown) education += `${dropdown[key]} `;
+    signInfo['education'] = education;
+    localStorage.setItem('signInfo', jsonToString(signInfo));
+    router.push('/join/job');
+  }; //
 
   return (
     <>
@@ -57,7 +64,6 @@ const Education = () => {
             bottom={'나에게 맞는 연구정보만 모아볼 수 있어요'}
           ></TopText>
           <C.Dropdown_wrap>
-            {errors.educationLevel?.message?.toString()}
             <C.Dropdown_title>최종학력을 선택해주세요</C.Dropdown_title>
             <C.Dropdown_list_wrap>
               <C.Dropdown

@@ -13,8 +13,8 @@ import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import PrevNext from '../component/PrevNext/PrevNext';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import stringToJson from '../utils/StringToJson';
-import jsonToString from '../utils/JsonToString';
+import stringToJson from '../utils/stringToJson';
+import jsonToString from '../utils/jsonToString';
 
 const Address = () => {
   const { register, watch } = useForm();
