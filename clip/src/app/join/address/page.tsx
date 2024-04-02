@@ -11,11 +11,24 @@ import NextButton from '../component/PrevNext/NextButton/NextButton';
 import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import PrevNext from '../component/PrevNext/PrevNext';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const Address = () => {
   const { register, watch } = useForm();
   const router = useRouter();
   const { data, sidoList, setSidoList } = useGetSidoAddress();
+
+  const [dropdown, setDropdown] = useState({
+    sido: '',
+    gu: '',
+  });
+
+  const setDropdownState = (e: any) => {
+    const target = e.target.name;
+    setDropdown((prev) => {
+      return { ...prev, [target]: e.target.value };
+    });
+  };
 
   const next = () => {
     // 다음 버튼 눌렀을 때 동작
@@ -36,12 +49,11 @@ const Address = () => {
             <C.Dropdown_title>거주지를 선택해주세요</C.Dropdown_title>
             <C.Dropdown_list_wrap>
               <C.Dropdown
-                {...register('educationLevel')}
-                backgroundcolor={
-                  watch('educationLevel') ? '#ffffff' : '#d9d9d9'
-                }
-                textcolor={watch('educationLevel') ? '#252525' : '#8a8a8a'}
-                src={arrow.src}
+                {...register('sido')}
+                onChange={setDropdownState}
+                $background={dropdown.sido ? '#ffffff' : '#F9FAFC'}
+                $textcolor={dropdown.sido ? '#252525' : '#8a8a8a'}
+                $src={arrow.src}
               >
                 {sidoList?.map((val, idx) => {
                   return (
@@ -52,10 +64,11 @@ const Address = () => {
                 })}
               </C.Dropdown>
               <C.Dropdown
-                {...register('ee')}
-                backgroundcolor={watch('ee') ? '#ffffff' : '#d9d9d9'}
-                textcolor={watch('ee') ? '#252525' : '#8a8a8a'}
-                src={arrow.src}
+                {...register('gu')}
+                onChange={setDropdownState}
+                $background={dropdown.gu ? '#ffffff' : '#F9FAFC'}
+                $textcolor={dropdown.gu ? '#252525' : '#8a8a8a'}
+                $src={arrow.src}
               >
                 {sidoList?.map((val, idx) => {
                   return (
