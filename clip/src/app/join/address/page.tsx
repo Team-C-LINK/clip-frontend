@@ -8,17 +8,20 @@ import arrow from './assets/image/arrow.svg';
 import { useForm } from 'react-hook-form';
 import useGetSidoAddress from './hooks/useGetSido';
 import NextButton from '../component/PrevNext/NextButton/NextButton';
+import NextButtonDisabled from '../component/PrevNext/NextButtonDisabled/NextButton';
 import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import PrevNext from '../component/PrevNext/PrevNext';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import stringToJson from '../utils/StringToJson';
+import jsonToString from '../utils/JsonToString';
 
 const Address = () => {
   const { register, watch } = useForm();
   const router = useRouter();
   const { data, sidoList, setSidoList } = useGetSidoAddress();
 
-  const [dropdown, setDropdown] = useState({
+  const [dropdown, setDropdown] = useState<{ [key: string]: string }>({
     sido: '',
     gu: '',
   });
@@ -33,6 +36,11 @@ const Address = () => {
   const next = () => {
     // 다음 버튼 눌렀을 때 동작
     // 거주지 로컬 스토리지에 저장하기
+    const signInfo = stringToJson(localStorage.getItem('signInfo')!);
+    let address = '';
+    for (const key in dropdown) address += `${dropdown[key]} `;
+    signInfo['address'] = address;
+    localStorage.setItem('signInfo', jsonToString(signInfo));
     router.push('/join/education');
   }; //
 
@@ -80,12 +88,15 @@ const Address = () => {
               </C.Dropdown>
             </C.Dropdown_list_wrap>
           </C.Dropdown_wrap>
-
           <PrevNext>
             <PrevButton $size={'45dvw'}>이전으로</PrevButton>
-            <NextButton $size={'45dvw'} onClick={next}>
-              다음으로
-            </NextButton>
+            {dropdown.sido && dropdown.gu ? (
+              <NextButton $size={'45dvw'} onClick={next}>
+                다음으로
+              </NextButton>
+            ) : (
+              <NextButtonDisabled>다음으로</NextButtonDisabled>
+            )}
           </PrevNext>
         </C.Wrapper>
       </Layout>
