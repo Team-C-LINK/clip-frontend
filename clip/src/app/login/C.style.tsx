@@ -104,41 +104,27 @@ export const PointNoticeFrame = styled.div`
 `;
 
 export const PointNoticeText = styled.div`
-  /* Text */
+  position: relative;
+  left: 1rem;
 
   width: 18rem;
   height: 2.4rem;
 
-  /* Medium/B2 */
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 2.4rem;
-  /* identical to box height, or 150% */
+
   display: flex;
   align-items: center;
   text-align: center;
 
-  /* Text/04 */
   color: #ffffff;
 
-  /* Inside auto layout */
   flex: none;
   order: 2;
   flex-grow: 1;
-`;
-
-export const triangle = styled.div`
-  width: 30px;
-  background-color: #f22;
-  height: 30px;
-  border-radius: 4px;
-  box-shadow: -2px 2px rgb(178 178 178 / 0.3);
-  transform: rotate(135deg);
-  position: absolute;
-  bottom: 102px;
-  z-index: 2;
 `;
 
 export const ButtonFrame = styled.div`
@@ -336,4 +322,12 @@ export const NaverButton = styled.div`
   flex: none;
   order: 0;
   flex-grow: 0;
+`;
+
+export const triangle_tip = styled.img`
+  position: absolute;
+  bottom: -0.7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: url(${(props) => props.src});
 `;
