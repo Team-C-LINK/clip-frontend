@@ -8,7 +8,7 @@ export const Frame = styled.div`
   /* 5 */
 
   position: relative;
-  width: 35.9rem;
+  width: 100%
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -140,8 +140,8 @@ export const present_frame = styled.div`
 
 export const present_text = styled.div`
   position: relative;
-  width: 58px;
-  height: 32px;
+  width: fit-content;
+  height: 3.2rem;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 700;
@@ -170,8 +170,8 @@ export const present_wrap = styled.div`
 
 export const present_img = styled.img`
   position: relative;
-  height: 5.404rem;
-  width: 6.805rem;
+  height: ${(props) => props.height};
+  width: ${(props) => props.width};
 `;
 
 export const present_person = styled.div`

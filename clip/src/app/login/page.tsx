@@ -6,6 +6,7 @@ import kakao from '../../../public/image/KakaoLogin.svg';
 import naver from '../../../public/image/NaverLogin.svg';
 import GTS from '../../../public/image/GTS.svg';
 import ClipPhoneImage from '../../../public/image/ClipPhoneImage.svg';
+import triangle from './assets/image/tip.svg';
 const Login = () => {
   const kakaoLogin = () => {
     window.location.href = `${process.env.NEXT_PUBLIC_SERVER_HOST}/oauth/kakao`;
@@ -25,6 +26,7 @@ const Login = () => {
             <C.PointNoticeFrame>
               <img src={giftBox.src}></img>
               <C.PointNoticeText>회원 가입만 해도 300P 지급</C.PointNoticeText>
+              <C.triangle_tip src={triangle.src}></C.triangle_tip>
             </C.PointNoticeFrame>
             <C.KaKaoButton onClick={kakaoLogin}>
               <img src={kakao.src}></img>카카오톡으로 계속하기

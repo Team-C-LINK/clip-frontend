@@ -12,6 +12,8 @@ import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import PrevNext from '../component/PrevNext/PrevNext';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import jsonToString from '../utils/jsonToString';
+import stringToJson from '../utils/stringToJson';
 
 const JOB_LIST = ['직장인', '자영업', '학생', '무직', '전업 주부', '은퇴'];
 
@@ -22,15 +24,18 @@ const Education = () => {
     formState: { errors },
   } = useForm();
 
-  const [dropdown, setDropdown] = useState({
+  const [dropdown, setDropdown] = useState<{ [key: string]: string }>({
     job: '',
   });
 
   const router = useRouter();
 
   const next = () => {
+    const signInfo = stringToJson(localStorage.getItem('signInfo')!);
+    for (const key in dropdown) signInfo[key] = dropdown[key];
+    localStorage.setItem('signInfo', jsonToString(signInfo));
     router.push('/join/complete');
-  };
+  }; //
 
   const setDropdownState = (e: any) => {
     const target = e.target.name;
@@ -54,8 +59,8 @@ const Education = () => {
             <C.Dropdown_list_wrap>
               <C.Dropdown
                 {...register('job')}
+                onChange={setDropdownState}
                 $background={dropdown.job ? '#ffffff' : '#F9FAFC'}
-                onClick={setDropdownState}
                 $textcolor={dropdown.job ? '#252525' : '#8a8a8a'}
                 src={arrow.src}
               >

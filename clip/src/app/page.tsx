@@ -9,7 +9,10 @@ import * as C from './component/C.style';
 import { useMediaQuery } from 'react-responsive';
 import { useState, useEffect } from 'react';
 import LandingPage from './Landing/page';
-
+import Second from './Landing/components/Second/Second';
+import Third from './Landing/components/Third/Third';
+import Fourth from './Landing/components/Fourth/Fourth';
+import Sixth from './Landing/components/Sixth/Sixth';
 const Landing = () => {
   const isMobile = useMediaQuery({
     query: '(max-width:899px)',
@@ -42,9 +45,13 @@ const LandingPageMobile = () => {
     <>
       {isClient && (
         <>
-          <C.Join onClick={moveToChannel} src={addChannel.src}></C.Join>
+          <C.join_wrap>
+            <C.Join onClick={moveToChannel}>
+              <img src={KaKaoChannel.src}></img>채널 추가 바로가기
+            </C.Join>
+          </C.join_wrap>
           <Layout>
-            <C.LandingPageFrame>
+            <C.LandingPageFrame isMobile={true}>
               <LandingPage></LandingPage>
             </C.LandingPageFrame>
           </Layout>
@@ -77,7 +84,6 @@ const LandingPageWeb = () => {
               <C.MiddleImageFrame>
                 <C.MiddleImage src={clipPhoneImage.src}></C.MiddleImage>
               </C.MiddleImageFrame>
-
               <C.BottomFrame>
                 <C.BottomTopText>
                   지금 클립 카카오 채널 추가하면,<br></br>
@@ -96,8 +102,11 @@ const LandingPageWeb = () => {
             </C.LeftInner>
           </C.LeftWrapper>
           <C.RightWrapper>
-            <C.LandingPageFrame>
-              <LandingPage></LandingPage>
+            <C.LandingPageFrame isMobile={false}>
+              <Second></Second>
+              <Third></Third>
+              <Fourth></Fourth>
+              <Sixth></Sixth>
             </C.LandingPageFrame>
           </C.RightWrapper>
         </C.LandingWrapper>

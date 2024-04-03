@@ -10,12 +10,15 @@ import { useForm } from 'react-hook-form';
 import { useEffect, useState, useRef } from 'react';
 import check from './assets/image/check.svg';
 import { useRouter } from 'next/navigation';
+import phoneNumberFormatter from './utils/phoneNumberFormatter';
+import usePostRequestAuth from './hooks/usePostRequestAuth';
+import usePostCheckAuth from './hooks/usePostCheckAuth';
+import NextButtonDisabled from '../component/PrevNext/NextButtonDisabled/NextButton';
+import jsonToString from '../utils/jsonToString';
+import stringToJson from '../utils/stringToJson';
 
 const PHONE_REGEX = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/i;
 const AUTH_REGEX = /^\d{4}$/i;
-const getAuthCode = async () => {}; // 인증번호 전송 api 코드
-
-const postAuthentication = async () => {}; // 인증번호 확인 api 코드
 
 const Auth = () => {
   const {
@@ -25,13 +28,55 @@ const Auth = () => {
     formState: { errors },
   } = useForm({ mode: 'onChange' });
   const router = useRouter();
-  const [timeState, setTimeState] = useState(5);
+  const [timeState, setTimeState] = useState(300);
+  const [isValid, setIsValid] = useState(false);
+  const [authCodeState, setAuthCodeState] = useState<number>(0);
   const timerRef = useRef<any>(0);
 
   const startTimer = () => {
     timerRef.current = setInterval(() => {
       setTimeState((prevTime) => prevTime - 1);
     }, 1000);
+  };
+
+  const requestAuthCode = async () => {
+    const phoneNumber = watch('phoneNumber').replace(/-/g, '');
+
+    setAuthCodeState(1);
+    startTimer();
+    // if (await usePostRequestAuth(phoneNumber)) {
+    //   // 인증번호가 정상적으로 전송되었습니다.
+    //   // state 변경하기
+    //   setAuthCodeState(1);
+    // }
+  }; // 인증번호 전송 api 코드
+
+  const requestCheckAuth = async () => {
+    // 인증 후 성공이면 스테이트 변경 (valid state, authCodeState)
+
+    const requestData = {
+      phoneNumber: watch('phoneNumber').replace(/-/g, ''),
+      verificationNumber: watch('verficationNumber'),
+    };
+
+    setAuthCodeState(2);
+    setIsValid(true);
+
+    // const certification = await usePostCheckAuth(requestData);
+
+    // // 인증이 유효하다면
+    // if (certification) {
+    //   const signInfo = stringToJson(localStorage.getItem('signInfo')!);
+    //   signInfo['certification'] = certification;
+    //   localStorage.setItem('signInfo', jsonToString(signInfo));
+    //   setAuthCodeState(2);
+    //   setIsValid(true);
+    // }
+  }; // 인증번호 확인 api 코드
+
+  const handlePhoneNumberChange = (e: any) => {
+    const formattedPhoneNumber = phoneNumberFormatter(e.target.value);
+    setValue('phoneNumber', formattedPhoneNumber);
   };
 
   const next = () => {
@@ -44,6 +89,16 @@ const Auth = () => {
     s = String(s).padStart(2, '0');
     return `${m}:${s}`;
   };
+
+  const authCodeComponent = [
+    null,
+    <C.authsend_text>
+      인증번호가 발송되었습니다. 유효시간 {getTime(timeState)}
+    </C.authsend_text>,
+    <C.auth_done_text>
+      <img src={check.src}></img>인증이 완료되었습니다.
+    </C.auth_done_text>,
+  ];
 
   useEffect(() => {
     if (timeState <= 0) return clearTimeout(timerRef.current);
@@ -66,6 +121,7 @@ const Auth = () => {
                   value: PHONE_REGEX,
                   message: '올바르지 않은 형식이에요',
                 },
+                onChange: handlePhoneNumberChange,
               })}
               id="phoneNumber"
             ></C.phoneNumber>
@@ -73,38 +129,38 @@ const Auth = () => {
             errors.phoneNumber?.message?.toString() ? (
               <C.getAuthDisable>인증번호 받기</C.getAuthDisable>
             ) : (
-              <C.getAuth>인증번호 받기</C.getAuth>
+              <C.getAuth onClick={requestAuthCode}>인증번호 받기</C.getAuth>
             )}
           </C.phoneNumber_wrap>
           <C.auth_wrap>
             <C.phoneNumber_wrap>
               <C.phoneNumber
                 placeholder="인증번호 4자리"
-                {...register('authCode', {
+                {...register('verificationNumber', {
                   pattern: {
                     value: AUTH_REGEX,
                     message: '올바르지 않은 형식이에요',
                   },
                 })}
               ></C.phoneNumber>
-              {!watch('authCode') || errors.authCode?.message?.toString() ? (
+              {!watch('verificationNumber') ||
+              errors.verficationNumber?.message?.toString() ? (
                 <C.getAuthDisable>인증하기</C.getAuthDisable>
               ) : (
-                <C.getAuth>인증하기</C.getAuth>
+                <C.getAuth onClick={requestCheckAuth}>인증하기</C.getAuth>
               )}
             </C.phoneNumber_wrap>
-            <C.authsend_text>
-              인증번호가 발송되었습니다. 유효시간 {getTime(timeState)}
-            </C.authsend_text>
-            <C.auth_done_text>
-              <img src={check.src}></img>인증이 완료되었습니다.
-            </C.auth_done_text>
+            {authCodeComponent[authCodeState]}
           </C.auth_wrap>
           <PrevNext>
             <PrevButton $size={'45dvw'}>이전으로</PrevButton>
-            <NextButton onClick={next} $size={'45dvw'}>
-              다음으로
-            </NextButton>
+            {isValid ? (
+              <NextButton onClick={next} $size={'45dvw'}>
+                다음으로
+              </NextButton>
+            ) : (
+              <NextButtonDisabled>다음으로</NextButtonDisabled>
+            )}
           </PrevNext>
         </C.Wrapper>
       </Layout>

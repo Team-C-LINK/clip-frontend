@@ -11,7 +11,7 @@ export const ThirdFrame = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 36rem;
+  width: 100%;
   height: 102.8rem;
   background: #ffffff;
   margin-bottom: 7rem;
@@ -66,6 +66,7 @@ export const FourthFrame = styled.div`
   gap: 1.5rem;
   align-items: center;
   top: 5rem;
+  width: 91.1%;
 `;
 
 export const FourthInner = styled.div`
@@ -79,7 +80,7 @@ export const FourthInner = styled.div`
   gap: 1.6rem;
 
   position: relative;
-  width: 32.8rem;
+  width: 100%;
   height: 10.8rem;
   background: #ffffff;
   border: 0.2rem solid #252525;
@@ -118,7 +119,7 @@ export const FourthInnerCommingSoonInner = styled.div`
   isolation: isolate;
 
   position: relative;
-  width: 32.8rem;
+  width: 100%;
   height: 10.8rem;
   background: #f0f0f0;
   border-radius: 1.6rem;
@@ -163,7 +164,7 @@ export const FourthInnerCommingSoon = styled.div`
   gap: 1rem;
 
   position: absolute;
-  width: fit-content;
+  width: 91.1%;
   height: 5.6rem;
 
   opacity: 0.5;

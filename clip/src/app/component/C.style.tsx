@@ -4,6 +4,10 @@ interface IMGTYPE {
   src: any;
 }
 
+type isMobile = {
+  isMobile: boolean;
+};
+
 export const LandingWrapper = styled.div`
   position: relative;
   display: flex;
@@ -153,25 +157,53 @@ export const AddChannelButton = styled.div`
   color: #fff;
 `;
 
-export const Join = styled.img`
+export const join_wrap = styled.div`
   position: fixed;
   bottom: -0.3dvh;
-  width: 37rem;
+  width: 100%;
+  height: 6.6rem;
   left: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   transform: translateX(-50%);
+  background-color: #ffffff;
   z-index: 1;
-  background: url(${(props) => props.src});
 `;
 
-export const LandingPageFrame = styled.div`
+export const Join = styled.div`
+  display: flex;
+  gap: 1.6rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 91.1dvw;
+  height: 4.4rem;
+
+  z-index: 1;
+  background: #252525;
+  border-radius: 4px;
+
+  font-family: Pretendard;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 3.6rem;
+  color: #fff;
+`;
+
+export const LandingPageFrame = styled.div<isMobile>`
   position: relatve;
+
   display: flex;
   flex-direction: column;
+  width: ${(props) => (props.isMobile ? '100%' : '60.1%')};
   height: auto;
   align-items: center;
   overflow: scroll;
   gap: 5rem;
   left: 50%;
+  background: #ffffff;
   tranform: translateX(-50%);
   &::-webkit-scrollbar {
     display: none;

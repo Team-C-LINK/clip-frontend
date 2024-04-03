@@ -1,18 +1,22 @@
 import styled from 'styled-components';
 
+type src = {
+  src: string;
+};
+
 const Frame = styled.div`
   /* 2 */
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 36rem;
+  width: 100%;
   height: fit-content;
   background: #1d2939;
   /* 2 */
 `;
 
-const FirstTextBox = styled.div`
+const FirstTextBox = styled.div<src>`
   position: relative;
   width: fit-content;
   height: 3.6rem;
@@ -27,6 +31,13 @@ const FirstTextBox = styled.div`
   text-align: center;
 
   color: #ffffff;
+
+  &::after {
+    content: url(${(props) => props.src});
+    position: absolute;
+    bottom: -2.1rem;
+    margin-left: 1rem;
+  }
 `;
 
 const SecondTextBox = styled.div`
@@ -51,9 +62,10 @@ const ThirdFrame = styled.div`
   flex-direction: row;
   gap: 1rem;
   margin-top: 9.7rem;
-  margin-bottom: 6rem;
-  width: fit-content;
+  margin-bottom: 5rem;
+  width: 91.1%;
   height: fit-content;
+  justify-content: space-between;
 `;
 
 const ThirdFrameInner = styled.div`
@@ -67,7 +79,7 @@ const ThirdFrameInner = styled.div`
   gap: 0.6rem;
 
   position: relative;
-  width: 15.6rem;
+  width: 47%;
   height: 11.8rem;
 
   background: #ffffff;
@@ -117,11 +129,9 @@ const ThirdFrameInnerThirdText = styled.div`
 `;
 
 const Icon = styled.img`
-  position: absolute;
-  width: 6.4rem;
-  height: 5.8rem;
-  left: 28rem;
-  top: 1rem;
+  position: relative;
+  width: fit-content;
+  height: fit-content;
   background: url(${(props) => props.src});
 `;
 

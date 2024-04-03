@@ -9,8 +9,8 @@ const Second = () => {
   return (
     <>
       <C.Frame>
-        <C.Icon src={clippy.src}></C.Icon>
-        <C.FirstTextBox>알고 계셨나요?</C.FirstTextBox>
+        <C.FirstTextBox src={clippy.src}>알고 계셨나요?</C.FirstTextBox>
+
         <C.SecondTextBox>
           연구 기관 설문조사에 참여하면<br></br>
           <C.text_purple>10만원</C.text_purple>이상의 사례비도 받을 수 있다는

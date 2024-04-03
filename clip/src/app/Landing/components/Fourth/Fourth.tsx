@@ -24,7 +24,6 @@ const Fourth = () => {
               </C.ConversationQuestionFrame>
             </C.conversation_wrap_left>
             <C.conversation_wrap_right>
-              <C.tail_right_wrap src={tail_right.src}></C.tail_right_wrap>
               <C.ConversationQuestionFrame_right>
                 <C.answer_wrap>A.</C.answer_wrap>
                 <div>
@@ -33,10 +32,13 @@ const Fourth = () => {
                   <br></br>참여할 수 있답니다!
                 </div>
               </C.ConversationQuestionFrame_right>
+              <C.tail_right_wrap src={tail_right.src}></C.tail_right_wrap>
             </C.conversation_wrap_right>
-            <C.conversation_clippy_1
-              src={text_clippy.src}
-            ></C.conversation_clippy_1>
+            <C.clippy_wrap>
+              <C.conversation_clippy_1
+                src={text_clippy.src}
+              ></C.conversation_clippy_1>
+            </C.clippy_wrap>
           </C.conversation_set_wrap>
           <C.conversation_set_wrap>
             <C.conversation_wrap_left>
@@ -47,7 +49,6 @@ const Fourth = () => {
               </C.ConversationQuestionFrame>
             </C.conversation_wrap_left>
             <C.conversation_wrap_right>
-              <C.tail_right_wrap src={tail_right.src}></C.tail_right_wrap>
               <C.ConversationQuestionFrame_right>
                 <C.answer_wrap>A.</C.answer_wrap>
                 <div>
@@ -56,10 +57,13 @@ const Fourth = () => {
                   <br></br>인증한 연구만 올라와요!
                 </div>
               </C.ConversationQuestionFrame_right>
+              <C.tail_right_wrap src={tail_right.src}></C.tail_right_wrap>
             </C.conversation_wrap_right>
-            <C.conversation_clippy_2
-              src={cap_clippy.src}
-            ></C.conversation_clippy_2>
+            <C.clippy_wrap>
+              <C.conversation_clippy_2
+                src={cap_clippy.src}
+              ></C.conversation_clippy_2>
+            </C.clippy_wrap>
           </C.conversation_set_wrap>
           <C.conversation_set_wrap>
             <C.conversation_wrap_left>
@@ -70,7 +74,6 @@ const Fourth = () => {
               </C.ConversationQuestionFrame>
             </C.conversation_wrap_left>
             <C.conversation_wrap_right>
-              <C.tail_right_wrap src={tail_right.src}></C.tail_right_wrap>
               <C.ConversationQuestionFrame_right>
                 <C.answer_wrap>A.</C.answer_wrap>
                 <div>
@@ -78,10 +81,13 @@ const Fourth = () => {
                   편리하게 지원할 수 있어요!
                 </div>
               </C.ConversationQuestionFrame_right>
+              <C.tail_right_wrap src={tail_right.src}></C.tail_right_wrap>
             </C.conversation_wrap_right>
-            <C.conversation_clippy_3
-              src={normal_clippy.src}
-            ></C.conversation_clippy_3>
+            <C.clippy_wrap>
+              <C.conversation_clippy_3
+                src={normal_clippy.src}
+              ></C.conversation_clippy_3>
+            </C.clippy_wrap>
           </C.conversation_set_wrap>
         </C.conversation_all_wrap>
       </C.Frame>

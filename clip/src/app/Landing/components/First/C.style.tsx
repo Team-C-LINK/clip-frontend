@@ -7,7 +7,7 @@ export const Frame = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 36rem;
+  width: 100%;
   height: fit-content;
   background: #ffffff;
   /* 2 */
@@ -27,7 +27,7 @@ export const BottomFrame = styled.div`
   gap: 1.6rem;
 
   position: relative;
-  width: 36.1rem;
+  width: 91.1%;
   height: fit-content;
 
   background: #ffffff;
@@ -83,10 +83,10 @@ export const TopText = styled.div`
   /* 연구 참여, 참 쉬운 부업이 되다 */
 
   position: relative;
-  width: 27.4rem;
+  width: 91.1%;
   height: 9.6rem;
   top: 9.4rem;
-
+  margin-bottom: 1rem;
   font-family: 'Gmarket Sans Bold';
   font-weight: 700;
   font-size: 3.2rem;
