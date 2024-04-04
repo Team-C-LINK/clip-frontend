@@ -5,6 +5,11 @@ import NavigationBar from '../SharedComponent/NavigationBar/NaivgationBar';
 import * as C from './component/C.style';
 import clippy from '@/../public/clippy.png';
 import list from './asset/image/list.svg';
+import interest from './asset/image/interest.svg';
+import alarm from './asset/image/alarm.svg';
+import person from './asset/image/private.svg';
+import faq from './asset/image/faq.svg';
+import guide from './asset/image/guide.svg';
 
 const src =
   'https://www.google.co.kr/imgres?q=%ED%94%84%EB%A1%9C%ED%95%84%20%EC%9D%B4%EB%AF%B8%EC%A7%80&imgurl=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F1361%2F1361876.png&imgrefurl=https%3A%2F%2Fwww.flaticon.com%2Fkr%2Ffree-icon%2Fprofile_1361876&docid=ZBtzkAs5djdrhM&tbnid=VwqsUUG2AFy7sM&vet=12ahUKEwj0vLjG5KWFAxWcha8BHXnDA14QM3oECBcQAA..i&w=512&h=512&hcb=2&ved=2ahUKEwj0vLjG5KWFAxWcha8BHXnDA14QM3oECBcQAA';
@@ -48,36 +53,32 @@ const MyPage = () => {
             <C.body_content_wrapper>
               <C.body_content_title>내 활동</C.body_content_title>
               <C.body_content>
-                <img src={list.src}></img>
-                <C.body_content_text>내 지원 목록</C.body_content_text>
-              </C.body_content>
-              <C.body_content>
-                <img src={list.src}></img>
+                <img src={interest.src}></img>
                 <C.body_content_text>내 관심 목록</C.body_content_text>
               </C.body_content>
             </C.body_content_wrapper>
             <C.divider></C.divider>
             <C.body_content_wrapper>
-              <C.body_content_title>내 활동</C.body_content_title>
+              <C.body_content_title>설정</C.body_content_title>
               <C.body_content>
-                <img src={list.src}></img>
-                <C.body_content_text>내 지원 목록</C.body_content_text>
+                <img src={person.src}></img>
+                <C.body_content_text>개인정보 설정</C.body_content_text>
               </C.body_content>
               <C.body_content>
-                <img src={list.src}></img>
-                <C.body_content_text>내 관심 목록</C.body_content_text>
+                <img src={alarm.src}></img>
+                <C.body_content_text>알림 설정</C.body_content_text>
               </C.body_content>
             </C.body_content_wrapper>
             <C.divider></C.divider>
             <C.body_content_wrapper>
-              <C.body_content_title>내 활동</C.body_content_title>
+              <C.body_content_title>고객센터</C.body_content_title>
               <C.body_content>
-                <img src={list.src}></img>
-                <C.body_content_text>내 지원 목록</C.body_content_text>
+                <img src={faq.src}></img>
+                <C.body_content_text>자주 묻는 질문 (FAQ)</C.body_content_text>
               </C.body_content>
               <C.body_content>
-                <img src={list.src}></img>
-                <C.body_content_text>내 관심 목록</C.body_content_text>
+                <img src={guide.src}></img>
+                <C.body_content_text>참여 가이드</C.body_content_text>
               </C.body_content>
               <C.divider></C.divider>
             </C.body_content_wrapper>
