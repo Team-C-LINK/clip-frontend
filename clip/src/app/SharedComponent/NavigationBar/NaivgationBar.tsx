@@ -16,28 +16,32 @@ const NavigationBar = ({ state }: { state: string }) => {
             $status={state == 'home'}
             src={home.src}
           ></C.navigation_img>
-          <C.navigation_text>홈</C.navigation_text>
+          <C.navigation_text $status={state == 'home'}>홈</C.navigation_text>
         </C.navigation_content_wrapper>
         <C.navigation_content_wrapper>
           <C.navigation_img
             $status={state == 'recruit'}
             src={recruit.src}
           ></C.navigation_img>
-          <C.navigation_text>실시간 공고</C.navigation_text>
+          <C.navigation_text $status={state == 'recruit'}>
+            실시간 공고
+          </C.navigation_text>
         </C.navigation_content_wrapper>
         <C.navigation_content_wrapper>
           <C.navigation_img
             $status={state == 'shop'}
             src={shop.src}
           ></C.navigation_img>
-          <C.navigation_text>포인트 샵</C.navigation_text>
+          <C.navigation_text $status={state == 'shop'}>
+            포인트 샵
+          </C.navigation_text>
         </C.navigation_content_wrapper>
         <C.navigation_content_wrapper>
           <C.navigation_img
             $status={state == 'my'}
             src={my.src}
           ></C.navigation_img>
-          <C.navigation_text>My 클립</C.navigation_text>
+          <C.navigation_text $status={state == 'my'}>My 클립</C.navigation_text>
         </C.navigation_content_wrapper>
       </C.wrapper>
     </>

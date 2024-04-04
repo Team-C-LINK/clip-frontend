@@ -6,7 +6,8 @@ export const wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 120%;
+  height: 90%;
+  overflow: scroll;
 `;
 
 export const header_wrapper = styled.div`
@@ -16,7 +17,7 @@ export const header_wrapper = styled.div`
   height : fit-content;
   flex-direction: column;
   gap : 1.5rem;
-  margin-top : 5rem;
+  margin-top : 2rem;
 `;
 
 export const profile_wrapper = styled.div`

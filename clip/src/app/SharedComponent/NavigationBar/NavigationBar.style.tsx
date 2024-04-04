@@ -25,7 +25,7 @@ export const navigation_content_wrapper = styled.div`
   gap: 0.5rem;
 `;
 
-export const navigation_text = styled.div`
+export const navigation_text = styled.div<{ $status: boolean }>`
   /* Regular/B4 */
   font-family: 'Pretendard';
   font-style: normal;
@@ -35,8 +35,7 @@ export const navigation_text = styled.div`
   /* identical to box height, or 133% */
 
   /* Text/02 */
-  color: #6c6c6c;
-
+  color: ${(props) => (props.$status ? '#790DE4' : '#6c6c6c')};
   /* Inside auto layout */
   flex: none;
   order: 1;
@@ -48,7 +47,7 @@ export const navigation_img = styled.img<{ $status: boolean }>`
   height: fit-content;
   filter: ${(props) =>
     props.$status
-      ? 'invert(11%) sepia(79%) saturate(6711%) hue-rotate(273deg) brightness(92%) contrast(107%)'
+      ? 'invert(14%) sepia(94%) saturate(7553%) hue-rotate(273deg) brightness(88%) contrast(106%)'
       : 'invert(44%) sepia(3%) saturate(2%) hue-rotate(339deg) brightness(92%) contrast(81%)'};
   background: url(${(props) => props.src});
 `;
