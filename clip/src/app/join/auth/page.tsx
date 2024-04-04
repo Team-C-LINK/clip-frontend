@@ -92,10 +92,10 @@ const Auth = () => {
 
   const authCodeComponent = [
     null,
-    <C.authsend_text>
+    <C.authsend_text key={1}>
       인증번호가 발송되었습니다. 유효시간 {getTime(timeState)}
     </C.authsend_text>,
-    <C.auth_done_text>
+    <C.auth_done_text key={2}>
       <img src={check.src}></img>인증이 완료되었습니다.
     </C.auth_done_text>,
   ];
