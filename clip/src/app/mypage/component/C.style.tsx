@@ -6,7 +6,7 @@ export const wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 90%;
+  height: 85dvh;
   overflow: scroll;
 `;
 
@@ -44,6 +44,11 @@ export const profile_img = styled.img`
 `;
 
 export const profile_nickname = styled.span`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 72.8dvw;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
@@ -119,14 +124,19 @@ export const summary_text = styled.div`
 
 export const summary_point = styled.span`
   /* Frame 117 */
+
+  position: relative;
+  right: 0.3rem;
+
+  /* Auto layout */
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
-  width: 1.2rem;
-  height: 1.2rem;
-  font-size: 1.1rem;
-  font-family: 'Pretendard';
+  align-items: center;
+
+  width: 16px;
+  height: 16px;
+
   /* Text/02 */
   background: #6c6c6c;
   border-radius: 50%;
@@ -135,6 +145,9 @@ export const summary_point = styled.span`
   flex: none;
   order: 0;
   flex-grow: 0;
+
+  font-weight: 200;
+  font-size: 1.12rem;
 `;
 
 export const divider = styled.div`
@@ -196,6 +209,50 @@ export const body_content_text = styled.div`
 
   /* Text/01 */
   color: #252525;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+`;
+
+export const my_point = styled.span`
+  /* 내 포인트 */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+  /* Regular/B3 */
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  /* identical to box height, or 143% */
+
+  /* Text/02 */
+  color: #6c6c6c;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+export const logout = styled.span`
+  position: relative;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  left: 1rem;
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.6rem;
+
+  /* Text/01 */
+  color: #ff3d00;
 
   /* Inside auto layout */
   flex: none;
