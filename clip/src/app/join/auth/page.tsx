@@ -11,8 +11,8 @@ import { useEffect, useState, useRef } from 'react';
 import check from './assets/image/check.svg';
 import { useRouter } from 'next/navigation';
 import phoneNumberFormatter from './utils/phoneNumberFormatter';
-import usePostRequestAuth from './hooks/usePostRequestAuth';
-import usePostCheckAuth from './hooks/usePostCheckAuth';
+import postRequestAuth from './hooks/postRequestAuth';
+import postCheckAuth from './hooks/postCheckAuth';
 import NextButtonDisabled from '../component/PrevNext/NextButtonDisabled/NextButton';
 import jsonToString from '../utils/jsonToString';
 import stringToJson from '../utils/stringToJson';
@@ -42,11 +42,11 @@ const Auth = () => {
   const requestAuthCode = async () => {
     const phoneNumber = watch('phoneNumber').replace(/-/g, '');
 
-    if (await usePostRequestAuth(phoneNumber)) {
+    if (await postRequestAuth(phoneNumber)) {
       startTimer();
       setAuthCodeState(1);
     }
-  }; 
+  };
 
   const requestCheckAuth = async () => {
     const phone = watch('phoneNumber').replace(/-/g, '');
@@ -56,7 +56,7 @@ const Auth = () => {
       verificationNumber: watch('verficationNumber'),
     };
 
-    const certification = await usePostCheckAuth(requestData);
+    const certification = await postCheckAuth(requestData);
 
     if (certification) {
       const signInfo = stringToJson(localStorage.getItem('signInfo')!);
@@ -66,7 +66,7 @@ const Auth = () => {
       setAuthCodeState(2);
       setIsValid(true);
     }
-  }; 
+  };
 
   const handlePhoneNumberChange = (e: any) => {
     const formattedPhoneNumber = phoneNumberFormatter(e.target.value);
@@ -86,10 +86,10 @@ const Auth = () => {
 
   const authCodeComponent = [
     null,
-    <C.authsend_text>
+    <C.authsend_text key={1}>
       인증번호가 발송되었습니다. 유효시간 {getTime(timeState)}
     </C.authsend_text>,
-    <C.auth_done_text>
+    <C.auth_done_text key={2}>
       <img src={check.src}></img>인증이 완료되었습니다.
     </C.auth_done_text>,
   ];
