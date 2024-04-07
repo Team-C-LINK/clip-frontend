@@ -6,7 +6,7 @@ import api from '@/app/api/api';
  * @returns boolean
  * 요청이 정상적으로 가면 true를 리턴
  */
-const usePostRequestAuth = async (phoneNumber: string) => {
+const postRequestAuth = async (phoneNumber: string) => {
   try {
     const res = await api.post(
       `${process.env.NEXT_PUBLIC_SERVER_HOST}/sign-up/sms`,
@@ -21,4 +21,4 @@ const usePostRequestAuth = async (phoneNumber: string) => {
   return true;
 };
 
-export default usePostRequestAuth;
+export default postRequestAuth;

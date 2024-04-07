@@ -7,7 +7,7 @@ import checkAuthType from '../type/checkAuthType';
  * @returns boolean
  * 요청이 정상적으로 가면 true를 리턴
  */
-const usePostCheckAuth = async (json: checkAuthType) => {
+const postCheckAuth = async (json: checkAuthType) => {
   try {
     const res = await api
       .post(`${process.env.NEXT_PUBLIC_SERVER_HOST}/sign-up/check-sms`, json)
@@ -18,4 +18,4 @@ const usePostCheckAuth = async (json: checkAuthType) => {
   }
 };
 
-export default usePostCheckAuth;
+export default postCheckAuth;
