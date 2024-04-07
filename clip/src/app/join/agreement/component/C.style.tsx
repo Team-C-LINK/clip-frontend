@@ -14,8 +14,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   width: 100%;
   align-items: center;
-  height: fit-content;
-  margin-bottom: 5dvh;
+  height: 100%;
+  overflow: scroll;
   gap: 5rem;
 `;
 
@@ -114,12 +114,12 @@ export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
 `;
 
 export const AgreementFrame = styled.div`
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: column;
   gap: 2dvh;
   widht: fit-content;
-  margin-top: 20dvh;
+  bottom: 10dvh;
 `;
 
 export const TitleFrame = styled.div`
@@ -161,17 +161,17 @@ export const DisabledNextButton = styled.div`
   align-items: center;
   gap: 1.2rem;
 
-  position: relative;
+  position: fixed;
   width: 91.1dvw;
   height: 4.4rem;
   background: #f2f2f2;
   border-radius: 0.4rem;
-
   font-family: Pretendard;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 2.4rem;
   color: #bfbfbf;
+  bottom: 2dvh;
 `;
 
 export const EnabledNextButton = styled.div`
@@ -185,7 +185,7 @@ export const EnabledNextButton = styled.div`
 
   gap: 1.2rem;
 
-  position: relative;
+  position: fixed;
   width: 91.1dvw;
   height: 4.4rem;
 
@@ -197,4 +197,5 @@ export const EnabledNextButton = styled.div`
   font-weight: 400;
   line-height: 2.4rem;
   color: #ffffff;
+  bottom: 2dvh;
 `;
