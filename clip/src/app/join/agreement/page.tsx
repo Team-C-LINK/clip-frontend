@@ -8,6 +8,8 @@ import unCheckedBox from '../asset/uncheckedBox.svg';
 import ProgressBar from '../component/ProgressBar/ProgressBar';
 import Layout from '@/app/SharedComponent/Background';
 import { useRouter } from 'next/navigation';
+import stringToJson from '../utils/stringToJson';
+import jsonToString from '../utils/jsonToString';
 
 const Agreement = () => {
   const {
@@ -44,6 +46,13 @@ const Agreement = () => {
     } else {
       for (const key in target) setValue(key, false);
     }
+  };
+
+  const next = () => {
+    const signInfo = stringToJson(localStorage.getItem('signInfo')!);
+    signInfo['receptionAgreement'] = watch('receiveInfo') ? true : false;
+    localStorage.setItem('signInfo', jsonToString(signInfo));
+    router.push('/join/auth');
   };
 
   const checkAgreement = () => {
@@ -135,9 +144,7 @@ const Agreement = () => {
             </C.CheckBoxFrame>
           </C.AgreementFrame>
           {nextState ? (
-            <C.EnabledNextButton onClick={() => router.push('/join/auth')}>
-              다음으로
-            </C.EnabledNextButton>
+            <C.EnabledNextButton onClick={next}>다음으로</C.EnabledNextButton>
           ) : (
             <C.DisabledNextButton>다음으로</C.DisabledNextButton>
           )}

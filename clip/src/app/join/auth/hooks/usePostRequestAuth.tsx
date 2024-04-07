@@ -9,7 +9,7 @@ import api from '@/app/api/api';
 const usePostRequestAuth = async (phoneNumber: string) => {
   try {
     const res = await api.post(
-      `${process.env.NEXT_PUBLIC_SEVER_HOST}/sign-up/sms`,
+      `${process.env.NEXT_PUBLIC_SERVER_HOST}/sign-up/sms`,
       {
         phoneNumber: phoneNumber,
       }

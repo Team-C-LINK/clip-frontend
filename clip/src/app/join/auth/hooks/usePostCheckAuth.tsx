@@ -10,7 +10,7 @@ import checkAuthType from '../type/checkAuthType';
 const usePostCheckAuth = async (json: checkAuthType) => {
   try {
     const res = await api
-      .post(`${process.env.NEXT_PUBLIC_SEVER_HOST}/sign-up/check-sms`, json)
+      .post(`${process.env.NEXT_PUBLIC_SERVER_HOST}/sign-up/check-sms`, json)
       .then((res) => res.data);
     return res;
   } catch (e) {
