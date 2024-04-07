@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import jsonToString from '../utils/jsonToString';
 import stringToJson from '../utils/stringToJson';
+import api from '@/app/api/api';
 
 const JOB_LIST = ['직장인', '자영업', '학생', '무직', '전업 주부', '은퇴'];
 
@@ -30,11 +31,20 @@ const Education = () => {
 
   const router = useRouter();
 
-  const next = () => {
+  const next = async () => {
     const signInfo = stringToJson(localStorage.getItem('signInfo')!);
     for (const key in dropdown) signInfo[key] = dropdown[key];
     localStorage.setItem('signInfo', jsonToString(signInfo));
-    router.push('/join/complete');
+
+    console.log(signInfo);
+
+    const res = await api
+      .post('/sign-up', signInfo)
+      .then((response) => response.data);
+
+    console.log(res);
+
+    // router.push('/join/complete');
   }; //
 
   const setDropdownState = (e: any) => {

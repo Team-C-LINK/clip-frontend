@@ -42,37 +42,31 @@ const Auth = () => {
   const requestAuthCode = async () => {
     const phoneNumber = watch('phoneNumber').replace(/-/g, '');
 
-    setAuthCodeState(1);
-    startTimer();
-    // if (await usePostRequestAuth(phoneNumber)) {
-    //   // 인증번호가 정상적으로 전송되었습니다.
-    //   // state 변경하기
-    //   setAuthCodeState(1);
-    // }
-  }; // 인증번호 전송 api 코드
+    if (await usePostRequestAuth(phoneNumber)) {
+      startTimer();
+      setAuthCodeState(1);
+    }
+  }; 
 
   const requestCheckAuth = async () => {
-    // 인증 후 성공이면 스테이트 변경 (valid state, authCodeState)
+    const phone = watch('phoneNumber').replace(/-/g, '');
 
     const requestData = {
-      phoneNumber: watch('phoneNumber').replace(/-/g, ''),
+      phoneNumber: phone,
       verificationNumber: watch('verficationNumber'),
     };
 
-    setAuthCodeState(2);
-    setIsValid(true);
+    const certification = await usePostCheckAuth(requestData);
 
-    // const certification = await usePostCheckAuth(requestData);
-
-    // // 인증이 유효하다면
-    // if (certification) {
-    //   const signInfo = stringToJson(localStorage.getItem('signInfo')!);
-    //   signInfo['certification'] = certification;
-    //   localStorage.setItem('signInfo', jsonToString(signInfo));
-    //   setAuthCodeState(2);
-    //   setIsValid(true);
-    // }
-  }; // 인증번호 확인 api 코드
+    if (certification) {
+      const signInfo = stringToJson(localStorage.getItem('signInfo')!);
+      signInfo['certification'] = certification;
+      signInfo['number'] = phone;
+      localStorage.setItem('signInfo', jsonToString(signInfo));
+      setAuthCodeState(2);
+      setIsValid(true);
+    }
+  }; 
 
   const handlePhoneNumberChange = (e: any) => {
     const formattedPhoneNumber = phoneNumberFormatter(e.target.value);

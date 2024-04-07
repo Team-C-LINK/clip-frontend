@@ -24,7 +24,11 @@ const Oauth = () => {
           JSON.stringify(res.data.oauthMemberInformation)
         );
       } else {
-        window.location.href = `http://localhost:3000`;
+        const oauthId = res.data.oauthMemberInformation.oauthId;
+        const test = await api(
+          `/oauth/${params.service}/login?oauthId=${oauthId}`
+        );
+        console.log(test.data);
       }
 
       return res.data;
