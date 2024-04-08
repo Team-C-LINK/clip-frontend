@@ -32,7 +32,7 @@ const Login = () => {
               <img src={kakao.src}></img>카카오톡으로 계속하기
             </C.KaKaoButton>
             <C.NaverButton>
-              <img src={naver.src}></img>카카오톡으로 계속하기
+              <img src={naver.src}></img>네이버로 계속하기
             </C.NaverButton>
             <C.ReturnHomeButton>클립 홈으로 돌아가기</C.ReturnHomeButton>
           </C.ButtonFrame>
