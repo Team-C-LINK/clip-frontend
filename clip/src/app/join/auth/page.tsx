@@ -16,6 +16,7 @@ import postCheckAuth from './hooks/postCheckAuth';
 import NextButtonDisabled from '../component/PrevNext/NextButtonDisabled/NextButton';
 import jsonToString from '../utils/jsonToString';
 import stringToJson from '../utils/stringToJson';
+import Image from 'next/image';
 
 const PHONE_REGEX = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/i;
 const AUTH_REGEX = /^\d{4}$/i;
@@ -90,7 +91,8 @@ const Auth = () => {
       인증번호가 발송되었습니다. 유효시간 {getTime(timeState)}
     </C.authsend_text>,
     <C.auth_done_text key={2}>
-      <img src={check.src}></img>인증이 완료되었습니다.
+      <Image src={check.src} alt="check" width={16} height={16} />
+      인증이 완료되었습니다.
     </C.auth_done_text>,
   ];
 
