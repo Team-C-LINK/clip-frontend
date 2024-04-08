@@ -163,6 +163,29 @@ export const list_content_recruit_state = styled.span`
   color: #00bf40;
 `;
 
+export const list_content_recruit_state_done = styled.span`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #07a320;
+
+  width: 3rem;
+  height: 2.2rem;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  background-color: rgba(108, 108, 108, 0.08);
+  border-radius: 0.4rem;
+  letter-spacing: 0.03em;
+  color: #6c6c6c;
+`;
+
 export const list_content_recruit_deadline = styled.span`
   width: fit-content;
   height: fit-content;

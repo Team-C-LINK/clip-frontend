@@ -88,9 +88,9 @@ const Applications = () => {
             <C.list_content_wrap>
               <C.list_content_wrap_inner>
                 <C.list_content_recruit_wrap>
-                  <C.list_content_recruit_state>
-                    모집중
-                  </C.list_content_recruit_state>
+                  <C.list_content_recruit_state_done>
+                    마감
+                  </C.list_content_recruit_state_done>
                   <C.list_content_recruit_deadline>
                     2024.04.31 까지
                   </C.list_content_recruit_deadline>
