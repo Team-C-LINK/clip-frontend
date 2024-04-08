@@ -4,13 +4,13 @@ import * as C from './C.style';
 import clippy from '../../../../../public/clippy.png';
 import clock from '../../../../../public/image/clock.svg';
 import coinsHand from '../../../../../public/image/coins-hand.svg';
+import Image from 'next/image';
 
 const Second = () => {
   return (
     <>
       <C.Frame>
         <C.FirstTextBox src={clippy.src}>알고 계셨나요?</C.FirstTextBox>
-
         <C.SecondTextBox>
           연구 기관 설문조사에 참여하면<br></br>
           <C.text_purple>10만원</C.text_purple>이상의 사례비도 받을 수 있다는
@@ -18,7 +18,7 @@ const Second = () => {
         </C.SecondTextBox>
         <C.ThirdFrame>
           <C.ThirdFrameInner>
-            <img src={clock.src}></img>
+            <Image src={clock.src} alt={'clock'} width={40} height={40}></Image>
             <C.ThirdFrameInnerSecondText>
               평균 소요시간
             </C.ThirdFrameInnerSecondText>
@@ -27,7 +27,12 @@ const Second = () => {
             </C.ThirdFrameInnerThirdText>
           </C.ThirdFrameInner>
           <C.ThirdFrameInner>
-            <img src={coinsHand.src}></img>
+            <Image
+              src={coinsHand.src}
+              alt={'coinsHand'}
+              width={40}
+              height={40}
+            ></Image>
             <C.ThirdFrameInnerSecondText>
               일당 사례비 평균
             </C.ThirdFrameInnerSecondText>
