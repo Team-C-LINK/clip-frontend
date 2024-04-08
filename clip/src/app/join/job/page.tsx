@@ -36,15 +36,15 @@ const Education = () => {
     for (const key in dropdown) signInfo[key] = dropdown[key];
     localStorage.setItem('signInfo', jsonToString(signInfo));
 
-    console.log(signInfo);
-
-    const res = await api
-      .post('/sign-up', signInfo)
-      .then((response) => response.data);
-
-    console.log(res);
-
-    // router.push('/join/complete');
+    try {
+      const res = await api
+        .post('/sign-up', signInfo)
+        .then((response) => response.data);
+      if (res.acceessToken) router.push('/join/complete');
+    } catch (e) {
+      alert('유효하지 않은 회원가입 요청입니다. 처음부터 다시 진행해주세요');
+      window.location.href = '/login';
+    }
   }; //
 
   const setDropdownState = (e: any) => {
