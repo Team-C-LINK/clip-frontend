@@ -36,7 +36,7 @@ const ModifyProfile = () => {
     <>
       <Layout>
         <C.wrap>
-          <Header text="개인정보 설정"></Header>
+          <Header text="개인정보 설정" route={'/mypage'}></Header>
           <C.view_wrap>
             <C.profile_wrap $gap={'0rem'}>
               <C.profile_image_modify_wrap>

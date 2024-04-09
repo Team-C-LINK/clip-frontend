@@ -36,7 +36,7 @@ const Applications = () => {
     <>
       <Layout>
         <C.wrap>
-          <Header text={'내 지원목록'}></Header>
+          <Header text={'내 지원목록'} route={'/mypage'}></Header>
           <C.filter_wrap>
             <C.filter_inner>
               <C.filter_status_wrap>

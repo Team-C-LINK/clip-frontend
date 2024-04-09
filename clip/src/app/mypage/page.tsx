@@ -63,11 +63,24 @@ const MyPage = () => {
                 ></Image>
                 <C.body_content_text>내 관심 목록</C.body_content_text>
               </C.body_content>
+              <C.body_content
+                onClick={() => (window.location.href = '/mypage/applications')}
+              >
+                <Image
+                  src={interest.src}
+                  alt={'interest'}
+                  width={20}
+                  height={20}
+                ></Image>
+                <C.body_content_text>내 지원 목록</C.body_content_text>
+              </C.body_content>
             </C.body_content_wrapper>
             <C.divider></C.divider>
             <C.body_content_wrapper>
               <C.body_content_title>설정</C.body_content_title>
-              <C.body_content>
+              <C.body_content
+                onClick={() => (window.location.href = '/mypage/modifyProfile')}
+              >
                 <Image
                   src={person.src}
                   alt={'person'}
