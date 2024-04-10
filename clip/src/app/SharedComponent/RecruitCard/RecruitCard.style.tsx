@@ -43,10 +43,7 @@ export const list_content_recruit_state = styled.span`
   height: 2.2rem;
 
   font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1.2rem;
-  line-height: 1.6rem;
+  ${(props) => props.theme.FONT.SemiBold.B1};
   background-color: rgba(0, 191, 64, 0.08);
   border-radius: 0.4rem;
   letter-spacing: 0.03em;
@@ -66,10 +63,7 @@ export const list_content_recruit_state_done = styled.span`
   height: 2.2rem;
 
   font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1.2rem;
-  line-height: 1.6rem;
+  ${(props) => props.theme.FONT.SemiBold.B1};
   background-color: rgba(108, 108, 108, 0.08);
   border-radius: 0.4rem;
   letter-spacing: 0.03em;
@@ -81,10 +75,7 @@ export const list_content_recruit_deadline = styled.span`
   height: fit-content;
 
   font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 1.6rem;
+  ${(props) => props.theme.FONT.Regular.B1};
   display: flex;
   align-items: center;
   letter-spacing: 0.03em;
@@ -97,10 +88,7 @@ export const list_content_title = styled.span`
   height: fit-content;
 
   font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 1.4rem;
-  line-height: 2rem;
+  ${(props) => props.theme.FONT.Medium.B3};
 
   color: #252525;
 `;
@@ -110,10 +98,7 @@ export const list_content_condition = styled.span`
   height: fit-content;
 
   font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 1.6rem;
+  ${(props) => props.theme.FONT.Regular.B4};
 
   display: flex;
   align-items: center;
@@ -137,10 +122,7 @@ export const list_content_reward = styled.span`
   height: fit-content;
 
   font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.6rem;
-  line-height: 2.4rem;
+  ${(props) => props.theme.FONT.Regular.B2};
 
   color: #252525;
 `;
