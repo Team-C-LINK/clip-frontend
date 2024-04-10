@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import NavigationBar from '../SharedComponent/NavigationBar/NaivgationBar';
 import Layout from '@/app/SharedComponent/Background';
+import RecruitCard from '../SharedComponent/RecruitCard/RecruitCard';
 import * as C from './component/C.style';
 import checkedbox from './asset/checkedBox.svg';
 import uncheckedbox from './asset/uncheckedBox.svg';
@@ -9,7 +11,6 @@ import interested from './asset/interested.svg';
 import uninterested from './asset/uninterested.svg';
 import Image from 'next/image';
 import check from './asset/check.svg';
-import NavigationBar from '../SharedComponent/NavigationBar/NaivgationBar';
 
 const Recruit = () => {
   const [isRecruiting, setIsRecruiting] = useState<boolean>(false);
@@ -91,38 +92,7 @@ const Recruit = () => {
             </C.filter_inner>
           </C.filter_wrap>
           <C.list_wrap>
-            <C.list_content_wrap>
-              <C.list_content_wrap_inner>
-                <C.list_content_recruit_wrap>
-                  <C.list_content_recruit_state_done>
-                    마감
-                  </C.list_content_recruit_state_done>
-                  <C.list_content_recruit_deadline>
-                    2024.04.31 까지
-                  </C.list_content_recruit_deadline>
-                </C.list_content_recruit_wrap>
-                <C.list_content_middle_wrap>
-                  <C.list_content_title>
-                    배고픔을 느끼는지 알아보는 실험 참여자를 모집합니다.
-                  </C.list_content_title>
-                  <C.list_content_condition_wrap>
-                    <C.list_content_condition>
-                      대상 : 20~30대 남녀
-                    </C.list_content_condition>
-                    <C.list_content_condition>
-                      장소 : 서울시 강남구 강남대로
-                    </C.list_content_condition>
-                  </C.list_content_condition_wrap>
-                </C.list_content_middle_wrap>
-                <C.list_content_reward_wrap>
-                  <C.list_content_condition>사례비</C.list_content_condition>
-                  <C.list_content_reward>60,000원</C.list_content_reward>
-                  <C.list_content_interested
-                    src={interested.src}
-                  ></C.list_content_interested>
-                </C.list_content_reward_wrap>
-              </C.list_content_wrap_inner>
-            </C.list_content_wrap>
+            <RecruitCard></RecruitCard>
           </C.list_wrap>
           <NavigationBar state={'recruit'}></NavigationBar>
         </C.wrap>
