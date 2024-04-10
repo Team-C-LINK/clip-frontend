@@ -194,7 +194,7 @@ export const body_content_title = styled.div`
   font-style: normal;
   font-weight: 400;
   font-size: 1.4rem;
-  color: #6c6c6c;
+  color: ${(props) => props.theme.TEXT._02};
 
   /* Inside auto layout */
   flex: none;
