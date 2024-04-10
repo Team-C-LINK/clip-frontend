@@ -20,7 +20,7 @@ const ORANGE = {
 };
 
 const LINE = {
-  LINE: '#D9D9D9',
+  _01: '#D9D9D9',
 };
 
 const STATUS = {
