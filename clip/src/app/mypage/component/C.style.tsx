@@ -1,13 +1,20 @@
 import styled from 'styled-components';
 
+export const wrap = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
 export const wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 85dvh;
-  overflow: scroll;
+  flex: 1;
+  overflow-y: auto;
 `;
 
 export const header_wrapper = styled.div`

@@ -18,7 +18,9 @@ const NavigationBar = ({ state }: { state: string }) => {
           ></C.navigation_img>
           <C.navigation_text $status={state == 'home'}>홈</C.navigation_text>
         </C.navigation_content_wrapper>
-        <C.navigation_content_wrapper>
+        <C.navigation_content_wrapper
+          onClick={() => (window.location.href = '/recruit')}
+        >
           <C.navigation_img
             $status={state == 'recruit'}
             src={recruit.src}
@@ -36,7 +38,9 @@ const NavigationBar = ({ state }: { state: string }) => {
             포인트 샵
           </C.navigation_text>
         </C.navigation_content_wrapper>
-        <C.navigation_content_wrapper>
+        <C.navigation_content_wrapper
+          onClick={() => (window.location.href = '/mypage')}
+        >
           <C.navigation_img
             $status={state == 'my'}
             src={my.src}
