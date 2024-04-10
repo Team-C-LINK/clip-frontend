@@ -1,12 +1,12 @@
 'use client';
 
 import { ThemeProvider } from 'styled-components';
-import { PALETTE } from './Palette';
+import { THEME } from './Palette';
 
 export default function PaletteProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <ThemeProvider theme={PALETTE}>{children}</ThemeProvider>;
+  return <ThemeProvider theme={THEME}>{children}</ThemeProvider>;
 }

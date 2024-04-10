@@ -36,13 +36,49 @@ const BACKGROUND = {
   _DARK: '#1D2939',
 };
 
-export const PALETTE = {
+const Header = {
+  H1: `font-size : 6.4rem; line-height : 7.6rem; font-weight : 600; font-style: normal;`,
+  H2: `font-size : 3.6rem; line-height : 4.4rem; font-weight : 600; font-style: normal;`,
+  H3: `font-size : 2.8rem; line-height : 2.8rem; font-weight : 600; font-style: normal;`,
+  H4: `font-size : 2.0rem; line-height : 2.0rem; font-weight : 600; font-style: normal;`,
+};
+
+const Regular = {
+  B1: `font-size : 1.8rem; line-height : 2.8rem; font-weight : 400; font-style: normal;`,
+  B2: `font-size : 1.6rem; line-height : 2.4rem; font-weight : 400; font-style: normal;`,
+  B3: `font-size : 1.4rem; line-height : 2.0rem; font-weight : 400; font-style: normal;`,
+  B4: `font-size : 1.2rem; line-height : 1.6rem; font-weight : 400; font-style: normal;`,
+};
+
+const Medium = {
+  B1: `font-size : 1.8rem; line-height : 2.8rem; font-weight : 500; font-style: normal;`,
+  B2: `font-size : 1.6rem; line-height : 2.4rem; font-weight : 500; font-style: normal;`,
+  B3: `font-size : 1.4rem; line-height : 2.0rem; font-weight : 500; font-style: normal;`,
+  B4: `font-size : 1.2rem; line-height : 1.6rem; font-weight : 500; font-style: normal;`,
+};
+
+const SemiBold = {
+  B1: `font-size : 1.8rem; line-height : 2.8rem; font-weight : 600; font-style: normal;`,
+  B2: `font-size : 1.6rem; line-height : 2.4rem; font-weight : 600; font-style: normal;`,
+  B3: `font-size : 1.4rem; line-height : 2.0rem; font-weight : 600; font-style: normal;`,
+  B4: `font-size : 1.2rem; line-height : 1.6rem; font-weight : 600; font-style: normal;`,
+};
+
+const FONT = {
+  Header,
+  Regular,
+  Medium,
+  SemiBold,
+};
+
+export const THEME = {
   PURPLE,
   TEXT,
   ORANGE,
   LINE,
   STATUS,
   BACKGROUND,
+  FONT,
 };
 
-export type ThemeType = typeof PALETTE;
+export type ThemeType = typeof THEME;
