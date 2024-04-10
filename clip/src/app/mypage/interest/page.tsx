@@ -3,15 +3,13 @@
 import { useEffect, useState } from 'react';
 import Layout from '@/app/SharedComponent/Background';
 import Header from '@/app/SharedComponent/Header/Header';
+import RecruitCard from '@/app/SharedComponent/RecruitCard/RecruitCard';
 import * as C from './component/C.style';
 import checkedbox from './asset/checkedBox.svg';
 import uncheckedbox from './asset/uncheckedBox.svg';
-import interested from './asset/interested.svg';
-import uninterested from './asset/uninterested.svg';
 import Image from 'next/image';
-import RecruitCard from '@/app/SharedComponent/RecruitCard/RecruitCard';
 
-const Applications = () => {
+const Interest = () => {
   const [filterState, setFilterState] = useState<string>('신청 완료');
   const [isRecruiting, setIsRecruiting] = useState<boolean>(false);
 
@@ -37,32 +35,9 @@ const Applications = () => {
     <>
       <Layout>
         <C.wrap>
-          <Header text={'내 지원 목록'} route={'/mypage'}></Header>
+          <Header text={'내 관심 목록'} route={'/mypage'}></Header>
           <C.filter_wrap>
             <C.filter_inner>
-              <C.filter_status_wrap>
-                {filterState === '신청 완료' ? (
-                  <C.filter_text_selected>신청 완료</C.filter_text_selected>
-                ) : (
-                  <C.filter_text_unselected onClick={handleFilterState}>
-                    신청 완료
-                  </C.filter_text_unselected>
-                )}
-                {filterState === '신청 취소' ? (
-                  <C.filter_text_selected>신청 취소</C.filter_text_selected>
-                ) : (
-                  <C.filter_text_unselected onClick={handleFilterState}>
-                    신청 취소
-                  </C.filter_text_unselected>
-                )}
-                {filterState === '매칭 완료' ? (
-                  <C.filter_text_selected>매칭 완료</C.filter_text_selected>
-                ) : (
-                  <C.filter_text_unselected onClick={handleFilterState}>
-                    매칭 완료
-                  </C.filter_text_unselected>
-                )}
-              </C.filter_status_wrap>
               <C.filter_recruiting_wrap>
                 {isRecruiting ? (
                   <Image
@@ -94,4 +69,4 @@ const Applications = () => {
   );
 };
 
-export default Applications;
+export default Interest;

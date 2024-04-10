@@ -54,15 +54,6 @@ const MyPage = () => {
             <C.body_wrapper>
               <C.body_content_wrapper>
                 <C.body_content_title>내 활동</C.body_content_title>
-                <C.body_content>
-                  <Image
-                    src={interest.src}
-                    alt={'interest'}
-                    width={20}
-                    height={20}
-                  ></Image>
-                  <C.body_content_text>내 관심 목록</C.body_content_text>
-                </C.body_content>
                 <C.body_content
                   onClick={() =>
                     (window.location.href = '/mypage/applications')
@@ -75,6 +66,17 @@ const MyPage = () => {
                     height={20}
                   ></Image>
                   <C.body_content_text>내 지원 목록</C.body_content_text>
+                </C.body_content>
+                <C.body_content
+                  onClick={() => (window.location.href = '/mypage/interest')}
+                >
+                  <Image
+                    src={interest.src}
+                    alt={'interest'}
+                    width={20}
+                    height={20}
+                  ></Image>
+                  <C.body_content_text>내 관심 목록</C.body_content_text>
                 </C.body_content>
               </C.body_content_wrapper>
               <C.divider></C.divider>
