@@ -4,6 +4,7 @@ import QueryProvider from './Provider/QueryProvider/query-provider';
 import './globals.css';
 import '../../public/fonts/style.css';
 import PaletteProvider from './Provider/PaletteProvider/PaletteProvider';
+import { GoogleAnalytics } from './Provider/GoogleAnalytics/GoogleAnalytics';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <GoogleAnalytics />
         <QueryProvider>
           <PaletteProvider>{children}</PaletteProvider>
         </QueryProvider>
