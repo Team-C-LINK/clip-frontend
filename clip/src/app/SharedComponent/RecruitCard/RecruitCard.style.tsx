@@ -63,7 +63,7 @@ export const list_content_recruit_state_done = styled.span`
   height: 2.2rem;
 
   font-family: 'Pretendard';
-  ${(props) => props.theme.FONT.SemiBold.B1};
+  ${(props) => props.theme.FONT.SemiBold.B4};
   background-color: rgba(108, 108, 108, 0.08);
   border-radius: 0.4rem;
   letter-spacing: 0.03em;
@@ -75,7 +75,7 @@ export const list_content_recruit_deadline = styled.span`
   height: fit-content;
 
   font-family: 'Pretendard';
-  ${(props) => props.theme.FONT.Regular.B1};
+  ${(props) => props.theme.FONT.Regular.B4};
   display: flex;
   align-items: center;
   letter-spacing: 0.03em;
