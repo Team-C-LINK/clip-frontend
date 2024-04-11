@@ -1,15 +1,15 @@
 'use client';
 
 import NavigationBar from '../SharedComponent/NavigationBar/NaivgationBar';
-import * as C from './component/C.style';
+import * as C from './_asset/component/C.style';
 import clippy from '@/../public/clippy.png';
 import Image from 'next/image';
-import interest from './asset/image/interest.svg';
-import alarm from './asset/image/alarm.svg';
-import person from './asset/image/private.svg';
-import faq from './asset/image/faq.svg';
-import guide from './asset/image/guide.svg';
-import logout from './asset/image/logout.svg';
+import interest from './_asset/image/interest.svg';
+import alarm from './_asset/image/alarm.svg';
+import person from './_asset/image/private.svg';
+import faq from './_asset/image/faq.svg';
+import guide from './_asset/image/guide.svg';
+import logout from './_asset/image/logout.svg';
 import { useEffect } from 'react';
 import Spacer from '../SharedComponent/Spacer/Spacer';
 

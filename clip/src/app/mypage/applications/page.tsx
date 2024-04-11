@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import Header from '@/app/SharedComponent/Header/Header';
 import HeaderBack from '@/app/SharedComponent/Header/HeaderBack/HeaderBack';
-import * as C from './component/C.style';
-import checkedbox from './asset/checkedBox.svg';
-import uncheckedbox from './asset/uncheckedBox.svg';
+import * as C from './_asset/component/C.style';
+import checkedbox from './_asset/image/checkedBox.svg';
+import uncheckedbox from './_asset/image/uncheckedBox.svg';
 import Image from 'next/image';
 import RecruitCard from '@/app/SharedComponent/RecruitCard/RecruitCard';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
