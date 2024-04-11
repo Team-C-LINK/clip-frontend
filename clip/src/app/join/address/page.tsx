@@ -15,6 +15,8 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import stringToJson from '../utils/stringToJson';
 import jsonToString from '../utils/jsonToString';
+import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel';
+import Footer from '@/app/SharedComponent/Footer/Footer';
 
 const Address = () => {
   const { register, watch } = useForm();
@@ -46,60 +48,61 @@ const Address = () => {
 
   return (
     <>
-      <Layout>
-        <C.Wrapper>
-          <ProgressBar page={3}></ProgressBar>
-          <TopText
-            top={'주소 입력'}
-            bottom={'나와 가까운 연구참여 정보를 받아 볼 수 있어요'}
-          ></TopText>
-          <C.Dropdown_wrap>
-            <C.Dropdown_title>거주지를 선택해주세요</C.Dropdown_title>
-            <C.Dropdown_list_wrap>
-              <C.Dropdown
-                {...register('sido')}
-                onChange={setDropdownState}
-                $background={dropdown.sido ? '#ffffff' : '#F9FAFC'}
-                $textcolor={dropdown.sido ? '#252525' : '#8a8a8a'}
-                $src={arrow.src}
-              >
-                {sidoList?.map((val, idx) => {
-                  return (
-                    <option key={idx} value={val.name}>
-                      {val.name}
-                    </option>
-                  );
-                })}
-              </C.Dropdown>
-              <C.Dropdown
-                {...register('gu')}
-                onChange={setDropdownState}
-                $background={dropdown.gu ? '#ffffff' : '#F9FAFC'}
-                $textcolor={dropdown.gu ? '#252525' : '#8a8a8a'}
-                $src={arrow.src}
-              >
-                {sidoList?.map((val, idx) => {
-                  return (
-                    <option key={idx} value={val.name}>
-                      {val.name}
-                    </option>
-                  );
-                })}
-              </C.Dropdown>
-            </C.Dropdown_list_wrap>
-          </C.Dropdown_wrap>
-          <PrevNext>
-            <PrevButton $size={'45dvw'}>이전으로</PrevButton>
-            {dropdown.sido && dropdown.gu ? (
-              <NextButton $size={'45dvw'} onClick={next}>
-                다음으로
-              </NextButton>
-            ) : (
-              <NextButtonDisabled>다음으로</NextButtonDisabled>
-            )}
-          </PrevNext>
-        </C.Wrapper>
-      </Layout>
+      <HeaderCancel></HeaderCancel>
+      <ProgressBar page={3}></ProgressBar>
+      <C.view_wrap>
+        <TopText
+          top={'주소 입력'}
+          bottom={'나와 가까운 연구참여 정보를 받아 볼 수 있어요'}
+        ></TopText>
+        <C.Dropdown_wrap>
+          <C.Dropdown_title>거주지를 선택해주세요</C.Dropdown_title>
+          <C.Dropdown_list_wrap>
+            <C.Dropdown
+              {...register('sido')}
+              onChange={setDropdownState}
+              $background={dropdown.sido ? '#ffffff' : '#F9FAFC'}
+              $textcolor={dropdown.sido ? '#252525' : '#8a8a8a'}
+              $src={arrow.src}
+            >
+              {sidoList?.map((val, idx) => {
+                return (
+                  <option key={idx} value={val.name}>
+                    {val.name}
+                  </option>
+                );
+              })}
+            </C.Dropdown>
+            <C.Dropdown
+              {...register('gu')}
+              onChange={setDropdownState}
+              $background={dropdown.gu ? '#ffffff' : '#F9FAFC'}
+              $textcolor={dropdown.gu ? '#252525' : '#8a8a8a'}
+              $src={arrow.src}
+            >
+              {sidoList?.map((val, idx) => {
+                return (
+                  <option key={idx} value={val.name}>
+                    {val.name}
+                  </option>
+                );
+              })}
+            </C.Dropdown>
+          </C.Dropdown_list_wrap>
+        </C.Dropdown_wrap>
+      </C.view_wrap>
+      <Footer>
+        <PrevNext>
+          <PrevButton $size={'45dvw'}>이전으로</PrevButton>
+          {dropdown.sido && dropdown.gu ? (
+            <NextButton $size={'45dvw'} onClick={next}>
+              다음으로
+            </NextButton>
+          ) : (
+            <NextButtonDisabled>다음으로</NextButtonDisabled>
+          )}
+        </PrevNext>
+      </Footer>
     </>
   );
 };

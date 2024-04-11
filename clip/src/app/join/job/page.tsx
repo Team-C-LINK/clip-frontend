@@ -15,6 +15,8 @@ import { useRouter } from 'next/navigation';
 import jsonToString from '../utils/jsonToString';
 import stringToJson from '../utils/stringToJson';
 import api from '@/app/api/api';
+import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel';
+import Footer from '@/app/SharedComponent/Footer/Footer';
 
 const JOB_LIST = ['직장인', '자영업', '학생', '무직', '전업 주부', '은퇴'];
 
@@ -56,47 +58,47 @@ const Education = () => {
 
   return (
     <>
-      <Layout>
-        <C.Wrapper>
-          <ProgressBar page={5}></ProgressBar>
-          <TopText
-            top={'정보 입력'}
-            bottom={'나에게 맞는 연구정보만 모아볼 수 있어요'}
-          ></TopText>
-          <C.Dropdown_wrap>
-            {errors.educationLevel?.message?.toString()}
-            <C.Dropdown_title>근무 형태를 선택해주세요</C.Dropdown_title>
-            <C.Dropdown_list_wrap>
-              <C.Dropdown
-                {...register('job')}
-                onChange={setDropdownState}
-                $background={dropdown.job ? '#ffffff' : '#F9FAFC'}
-                $textcolor={dropdown.job ? '#252525' : '#8a8a8a'}
-                src={arrow.src}
-              >
-                {JOB_LIST?.map((val: string, idx) => {
-                  return (
-                    <option key={idx} value={val}>
-                      {val}
-                    </option>
-                  );
-                })}
-              </C.Dropdown>
-            </C.Dropdown_list_wrap>
-          </C.Dropdown_wrap>
-
-          <PrevNext>
-            <PrevButton $size={'45dvw'}>이전으로</PrevButton>
-            {dropdown.job ? (
-              <NextButton $size={'45dvw'} onClick={next}>
-                다음으로
-              </NextButton>
-            ) : (
-              <NextButtonDisabled>다음으로</NextButtonDisabled>
-            )}
-          </PrevNext>
-        </C.Wrapper>
-      </Layout>
+      <HeaderCancel></HeaderCancel>
+      <ProgressBar page={5}></ProgressBar>
+      <C.view_wrap>
+        <TopText
+          top={'정보 입력'}
+          bottom={'나에게 맞는 연구정보만 모아볼 수 있어요'}
+        ></TopText>
+        <C.Dropdown_wrap>
+          {errors.educationLevel?.message?.toString()}
+          <C.Dropdown_title>근무 형태를 선택해주세요</C.Dropdown_title>
+          <C.Dropdown_list_wrap>
+            <C.Dropdown
+              {...register('job')}
+              onChange={setDropdownState}
+              $background={dropdown.job ? '#ffffff' : '#F9FAFC'}
+              $textcolor={dropdown.job ? '#252525' : '#8a8a8a'}
+              src={arrow.src}
+            >
+              {JOB_LIST?.map((val: string, idx) => {
+                return (
+                  <option key={idx} value={val}>
+                    {val}
+                  </option>
+                );
+              })}
+            </C.Dropdown>
+          </C.Dropdown_list_wrap>
+        </C.Dropdown_wrap>
+      </C.view_wrap>
+      <Footer>
+        <PrevNext>
+          <PrevButton $size={'45dvw'}>이전으로</PrevButton>
+          {dropdown.job ? (
+            <NextButton $size={'45dvw'} onClick={next}>
+              다음으로
+            </NextButton>
+          ) : (
+            <NextButtonDisabled>다음으로</NextButtonDisabled>
+          )}
+        </PrevNext>
+      </Footer>
     </>
   );
 };

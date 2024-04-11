@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 
-export const wrap = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-`;
-
-export const wrapper = styled.div`
+export const view_wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;

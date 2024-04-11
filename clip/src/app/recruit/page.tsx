@@ -33,70 +33,63 @@ const Recruit = () => {
 
   return (
     <>
-      <Layout>
-        <C.wrap>
-          <C.header>
-            <C.header_inner_wrap>
-              {filterList.map((val, idx) => {
-                return (
-                  <React.Fragment key={idx}>
-                    {filterState === val ? (
-                      <C.header_content_selected key={idx}>
-                        <Image
-                          src={check.src}
-                          alt="check"
-                          width={16}
-                          height={16}
-                        ></Image>
-                        <C.header_content_text>
-                          <C.test>{val}</C.test>
-                        </C.header_content_text>
-                      </C.header_content_selected>
-                    ) : (
-                      <C.header_content_unselected
-                        id={val}
-                        onClick={handleFilter}
-                      >
-                        <C.header_content_text>
-                          <C.test2>{val}</C.test2>
-                        </C.header_content_text>
-                      </C.header_content_unselected>
-                    )}
-                  </React.Fragment>
-                );
-              })}
-            </C.header_inner_wrap>
-          </C.header>
-          <C.filter_wrap>
-            <C.filter_inner>
-              <C.filter_recruiting_wrap>
-                {isRecruiting ? (
-                  <Image
-                    src={checkedbox.src}
-                    alt="checkedbox"
-                    width={24}
-                    height={24}
-                    onClick={handleIsRecruiting}
-                  ></Image>
+      <C.header>
+        <C.header_inner_wrap>
+          {filterList.map((val, idx) => {
+            return (
+              <React.Fragment key={idx}>
+                {filterState === val ? (
+                  <C.header_content_selected key={idx}>
+                    <Image
+                      src={check.src}
+                      alt="check"
+                      width={16}
+                      height={16}
+                    ></Image>
+                    <C.header_content_text>
+                      <C.test>{val}</C.test>
+                    </C.header_content_text>
+                  </C.header_content_selected>
                 ) : (
-                  <Image
-                    src={uncheckedbox.src}
-                    alt="uncheckedbox"
-                    width={24}
-                    height={24}
-                    onClick={handleIsRecruiting}
-                  ></Image>
+                  <C.header_content_unselected id={val} onClick={handleFilter}>
+                    <C.header_content_text>
+                      <C.test2>{val}</C.test2>
+                    </C.header_content_text>
+                  </C.header_content_unselected>
                 )}
-                <C.filter_recruiting_text>모집중</C.filter_recruiting_text>
-              </C.filter_recruiting_wrap>
-            </C.filter_inner>
-          </C.filter_wrap>
-          <C.list_wrap>
-            <RecruitCard></RecruitCard>
-          </C.list_wrap>
-          <NavigationBar state={'recruit'}></NavigationBar>
-        </C.wrap>
-      </Layout>
+              </React.Fragment>
+            );
+          })}
+        </C.header_inner_wrap>
+      </C.header>
+      <C.filter_wrap>
+        <C.filter_inner>
+          <C.filter_recruiting_wrap>
+            {isRecruiting ? (
+              <Image
+                src={checkedbox.src}
+                alt="checkedbox"
+                width={24}
+                height={24}
+                onClick={handleIsRecruiting}
+              ></Image>
+            ) : (
+              <Image
+                src={uncheckedbox.src}
+                alt="uncheckedbox"
+                width={24}
+                height={24}
+                onClick={handleIsRecruiting}
+              ></Image>
+            )}
+            <C.filter_recruiting_text>모집중</C.filter_recruiting_text>
+          </C.filter_recruiting_wrap>
+        </C.filter_inner>
+      </C.filter_wrap>
+      <C.view_wrap>
+        <RecruitCard></RecruitCard>
+      </C.view_wrap>
+      <NavigationBar state={'recruit'}></NavigationBar>
     </>
   );
 };

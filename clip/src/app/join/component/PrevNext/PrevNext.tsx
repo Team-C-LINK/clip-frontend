@@ -5,8 +5,7 @@ import NextButton from './NextButton/NextButton';
 import PrevButton from './PrevButton/PrevButton';
 
 const PrevNextFrame = styled.div`
-  position: fixed;
-  bottom: 2dvh; // 고정값
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

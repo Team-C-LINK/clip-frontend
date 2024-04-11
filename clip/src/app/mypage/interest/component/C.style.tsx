@@ -100,7 +100,7 @@ export const filter_recruiting_text = styled.span`
   line-height: 2rem;
 `;
 
-export const list_wrap = styled.div`
+export const view_wrap = styled.div`
   position: relative;
   display: row;
   flex-direction: column;

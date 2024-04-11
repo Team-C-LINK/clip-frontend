@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
-export const wrap = styled.div`
+export const view_wrap = styled.div`
   position: relative;
-  display: flex;
+  display: row;
   flex-direction: column;
+  flex-wrap: wrap;
+  overflow-y: auto;
   width: 100%;
-  height: 100%;
+  flex: 1;
 `;
 
 export const filter_wrap = styled.div`
@@ -98,16 +100,6 @@ export const filter_recruiting_text = styled.span`
   font-weight: 500;
   font-size: 1.4rem;
   line-height: 2rem;
-`;
-
-export const list_wrap = styled.div`
-  position: relative;
-  display: row;
-  flex-direction: column;
-  flex-wrap: wrap;
-  overflow-y: auto;
-  width: 100%;
-  flex: 1;
 `;
 
 export const header = styled.div`

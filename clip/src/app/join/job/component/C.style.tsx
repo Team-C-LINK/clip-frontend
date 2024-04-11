@@ -6,15 +6,12 @@ type selectBox = {
   $background: string;
 };
 
-export const Wrapper = styled.div`
-  position: relative;
+export const view_wrap = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  align-items: center;
-  height: 100%;
-  overflow: scroll;
-  gap: 5rem;
+  width: 91.1%;
+  overflow-y: auto;
+  flex: 1;
 `;
 
 export const Dropdown_wrap = styled.div`

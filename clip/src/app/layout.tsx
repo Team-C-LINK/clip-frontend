@@ -5,6 +5,7 @@ import './globals.css';
 import '../../public/fonts/style.css';
 import PaletteProvider from './Provider/PaletteProvider/PaletteProvider';
 import { GoogleAnalytics } from './Provider/GoogleAnalytics/GoogleAnalytics';
+import Wrapper from './SharedComponent/Wrapper/Wrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,7 +27,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <GoogleAnalytics />
         <QueryProvider>
-          <PaletteProvider>{children}</PaletteProvider>
+          <PaletteProvider>
+            <Wrapper>{children}</Wrapper>
+          </PaletteProvider>
         </QueryProvider>
       </body>
     </html>

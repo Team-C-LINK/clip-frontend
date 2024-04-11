@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Layout from '@/app/SharedComponent/Background';
 import Header from '@/app/SharedComponent/Header/Header';
 import RecruitCard from '@/app/SharedComponent/RecruitCard/RecruitCard';
 import * as C from './component/C.style';
@@ -33,38 +32,34 @@ const Interest = () => {
 
   return (
     <>
-      <Layout>
-        <C.wrap>
-          <Header text={'내 관심 목록'} route={'/mypage'}></Header>
-          <C.filter_wrap>
-            <C.filter_inner>
-              <C.filter_recruiting_wrap>
-                {isRecruiting ? (
-                  <Image
-                    src={checkedbox.src}
-                    alt="checkedbox"
-                    width={24}
-                    height={24}
-                    onClick={handleIsRecruiting}
-                  ></Image>
-                ) : (
-                  <Image
-                    src={uncheckedbox.src}
-                    alt="uncheckedbox"
-                    width={24}
-                    height={24}
-                    onClick={handleIsRecruiting}
-                  ></Image>
-                )}
-                <C.filter_recruiting_text>모집중</C.filter_recruiting_text>
-              </C.filter_recruiting_wrap>
-            </C.filter_inner>
-          </C.filter_wrap>
-          <C.list_wrap>
-            <RecruitCard></RecruitCard>
-          </C.list_wrap>
-        </C.wrap>
-      </Layout>
+      <Header text={'내 관심 목록'} route={'/mypage'}></Header>
+      <C.filter_wrap>
+        <C.filter_inner>
+          <C.filter_recruiting_wrap>
+            {isRecruiting ? (
+              <Image
+                src={checkedbox.src}
+                alt="checkedbox"
+                width={24}
+                height={24}
+                onClick={handleIsRecruiting}
+              ></Image>
+            ) : (
+              <Image
+                src={uncheckedbox.src}
+                alt="uncheckedbox"
+                width={24}
+                height={24}
+                onClick={handleIsRecruiting}
+              ></Image>
+            )}
+            <C.filter_recruiting_text>모집중</C.filter_recruiting_text>
+          </C.filter_recruiting_wrap>
+        </C.filter_inner>
+      </C.filter_wrap>
+      <C.view_wrap>
+        <RecruitCard></RecruitCard>
+      </C.view_wrap>
     </>
   );
 };

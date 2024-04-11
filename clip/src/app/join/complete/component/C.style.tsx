@@ -6,17 +6,6 @@ type selectBox = {
   $background: string;
 };
 
-export const Wrapper = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  height: 100%;
-  overflow: scroll;
-  gap: 5rem;
-`;
-
 export const Title_wrap = styled.div`
   position: relative;
   margin-top: 10rem;

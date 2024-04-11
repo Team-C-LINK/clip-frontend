@@ -1,5 +1,5 @@
 'use client';
-import Layout from '../SharedComponent/Background';
+
 import * as C from './C.style';
 import giftBox from '../../../public/image/giftBox.svg';
 import kakao from '../../../public/image/KakaoLogin.svg';
@@ -8,6 +8,7 @@ import GTS from '../../../public/image/GTS.svg';
 import ClipPhoneImage from '../../../public/image/ClipPhoneImage.svg';
 import triangle from './assets/image/tip.svg';
 import Image from 'next/image';
+import HeaderCancel from '../SharedComponent/Header/HeaderCancel';
 
 const Login = () => {
   const kakaoLogin = () => {
@@ -16,7 +17,8 @@ const Login = () => {
 
   return (
     <>
-      <Layout>
+      <HeaderCancel></HeaderCancel>
+      <C.view_wrap>
         <C.LoginInner>
           <C.LoginTextFrame>
             <C.LoginTopText>로그인</C.LoginTopText>
@@ -41,20 +43,20 @@ const Login = () => {
             <C.ReturnHomeButton>클립 홈으로 돌아가기</C.ReturnHomeButton>
           </C.ButtonFrame>
         </C.LoginInner>
-        <C.Banner>
-          <C.BannerTextFrame>
-            <C.BannerTopText>
-              지금 클립 <strong>카카오 채널</strong> 추가하면, <br></br>
-              <strong>베타테스트</strong> 이용 가능!
-            </C.BannerTopText>
-            <C.BannerBottomText>
-              채널 추가 바로가기
-              <Image src={GTS.src} alt="kakao" width={16} height={16} />
-            </C.BannerBottomText>
-          </C.BannerTextFrame>
-          <C.BannerImage src={ClipPhoneImage.src}></C.BannerImage>
-        </C.Banner>
-      </Layout>
+      </C.view_wrap>
+      <C.Banner>
+        <C.BannerTextFrame>
+          <C.BannerTopText>
+            지금 클립 <strong>카카오 채널</strong> 추가하면, <br></br>
+            <strong>베타테스트</strong> 이용 가능!
+          </C.BannerTopText>
+          <C.BannerBottomText>
+            채널 추가 바로가기
+            <Image src={GTS.src} alt="kakao" width={16} height={16} />
+          </C.BannerBottomText>
+        </C.BannerTextFrame>
+        <C.BannerImage src={ClipPhoneImage.src}></C.BannerImage>
+      </C.Banner>
     </>
   );
 };

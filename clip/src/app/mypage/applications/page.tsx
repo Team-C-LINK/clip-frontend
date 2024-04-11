@@ -35,61 +35,57 @@ const Applications = () => {
 
   return (
     <>
-      <Layout>
-        <C.wrap>
-          <Header text={'내 지원 목록'} route={'/mypage'}></Header>
-          <C.filter_wrap>
-            <C.filter_inner>
-              <C.filter_status_wrap>
-                {filterState === '신청 완료' ? (
-                  <C.filter_text_selected>신청 완료</C.filter_text_selected>
-                ) : (
-                  <C.filter_text_unselected onClick={handleFilterState}>
-                    신청 완료
-                  </C.filter_text_unselected>
-                )}
-                {filterState === '신청 취소' ? (
-                  <C.filter_text_selected>신청 취소</C.filter_text_selected>
-                ) : (
-                  <C.filter_text_unselected onClick={handleFilterState}>
-                    신청 취소
-                  </C.filter_text_unselected>
-                )}
-                {filterState === '매칭 완료' ? (
-                  <C.filter_text_selected>매칭 완료</C.filter_text_selected>
-                ) : (
-                  <C.filter_text_unselected onClick={handleFilterState}>
-                    매칭 완료
-                  </C.filter_text_unselected>
-                )}
-              </C.filter_status_wrap>
-              <C.filter_recruiting_wrap>
-                {isRecruiting ? (
-                  <Image
-                    src={checkedbox.src}
-                    alt="checkedbox"
-                    width={24}
-                    height={24}
-                    onClick={handleIsRecruiting}
-                  ></Image>
-                ) : (
-                  <Image
-                    src={uncheckedbox.src}
-                    alt="uncheckedbox"
-                    width={24}
-                    height={24}
-                    onClick={handleIsRecruiting}
-                  ></Image>
-                )}
-                <C.filter_recruiting_text>모집중</C.filter_recruiting_text>
-              </C.filter_recruiting_wrap>
-            </C.filter_inner>
-          </C.filter_wrap>
-          <C.list_wrap>
-            <RecruitCard></RecruitCard>
-          </C.list_wrap>
-        </C.wrap>
-      </Layout>
+      <Header text={'내 지원 목록'} route={'/mypage'}></Header>
+      <C.filter_wrap>
+        <C.filter_inner>
+          <C.filter_status_wrap>
+            {filterState === '신청 완료' ? (
+              <C.filter_text_selected>신청 완료</C.filter_text_selected>
+            ) : (
+              <C.filter_text_unselected onClick={handleFilterState}>
+                신청 완료
+              </C.filter_text_unselected>
+            )}
+            {filterState === '신청 취소' ? (
+              <C.filter_text_selected>신청 취소</C.filter_text_selected>
+            ) : (
+              <C.filter_text_unselected onClick={handleFilterState}>
+                신청 취소
+              </C.filter_text_unselected>
+            )}
+            {filterState === '매칭 완료' ? (
+              <C.filter_text_selected>매칭 완료</C.filter_text_selected>
+            ) : (
+              <C.filter_text_unselected onClick={handleFilterState}>
+                매칭 완료
+              </C.filter_text_unselected>
+            )}
+          </C.filter_status_wrap>
+          <C.filter_recruiting_wrap>
+            {isRecruiting ? (
+              <Image
+                src={checkedbox.src}
+                alt="checkedbox"
+                width={24}
+                height={24}
+                onClick={handleIsRecruiting}
+              ></Image>
+            ) : (
+              <Image
+                src={uncheckedbox.src}
+                alt="uncheckedbox"
+                width={24}
+                height={24}
+                onClick={handleIsRecruiting}
+              ></Image>
+            )}
+            <C.filter_recruiting_text>모집중</C.filter_recruiting_text>
+          </C.filter_recruiting_wrap>
+        </C.filter_inner>
+      </C.filter_wrap>
+      <C.view_wrap>
+        <RecruitCard></RecruitCard>
+      </C.view_wrap>
     </>
   );
 };

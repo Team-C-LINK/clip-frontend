@@ -4,12 +4,14 @@ interface color {
   color: string;
 }
 
-export const view_wrap = styled.div`
+export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
-  width: 91.1%;
-  overflow-y: auto;
-  flex: 1;
+  width: 100%;
+  align-items: center;
+  height: fit-content;
+  gap: 5rem;
 `;
 
 export const auth_wrap = styled.div`
@@ -24,7 +26,6 @@ export const auth_wrap = styled.div`
   position: relative;
   width: 91.1dvw;
   height: fit-content;
-  top: 3rem;
 `;
 
 export const authsend_text = styled.span`
