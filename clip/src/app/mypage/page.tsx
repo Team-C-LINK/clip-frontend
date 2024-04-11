@@ -10,6 +10,8 @@ import person from './asset/image/private.svg';
 import faq from './asset/image/faq.svg';
 import guide from './asset/image/guide.svg';
 import logout from './asset/image/logout.svg';
+import { useEffect } from 'react';
+import Spacer from '../SharedComponent/Spacer/Spacer';
 
 const src =
   'https://www.google.co.kr/imgres?q=%ED%94%84%EB%A1%9C%ED%95%84%20%EC%9D%B4%EB%AF%B8%EC%A7%80&imgurl=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F1361%2F1361876.png&imgrefurl=https%3A%2F%2Fwww.flaticon.com%2Fkr%2Ffree-icon%2Fprofile_1361876&docid=ZBtzkAs5djdrhM&tbnid=VwqsUUG2AFy7sM&vet=12ahUKEwj0vLjG5KWFAxWcha8BHXnDA14QM3oECBcQAA..i&w=512&h=512&hcb=2&ved=2ahUKEwj0vLjG5KWFAxWcha8BHXnDA14QM3oECBcQAA';
@@ -128,6 +130,7 @@ const MyPage = () => {
             </C.body_content>
           </C.body_content_wrapper>
         </C.body_wrapper>
+        <Spacer height={'8rem'}></Spacer>
       </C.view_wrap>
       <NavigationBar state={'my'}></NavigationBar>
     </>
