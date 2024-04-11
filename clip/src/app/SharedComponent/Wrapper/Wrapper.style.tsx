@@ -7,6 +7,5 @@ export const Wrap = styled.div`
   width: 100%;
   height: auto;
   min-height: 100dvh;
-  max-height: 100dvh;
   align-items: center;
 `;
