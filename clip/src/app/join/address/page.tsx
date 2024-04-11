@@ -15,7 +15,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import stringToJson from '../utils/stringToJson';
 import jsonToString from '../utils/jsonToString';
-import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel';
+import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
 import Footer from '@/app/SharedComponent/Footer/Footer';
 
 const Address = () => {

@@ -1,5 +1,5 @@
 import * as C from './HeaderCancel.style';
-import cancel from '../asset/image/cancel.svg';
+import cancel from '../../asset/image/cancel.svg';
 import Image from 'next/image';
 
 const HeaderCancel = () => {

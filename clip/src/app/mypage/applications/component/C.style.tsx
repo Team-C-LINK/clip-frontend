@@ -1,15 +1,5 @@
 import styled from 'styled-components';
 
-export const view_wrap = styled.div`
-  position: relative;
-  display: row;
-  flex-direction: column;
-  flex-wrap: wrap;
-  overflow-y: auto;
-  width: 100%;
-  flex: 1;
-`;
-
 export const filter_wrap = styled.div`
   position: relative;
   display: flex;
@@ -22,6 +12,7 @@ export const filter_wrap = styled.div`
   background: #ffffff;
   /* Line/01 */
   border-bottom: 0.1rem solid #d9d9d9;
+  z-index: 1;
 `;
 export const filter_inner = styled.div`
   position: relative;

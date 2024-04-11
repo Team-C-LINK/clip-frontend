@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import jsonToString from '../utils/jsonToString';
 import stringToJson from '../utils/stringToJson';
-import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel';
+import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
 import Footer from '@/app/SharedComponent/Footer/Footer';
 
 const EDUCATION_LEVEL_LIST = [

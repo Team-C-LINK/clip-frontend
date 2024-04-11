@@ -1,6 +1,7 @@
 'use client';
 
 import Header from '@/app/SharedComponent/Header/Header';
+import HeaderBack from '@/app/SharedComponent/Header/HeaderBack/HeaderBack';
 import * as C from './component/C.style';
 import arrow from './assets/image/arrow.svg';
 import defaultImage from '@/app/Landing/components/Fourth/assets/image/cap_clippy.svg';
@@ -8,6 +9,8 @@ import camera from './assets/image/camera.svg';
 import NextButton from '@/app/join/component/PrevNext/NextButton/NextButton';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import Footer from '@/app/SharedComponent/Footer/Footer';
+import Spacer from '@/app/SharedComponent/Spacer/Spacer';
 
 const ModifyProfile = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -33,7 +36,10 @@ const ModifyProfile = () => {
 
   return (
     <>
-      <Header text="개인정보 설정" route={'/mypage'}></Header>
+      <Spacer height="5.6rem" />
+      <Header>
+        <HeaderBack text="개인정보 설정" route={'/mypage'}></HeaderBack>{' '}
+      </Header>
       <C.view_wrap>
         <C.profile_wrap $gap={'0rem'}>
           <C.profile_image_modify_wrap>
@@ -116,9 +122,10 @@ const ModifyProfile = () => {
           <C.profile_content_tag>탈퇴하기</C.profile_content_tag>
         </C.profile_wrap>
       </C.view_wrap>
-      <C.footer>
+      <Spacer height="8rem" />
+      <Footer>
         <NextButton $size="91.1dvw">완료하기</NextButton>
-      </C.footer>
+      </Footer>
     </>
   );
 };

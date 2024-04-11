@@ -15,7 +15,7 @@ import { useRouter } from 'next/navigation';
 import jsonToString from '../utils/jsonToString';
 import stringToJson from '../utils/stringToJson';
 import api from '@/app/api/api';
-import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel';
+import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
 import Footer from '@/app/SharedComponent/Footer/Footer';
 
 const JOB_LIST = ['직장인', '자영업', '학생', '무직', '전업 주부', '은퇴'];

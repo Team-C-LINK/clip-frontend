@@ -2,16 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 import NavigationBar from '../SharedComponent/NavigationBar/NaivgationBar';
-import Layout from '@/app/SharedComponent/Background';
 import RecruitCard from '../SharedComponent/RecruitCard/RecruitCard';
 import * as C from './component/C.style';
 import checkedbox from './asset/checkedBox.svg';
 import uncheckedbox from './asset/uncheckedBox.svg';
-import interested from './asset/interested.svg';
-import uninterested from './asset/uninterested.svg';
 import Image from 'next/image';
 import check from './asset/check.svg';
 import Spacer from '../SharedComponent/Spacer/Spacer';
+import Header from '../SharedComponent/Header/Header';
 
 const Recruit = () => {
   const [isRecruiting, setIsRecruiting] = useState<boolean>(false);
@@ -35,7 +33,7 @@ const Recruit = () => {
   return (
     <>
       <Spacer height="10.2rem"></Spacer>
-      <C.header_wrap>
+      <Header>
         <C.header>
           <C.header_inner_wrap>
             {filterList.map((val, idx) => {
@@ -92,7 +90,7 @@ const Recruit = () => {
             </C.filter_recruiting_wrap>
           </C.filter_inner>
         </C.filter_wrap>
-      </C.header_wrap>
+      </Header>
       <RecruitCard></RecruitCard>
       <RecruitCard></RecruitCard>
       <RecruitCard></RecruitCard>

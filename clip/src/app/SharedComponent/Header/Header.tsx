@@ -1,20 +1,19 @@
-import * as C from './Header.style';
-import arrow from '../asset/image/arrow.svg';
-import Image from 'next/image';
+import styled from 'styled-components';
 
-const Header = ({ text, route }: { text: string; route: string }) => {
-  const routing = () => {
-    window.location.href = route;
-  };
+const _TEST = styled.div`
+  position: fixed;
+  top: 0rem;
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  z-index: 2;
+  background-color: #ffffff;
+`;
 
-  return (
-    <>
-      <C.header>
-        <C.prev onClick={routing} src={arrow.src}></C.prev>
-        <C.header_title>{text}</C.header_title>
-      </C.header>
-    </>
-  );
+const Header = ({ children }: { children: React.ReactNode }) => {
+  return <_TEST>{children}</_TEST>;
 };
 
 export default Header;

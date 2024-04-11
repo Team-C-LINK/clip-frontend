@@ -8,7 +8,7 @@ import GTS from '../../../public/image/GTS.svg';
 import ClipPhoneImage from '../../../public/image/ClipPhoneImage.svg';
 import triangle from './assets/image/tip.svg';
 import Image from 'next/image';
-import HeaderCancel from '../SharedComponent/Header/HeaderCancel';
+import HeaderCancel from '../SharedComponent/Header/HeaderCancel/HeaderCancel';
 
 const Login = () => {
   const kakaoLogin = () => {

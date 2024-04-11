@@ -6,11 +6,10 @@ import * as C from './component/C.style';
 import checkedBox from '../asset/checkedBox.svg';
 import unCheckedBox from '../asset/uncheckedBox.svg';
 import ProgressBar from '../component/ProgressBar/ProgressBar';
-import Layout from '@/app/SharedComponent/Background';
 import { useRouter } from 'next/navigation';
 import stringToJson from '../utils/stringToJson';
 import jsonToString from '../utils/jsonToString';
-import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel';
+import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
 import Footer from '@/app/SharedComponent/Footer/Footer';
 import TopText from '../component/TopText/TopText';
 
