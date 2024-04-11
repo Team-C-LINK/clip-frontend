@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const view_wrap = styled.div`
   position: relative;
-  display: row;
+  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   overflow-y: auto;

@@ -6,8 +6,8 @@ export const view_wrap = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  flex: 1;
   overflow-y: auto;
+  flex: 1;
 `;
 
 export const header_wrapper = styled.div`
