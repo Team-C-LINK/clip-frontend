@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const wrap = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-`;
-
 export const filter_wrap = styled.div`
   position: relative;
   display: flex;
@@ -20,6 +12,7 @@ export const filter_wrap = styled.div`
   background: #ffffff;
   /* Line/01 */
   border-bottom: 0.1rem solid #d9d9d9;
+  z-index: 1;
 `;
 export const filter_inner = styled.div`
   position: relative;
@@ -98,14 +91,4 @@ export const filter_recruiting_text = styled.span`
   font-weight: 500;
   font-size: 1.4rem;
   line-height: 2rem;
-`;
-
-export const list_wrap = styled.div`
-  position: relative;
-  display: row;
-  flex-direction: column;
-  flex-wrap: wrap;
-  overflow-y: auto;
-  width: 100%;
-  flex: 1;
 `;

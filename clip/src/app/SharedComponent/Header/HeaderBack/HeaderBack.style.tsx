@@ -15,6 +15,7 @@ export const header = styled.div`
   background: #ffffff;
   /* Line/01 */
   border-bottom: 0.1rem solid #d9d9d9;
+  z-index: 1;
 `;
 
 export const header_title = styled.span`

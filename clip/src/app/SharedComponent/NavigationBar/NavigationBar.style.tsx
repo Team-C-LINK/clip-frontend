@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const wrapper = styled.div`
   box-sizing: border-box;
-  position: relative;
+  position: fixed;
   bottom: 0dvh;
   width: 100%;
   height: 8rem;

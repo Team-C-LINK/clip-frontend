@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const LoginInner = styled.div`
-  left: 50%;
-  transform: translateX(-50%);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -10,9 +8,15 @@ export const LoginInner = styled.div`
   height: fit-content;
 `;
 
-export const LoginTextFrame = styled.div`
-  /* Title */
+export const view_wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 91.1%;
+  overflow-y: auto;
+  flex: 1;
+`;
 
+export const LoginTextFrame = styled.div`
   position: relative;
   /* Auto layout */
   display: flex;
@@ -20,11 +24,9 @@ export const LoginTextFrame = styled.div`
   align-items: flex-start;
   padding: 0px;
   gap: 0.8rem;
-
   width: 26.1rem;
   height: 8rem;
-
-  margin-top: 15.1rem;
+  margin-top: 4rem;
 `;
 
 export const LoginTopText = styled.div`
@@ -157,7 +159,7 @@ export const ReturnHomeButton = styled.div`
   gap: 1.2rem;
 
   position: relative;
-  width: 95vw;
+  width: 91.1dvw;
   height: 4.8rem;
   top: 6vh;
 
@@ -189,7 +191,7 @@ export const ReturnHomeButton = styled.div`
 export const Banner = styled.div`
   /* banner M */
 
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direciton: row;
   justify-content: center;
@@ -272,7 +274,7 @@ export const KaKaoButton = styled.div`
   gap: 1.2rem;
 
   position: relative;
-  width: 95dvw;
+  width: 91.1dvw;
   height: 4.4rem;
 
   background: #fee500;
@@ -303,7 +305,7 @@ export const NaverButton = styled.div`
   gap: 1.2rem;
 
   position: relative;
-  width: 95dvw;
+  width: 91.1dvw;
   height: 4.4rem;
 
   background: #00ac26;

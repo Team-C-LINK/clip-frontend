@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-export const wrap = styled.div`
+export const view_wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  overflow-y: auto;
   width: 100%;
-  height: 100%;
 `;
 
 export const filter_wrap = styled.div`
@@ -100,14 +101,14 @@ export const filter_recruiting_text = styled.span`
   line-height: 2rem;
 `;
 
-export const list_wrap = styled.div`
-  position: relative;
-  display: row;
+export const header_wrap = styled.div`
+  position: fixed;
+  top: 0rem;
+  display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  overflow-y: auto;
   width: 100%;
-  flex: 1;
+  height: fit-content;
+  z-index: 1;
 `;
 
 export const header = styled.div`

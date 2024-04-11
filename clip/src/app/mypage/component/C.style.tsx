@@ -1,19 +1,11 @@
 import styled from 'styled-components';
 
-export const wrap = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-`;
-
-export const wrapper = styled.div`
+export const view_wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  flex: 1;
   overflow-y: auto;
 `;
 
