@@ -5,7 +5,6 @@ export const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: auto;
-  min-height: 100dvh;
+  height: 100dvh;
   align-items: center;
 `;
