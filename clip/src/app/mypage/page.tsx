@@ -90,7 +90,9 @@ const MyPage = () => {
               ></Image>
               <C.body_content_text>개인정보 설정</C.body_content_text>
             </C.body_content>
-            <C.body_content>
+            <C.body_content
+              onClick={() => (window.location.href = '/mypage/alarm')}
+            >
               <Image
                 src={alarm.src}
                 alt={'alarm'}
