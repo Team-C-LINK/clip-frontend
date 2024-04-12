@@ -1,7 +1,7 @@
 'use client';
 
 import NavigationBar from '../SharedComponent/NavigationBar/NaivgationBar';
-import * as C from './component/C.style';
+import * as C from './asset/components/C.style';
 import clippy from '@/../public/clippy.png';
 import Image from 'next/image';
 import interest from './asset/image/interest.svg';
@@ -90,7 +90,9 @@ const MyPage = () => {
               ></Image>
               <C.body_content_text>개인정보 설정</C.body_content_text>
             </C.body_content>
-            <C.body_content>
+            <C.body_content
+              onClick={() => (window.location.href = '/mypage/alarm')}
+            >
               <Image
                 src={alarm.src}
                 alt={'alarm'}
