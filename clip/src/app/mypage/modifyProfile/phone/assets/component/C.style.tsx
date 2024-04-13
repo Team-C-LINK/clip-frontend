@@ -26,6 +26,7 @@ export const auth_wrap = styled.div`
   position: relative;
   width: 91.1dvw;
   height: fit-content;
+  top: 3rem;
 `;
 
 export const authsend_text = styled.span`
