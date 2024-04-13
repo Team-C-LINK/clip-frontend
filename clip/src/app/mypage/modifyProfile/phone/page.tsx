@@ -1,6 +1,5 @@
 'use client';
 import TopText from '@/app/join/component/TopText/TopText';
-import Layout from '@/app/SharedComponent/Background';
 import * as C from './assets/component/C.style';
 import NextButton from '@/app/join/component/PrevNext/NextButton/NextButton';
 import NextButtonDisabled from '@/app/join/component/PrevNext/NextButtonDisabled/NextButton';
@@ -15,6 +14,10 @@ import postCheckAuth from './assets/hooks/postCheckAuth';
 import jsonToString from '@/app/join/utils/jsonToString';
 import stringToJson from '@/app/join/utils/stringToJson';
 import Image from 'next/image';
+import Header from '@/app/SharedComponent/Header/Header';
+import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
+import Spacer from '@/app/SharedComponent/Spacer/Spacer';
+import { Footer } from '@/app/SharedComponent/Footer/Footer.style';
 
 const PHONE_REGEX = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/i;
 const AUTH_REGEX = /^\d{4}$/i;
@@ -100,65 +103,57 @@ const Auth = () => {
 
   return (
     <>
-      <Layout>
-        <C.Wrapper>
-          <TopText
-            top={'전화번호 변경'}
-            bottom={'본인 확인을 위해 휴대전화 번호를 입력해주세요'}
-          ></TopText>
-          <C.phoneNumber_wrap>
-            <C.phoneNumber
-              placeholder="010-0000-0000"
-              {...register('phoneNumber', {
-                pattern: {
-                  value: PHONE_REGEX,
-                  message: '올바르지 않은 형식이에요',
-                },
-                onChange: handlePhoneNumberChange,
-              })}
-              id="phoneNumber"
-            ></C.phoneNumber>
-            {!watch('phoneNumber') ||
-            errors.phoneNumber?.message?.toString() ? (
-              <C.getAuthDisable>인증번호 받기</C.getAuthDisable>
-            ) : (
-              <C.getAuth onClick={requestAuthCode}>인증번호 받기</C.getAuth>
-            )}
-          </C.phoneNumber_wrap>
-          <C.auth_wrap>
-            <C.phoneNumber_wrap>
-              <C.phoneNumber
-                placeholder="인증번호 4자리"
-                {...register('verificationNumber', {
-                  pattern: {
-                    value: AUTH_REGEX,
-                    message: '올바르지 않은 형식이에요',
-                  },
-                })}
-              ></C.phoneNumber>
-              {!watch('verificationNumber') ||
-              errors.verficationNumber?.message?.toString() ? (
-                <C.getAuthDisable>인증하기</C.getAuthDisable>
-              ) : (
-                <C.getAuth onClick={requestCheckAuth}>인증하기</C.getAuth>
-              )}
-            </C.phoneNumber_wrap>
-            {authCodeComponent[authCodeState]}
-          </C.auth_wrap>
-          <PrevNext>
-            <NextButton onClick={next} $size={'91.1dvw'}>
-              완료하기
-            </NextButton>
-            {/* {isValid ? (
-              <NextButton onClick={next} $size={'91.1dvw'}>
-                다음으로
-              </NextButton>
-            ) : (
-              <NextButtonDisabled>다음으로</NextButtonDisabled>
-            )} */}
-          </PrevNext>
-        </C.Wrapper>
-      </Layout>
+      <Spacer height="5.6rem"></Spacer>
+      <Header>
+        <HeaderCancel></HeaderCancel>
+      </Header>
+      <TopText
+        top={'전화번호 변경'}
+        bottom={'본인 확인을 위해 휴대전화 번호를 입력해주세요'}
+      ></TopText>
+      <C.auth_wrap>
+        <C.phoneNumber_wrap>
+          <C.phoneNumber
+            placeholder="010-0000-0000"
+            {...register('phoneNumber', {
+              pattern: {
+                value: PHONE_REGEX,
+                message: '올바르지 않은 형식이에요',
+              },
+              onChange: handlePhoneNumberChange,
+            })}
+            id="phoneNumber"
+          ></C.phoneNumber>
+          {!watch('phoneNumber') || errors.phoneNumber?.message?.toString() ? (
+            <C.getAuthDisable>인증번호 받기</C.getAuthDisable>
+          ) : (
+            <C.getAuth onClick={requestAuthCode}>인증번호 받기</C.getAuth>
+          )}
+        </C.phoneNumber_wrap>
+        <C.phoneNumber_wrap>
+          <C.phoneNumber
+            placeholder="인증번호 4자리"
+            {...register('verificationNumber', {
+              pattern: {
+                value: AUTH_REGEX,
+                message: '올바르지 않은 형식이에요',
+              },
+            })}
+          ></C.phoneNumber>
+          {!watch('verificationNumber') ||
+          errors.verficationNumber?.message?.toString() ? (
+            <C.getAuthDisable>인증하기</C.getAuthDisable>
+          ) : (
+            <C.getAuth onClick={requestCheckAuth}>인증하기</C.getAuth>
+          )}
+        </C.phoneNumber_wrap>
+        {authCodeComponent[authCodeState]}
+      </C.auth_wrap>
+      <Footer>
+        <NextButton onClick={next} $size={'91.1dvw'}>
+          완료하기
+        </NextButton>
+      </Footer>
     </>
   );
 };

@@ -27,6 +27,21 @@ export const view_wrap = styled.div`
   flex: 1;
 `;
 
+export const auth_wrap = styled.div`
+  /* input field */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
+
+  position: relative;
+  width: 91.1dvw;
+  height: fit-content;
+  top: 3rem;
+`;
+
 export const footer = styled.div`
   position: relative;
   display: flex;
