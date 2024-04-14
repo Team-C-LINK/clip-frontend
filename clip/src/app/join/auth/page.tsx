@@ -133,7 +133,7 @@ const Auth = () => {
           </C.phoneNumber_wrap>
 
           <C.phoneNumber_wrap>
-            <C.phoneNumber
+            <C.certification
               placeholder="인증번호 4자리"
               {...register('verificationNumber', {
                 pattern: {
@@ -141,7 +141,7 @@ const Auth = () => {
                   message: '올바르지 않은 형식이에요',
                 },
               })}
-            ></C.phoneNumber>
+            ></C.certification>
             {!watch('verificationNumber') ||
             errors.verficationNumber?.message?.toString() ? (
               <C.getAuthDisable>인증하기</C.getAuthDisable>

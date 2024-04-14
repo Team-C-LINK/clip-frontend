@@ -68,6 +68,19 @@ export const phoneNumber = styled.input.attrs({ type: 'text' })`
   outline: none;
 `;
 
+export const certification = styled.input.attrs({ type: 'password' })`
+  position: relative;
+  //styleName: Regular/B1;
+  border: 0;
+  font-family: Pretendard;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 2.8rem;
+  text-align: left;
+  color: #252525;
+  outline: none;
+`;
+
 export const getAuth = styled.span`
   font-family: Pretendard;
   font-size: 1.2rem;
