@@ -99,7 +99,7 @@ const Email = () => {
     <>
       <Spacer height="5.6rem"></Spacer>
       <Header>
-        <HeaderCancel></HeaderCancel>
+        <HeaderCancel route={'/mypage'}></HeaderCancel>
       </Header>
       <TopText
         top={'이메일 변경'}

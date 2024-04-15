@@ -105,7 +105,7 @@ const Auth = () => {
     <>
       <Spacer height="5.6rem"></Spacer>
       <Header>
-        <HeaderCancel></HeaderCancel>
+        <HeaderCancel route={'/mypage/modifyProfile'}></HeaderCancel>
       </Header>
       <TopText
         top={'전화번호 변경'}
