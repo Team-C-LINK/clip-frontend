@@ -18,7 +18,7 @@ import api from '@/app/api/api';
 import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
 import Footer from '@/app/SharedComponent/Footer/Footer';
 
-const JOB_LIST = ['직장인', '자영업', '학생', '무직', '전업 주부', '은퇴'];
+const JOB_LIST = ['직장인', '자영업', '학생', '전업 주부', '무직', '은퇴'];
 
 const Education = () => {
   const {
@@ -44,8 +44,9 @@ const Education = () => {
         .then((response) => response.data);
       if (res.acceessToken) router.push('/join/complete');
     } catch (e) {
-      alert('유효하지 않은 회원가입 요청입니다. 처음부터 다시 진행해주세요');
-      window.location.href = '/login';
+      // alert('유효하지 않은 회원가입 요청입니다. 처음부터 다시 진행해주세요');
+      // window.location.href = '/login';
+      console.log(e);
     }
   }; //
 
@@ -58,7 +59,7 @@ const Education = () => {
 
   return (
     <>
-      <HeaderCancel></HeaderCancel>
+      <HeaderCancel route={'/login'}></HeaderCancel>
       <ProgressBar page={5}></ProgressBar>
       <C.view_wrap>
         <TopText

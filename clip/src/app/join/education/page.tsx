@@ -22,9 +22,9 @@ const EDUCATION_LEVEL_LIST = [
   '고등학교',
   '대학교(2년제)',
   '대학교(4년제)',
-  '석사, 박사',
+  '석사 이상',
 ];
-const EDUCATION_STATE = ['재학', '졸업', '자퇴'];
+const EDUCATION_STATE = ['재학/휴학', '졸업'];
 
 const Education = () => {
   const {
@@ -58,7 +58,7 @@ const Education = () => {
 
   return (
     <>
-      <HeaderCancel></HeaderCancel>
+      <HeaderCancel route={'/login'}></HeaderCancel>
       <ProgressBar page={4}></ProgressBar>
       <C.view_wrap>
         <TopText
