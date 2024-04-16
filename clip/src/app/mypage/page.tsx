@@ -130,7 +130,7 @@ const MyPage = () => {
             </C.body_content>
           </C.body_content_wrapper>
         </C.body_wrapper>
-        <Spacer height={'8rem'}></Spacer>
+        <Spacer height={'10rem'}></Spacer>
       </C.view_wrap>
       <NavigationBar state={'my'}></NavigationBar>
     </>
