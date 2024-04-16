@@ -216,6 +216,8 @@ export const body_content_text = styled.div`
 `;
 
 export const my_point = styled.span`
+  position: absolute;
+  right: 0rem;
   /* 내 포인트 */
   display: flex;
   flex-direction: row;

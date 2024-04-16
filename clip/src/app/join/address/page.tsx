@@ -12,16 +12,17 @@ import NextButtonDisabled from '../component/PrevNext/NextButtonDisabled/NextBut
 import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import PrevNext from '../component/PrevNext/PrevNext';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import stringToJson from '../utils/stringToJson';
 import jsonToString from '../utils/jsonToString';
 import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
 import Footer from '@/app/SharedComponent/Footer/Footer';
+import { sidoList, siguList } from './hooks/sidoList';
+import { prev } from '@/app/SharedComponent/Header/HeaderBack/HeaderBack.style';
 
 const Address = () => {
   const { register, watch } = useForm();
   const router = useRouter();
-  const { data, sidoList, setSidoList } = useGetSidoAddress();
 
   const [dropdown, setDropdown] = useState<{ [key: string]: string }>({
     sido: '',
@@ -35,20 +36,30 @@ const Address = () => {
     });
   };
 
+  useEffect(() => {
+    if (dropdown.sido) {
+      setDropdown((prev) => {
+        return { ...prev, gu: siguList[dropdown.sido][0] };
+      });
+    }
+  }, [dropdown.sido]);
+
+  useEffect(() => {
+    console.log(dropdown);
+  }, [dropdown.gu]);
+
   const next = () => {
-    // 다음 버튼 눌렀을 때 동작
-    // 거주지 로컬 스토리지에 저장하기
     const signInfo = stringToJson(localStorage.getItem('signInfo')!);
     let address = '';
     for (const key in dropdown) address += `${dropdown[key]} `;
     signInfo['address'] = address;
     localStorage.setItem('signInfo', jsonToString(signInfo));
     router.push('/join/education');
-  }; //
+  };
 
   return (
     <>
-      <HeaderCancel></HeaderCancel>
+      <HeaderCancel route={'/login'}></HeaderCancel>
       <ProgressBar page={3}></ProgressBar>
       <C.view_wrap>
         <TopText
@@ -60,15 +71,15 @@ const Address = () => {
           <C.Dropdown_list_wrap>
             <C.Dropdown
               {...register('sido')}
-              onChange={setDropdownState}
+              onClick={setDropdownState}
               $background={dropdown.sido ? '#ffffff' : '#F9FAFC'}
               $textcolor={dropdown.sido ? '#252525' : '#8a8a8a'}
               $src={arrow.src}
             >
               {sidoList?.map((val, idx) => {
                 return (
-                  <option key={idx} value={val.name}>
-                    {val.name}
+                  <option key={idx} value={val}>
+                    {val}
                   </option>
                 );
               })}
@@ -79,11 +90,12 @@ const Address = () => {
               $background={dropdown.gu ? '#ffffff' : '#F9FAFC'}
               $textcolor={dropdown.gu ? '#252525' : '#8a8a8a'}
               $src={arrow.src}
+              value={dropdown.gu}
             >
-              {sidoList?.map((val, idx) => {
+              {siguList[dropdown.sido]?.map((val, idx) => {
                 return (
-                  <option key={idx} value={val.name}>
-                    {val.name}
+                  <option key={idx} value={val}>
+                    {val}
                   </option>
                 );
               })}

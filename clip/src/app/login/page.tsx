@@ -17,7 +17,7 @@ const Login = () => {
 
   return (
     <>
-      <HeaderCancel></HeaderCancel>
+      <HeaderCancel route={'/login'}></HeaderCancel>
       <C.view_wrap>
         <C.LoginInner>
           <C.LoginTextFrame>

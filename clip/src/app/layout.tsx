@@ -6,6 +6,7 @@ import '../../public/fonts/style.css';
 import PaletteProvider from './Provider/PaletteProvider/PaletteProvider';
 import { GoogleAnalytics } from './Provider/GoogleAnalytics/GoogleAnalytics';
 import Wrapper from './SharedComponent/Wrapper/Wrapper';
+import RecoilProvider from './Provider/RecoilProvider/RecoilProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,7 +29,9 @@ export default function RootLayout({
         <GoogleAnalytics />
         <QueryProvider>
           <PaletteProvider>
-            <Wrapper>{children}</Wrapper>
+            <RecoilProvider>
+              <Wrapper>{children}</Wrapper>
+            </RecoilProvider>
           </PaletteProvider>
         </QueryProvider>
       </body>

@@ -89,7 +89,13 @@ const ModifyProfile = () => {
           <C.profile_content_wrap>
             <C.profile_content_tag>이메일</C.profile_content_tag>
             <C.profile_content_info>abd@gmail.com</C.profile_content_info>
-            <C.profile_modify_btn>변경하기</C.profile_modify_btn>
+            <C.profile_modify_btn
+              onClick={() =>
+                (window.location.href = '/mypage/modifyProfile/email')
+              }
+            >
+              변경하기
+            </C.profile_modify_btn>
           </C.profile_content_wrap>
         </C.profile_wrap>
         <C.profile_wrap $gap={'1.6rem'}>

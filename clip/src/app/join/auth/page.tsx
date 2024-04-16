@@ -7,7 +7,7 @@ import PrevNext from '../component/PrevNext/PrevNext';
 import NextButton from '../component/PrevNext/NextButton/NextButton';
 import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import { useForm } from 'react-hook-form';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, use } from 'react';
 import check from './assets/image/check.svg';
 import { useRouter } from 'next/navigation';
 import phoneNumberFormatter from './utils/phoneNumberFormatter';
@@ -21,7 +21,7 @@ import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel
 import Footer from '@/app/SharedComponent/Footer/Footer';
 
 const PHONE_REGEX = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/i;
-const AUTH_REGEX = /^\d{4}$/i;
+const AUTH_REGEX = /^\d{6}$/i;
 
 const Auth = () => {
   const {
@@ -56,7 +56,7 @@ const Auth = () => {
 
     const requestData = {
       phoneNumber: phone,
-      verificationNumber: watch('verficationNumber'),
+      verificationNumber: watch('verificationNumber'),
     };
 
     const certification = await postCheckAuth(requestData);
@@ -104,7 +104,7 @@ const Auth = () => {
 
   return (
     <>
-      <HeaderCancel></HeaderCancel>
+      <HeaderCancel route={'/mypage'}></HeaderCancel>
       <ProgressBar page={2}></ProgressBar>
       <C.view_wrap>
         <TopText
@@ -133,15 +133,15 @@ const Auth = () => {
           </C.phoneNumber_wrap>
 
           <C.phoneNumber_wrap>
-            <C.phoneNumber
-              placeholder="인증번호 4자리"
+            <C.certification
+              placeholder="인증번호 6자리"
               {...register('verificationNumber', {
                 pattern: {
                   value: AUTH_REGEX,
                   message: '올바르지 않은 형식이에요',
                 },
               })}
-            ></C.phoneNumber>
+            ></C.certification>
             {!watch('verificationNumber') ||
             errors.verficationNumber?.message?.toString() ? (
               <C.getAuthDisable>인증하기</C.getAuthDisable>

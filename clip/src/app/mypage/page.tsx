@@ -24,15 +24,13 @@ const MyPage = () => {
           <C.profile_wrapper>
             <C.profile_img src={clippy.src}></C.profile_img>
             <C.profile_right_wrapper>
-              <C.profile_nickname>
-                김클립님
-                <C.my_point>
-                  내 포인트 &nbsp;<C.summary_point>P</C.summary_point>
-                  300
-                </C.my_point>
-              </C.profile_nickname>
+              <C.profile_nickname>김클립님</C.profile_nickname>
               <C.profile_email>abcdefg@gmail.com</C.profile_email>
             </C.profile_right_wrapper>
+            <C.my_point>
+              내 포인트 &nbsp;<C.summary_point>P</C.summary_point>
+              300
+            </C.my_point>
           </C.profile_wrapper>
           <C.divider></C.divider>
           <C.summary_wrapper>
@@ -132,7 +130,7 @@ const MyPage = () => {
             </C.body_content>
           </C.body_content_wrapper>
         </C.body_wrapper>
-        <Spacer height={'8rem'}></Spacer>
+        <Spacer height={'10rem'}></Spacer>
       </C.view_wrap>
       <NavigationBar state={'my'}></NavigationBar>
     </>

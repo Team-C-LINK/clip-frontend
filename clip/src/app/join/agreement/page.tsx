@@ -72,7 +72,7 @@ const Agreement = () => {
 
   return (
     <>
-      <HeaderCancel></HeaderCancel>
+      <HeaderCancel route={'/login'}></HeaderCancel>
       <ProgressBar page={1}></ProgressBar>
       <C.view_wrap>
         <TopText
