@@ -7,12 +7,11 @@ export const TitleFrame = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
   gap: 0.8rem;
-
   position: relative;
   width: 91.1dvw;
   height: fit-content;
+  margin-top: 4rem;
 `;
 
 export const TitleTopText = styled.div`

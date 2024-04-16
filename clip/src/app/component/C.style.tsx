@@ -169,7 +169,7 @@ export const join_wrap = styled.div`
   align-items: center;
   transform: translateX(-50%);
   background-color: #ffffff;
-  z-index: 1;
+  z-index: 2;
 `;
 
 export const Join = styled.div`

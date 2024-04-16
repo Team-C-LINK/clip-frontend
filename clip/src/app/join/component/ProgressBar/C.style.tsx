@@ -8,7 +8,6 @@ export const ProgressBar = styled.div`
   align-items: flex-start;
   padding: 0px;
   gap: 0.4rem;
-  margin-top: 7dvh;
   position: relative;
   width: 91dvw;
   height: fit-content;

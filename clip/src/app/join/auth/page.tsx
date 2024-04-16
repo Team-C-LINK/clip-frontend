@@ -7,7 +7,7 @@ import PrevNext from '../component/PrevNext/PrevNext';
 import NextButton from '../component/PrevNext/NextButton/NextButton';
 import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
 import { useForm } from 'react-hook-form';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, use } from 'react';
 import check from './assets/image/check.svg';
 import { useRouter } from 'next/navigation';
 import phoneNumberFormatter from './utils/phoneNumberFormatter';
@@ -16,9 +16,12 @@ import postCheckAuth from './hooks/postCheckAuth';
 import NextButtonDisabled from '../component/PrevNext/NextButtonDisabled/NextButton';
 import jsonToString from '../utils/jsonToString';
 import stringToJson from '../utils/stringToJson';
+import Image from 'next/image';
+import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
+import Footer from '@/app/SharedComponent/Footer/Footer';
 
 const PHONE_REGEX = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/i;
-const AUTH_REGEX = /^\d{4}$/i;
+const AUTH_REGEX = /^\d{6}$/i;
 
 const Auth = () => {
   const {
@@ -53,7 +56,7 @@ const Auth = () => {
 
     const requestData = {
       phoneNumber: phone,
-      verificationNumber: watch('verficationNumber'),
+      verificationNumber: watch('verificationNumber'),
     };
 
     const certification = await postCheckAuth(requestData);
@@ -90,7 +93,8 @@ const Auth = () => {
       인증번호가 발송되었습니다. 유효시간 {getTime(timeState)}
     </C.authsend_text>,
     <C.auth_done_text key={2}>
-      <img src={check.src}></img>인증이 완료되었습니다.
+      <Image src={check.src} alt="check" width={16} height={16} />
+      인증이 완료되었습니다.
     </C.auth_done_text>,
   ];
 
@@ -100,13 +104,14 @@ const Auth = () => {
 
   return (
     <>
-      <Layout>
-        <C.Wrapper>
-          <ProgressBar page={2}></ProgressBar>
-          <TopText
-            top={'본인인증'}
-            bottom={'본인 확인을 위해 휴대전화 번호를 입력해주세요'}
-          ></TopText>
+      <HeaderCancel route={'/mypage'}></HeaderCancel>
+      <ProgressBar page={2}></ProgressBar>
+      <C.view_wrap>
+        <TopText
+          top={'본인인증'}
+          bottom={'본인 확인을 위해 휴대전화 번호를 입력해주세요'}
+        ></TopText>
+        <C.auth_wrap>
           <C.phoneNumber_wrap>
             <C.phoneNumber
               placeholder="010-0000-0000"
@@ -126,38 +131,39 @@ const Auth = () => {
               <C.getAuth onClick={requestAuthCode}>인증번호 받기</C.getAuth>
             )}
           </C.phoneNumber_wrap>
-          <C.auth_wrap>
-            <C.phoneNumber_wrap>
-              <C.phoneNumber
-                placeholder="인증번호 4자리"
-                {...register('verificationNumber', {
-                  pattern: {
-                    value: AUTH_REGEX,
-                    message: '올바르지 않은 형식이에요',
-                  },
-                })}
-              ></C.phoneNumber>
-              {!watch('verificationNumber') ||
-              errors.verficationNumber?.message?.toString() ? (
-                <C.getAuthDisable>인증하기</C.getAuthDisable>
-              ) : (
-                <C.getAuth onClick={requestCheckAuth}>인증하기</C.getAuth>
-              )}
-            </C.phoneNumber_wrap>
-            {authCodeComponent[authCodeState]}
-          </C.auth_wrap>
-          <PrevNext>
-            <PrevButton $size={'45dvw'}>이전으로</PrevButton>
-            {isValid ? (
-              <NextButton onClick={next} $size={'45dvw'}>
-                다음으로
-              </NextButton>
+
+          <C.phoneNumber_wrap>
+            <C.certification
+              placeholder="인증번호 6자리"
+              {...register('verificationNumber', {
+                pattern: {
+                  value: AUTH_REGEX,
+                  message: '올바르지 않은 형식이에요',
+                },
+              })}
+            ></C.certification>
+            {!watch('verificationNumber') ||
+            errors.verficationNumber?.message?.toString() ? (
+              <C.getAuthDisable>인증하기</C.getAuthDisable>
             ) : (
-              <NextButtonDisabled>다음으로</NextButtonDisabled>
+              <C.getAuth onClick={requestCheckAuth}>인증하기</C.getAuth>
             )}
-          </PrevNext>
-        </C.Wrapper>
-      </Layout>
+          </C.phoneNumber_wrap>
+          {authCodeComponent[authCodeState]}
+        </C.auth_wrap>
+      </C.view_wrap>
+      <Footer>
+        <PrevNext>
+          <PrevButton $size={'45dvw'}>이전으로</PrevButton>
+          {isValid ? (
+            <NextButton onClick={next} $size={'45dvw'}>
+              다음으로
+            </NextButton>
+          ) : (
+            <NextButtonDisabled>다음으로</NextButtonDisabled>
+          )}
+        </PrevNext>
+      </Footer>
     </>
   );
 };

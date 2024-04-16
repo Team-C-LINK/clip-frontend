@@ -8,15 +8,12 @@ interface src {
   src: any;
 }
 
-export const Wrapper = styled.div`
-  position: relative;
+export const view_wrap = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  align-items: center;
-  height: 100%;
-  overflow: scroll;
-  gap: 5rem;
+  width: 91.1%;
+  overflow-y: auto;
+  flex: 1;
 `;
 
 export const CheckBoxUnSelected = styled.div`
@@ -161,17 +158,15 @@ export const DisabledNextButton = styled.div`
   align-items: center;
   gap: 1.2rem;
 
-  position: fixed;
+  position: relative;
   width: 91.1dvw;
   height: 4.4rem;
-  background: #f2f2f2;
+  background: ${(props) => props.theme.BACKGROUND._DARK};
+  opacity: 0.4;
   border-radius: 0.4rem;
   font-family: Pretendard;
-  font-size: 1.6rem;
-  font-weight: 400;
-  line-height: 2.4rem;
-  color: #bfbfbf;
-  bottom: 2dvh;
+  ${(props) => props.theme.FONT.SemiBold.B2};
+  color: ${(props) => props.theme.TEXT._04};
 `;
 
 export const EnabledNextButton = styled.div`

@@ -4,7 +4,7 @@ import Layout from './SharedComponent/Background';
 import addChannel from '../../public/image/addChannel.svg';
 import KaKaoChannel from '../../public/image/KaKaoChannel.svg';
 import clipPhoneImage from '../../public/image/ClipPhoneImage.svg';
-import styled from 'styled-components';
+import Image from 'next/image';
 import * as C from './component/C.style';
 import { useMediaQuery } from 'react-responsive';
 import { useState, useEffect } from 'react';
@@ -45,16 +45,20 @@ const LandingPageMobile = () => {
     <>
       {isClient && (
         <>
-          <C.join_wrap>
-            <C.Join onClick={moveToChannel}>
-              <img src={KaKaoChannel.src}></img>채널 추가 바로가기
-            </C.Join>
-          </C.join_wrap>
-          <Layout>
-            <C.LandingPageFrame isMobile={true}>
-              <LandingPage></LandingPage>
-            </C.LandingPageFrame>
-          </Layout>
+          <C.LandingPageFrame isMobile={true}>
+            <C.join_wrap>
+              <C.Join onClick={moveToChannel}>
+                <Image
+                  src={KaKaoChannel.src}
+                  alt={'KaKaoChannel'}
+                  width={28}
+                  height={28}
+                ></Image>
+                채널 추가 바로가기
+              </C.Join>
+            </C.join_wrap>
+            <LandingPage></LandingPage>
+          </C.LandingPageFrame>
         </>
       )}
     </>
@@ -86,8 +90,8 @@ const LandingPageWeb = () => {
               </C.MiddleImageFrame>
               <C.BottomFrame>
                 <C.BottomTopText>
-                  지금 클립 카카오 채널 추가하면,<br></br>
-                  베타테스트 이용 가능!
+                  지금 클립 <strong>카카오 채널</strong> 추가하면,<br></br>
+                  <strong>베타테스트</strong> 이용 가능!
                 </C.BottomTopText>
                 <C.BottomLowText>
                   *지금은 베타 테스트 운영 기간으로, 카카오 채널을 통해,{' '}
@@ -97,7 +101,13 @@ const LandingPageWeb = () => {
                 </C.BottomLowText>
               </C.BottomFrame>
               <C.AddChannelButton onClick={moveToChannel}>
-                <img src={KaKaoChannel.src}></img>채널 추가 바로가기
+                <Image
+                  src={KaKaoChannel.src}
+                  alt={'KaKaoChannel'}
+                  width={28}
+                  height={28}
+                ></Image>
+                채널 추가 바로가기
               </C.AddChannelButton>
             </C.LeftInner>
           </C.LeftWrapper>

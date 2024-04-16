@@ -4,14 +4,12 @@ interface color {
   color: string;
 }
 
-export const Wrapper = styled.div`
-  position: relative;
+export const view_wrap = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  align-items: center;
-  height: fit-content;
-  gap: 5rem;
+  width: 91.1%;
+  overflow-y: auto;
+  flex: 1;
 `;
 
 export const auth_wrap = styled.div`
@@ -26,6 +24,7 @@ export const auth_wrap = styled.div`
   position: relative;
   width: 91.1dvw;
   height: fit-content;
+  top: 3rem;
 `;
 
 export const authsend_text = styled.span`
@@ -57,6 +56,19 @@ export const phoneNumber_wrap = styled.div`
 `;
 
 export const phoneNumber = styled.input.attrs({ type: 'text' })`
+  position: relative;
+  //styleName: Regular/B1;
+  border: 0;
+  font-family: Pretendard;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 2.8rem;
+  text-align: left;
+  color: #252525;
+  outline: none;
+`;
+
+export const certification = styled.input.attrs({ type: 'password' })`
   position: relative;
   //styleName: Regular/B1;
   border: 0;

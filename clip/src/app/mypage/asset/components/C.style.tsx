@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
-export const wrapper = styled.div`
+export const view_wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 85dvh;
-  overflow: scroll;
+  overflow-y: auto;
 `;
 
 export const header_wrapper = styled.div`
@@ -187,7 +186,7 @@ export const body_content_title = styled.div`
   font-style: normal;
   font-weight: 400;
   font-size: 1.4rem;
-  color: #6c6c6c;
+  color: ${(props) => props.theme.TEXT._02};
 
   /* Inside auto layout */
   flex: none;
@@ -217,6 +216,8 @@ export const body_content_text = styled.div`
 `;
 
 export const my_point = styled.span`
+  position: absolute;
+  right: 0rem;
   /* 내 포인트 */
   display: flex;
   flex-direction: row;

@@ -14,15 +14,17 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import jsonToString from '../utils/jsonToString';
 import stringToJson from '../utils/stringToJson';
+import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
+import Footer from '@/app/SharedComponent/Footer/Footer';
 
 const EDUCATION_LEVEL_LIST = [
   '중학교',
   '고등학교',
   '대학교(2년제)',
   '대학교(4년제)',
-  '석사, 박사',
+  '석사 이상',
 ];
-const EDUCATION_STATE = ['재학', '졸업', '자퇴'];
+const EDUCATION_STATE = ['재학/휴학', '졸업'];
 
 const Education = () => {
   const {
@@ -56,65 +58,62 @@ const Education = () => {
 
   return (
     <>
-      <Layout>
-        <C.Wrapper>
-          <ProgressBar page={4}></ProgressBar>
-          <TopText
-            top={'정보 입력'}
-            bottom={'나에게 맞는 연구정보만 모아볼 수 있어요'}
-          ></TopText>
-          <C.Dropdown_wrap>
-            <C.Dropdown_title>최종학력을 선택해주세요</C.Dropdown_title>
-            <C.Dropdown_list_wrap>
-              <C.Dropdown
-                {...register('educationLevel')}
-                backgroundcolor={
-                  watch('educationLevel') ? '#ffffff' : '#d9d9d9'
-                }
-                onClick={setDropdownState}
-                textcolor={dropdown.educationLevel ? '#252525' : '#8a8a8a'}
-                src={arrow.src}
-              >
-                {EDUCATION_LEVEL_LIST?.map((val: string, idx) => {
-                  return (
-                    <option key={idx} value={val}>
-                      {val}
-                    </option>
-                  );
-                })}
-              </C.Dropdown>
-              <C.Dropdown
-                {...register('educationState')}
-                backgroundcolor={
-                  watch('educationState') ? '#ffffff' : '#d9d9d9'
-                }
-                textcolor={dropdown.educationState ? '#252525' : '#8a8a8a'}
-                src={arrow.src}
-                onClick={setDropdownState}
-              >
-                {EDUCATION_STATE?.map((val: string, idx) => {
-                  return (
-                    <option key={idx} value={val}>
-                      {val}
-                    </option>
-                  );
-                })}
-              </C.Dropdown>
-            </C.Dropdown_list_wrap>
-          </C.Dropdown_wrap>
-
-          <PrevNext>
-            <PrevButton $size={'45dvw'}>이전으로</PrevButton>
-            {dropdown.educationLevel && dropdown.educationState ? (
-              <NextButton $size={'45dvw'} onClick={next}>
-                다음으로
-              </NextButton>
-            ) : (
-              <NextButtonDisabled>다음으로</NextButtonDisabled>
-            )}
-          </PrevNext>
-        </C.Wrapper>
-      </Layout>
+      <HeaderCancel route={'/login'}></HeaderCancel>
+      <ProgressBar page={4}></ProgressBar>
+      <C.view_wrap>
+        <TopText
+          top={'정보 입력'}
+          bottom={'나에게 맞는 연구정보만 모아볼 수 있어요'}
+        ></TopText>
+        <C.Dropdown_wrap>
+          <C.Dropdown_title>최종학력을 선택해주세요</C.Dropdown_title>
+          <C.Dropdown_list_wrap>
+            <C.Dropdown
+              {...register('educationLevel')}
+              backgroundcolor={watch('educationLevel') ? '#ffffff' : '#d9d9d9'}
+              onClick={setDropdownState}
+              textcolor={dropdown.educationLevel ? '#252525' : '#8a8a8a'}
+              src={arrow.src}
+            >
+              {EDUCATION_LEVEL_LIST?.map((val: string, idx) => {
+                return (
+                  <option key={idx} value={val}>
+                    {val}
+                  </option>
+                );
+              })}
+            </C.Dropdown>
+            <C.Dropdown
+              {...register('educationState')}
+              backgroundcolor={watch('educationState') ? '#ffffff' : '#d9d9d9'}
+              textcolor={dropdown.educationState ? '#252525' : '#8a8a8a'}
+              src={arrow.src}
+              onClick={setDropdownState}
+            >
+              {EDUCATION_STATE?.map((val: string, idx) => {
+                return (
+                  <option key={idx} value={val}>
+                    {val}
+                  </option>
+                );
+              })}
+            </C.Dropdown>
+          </C.Dropdown_list_wrap>
+        </C.Dropdown_wrap>
+      </C.view_wrap>
+      <Footer>
+        {' '}
+        <PrevNext>
+          <PrevButton $size={'45dvw'}>이전으로</PrevButton>
+          {dropdown.educationLevel && dropdown.educationState ? (
+            <NextButton $size={'45dvw'} onClick={next}>
+              다음으로
+            </NextButton>
+          ) : (
+            <NextButtonDisabled>다음으로</NextButtonDisabled>
+          )}
+        </PrevNext>
+      </Footer>
     </>
   );
 };
