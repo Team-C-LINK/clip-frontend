@@ -11,9 +11,10 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '@/app/SharedComponent/Footer/Footer';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
+import { uploadS3 } from './phone/assets/utils/s3upload';
 
 const ModifyProfile = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState<any>(null);
   const [previewURL, setPreviewURL] = useState<string | undefined>(
     defaultImage.src
   );
@@ -30,9 +31,9 @@ const ModifyProfile = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(selectedFile);
-  }, [previewURL]);
+  const s3Upload = () => {
+    uploadS3(selectedFile);
+  };
 
   return (
     <>
