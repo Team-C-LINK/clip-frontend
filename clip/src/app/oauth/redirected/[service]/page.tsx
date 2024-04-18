@@ -41,10 +41,12 @@ const Oauth = () => {
         );
       } else {
         const oauthId = res.data.oauthMemberInformation.oauthId;
-        const accesstoken = await api(
+        const loginData = await api(
           `/oauth/${params.service}/login?oauthId=${oauthId}`
-        ).then((res) => res.data.accessToken);
-        setJwtState(accesstoken);
+        ).then((res) => res.data);
+        setJwtState(loginData.accessToken);
+        localStorage.setItem('id', loginData.id);
+        localStorage.setItem('accessToken', loginData.accessToken);
         router.push('/mypage');
       }
 
