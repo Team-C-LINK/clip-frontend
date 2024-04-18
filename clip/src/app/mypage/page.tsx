@@ -12,11 +12,18 @@ import guide from './asset/image/guide.svg';
 import logout from './asset/image/logout.svg';
 import { useEffect } from 'react';
 import Spacer from '../SharedComponent/Spacer/Spacer';
+import getUser from '../api/get-user';
+import { useQuery } from '@tanstack/react-query';
 
 const src =
   'https://www.google.co.kr/imgres?q=%ED%94%84%EB%A1%9C%ED%95%84%20%EC%9D%B4%EB%AF%B8%EC%A7%80&imgurl=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F1361%2F1361876.png&imgrefurl=https%3A%2F%2Fwww.flaticon.com%2Fkr%2Ffree-icon%2Fprofile_1361876&docid=ZBtzkAs5djdrhM&tbnid=VwqsUUG2AFy7sM&vet=12ahUKEwj0vLjG5KWFAxWcha8BHXnDA14QM3oECBcQAA..i&w=512&h=512&hcb=2&ved=2ahUKEwj0vLjG5KWFAxWcha8BHXnDA14QM3oECBcQAA';
 
 const MyPage = () => {
+  const { data: user } = useQuery({
+    queryKey: ['getUser'],
+    queryFn: getUser,
+  });
+
   return (
     <>
       <C.view_wrap>
@@ -24,8 +31,8 @@ const MyPage = () => {
           <C.profile_wrapper>
             <C.profile_img src={clippy.src}></C.profile_img>
             <C.profile_right_wrapper>
-              <C.profile_nickname>김클립님</C.profile_nickname>
-              <C.profile_email>abcdefg@gmail.com</C.profile_email>
+              <C.profile_nickname>{user?.name}님</C.profile_nickname>
+              <C.profile_email>{user?.email}</C.profile_email>
             </C.profile_right_wrapper>
             <C.my_point>
               내 포인트 &nbsp;<C.summary_point>P</C.summary_point>
