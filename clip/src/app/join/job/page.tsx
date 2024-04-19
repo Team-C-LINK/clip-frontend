@@ -17,8 +17,7 @@ import stringToJson from '../utils/stringToJson';
 import api from '@/app/api/api';
 import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
 import Footer from '@/app/SharedComponent/Footer/Footer';
-
-const JOB_LIST = ['직장인', '자영업', '학생', '전업 주부', '무직', '은퇴'];
+import { JOB_LIST } from '@/app/SharedComponent/DropdownOption/DropdownOption';
 
 const Education = () => {
   const {
@@ -42,11 +41,11 @@ const Education = () => {
       const res = await api
         .post('/sign-up', signInfo)
         .then((response) => response.data);
-      if (res.acceessToken) router.push('/join/complete');
+      if (res.accessToken) router.push('/join/complete');
     } catch (e) {
       // alert('유효하지 않은 회원가입 요청입니다. 처음부터 다시 진행해주세요');
       // window.location.href = '/login';
-      console.log(e);
+      alert(e);
     }
   }; //
 
