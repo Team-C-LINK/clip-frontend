@@ -1,15 +1,6 @@
 import api from './api';
 
 type modifyProfileType = {
-  auth: authType;
-  request: requestType;
-};
-
-type authType = {
-  id: number;
-};
-
-type requestType = {
   profileUrl: string;
   address: string;
   education: string;
