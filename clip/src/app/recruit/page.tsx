@@ -3,13 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import NavigationBar from '../SharedComponent/NavigationBar/NaivgationBar';
 import RecruitCard from '../SharedComponent/RecruitCard/RecruitCard';
-import * as C from './component/C.style';
-import checkedbox from './asset/checkedBox.svg';
-import uncheckedbox from './asset/uncheckedBox.svg';
+import * as C from './asset/components/C.style';
+import checkedbox from './asset/image/checkedBox.svg';
+import uncheckedbox from './asset/image/uncheckedBox.svg';
+import check from './asset/image/check.svg';
 import Image from 'next/image';
-import check from './asset/check.svg';
 import Spacer from '../SharedComponent/Spacer/Spacer';
 import Header from '../SharedComponent/Header/Header';
+import HeaderBack from '../SharedComponent/Header/HeaderBack/HeaderBack';
 
 const Recruit = () => {
   const [isRecruiting, setIsRecruiting] = useState<boolean>(false);
@@ -32,8 +33,9 @@ const Recruit = () => {
 
   return (
     <>
-      <Spacer height="10.2rem"></Spacer>
+      <Spacer height="16rem"></Spacer>
       <Header>
+        <HeaderBack route={'/login'} text={'실시간 모집공고'}></HeaderBack>
         <C.header>
           <C.header_inner_wrap>
             {filterList.map((val, idx) => {

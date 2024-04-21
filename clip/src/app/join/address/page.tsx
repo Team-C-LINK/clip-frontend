@@ -6,7 +6,6 @@ import ProgressBar from '../component/ProgressBar/ProgressBar';
 import * as C from './component/C.style';
 import arrow from './assets/image/arrow.svg';
 import { useForm } from 'react-hook-form';
-import useGetSidoAddress from './hooks/useGetSido';
 import NextButton from '../component/PrevNext/NextButton/NextButton';
 import NextButtonDisabled from '../component/PrevNext/NextButtonDisabled/NextButton';
 import PrevButton from '../component/PrevNext/PrevButton/PrevButton';
@@ -18,7 +17,6 @@ import jsonToString from '../utils/jsonToString';
 import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
 import Footer from '@/app/SharedComponent/Footer/Footer';
 import { sidoList, siguList } from './hooks/sidoList';
-import { prev } from '@/app/SharedComponent/Header/HeaderBack/HeaderBack.style';
 
 const Address = () => {
   const { register, watch } = useForm();
@@ -44,10 +42,6 @@ const Address = () => {
     }
   }, [dropdown.sido]);
 
-  useEffect(() => {
-    console.log(dropdown);
-  }, [dropdown.gu]);
-
   const next = () => {
     const signInfo = stringToJson(localStorage.getItem('signInfo')!);
     let address = '';
@@ -72,6 +66,7 @@ const Address = () => {
             <C.Dropdown
               {...register('sido')}
               onClick={setDropdownState}
+              onChange={setDropdownState}
               $background={dropdown.sido ? '#ffffff' : '#F9FAFC'}
               $textcolor={dropdown.sido ? '#252525' : '#8a8a8a'}
               $src={arrow.src}

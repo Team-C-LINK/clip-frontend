@@ -1,7 +1,6 @@
 'use client';
 import TopText from '../component/TopText/TopText';
 import ProgressBar from '../component/ProgressBar/ProgressBar';
-import Layout from '@/app/SharedComponent/Background';
 import * as C from './component/C.style';
 import PrevNext from '../component/PrevNext/PrevNext';
 import NextButton from '../component/PrevNext/NextButton/NextButton';
@@ -11,8 +10,8 @@ import { useEffect, useState, useRef, use } from 'react';
 import check from './assets/image/check.svg';
 import { useRouter } from 'next/navigation';
 import phoneNumberFormatter from './utils/phoneNumberFormatter';
-import postRequestAuth from './hooks/postRequestAuth';
-import postCheckAuth from './hooks/postCheckAuth';
+import postSignRequestAuth from '@/app/api/post-signRequestAuth';
+import postSignCheckAuth from '@/app/api/post-signCheckAuth';
 import NextButtonDisabled from '../component/PrevNext/NextButtonDisabled/NextButton';
 import jsonToString from '../utils/jsonToString';
 import stringToJson from '../utils/stringToJson';
@@ -45,7 +44,7 @@ const Auth = () => {
   const requestAuthCode = async () => {
     const phoneNumber = watch('phoneNumber').replace(/-/g, '');
 
-    if (await postRequestAuth(phoneNumber)) {
+    if (await postSignRequestAuth(phoneNumber)) {
       startTimer();
       setAuthCodeState(1);
     }
@@ -59,7 +58,7 @@ const Auth = () => {
       verificationNumber: watch('verificationNumber'),
     };
 
-    const certification = await postCheckAuth(requestData);
+    const certification = await postSignCheckAuth(requestData);
 
     if (certification) {
       const signInfo = stringToJson(localStorage.getItem('signInfo')!);
