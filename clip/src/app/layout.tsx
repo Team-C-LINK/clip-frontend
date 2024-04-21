@@ -7,7 +7,7 @@ import PaletteProvider from './Provider/PaletteProvider/PaletteProvider';
 import { GoogleAnalytics } from './Provider/GoogleAnalytics/GoogleAnalytics';
 import Wrapper from './SharedComponent/Wrapper/Wrapper';
 import RecoilProvider from './Provider/RecoilProvider/RecoilProvider';
-
+import Script from 'next/script';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -30,6 +30,10 @@ export default function RootLayout({
         <QueryProvider>
           <PaletteProvider>
             <RecoilProvider>
+              <Script
+                strategy="beforeInteractive"
+                src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6geubwsdhd`}
+              />
               <Wrapper>{children}</Wrapper>
             </RecoilProvider>
           </PaletteProvider>
