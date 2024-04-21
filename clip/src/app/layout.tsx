@@ -30,10 +30,6 @@ export default function RootLayout({
         <QueryProvider>
           <PaletteProvider>
             <RecoilProvider>
-              <Script
-                strategy="beforeInteractive"
-                src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6geubwsdhd`}
-              />
               <Wrapper>{children}</Wrapper>
             </RecoilProvider>
           </PaletteProvider>

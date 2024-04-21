@@ -9,6 +9,11 @@ import { Chart, Tooltip, scales } from 'chart.js/auto';
 import { CategoryScale } from 'chart.js/auto';
 import { optionLeft, optionRight } from './asset/chart/options';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
+import Script from 'next/script';
+import { useRef } from 'react';
+import styled from 'styled-components';
+import useMap from './asset/hook/useMap';
+
 const leftData = {
   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
   datasets: [
@@ -39,35 +44,26 @@ Chart.register(CategoryScale);
 
 const RecruitDetail = () => {
   const params = useParams();
-
+  useMap();
   return (
     <>
       <Spacer height="5.8rem"></Spacer>
       <Header>
         <HeaderBack route={'/mypage'} text={'공고 상세'}></HeaderBack>
       </Header>
-      <C.chart_wrap>
-        <div style={{ width: '150px', height: '150px' }}>
-          <Bar
-            options={optionLeft}
-            data={rightData}
-            width={100}
-            height={100}
-          ></Bar>
-        </div>
-        <div style={{ width: '150px', height: '150px' }}>
-          <Bar
-            options={optionRight}
-            data={leftData}
-            width={100}
-            height={100}
-          ></Bar>
-        </div>
-      </C.chart_wrap>
-
-      <div>안녕 난 공고 상세 페이지라고 해</div>
+      {/* <MapBox id="map"></MapBox>; */}
     </>
   );
 };
+
+const MapBox = styled.div`
+  width: 200px;
+  height: 200px;
+`;
+
+const Marker = styled.div`
+  width: 100px;
+  height: 100px;
+`;
 
 export default RecruitDetail;
