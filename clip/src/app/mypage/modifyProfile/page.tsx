@@ -11,12 +11,45 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '@/app/SharedComponent/Footer/Footer';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
+import { uploadS3 } from './phone/assets/utils/s3upload';
+import { useQuery } from '@tanstack/react-query';
+import getUser from '@/app/api/get-user';
+import { sidoList, siguList } from '@/app/join/address/hooks/sidoList';
+import {
+  JOB_LIST,
+  EDUCATION_STATE,
+  EDUCATION_LEVEL_LIST,
+} from '@/app/SharedComponent/DropdownOption/DropdownOption';
+import phoneNumberFormatter from '@/app/join/auth/utils/phoneNumberFormatter';
+import patchModifyProfile from '@/app/api/patch-modifyProfile';
 
 const ModifyProfile = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState<any>(null);
   const [previewURL, setPreviewURL] = useState<string | undefined>(
     defaultImage.src
   );
+
+  const [checkbit, setCheckbit] = useState(false);
+
+  const [dropdown, setDropdown] = useState<{ [key: string]: string }>({
+    sido: '',
+    sigu: '',
+    education: '',
+    educationState: '',
+    job: '',
+  });
+
+  const { data: user } = useQuery({
+    queryKey: ['getUser'],
+    queryFn: getUser,
+  });
+
+  const setDropdownState = (e: any) => {
+    const target = e.target.name;
+    setDropdown((prev) => {
+      return { ...prev, [target]: e.target.value };
+    });
+  };
 
   const handleFileInputChange = (event: any) => {
     const file = event.target.files[0];
@@ -30,9 +63,45 @@ const ModifyProfile = () => {
     }
   };
 
+  const s3Upload = () => {
+    uploadS3(selectedFile);
+  };
+
+  const dropdownInit = () => {
+    const [si, gu] = user.address.split(' ');
+    const [edu1, edu2] = user.education.split(' ');
+    setDropdown((prev) => ({
+      ...prev,
+      sido: si,
+      sigu: gu,
+      education: edu1,
+      educationState: edu2,
+      job: user?.job,
+    }));
+  };
+
+  const submit = () => {
+    const request = {
+      profileUrl: '',
+      address: `${dropdown.sido} ${dropdown.sigu}`,
+      education: `${dropdown.education} ${dropdown.educationState}`,
+      job: dropdown.job,
+    };
+    patchModifyProfile(request, parseInt(localStorage.getItem('id')!));
+  };
+
   useEffect(() => {
-    console.log(selectedFile);
-  }, [previewURL]);
+    if (dropdown?.sido && checkbit)
+      setDropdown((prev) => ({ ...prev, sigu: siguList[dropdown?.sido][0] }));
+  }, [dropdown.sido]);
+
+  useEffect(() => {
+    if (user) dropdownInit();
+  }, [user]);
+
+  useEffect(() => {
+    setTimeout(() => setCheckbit(true), 1000); //지역 세팅 useEffect 간격 설정 로직 변경 필요
+  }, []);
 
   return (
     <>
@@ -65,19 +134,21 @@ const ModifyProfile = () => {
         <C.profile_wrap $gap={'0rem'}>
           <C.profile_content_wrap>
             <C.profile_content_tag>이름</C.profile_content_tag>
-            <C.profile_content_info>김클립</C.profile_content_info>
+            <C.profile_content_info>{user?.name}</C.profile_content_info>
           </C.profile_content_wrap>
           <C.profile_content_wrap>
             <C.profile_content_tag>출생년도</C.profile_content_tag>
-            <C.profile_content_info>1998</C.profile_content_info>
+            <C.profile_content_info>{user?.birthYear}</C.profile_content_info>
           </C.profile_content_wrap>
           <C.profile_content_wrap>
             <C.profile_content_tag>성별</C.profile_content_tag>
-            <C.profile_content_info>남성</C.profile_content_info>
+            <C.profile_content_info>{user?.gender}</C.profile_content_info>
           </C.profile_content_wrap>
           <C.profile_content_wrap>
             <C.profile_content_tag>전화번호</C.profile_content_tag>
-            <C.profile_content_info>010-1234-1234</C.profile_content_info>
+            <C.profile_content_info>
+              {phoneNumberFormatter(user?.number)}
+            </C.profile_content_info>
             <C.profile_modify_btn
               onClick={() =>
                 (window.location.href = '/mypage/modifyProfile/phone')
@@ -88,7 +159,7 @@ const ModifyProfile = () => {
           </C.profile_content_wrap>
           <C.profile_content_wrap>
             <C.profile_content_tag>이메일</C.profile_content_tag>
-            <C.profile_content_info>abd@gmail.com</C.profile_content_info>
+            <C.profile_content_info>{user?.email}</C.profile_content_info>
             <C.profile_modify_btn
               onClick={() =>
                 (window.location.href = '/mypage/modifyProfile/email')
@@ -102,30 +173,90 @@ const ModifyProfile = () => {
           <C.profile_content_wrap>
             <C.profile_content_tag>거주지</C.profile_content_tag>
             <C.dropdown_wrap>
-              <C.Dropdown $src={arrow.src} $size={'33dvw'}>
-                <option>서울특별시</option>
+              <C.Dropdown
+                name={'sido'}
+                $src={arrow.src}
+                $size={'33dvw'}
+                onChange={setDropdownState}
+                value={dropdown?.sido}
+              >
+                {sidoList?.map((val, idx) => {
+                  return (
+                    <option key={idx} value={val}>
+                      {val}
+                    </option>
+                  );
+                })}
               </C.Dropdown>
-              <C.Dropdown $src={arrow.src} $size={'33dvw'}>
-                <option>강남구</option>
+              <C.Dropdown
+                name={'sigu'}
+                $src={arrow.src}
+                $size={'33dvw'}
+                onChange={setDropdownState}
+                value={dropdown?.sigu}
+              >
+                {siguList[dropdown?.sido]?.map((val, idx) => {
+                  return (
+                    <option key={idx} value={val}>
+                      {val}
+                    </option>
+                  );
+                })}
               </C.Dropdown>
             </C.dropdown_wrap>
           </C.profile_content_wrap>
           <C.profile_content_wrap>
             <C.profile_content_tag>학력</C.profile_content_tag>
             <C.dropdown_wrap>
-              <C.Dropdown $src={arrow.src} $size={'33dvw'}>
-                <option>대학교</option>
+              <C.Dropdown
+                name={'education'}
+                $src={arrow.src}
+                $size={'33dvw'}
+                onChange={setDropdownState}
+                value={dropdown?.education}
+              >
+                {EDUCATION_LEVEL_LIST?.map((val, idx) => {
+                  return (
+                    <option key={idx} value={val}>
+                      {val}
+                    </option>
+                  );
+                })}
               </C.Dropdown>
-              <C.Dropdown $src={arrow.src} $size={'33dvw'}>
-                <option>졸업</option>
+              <C.Dropdown
+                name={'educationState'}
+                $src={arrow.src}
+                $size={'33dvw'}
+                onChange={setDropdownState}
+                value={dropdown?.educationState}
+              >
+                {EDUCATION_STATE?.map((val, idx) => {
+                  return (
+                    <option key={idx} value={val}>
+                      {val}
+                    </option>
+                  );
+                })}
               </C.Dropdown>
             </C.dropdown_wrap>
           </C.profile_content_wrap>
           <C.profile_content_wrap>
             <C.profile_content_tag>직업</C.profile_content_tag>
             <C.dropdown_wrap>
-              <C.Dropdown $src={arrow.src} $size={'70dvw'}>
-                <option>회사원</option>
+              <C.Dropdown
+                name={'job'}
+                $src={arrow.src}
+                $size={'70dvw'}
+                onChange={setDropdownState}
+                value={dropdown?.job}
+              >
+                {JOB_LIST?.map((val, idx) => {
+                  return (
+                    <option key={idx} value={val}>
+                      {val}
+                    </option>
+                  );
+                })}
               </C.Dropdown>
             </C.dropdown_wrap>
           </C.profile_content_wrap>
@@ -136,7 +267,9 @@ const ModifyProfile = () => {
       </C.view_wrap>
       <Spacer height="8rem" />
       <Footer>
-        <NextButton $size="91.1dvw">완료하기</NextButton>
+        <NextButton $size="91.1dvw" onClick={submit}>
+          완료하기
+        </NextButton>
       </Footer>
     </>
   );

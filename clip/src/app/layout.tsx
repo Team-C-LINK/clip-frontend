@@ -7,7 +7,7 @@ import PaletteProvider from './Provider/PaletteProvider/PaletteProvider';
 import { GoogleAnalytics } from './Provider/GoogleAnalytics/GoogleAnalytics';
 import Wrapper from './SharedComponent/Wrapper/Wrapper';
 import RecoilProvider from './Provider/RecoilProvider/RecoilProvider';
-
+import Script from 'next/script';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {

@@ -16,15 +16,10 @@ import jsonToString from '../utils/jsonToString';
 import stringToJson from '../utils/stringToJson';
 import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
 import Footer from '@/app/SharedComponent/Footer/Footer';
-
-const EDUCATION_LEVEL_LIST = [
-  '중학교',
-  '고등학교',
-  '대학교(2년제)',
-  '대학교(4년제)',
-  '석사 이상',
-];
-const EDUCATION_STATE = ['재학/휴학', '졸업'];
+import {
+  EDUCATION_LEVEL_LIST,
+  EDUCATION_STATE,
+} from '@/app/SharedComponent/DropdownOption/DropdownOption';
 
 const Education = () => {
   const {

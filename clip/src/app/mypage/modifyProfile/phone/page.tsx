@@ -2,22 +2,18 @@
 import TopText from '@/app/join/component/TopText/TopText';
 import * as C from './assets/component/C.style';
 import NextButton from '@/app/join/component/PrevNext/NextButton/NextButton';
-import NextButtonDisabled from '@/app/join/component/PrevNext/NextButtonDisabled/NextButton';
-import PrevNext from '@/app/join/component/PrevNext/PrevNext';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState, useRef } from 'react';
 import check from './assets/image/check.svg';
 import { useRouter } from 'next/navigation';
 import phoneNumberFormatter from './assets/utils/phoneNumberFormatter';
-import postRequestAuth from './assets/hooks/postRequestAuth';
-import postCheckAuth from './assets/hooks/postCheckAuth';
-import jsonToString from '@/app/join/utils/jsonToString';
-import stringToJson from '@/app/join/utils/stringToJson';
+import postModifyGetAuthPhone from '@/app/api/post-modifyGetAuthPhone';
 import Image from 'next/image';
 import Header from '@/app/SharedComponent/Header/Header';
 import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
 import { Footer } from '@/app/SharedComponent/Footer/Footer.style';
+import postModifyCheckAuthPhone from '@/app/api/post-modifyCheckAuthPhone';
 
 const PHONE_REGEX = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/i;
 const AUTH_REGEX = /^\d{4}$/i;
@@ -43,8 +39,11 @@ const Auth = () => {
 
   const requestAuthCode = async () => {
     const phoneNumber = watch('phoneNumber').replace(/-/g, '');
-
-    if (await postRequestAuth(phoneNumber)) {
+    const id = parseInt(localStorage.getItem('id')!);
+    const request = {
+      phoneNumber: phoneNumber,
+    };
+    if (await postModifyGetAuthPhone(request)) {
       startTimer();
       setAuthCodeState(1);
     }
@@ -53,30 +52,20 @@ const Auth = () => {
   const requestCheckAuth = async () => {
     const phone = watch('phoneNumber').replace(/-/g, '');
 
-    const requestData = {
+    const request = {
       phoneNumber: phone,
-      verificationNumber: watch('verficationNumber'),
+      verificationNumber: watch('verificationNumber'),
     };
 
-    const certification = await postCheckAuth(requestData);
+    const res = await postModifyCheckAuthPhone(request);
 
-    if (certification) {
-      const signInfo = stringToJson(localStorage.getItem('signInfo')!);
-      signInfo['certification'] = certification;
-      signInfo['number'] = phone;
-      localStorage.setItem('signInfo', jsonToString(signInfo));
-      setAuthCodeState(2);
-      setIsValid(true);
-    }
+    if (res?.status === 204) window.location.href = '/mypage/modifyProfile';
+    else alert('인증이 올바르지 않습니다. 다시 시도해주세요.');
   };
 
   const handlePhoneNumberChange = (e: any) => {
     const formattedPhoneNumber = phoneNumberFormatter(e.target.value);
     setValue('phoneNumber', formattedPhoneNumber);
-  };
-
-  const next = () => {
-    router.push('/join/address');
   };
 
   const getTime = (time: number) => {
@@ -132,7 +121,7 @@ const Auth = () => {
         </C.phoneNumber_wrap>
         <C.phoneNumber_wrap>
           <C.certification
-            placeholder="인증번호 4자리"
+            placeholder="인증번호 6자리"
             {...register('verificationNumber', {
               pattern: {
                 value: AUTH_REGEX,
@@ -140,17 +129,11 @@ const Auth = () => {
               },
             })}
           ></C.certification>
-          {!watch('verificationNumber') ||
-          errors.verficationNumber?.message?.toString() ? (
-            <C.getAuthDisable>인증하기</C.getAuthDisable>
-          ) : (
-            <C.getAuth onClick={requestCheckAuth}>인증하기</C.getAuth>
-          )}
         </C.phoneNumber_wrap>
         {authCodeComponent[authCodeState]}
       </C.auth_wrap>
       <Footer>
-        <NextButton onClick={next} $size={'91.1dvw'}>
+        <NextButton onClick={requestCheckAuth} $size={'91.1dvw'}>
           완료하기
         </NextButton>
       </Footer>
