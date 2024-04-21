@@ -8,8 +8,8 @@ import { useForm } from 'react-hook-form';
 import { useEffect, useState, useRef } from 'react';
 import check from './assets/image/check.svg';
 import { useRouter } from 'next/navigation';
-import postRequestAuth from './assets/hooks/postRequestAuth';
-import postCheckAuth from './assets/hooks/postCheckAuth';
+import postModifyGetAuthEmail from '@/app/api/post-modifyGetAuthEmail';
+import patchModifyCheckAuthEmail from '@/app/api/post-modifyCheckAuthEmail';
 import jsonToString from '@/app/join/utils/jsonToString';
 import stringToJson from '@/app/join/utils/stringToJson';
 import Image from 'next/image';
@@ -34,43 +34,30 @@ const Email = () => {
   const [authCodeState, setAuthCodeState] = useState<number>(0);
   const timerRef = useRef<any>(0);
 
-  const startTimer = () => {
-    timerRef.current = setInterval(() => {
-      setTimeState((prevTime) => prevTime - 1);
-    }, 1000);
-  };
-
   const requestAuthCode = async () => {
-    const phoneNumber = watch('phoneNumber').replace(/-/g, '');
+    const email = watch('email');
+    const request = {
+      receiverEmail: email,
+    };
 
-    if (await postRequestAuth(phoneNumber)) {
-      startTimer();
+    if (await postModifyGetAuthEmail(request)) {
       setAuthCodeState(1);
     }
   };
 
   const requestCheckAuth = async () => {
-    const phone = watch('phoneNumber').replace(/-/g, '');
+    const email = watch('email');
 
-    const requestData = {
-      phoneNumber: phone,
-      verificationNumber: watch('verficationNumber'),
+    const request = {
+      receiverEmail: email,
+      verificationNumber: watch('verificationNumber'),
     };
 
-    const certification = await postCheckAuth(requestData);
+    const certification = await patchModifyCheckAuthEmail(request);
 
-    if (certification) {
-      const signInfo = stringToJson(localStorage.getItem('signInfo')!);
-      signInfo['certification'] = certification;
-      signInfo['number'] = phone;
-      localStorage.setItem('signInfo', jsonToString(signInfo));
-      setAuthCodeState(2);
-      setIsValid(true);
-    }
-  };
-
-  const next = () => {
-    router.push('/join/address');
+    if (certification?.status === 204)
+      window.location.href = '/mypage/modifyProfile';
+    else alert('인증이 올바르지 않습니다. 다시 시도해주세요.');
   };
 
   const getTime = (time: number) => {
@@ -83,7 +70,7 @@ const Email = () => {
   const authCodeComponent = [
     null,
     <C.authsend_text key={1}>
-      인증번호가 발송되었습니다. 유효시간 {getTime(timeState)}
+      인증번호가 발송되었습니다. 이메일을 확인해 주세요.
     </C.authsend_text>,
     <C.auth_done_text key={2}>
       <Image src={check.src} alt="check" width={16} height={16} />
@@ -99,7 +86,7 @@ const Email = () => {
     <>
       <Spacer height="5.6rem"></Spacer>
       <Header>
-        <HeaderCancel route={'/mypage'}></HeaderCancel>
+        <HeaderCancel route={'/mypage/modifyProfile'}></HeaderCancel>
       </Header>
       <TopText
         top={'이메일 변경'}
@@ -121,17 +108,11 @@ const Email = () => {
               pattern: AUTH_REGEX,
             })}
           ></C.certification>
-          {!watch('verificationNumber') ||
-          errors.verficationNumber?.message?.toString() ? (
-            <C.getAuthDisable>인증하기</C.getAuthDisable>
-          ) : (
-            <C.getAuth onClick={requestCheckAuth}>인증하기</C.getAuth>
-          )}
         </C.phoneNumber_wrap>
         {authCodeComponent[authCodeState]}
       </C.auth_wrap>
       <Footer>
-        <NextButton onClick={next} $size={'91.1dvw'}>
+        <NextButton onClick={requestCheckAuth} $size={'91.1dvw'}>
           완료하기
         </NextButton>
       </Footer>
