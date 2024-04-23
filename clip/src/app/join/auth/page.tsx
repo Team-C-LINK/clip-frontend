@@ -103,7 +103,7 @@ const Auth = () => {
 
   return (
     <>
-      <HeaderCancel route={'/mypage'}></HeaderCancel>
+      <HeaderCancel route={'/mypage'} text=""></HeaderCancel>
       <ProgressBar page={2}></ProgressBar>
       <C.view_wrap>
         <TopText

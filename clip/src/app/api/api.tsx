@@ -5,10 +5,23 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${
-      typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null
+      typeof window == 'undefined'
+        ? null
+        : localStorage.getItem('accessToken')
+        ? localStorage.getItem('accessToken')
+        : null
     }`,
   },
   withCredentials: true,
 });
+
+api.interceptors.response.use(
+  (res) => {
+    return res;
+  },
+  (error) => {
+    window.location.href = '/recruit';
+  }
+);
 
 export default api;

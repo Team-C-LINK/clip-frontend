@@ -53,7 +53,7 @@ const Education = () => {
 
   return (
     <>
-      <HeaderCancel route={'/login'}></HeaderCancel>
+      <HeaderCancel route={'/login'} text=""></HeaderCancel>
       <ProgressBar page={4}></ProgressBar>
       <C.view_wrap>
         <TopText

@@ -30,6 +30,10 @@ export default function RootLayout({
         <QueryProvider>
           <PaletteProvider>
             <RecoilProvider>
+              <Script
+                strategy="beforeInteractive"
+                src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAPS_CLIENT_ID}&submodules=geocoder`}
+              />
               <Wrapper>{children}</Wrapper>
             </RecoilProvider>
           </PaletteProvider>
