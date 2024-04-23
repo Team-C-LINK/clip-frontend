@@ -6,4 +6,4 @@ RUN npm install -g npm@10.5.1
 
 COPY . .
 EXPOSE 3000
-CMD npm run dev
+CMD yarn start
