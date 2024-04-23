@@ -27,12 +27,9 @@ jobs:
         run: |
           cd clip
           echo NEXT_PUBLIC_SERVER_HOST=${{ secrets.SERVER_HOST }} NEXT_PUBLIC_GA_ID=${{ secrets.GA_ID }} NEXT_PUBLIC_NAVER_MAPS_CLIENT_ID=${{ secrets.NAVER_MAPS_CLIENT_ID}} >> .env
-          
-      - name: Move to build point
-        run: cd clip 
-
+        
       - name : Genrate build
-        run: yarn build
+        run: npm run build --prefix clip
         
       - name: Docker Image Build
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_FRONT }} .
