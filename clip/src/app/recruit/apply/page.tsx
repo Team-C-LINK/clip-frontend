@@ -1,9 +1,14 @@
 'use client';
 
+import Header from '@/app/SharedComponent/Header/Header';
+import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
+
 const Apply = () => {
   return (
     <>
-      <div>안녕하세요 지원페이지입니다.</div>
+      <Header>
+        <HeaderCancel route={'/recruit'} text=""></HeaderCancel>
+      </Header>
     </>
   );
 };
