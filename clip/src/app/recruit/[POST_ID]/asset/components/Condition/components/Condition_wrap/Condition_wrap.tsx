@@ -1,0 +1,36 @@
+import styled from 'styled-components';
+import ConditionInner from './ConditionInner/ConditionInner';
+
+type ConditionType = {
+  index: string;
+  content: string;
+};
+
+const Condition_wrap = ({ list }: { list: ConditionType[] }) => {
+  return (
+    <>
+      <Wrapper>
+        {list?.map((val, idx) => {
+          return (
+            <ConditionInner
+              index={val.index}
+              content={val.content}
+              key={idx}
+            ></ConditionInner>
+          );
+        })}
+      </Wrapper>
+    </>
+  );
+};
+
+const Wrapper = styled.div`
+  position: relative;
+  width: 91.1dvw;
+  height: fit-content;
+  display: flex;
+  gap: 0.8rem;
+  flex-direction: column;
+`;
+
+export default Condition_wrap;

@@ -8,3 +8,11 @@ export const chart_wrap = styled.div`
   heigth: fit-content;
   justify-content: space-between;
 `;
+
+export const Wrap = styled.div`
+  position: relative;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+`;
