@@ -16,7 +16,7 @@ jobs:
         run: npm install -g npm@10.5.1 --prefix clip
         
       - name: Install next
-        run: yarn add -g next
+        run: yarn add next
         working-directory: ${{ secrets.WORKING_DIRECTORY }}
 
       - name: Install dependencies with yarn
