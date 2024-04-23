@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import arrow from '@/app/SharedComponent/asset/image/arrow.svg';
 import uninterested_black from '@/app/SharedComponent/asset/image/uninterested_black.svg';
 import share from '@/app/SharedComponent/asset/image/share.svg';
+import Image from 'next/image';
 
 const HeaderRecruit = ({
   setModalState,
@@ -11,11 +12,22 @@ const HeaderRecruit = ({
   return (
     <>
       <Wrap>
-        <img src={arrow.src}></img>
+        <Image src={arrow.src} alt="back" width={24} height={24} />
         <Header_title></Header_title>
         <Right_wrap>
-          <img src={uninterested_black.src}></img>
-          <img src={share.src} onClick={setModalState}></img>
+          <Image
+            src={uninterested_black.src}
+            alt="uninterested"
+            width={24}
+            height={24}
+          />
+          <Image
+            src={share.src}
+            alt="share"
+            width={24}
+            height={24}
+            onClick={setModalState}
+          />
         </Right_wrap>
       </Wrap>
     </>
