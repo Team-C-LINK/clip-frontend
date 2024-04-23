@@ -22,7 +22,7 @@ const Condition = (props: ConditionType) => {
         <StatusBar recruitStatus={true} category="📊설문조사"></StatusBar>
         <Title_Divider_wrap>
           <Title>배고픔을 느끼는지 알아보는 실험 참여자를 모집합니다.</Title>
-          <Divider size={'91.1dvw'}></Divider>
+          <Divider $size={'91.1dvw'}></Divider>
         </Title_Divider_wrap>
         <Condition_wrap list={props?.conditionList}></Condition_wrap>
         <ConditionDetail list={props?.conditionDetailList}></ConditionDetail>
