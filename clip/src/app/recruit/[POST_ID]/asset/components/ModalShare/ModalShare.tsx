@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import copy from '@/app/SharedComponent/asset/image/copy.svg';
 import cancel from '@/app/SharedComponent/asset/image/cancel.svg';
+import Image from 'next/image';
 
 const ModalShared = ({
   setModalState,
@@ -23,7 +24,7 @@ const ModalShared = ({
           <Link_text>
             http://clink.kr/share_page/linkresearcher/zzzzzzzzzzzzzzz
           </Link_text>
-          <img src={copy.src}></img>
+          <Image src={copy.src} alt="copy" width={24} height={24} />
         </Link_wrap>
       </Modal_Wrap>
     </>
