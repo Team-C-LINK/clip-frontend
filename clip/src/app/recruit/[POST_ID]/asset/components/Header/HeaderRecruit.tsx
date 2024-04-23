@@ -12,31 +12,42 @@ const HeaderRecruit = ({
   return (
     <>
       <Wrap>
-        <Image src={arrow.src} alt="back" width={24} height={24} />
-        <Header_title></Header_title>
-        <Right_wrap>
-          <Image
-            src={uninterested_black.src}
-            alt="uninterested"
-            width={24}
-            height={24}
-          />
-          <Image
-            src={share.src}
-            alt="share"
-            width={24}
-            height={24}
-            onClick={setModalState}
-          />
-        </Right_wrap>
+        <Header_Inner>
+          <Image src={arrow.src} alt="back" width={15} height={15} />
+          <Header_title></Header_title>
+          <Right_wrap>
+            <Image
+              src={uninterested_black.src}
+              alt="uninterested"
+              width={24}
+              height={24}
+            />
+            <Image
+              src={share.src}
+              alt="share"
+              width={24}
+              height={24}
+              onClick={setModalState}
+            />
+          </Right_wrap>
+        </Header_Inner>
       </Wrap>
     </>
   );
 };
 
 const Wrap = styled.div`
-  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.1rem solid #d9d9d9;
+`;
 
+const Header_Inner = styled.div`
   position: relative;
   width: 91.1dvw;
   height: 5.6rem;
@@ -44,9 +55,6 @@ const Wrap = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background: #ffffff;
-  /* Line/01 */
-  border-bottom: 0.1rem solid #d9d9d9;
   z-index: 1;
 `;
 
