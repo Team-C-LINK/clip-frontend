@@ -13,14 +13,11 @@ import ResearcherInfo from './asset/components/ResearcherInfo/ResearcherInfo';
 import Condition from './asset/components/Condition/Condition';
 import HeaderRecruit from './asset/components/Header/HeaderRecruit';
 import ModalShared from './asset/components/ModalShare/ModalShare';
-import { useState } from 'react';
-
-const test = [
-  { index: '기한', content: '2024.04.25 까지' },
-  { index: '지역', content: '서울 성북구 · 고려대학교 미래관 506호' },
-  { index: '시간', content: '월~금 · 09시~17시' },
-  { index: '지원 조건', content: '모든 성별 ·  20대 (1996년~2005년생)' },
-];
+import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import getTargetRecruitInfo from '@/app/api/get-targetRecruitInfo';
+import PostType from '@/app/type/PostType';
 
 const dummy = [
   `출생지 및 거주지가 수도권인 20대(1996~2005년생)의
@@ -31,25 +28,32 @@ const dummy = [
 
 const RecruitDetail = () => {
   const [modalState, setModalState] = useState(false);
-
   const setShareModalState = () => {
     setModalState(!modalState);
   };
+  const param = useParams();
+  const { data: info } = useQuery<PostType>({
+    queryKey: ['post', param.POST_ID],
+    queryFn: getTargetRecruitInfo,
+  });
 
   return (
     <>
       <Spacer height="7rem"></Spacer>
       <Header>
-        <HeaderRecruit setModalState={setShareModalState}></HeaderRecruit>
+        <HeaderRecruit
+          isScraped={info?.isScraped}
+          setModalState={setShareModalState}
+        ></HeaderRecruit>
       </Header>
       {modalState && (
         <ModalShared setModalState={setShareModalState}></ModalShared>
       )}
       <C.Wrap>
-        <Condition conditionList={test} conditionDetailList={dummy}></Condition>
-        <ResearchInfo>{dummy2}</ResearchInfo>
+        <Condition props={info}></Condition>
+        <ResearchInfo>{info?.content}</ResearchInfo>
         <Map address="인천 서구 경명대로 676"></Map>
-        <ResearcherInfo></ResearcherInfo>
+        <ResearcherInfo props={info}></ResearcherInfo>
       </C.Wrap>
       <Spacer height="8rem" />
       <Footer>
