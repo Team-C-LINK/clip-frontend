@@ -3,10 +3,10 @@ import ConditionInner from './ConditionInner/ConditionInner';
 
 type ConditionType = {
   index: string;
-  content: string;
+  content: string | undefined;
 };
 
-const Condition_wrap = ({ list }: { list: ConditionType[] }) => {
+const Condition_wrap = ({ list }: { list: ConditionType[] | undefined }) => {
   return (
     <>
       <Wrapper>

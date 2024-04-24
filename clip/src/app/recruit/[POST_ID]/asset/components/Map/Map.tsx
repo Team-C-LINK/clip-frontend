@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import useMap from '../../hook/useMap';
 import Title from '../Title/Title';
 
-const Map = ({ address }: { address: string }) => {
+const Map = ({ address }: { address: string | undefined }) => {
   useMap(address);
 
   return (

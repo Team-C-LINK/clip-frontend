@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ConditionDetail = ({ list }: { list: string[] }) => {
+const ConditionDetail = ({ list }: { list: string[] | undefined }) => {
   return (
     <>
       <Wrap>

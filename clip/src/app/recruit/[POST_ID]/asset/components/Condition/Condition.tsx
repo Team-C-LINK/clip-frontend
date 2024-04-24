@@ -4,28 +4,29 @@ import Title from '../Title/Title';
 import Divider from '@/app/SharedComponent/Divider/Divider';
 import Condition_wrap from './components/Condition_wrap/Condition_wrap';
 import ConditionDetail from './components/ConditionDetail/ConditionDetail';
+import PostType from '@/app/type/PostType';
 
-type ConditionType = {
-  conditionList: ConditionInnerType[];
-  conditionDetailList: string[];
-};
+const Condition = ({ props }: { props: PostType | undefined }) => {
+  const conditionList = [
+    { index: '기한', content: props?.endDate },
+    { index: '지역', content: props?.researchLocation },
+    { index: '시간', content: props?.researchAvailableTime },
+    { index: '지원 조건', content: '모든 성별 ·  20대 (1996년~2005년생)' },
+  ];
 
-type ConditionInnerType = {
-  index: string;
-  content: string;
-};
-
-const Condition = (props: ConditionType) => {
   return (
     <>
       <Wrap>
-        <StatusBar recruitStatus={true} category="📊설문조사"></StatusBar>
+        <StatusBar
+          recruitStatus={props?.isRecruiting}
+          category={props?.category}
+        ></StatusBar>
         <Title_Divider_wrap>
-          <Title>배고픔을 느끼는지 알아보는 실험 참여자를 모집합니다.</Title>
+          <Title>{props?.title}</Title>
           <Divider $size={'91.1dvw'}></Divider>
         </Title_Divider_wrap>
-        <Condition_wrap list={props?.conditionList}></Condition_wrap>
-        <ConditionDetail list={props?.conditionDetailList}></ConditionDetail>
+        <Condition_wrap list={conditionList}></Condition_wrap>
+        <ConditionDetail list={props?.applicationConditions}></ConditionDetail>
       </Wrap>
     </>
   );

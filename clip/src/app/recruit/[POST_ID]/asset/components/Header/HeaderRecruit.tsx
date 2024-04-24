@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 import arrow from '@/app/SharedComponent/asset/image/arrow.svg';
 import uninterested_black from '@/app/SharedComponent/asset/image/uninterested_black.svg';
+import interested from '@/app/SharedComponent/asset/image/interested.svg';
 import share from '@/app/SharedComponent/asset/image/share.svg';
 import Image from 'next/image';
 
 const HeaderRecruit = ({
   setModalState,
+  isScraped,
 }: {
   setModalState: React.MouseEventHandler;
+  isScraped: boolean | undefined;
 }) => {
   return (
     <>
@@ -17,10 +20,10 @@ const HeaderRecruit = ({
           <Header_title></Header_title>
           <Right_wrap>
             <Image
-              src={uninterested_black.src}
+              src={isScraped ? interested.src : uninterested_black.src}
               alt="uninterested"
-              width={24}
-              height={24}
+              width={22}
+              height={22}
             />
             <Image
               src={share.src}

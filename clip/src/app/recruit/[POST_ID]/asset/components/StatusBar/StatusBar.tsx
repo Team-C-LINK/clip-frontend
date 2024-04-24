@@ -7,8 +7,8 @@ const StatusBar = ({
   recruitStatus,
   category,
 }: {
-  recruitStatus: boolean;
-  category: string;
+  recruitStatus: boolean | undefined;
+  category: string | undefined;
 }) => {
   return (
     <>
