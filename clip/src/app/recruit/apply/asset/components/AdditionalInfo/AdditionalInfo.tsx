@@ -15,7 +15,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  width: 91.1dvw;
+  width: 100%;
 `;
 
 export default AdditionalInfo;

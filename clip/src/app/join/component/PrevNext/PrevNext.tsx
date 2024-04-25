@@ -9,7 +9,7 @@ const PrevNextFrame = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 91.1dvw;
+  width: 91.1%;
   height: fit-content;
   gap: 2rem;
 `;

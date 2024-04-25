@@ -42,6 +42,7 @@ const CheckMyInfo = () => {
 };
 
 const Wrap = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -79,7 +80,7 @@ const Title_wrap = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 91.1dvw;
+  width: 91.1%;
   height: fit-content;
 `;
 
@@ -98,7 +99,7 @@ const Detail_wrap = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 0.4rem;
-  width: 91.1dvw;
+  width: 91.1%;
   gap: 1.7rem;
   align-items: center;
 `;

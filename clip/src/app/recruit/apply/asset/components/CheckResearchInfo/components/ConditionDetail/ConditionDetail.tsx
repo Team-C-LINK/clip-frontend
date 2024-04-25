@@ -18,7 +18,7 @@ const Wrap = styled.div`
   position: relative;
   width: fit-content;
   display: flex;
-  width: 91.1dvw;
+  width: 91.1%;
   flex-direction: row;
   height: fit-content;
   background: ${(props) => props.theme.BACKGROUND._01};
@@ -32,7 +32,7 @@ const Inner = styled.ul`
   padding: 0rem 0.8rem;
   gap: 1rem;
 
-  width: 77.5dvw;
+  width: 77.5%;
   height: fit-content;
 
   font-family: 'Pretendard';

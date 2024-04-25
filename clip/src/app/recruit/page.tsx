@@ -16,7 +16,7 @@ import useGetRecruitList from './asset/hook/useGetRecruitList';
 const Recruit = () => {
   const [isRecruiting, setIsRecruiting] = useState<boolean>(false);
   const [filterState, setFilterState] = useState<string>('전체 공고');
-  const { recruitList } = useGetRecruitList(true, 3);
+  const { recruitList } = useGetRecruitList(false, 3);
   const handleIsRecruiting = () => {
     if (isRecruiting) setIsRecruiting(false);
     else setIsRecruiting(true);
