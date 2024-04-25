@@ -176,7 +176,7 @@ const ModifyProfile = () => {
               <C.Dropdown
                 name={'sido'}
                 $src={arrow.src}
-                $size={'33dvw'}
+                $size={'50%'}
                 onChange={setDropdownState}
                 value={dropdown?.sido}
               >
@@ -191,7 +191,7 @@ const ModifyProfile = () => {
               <C.Dropdown
                 name={'sigu'}
                 $src={arrow.src}
-                $size={'33dvw'}
+                $size={'50%'}
                 onChange={setDropdownState}
                 value={dropdown?.sigu}
               >
@@ -211,7 +211,7 @@ const ModifyProfile = () => {
               <C.Dropdown
                 name={'education'}
                 $src={arrow.src}
-                $size={'33dvw'}
+                $size={'50%'}
                 onChange={setDropdownState}
                 value={dropdown?.education}
               >
@@ -226,7 +226,7 @@ const ModifyProfile = () => {
               <C.Dropdown
                 name={'educationState'}
                 $src={arrow.src}
-                $size={'33dvw'}
+                $size={'50%'}
                 onChange={setDropdownState}
                 value={dropdown?.educationState}
               >
@@ -246,7 +246,7 @@ const ModifyProfile = () => {
               <C.Dropdown
                 name={'job'}
                 $src={arrow.src}
-                $size={'70dvw'}
+                $size={'104%'}
                 onChange={setDropdownState}
                 value={dropdown?.job}
               >
