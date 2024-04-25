@@ -9,6 +9,6 @@ export const Footer = styled.div`
   width: 100%;
   height: 8rem;
   bottom: 0dvh;
-  z-index: 1;
+  z-index: 2;
   background-color: ${(props) => props.theme.BACKGROUND._02};
 `;
