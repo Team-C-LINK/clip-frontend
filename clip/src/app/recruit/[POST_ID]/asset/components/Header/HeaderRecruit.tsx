@@ -28,7 +28,13 @@ const HeaderRecruit = ({
     <>
       <Wrap>
         <Header_Inner>
-          <Image src={arrow.src} alt="back" width={15} height={15} />
+          <Image
+            src={arrow.src}
+            alt="back"
+            width={15}
+            height={15}
+            onClick={() => (window.location.href = '/recruit')}
+          />
           <Header_title></Header_title>
           <Right_wrap>
             <Image
