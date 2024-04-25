@@ -4,8 +4,20 @@ import uninterested from '../asset/image/uninterested.svg';
 import AnnouncementType from '@/app/type/Announcment';
 import GreenButton from '../Category/GreenButton';
 import GrayButton from '../Category/GrayButton';
+import { useEffect, useState } from 'react';
 
 const RecruitCard = ({ info }: { info: AnnouncementType | undefined }) => {
+  const [isScraped, setIsScraped] = useState<boolean>();
+
+  const handleIsScraped = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsScraped(!isScraped);
+  };
+
+  useEffect(() => {
+    setIsScraped(info?.isScraped);
+  }, [info]);
+
   return (
     <C.list_content_wrap
       onClick={() => (window.location.href = `/recruit/${info?.id}`)}
@@ -43,10 +55,8 @@ const RecruitCard = ({ info }: { info: AnnouncementType | undefined }) => {
             'ko-KR'
           )}원`}</C.list_content_reward>
           <C.list_content_interested
-            onClick={(e: React.MouseEvent) => {
-              e.stopPropagation();
-            }}
-            src={info?.isScraped ? interested.src : uninterested.src}
+            onClick={handleIsScraped}
+            src={isScraped ? interested.src : uninterested.src}
           ></C.list_content_interested>
         </C.list_content_reward_wrap>
       </C.list_content_wrap_inner>
