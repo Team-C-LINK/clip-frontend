@@ -1,9 +1,21 @@
 import styled from 'styled-components';
 import useMap from '../../hook/useMap';
 import Title from '../Title/Title';
+import React from 'react';
 
 const Map = ({ address }: { address: string | undefined }) => {
   useMap(address);
+
+  const handleCopyClipBoard = async (
+    e: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
+    try {
+      await navigator.clipboard.writeText(e.currentTarget.innerHTML);
+      alert('클립보드에 링크가 복사되었어요.');
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -12,7 +24,8 @@ const Map = ({ address }: { address: string | undefined }) => {
         <div>
           <MapBox id="map"></MapBox>
           <Address>
-            {address}
+            <span onClick={handleCopyClipBoard}>{address}</span>
+
             <Purple>지도보기</Purple>
           </Address>
         </div>
