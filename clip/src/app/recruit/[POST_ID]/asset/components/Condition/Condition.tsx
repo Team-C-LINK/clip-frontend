@@ -23,7 +23,7 @@ const Condition = ({ props }: { props: PostType | undefined }) => {
         ></StatusBar>
         <Title_Divider_wrap>
           <Title>{props?.title}</Title>
-          <Divider $size={'91.1dvw'}></Divider>
+          <Divider $size={'100%'}></Divider>
         </Title_Divider_wrap>
         <Condition_wrap list={conditionList}></Condition_wrap>
         <ConditionDetail list={props?.applicationConditions}></ConditionDetail>

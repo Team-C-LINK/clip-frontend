@@ -53,7 +53,7 @@ const Profile_wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 91.1dvw;
+  width: 100%;
   height: fit-content;
 
   gap: 1rem;
@@ -79,7 +79,7 @@ const Profile_nickname = styled.span`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 72.8dvw;
+  width: 72.8%;
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.Medium.B4};
   color: #252525;
@@ -106,7 +106,7 @@ const Detail_wrap = styled.div`
   flex-direction: column;
   background: ${(props) => props.theme.BACKGROUND._01};
   border-radius: 0.4rem;
-  width: 91.1dvw;
+  width: 100%;
   gap: 0.8rem;
   padding: 0.8rem 0rem;
   align-items: center;

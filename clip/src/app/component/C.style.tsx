@@ -178,7 +178,7 @@ export const Join = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 91.1dvw;
+  width: 91.1%;
   height: 4.4rem;
 
   z-index: 1;

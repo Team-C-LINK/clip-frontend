@@ -82,7 +82,7 @@ const Inner = styled.ol`
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  width: 91.1dvw;
+  width: 91.1%;
   height: fit-content;
   list-style-type: decimal;
   font-family: 'Pretendard';

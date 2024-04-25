@@ -80,7 +80,7 @@ const Title_wrap = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 91.1%;
+  width: 100%;
   height: fit-content;
 `;
 
@@ -99,7 +99,7 @@ const Detail_wrap = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 0.4rem;
-  width: 91.1%;
+  width: 100%;
   gap: 1.7rem;
   align-items: center;
 `;

@@ -22,7 +22,7 @@ const CheckResearchInfo = (props: ConditionType) => {
         <TilteWithIndex index="1" text="연구 정보 확인"></TilteWithIndex>
         <Title_Divider_wrap>
           <Title>배고픔을 느끼는지 알아보는 실험 참여자를 모집합니다.</Title>
-          <Divider $size={'91.1%'}></Divider>
+          <Divider $size={'100%'}></Divider>
         </Title_Divider_wrap>
         <Condition_wrap list={props?.conditionList}></Condition_wrap>
         <ConditionDetail list={props?.conditionDetailList}></ConditionDetail>

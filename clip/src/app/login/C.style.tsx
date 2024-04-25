@@ -4,7 +4,7 @@ export const LoginInner = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 100%;
   height: fit-content;
 `;
 
@@ -135,6 +135,7 @@ export const ButtonFrame = styled.div`
   display: flex;
   flex-direction: column;
   height: fit-content;
+  width: 100%;
   gap: 1.6rem;
 `;
 
@@ -159,7 +160,7 @@ export const ReturnHomeButton = styled.div`
   gap: 1.2rem;
 
   position: relative;
-  width: 91.1dvw;
+  width: 100%;
   height: 4.8rem;
   top: 6vh;
 
@@ -274,7 +275,7 @@ export const KaKaoButton = styled.div`
   gap: 1.2rem;
 
   position: relative;
-  width: 91.1dvw;
+  width: 100%;
   height: 4.4rem;
 
   background: #fee500;
@@ -305,7 +306,7 @@ export const NaverButton = styled.div`
   gap: 1.2rem;
 
   position: relative;
-  width: 91.1dvw;
+  width: 100%;
   height: 4.4rem;
 
   background: #00ac26;

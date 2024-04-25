@@ -17,9 +17,8 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
-  width: 91.1dvw;
+  width: 100%;
   height: fit-content;
-  align-items: center;
 `;
 
 const Content = styled.div`

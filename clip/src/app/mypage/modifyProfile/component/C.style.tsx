@@ -37,7 +37,7 @@ export const auth_wrap = styled.div`
   gap: 0.8rem;
 
   position: relative;
-  width: 91.1dvw;
+  width: 91.1%;
   height: fit-content;
   top: 3rem;
 `;
@@ -79,7 +79,7 @@ export const profile_content_wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 91.1dvw;
+  width: 91.1%;
   height: 4.8rem;
   gap: 3.2rem;
   align-items: center;

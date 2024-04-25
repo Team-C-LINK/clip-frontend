@@ -20,11 +20,11 @@ export const auth_wrap = styled.div`
   /* Auto layout */
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.8rem;
 
   position: relative;
-  width: 91.1dvw;
+  width: 100%;
   height: fit-content;
   top: 3rem;
 `;
@@ -47,7 +47,7 @@ export const phoneNumber_wrap = styled.div`
   align-items: center;
   gap: 1rem;
 
-  width: 91.1dvw;
+  width: 91.1%;
   height: 5.6rem;
 
   border-bottom: 0.1rem solid #d9d9d9;

@@ -71,7 +71,7 @@ const Wrap = styled.div`
 
 const Header_Inner = styled.div`
   position: relative;
-  width: 91.1dvw;
+  width: 91.1%;
   height: 5.6rem;
   display: flex;
   flex-direction: row;

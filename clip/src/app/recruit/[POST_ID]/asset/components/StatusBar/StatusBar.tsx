@@ -29,7 +29,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1.3rem;
-  width: 91.1dvw;
+  width: 91.1%;
   height: fit-content;
 `;
 

@@ -22,7 +22,7 @@ export const list_content_wrap_inner = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 91.1dvw;
+  width: 91.1%;
   height: fit-content;
 `;
 

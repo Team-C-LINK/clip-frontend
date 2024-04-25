@@ -267,7 +267,7 @@ const ModifyProfile = () => {
       </C.view_wrap>
       <Spacer height="8rem" />
       <Footer>
-        <NextButton $size="91.1dvw" onClick={submit}>
+        <NextButton $size="91.1%" onClick={submit}>
           완료하기
         </NextButton>
       </Footer>

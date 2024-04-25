@@ -27,10 +27,10 @@ const Complete = () => {
       <Image src={clippy.src} alt="clippy" width={328} height={189} />
       <C.Middle_text>회원가입 축하 300P를 지급해드렸어요!</C.Middle_text>
       <C.Btn_wrap>
-        <NextButton $size={'91.1dvw'} onClick={next}>
+        <NextButton $size={'91.1%'} onClick={next}>
           로그인하기
         </NextButton>
-        <PrevButton $size={'91.1dvw'}>클립 홈으로 돌아가기</PrevButton>
+        <PrevButton $size={'91.1%'}>클립 홈으로 돌아가기</PrevButton>
       </C.Btn_wrap>
     </>
   );

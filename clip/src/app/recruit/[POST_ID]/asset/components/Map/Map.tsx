@@ -44,7 +44,7 @@ const Wrap = styled.div`
 `;
 
 const MapBox = styled.div`
-  width: 91.1dvw;
+  width: 100%;
   height: 14.4rem;
   border-radius: 0.4rem;
 `;
@@ -55,7 +55,7 @@ const Address = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  width: 91.1dvw;
+  width: 100%;
   height: 3.4rem;
 
   font-family: 'Pretendard';
