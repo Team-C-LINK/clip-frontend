@@ -62,14 +62,6 @@ const Interest = () => {
           </C.filter_inner>
         </C.filter_wrap>
       </Header>
-      <RecruitCard></RecruitCard>
-      <RecruitCard></RecruitCard> <RecruitCard></RecruitCard>{' '}
-      <RecruitCard></RecruitCard> <RecruitCard></RecruitCard>{' '}
-      <RecruitCard></RecruitCard> <RecruitCard></RecruitCard>{' '}
-      <RecruitCard></RecruitCard> <RecruitCard></RecruitCard>{' '}
-      <RecruitCard></RecruitCard> <RecruitCard></RecruitCard>{' '}
-      <RecruitCard></RecruitCard> <RecruitCard></RecruitCard>{' '}
-      <RecruitCard></RecruitCard>
     </>
   );
 };
