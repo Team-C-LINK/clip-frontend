@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 import arrow from '@/app/SharedComponent/asset/image/arrow.svg';
 import uninterested_black from '@/app/SharedComponent/asset/image/uninterested_black.svg';
 import interested from '@/app/SharedComponent/asset/image/interested.svg';
@@ -12,6 +13,17 @@ const HeaderRecruit = ({
   setModalState: React.MouseEventHandler;
   isScraped: boolean | undefined;
 }) => {
+  const [scraped, setIsScraped] = useState<boolean>();
+
+  const handleIsScraped = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsScraped(!scraped);
+  };
+
+  useEffect(() => {
+    setIsScraped(isScraped);
+  }, [isScraped]);
+
   return (
     <>
       <Wrap>
@@ -20,10 +32,11 @@ const HeaderRecruit = ({
           <Header_title></Header_title>
           <Right_wrap>
             <Image
-              src={isScraped ? interested.src : uninterested_black.src}
+              src={scraped ? interested.src : uninterested_black.src}
               alt="uninterested"
               width={22}
               height={22}
+              onClick={handleIsScraped}
             />
             <Image
               src={share.src}
