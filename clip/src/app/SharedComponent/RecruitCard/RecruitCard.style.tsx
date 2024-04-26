@@ -156,5 +156,5 @@ export const list_content_interested = styled.img`
   height: fit-content;
   right: 0rem;
   background: url(${(props) => props.src});
-  z-index: 1;
+  z-index: 0;
 `;
