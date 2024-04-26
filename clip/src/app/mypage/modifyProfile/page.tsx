@@ -80,14 +80,19 @@ const ModifyProfile = () => {
     }));
   };
 
-  const submit = () => {
+  const submit = async () => {
     const request = {
       profileUrl: '',
       address: `${dropdown.sido} ${dropdown.sigu}`,
       education: `${dropdown.education} ${dropdown.educationState}`,
       job: dropdown.job,
     };
-    patchModifyProfile(request, parseInt(localStorage.getItem('id')!));
+    const status = await patchModifyProfile(
+      request,
+      parseInt(localStorage.getItem('id')!)
+    );
+
+    if (status === 204) window.location.reload();
   };
 
   useEffect(() => {
