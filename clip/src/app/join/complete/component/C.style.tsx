@@ -66,7 +66,7 @@ export const Dropdown = styled.select<selectBox>`
   padding: 1rem 1.6rem;
   gap: 1.2rem;
 
-  width: 91.1dvw;
+  width: 91.1%;
   height: 4.4rem;
 
   background: url(${($props) => $props.src}) no-repeat right 1.3rem center;
@@ -121,7 +121,9 @@ export const Middle_text = styled.span`
 export const Btn_wrap = styled.div`
   position: absolute;
   display: flex;
+  width: 100%;
   flex-direction: column;
+  align-items: center;
   gap: 2rem;
   bottom: 2dvh; // 고정값
 `;

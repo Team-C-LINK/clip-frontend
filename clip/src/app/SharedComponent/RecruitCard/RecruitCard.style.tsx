@@ -11,12 +11,18 @@ export const list_content_wrap = styled.div`
   border-bottom: 0.1rem solid #d9d9d9;
 `;
 
+export const list_content_category = styled.span`
+  font-family: 'Pretendard';
+  ${(props) => props.theme.FONT.SemiBold.B4};
+  color: ${(props) => props.theme.TEXT._01};
+`;
+
 export const list_content_wrap_inner = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 91.1dvw;
+  width: 91.1%;
   height: fit-content;
 `;
 
@@ -150,4 +156,5 @@ export const list_content_interested = styled.img`
   height: fit-content;
   right: 0rem;
   background: url(${(props) => props.src});
+  z-index: 1;
 `;

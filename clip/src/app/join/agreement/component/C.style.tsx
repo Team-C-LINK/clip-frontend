@@ -130,7 +130,7 @@ export const TitleFrame = styled.div`
   gap: 0.8rem;
 
   position: relative;
-  width: 91.1dvw;
+  width: 91.1%;
   height: fit-content;
 `;
 
@@ -159,7 +159,7 @@ export const DisabledNextButton = styled.div`
   gap: 1.2rem;
 
   position: relative;
-  width: 91.1dvw;
+  width: 91.1%;
   height: 4.4rem;
   background: ${(props) => props.theme.BACKGROUND._DARK};
   opacity: 0.4;
@@ -181,7 +181,7 @@ export const EnabledNextButton = styled.div`
   gap: 1.2rem;
 
   position: fixed;
-  width: 91.1dvw;
+  width: 91.1%;
   height: 4.4rem;
 
   /* Background/Dark */
@@ -192,5 +192,4 @@ export const EnabledNextButton = styled.div`
   font-weight: 400;
   line-height: 2.4rem;
   color: #ffffff;
-  bottom: 2dvh;
 `;

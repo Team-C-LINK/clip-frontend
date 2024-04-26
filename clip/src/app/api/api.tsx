@@ -4,15 +4,16 @@ const api = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_SERVER_HOST}`,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${
-      typeof window == 'undefined'
-        ? null
-        : localStorage.getItem('accessToken')
-        ? localStorage.getItem('accessToken')
-        : null
-    }`,
   },
   withCredentials: true,
+});
+
+api.interceptors.request.use((config: any) => {
+  const token = localStorage.getItem('accessToken');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 api.interceptors.response.use(
@@ -20,7 +21,12 @@ api.interceptors.response.use(
     return res;
   },
   (error) => {
-    window.location.href = '/recruit';
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
+      alert('로그인이 필요한 서비스 입니다.');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
   }
 );
 

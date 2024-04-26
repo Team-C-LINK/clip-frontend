@@ -97,9 +97,15 @@ const Education = () => {
         </C.Dropdown_wrap>
       </C.view_wrap>
       <Footer>
-        {' '}
         <PrevNext>
-          <PrevButton $size={'45dvw'}>이전으로</PrevButton>
+          <PrevButton
+            onClick={() => {
+              router.back();
+            }}
+            $size={'45dvw'}
+          >
+            이전으로
+          </PrevButton>
           {dropdown.educationLevel && dropdown.educationState ? (
             <NextButton $size={'45dvw'} onClick={next}>
               다음으로

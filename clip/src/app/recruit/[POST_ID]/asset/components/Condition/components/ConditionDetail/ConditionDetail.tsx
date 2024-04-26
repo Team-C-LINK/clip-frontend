@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ConditionDetail = ({ list }: { list: string[] }) => {
+const ConditionDetail = ({ list }: { list: string[] | undefined }) => {
   return (
     <>
       <Wrap>
@@ -18,7 +18,7 @@ const Wrap = styled.div`
   position: relative;
   width: fit-content;
   display: flex;
-  width: 91.1dvw;
+  width: 100%;
   flex-direction: row;
   height: fit-content;
   background: ${(props) => props.theme.BACKGROUND._01};

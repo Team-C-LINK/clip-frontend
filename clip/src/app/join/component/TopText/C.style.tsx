@@ -9,7 +9,7 @@ export const TitleFrame = styled.div`
   align-items: flex-start;
   gap: 0.8rem;
   position: relative;
-  width: 91.1dvw;
+  width: 91.1%;
   height: fit-content;
   margin-top: 4rem;
 `;

@@ -153,7 +153,14 @@ const Auth = () => {
       </C.view_wrap>
       <Footer>
         <PrevNext>
-          <PrevButton $size={'45dvw'}>이전으로</PrevButton>
+          <PrevButton
+            onClick={() => {
+              router.back();
+            }}
+            $size={'45dvw'}
+          >
+            이전으로
+          </PrevButton>
           {isValid ? (
             <NextButton onClick={next} $size={'45dvw'}>
               다음으로

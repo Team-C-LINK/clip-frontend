@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-function useMap(address: string) {
+function useMap(address: string | undefined) {
   const mapRef = useRef<HTMLElement | null | any>(null);
   const markerRef = useRef<any>(null);
   const [myLocation, setMyLocation] = useState<
@@ -9,7 +9,8 @@ function useMap(address: string) {
 
   useEffect(() => {
     // geolocation 이용 현재 위치 확인, 위치 미동의 시 기본 위치로 지정
-    if (address)
+
+    if (address !== undefined)
       // 불필요한 geocode api 호출 차단
       naver.maps.Service?.geocode({ query: address }, (status, response) => {
         if (status === 200) {

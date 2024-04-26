@@ -22,7 +22,7 @@ export const auth_wrap = styled.div`
   gap: 0.8rem;
 
   position: relative;
-  width: 91.1dvw;
+  width: 100%;
   height: fit-content;
   top: 3rem;
 `;
@@ -45,7 +45,7 @@ export const phoneNumber_wrap = styled.div`
   align-items: center;
   gap: 1rem;
 
-  width: 91.1dvw;
+  width: 100%;
   height: 5.6rem;
 
   border-bottom: 0.1rem solid #d9d9d9;
@@ -94,7 +94,7 @@ export const getAuth = styled.span`
   padding: 0rem;
   gap: 0.8rem;
 
-  width: 25dvw;
+  width: 9rem;
   height: 4rem;
 
   color: #252525;
@@ -116,7 +116,7 @@ export const getAuthDisable = styled.span`
   padding: 0rem;
   gap: 0.8rem;
 
-  width: 25dvw;
+  width: 9rem;
   height: 4rem;
 
   color: #bfbfbf;

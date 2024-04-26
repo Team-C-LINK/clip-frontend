@@ -112,7 +112,7 @@ const Email = () => {
         {authCodeComponent[authCodeState]}
       </C.auth_wrap>
       <Footer>
-        <NextButton onClick={requestCheckAuth} $size={'91.1dvw'}>
+        <NextButton onClick={requestCheckAuth} $size={'91.1%'}>
           완료하기
         </NextButton>
       </Footer>

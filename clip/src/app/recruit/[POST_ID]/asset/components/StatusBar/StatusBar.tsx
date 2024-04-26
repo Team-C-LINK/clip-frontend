@@ -7,8 +7,8 @@ const StatusBar = ({
   recruitStatus,
   category,
 }: {
-  recruitStatus: boolean;
-  category: string;
+  recruitStatus: boolean | undefined;
+  category: string | undefined;
 }) => {
   return (
     <>
@@ -29,7 +29,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1.3rem;
-  width: 91.1dvw;
+  width: 91.1%;
   height: fit-content;
 `;
 

@@ -80,14 +80,19 @@ const ModifyProfile = () => {
     }));
   };
 
-  const submit = () => {
+  const submit = async () => {
     const request = {
       profileUrl: '',
       address: `${dropdown.sido} ${dropdown.sigu}`,
       education: `${dropdown.education} ${dropdown.educationState}`,
       job: dropdown.job,
     };
-    patchModifyProfile(request, parseInt(localStorage.getItem('id')!));
+    const status = await patchModifyProfile(
+      request,
+      parseInt(localStorage.getItem('id')!)
+    );
+
+    if (status === 204) window.location.reload();
   };
 
   useEffect(() => {
@@ -176,7 +181,7 @@ const ModifyProfile = () => {
               <C.Dropdown
                 name={'sido'}
                 $src={arrow.src}
-                $size={'33dvw'}
+                $size={'50%'}
                 onChange={setDropdownState}
                 value={dropdown?.sido}
               >
@@ -191,7 +196,7 @@ const ModifyProfile = () => {
               <C.Dropdown
                 name={'sigu'}
                 $src={arrow.src}
-                $size={'33dvw'}
+                $size={'50%'}
                 onChange={setDropdownState}
                 value={dropdown?.sigu}
               >
@@ -211,7 +216,7 @@ const ModifyProfile = () => {
               <C.Dropdown
                 name={'education'}
                 $src={arrow.src}
-                $size={'33dvw'}
+                $size={'50%'}
                 onChange={setDropdownState}
                 value={dropdown?.education}
               >
@@ -226,7 +231,7 @@ const ModifyProfile = () => {
               <C.Dropdown
                 name={'educationState'}
                 $src={arrow.src}
-                $size={'33dvw'}
+                $size={'50%'}
                 onChange={setDropdownState}
                 value={dropdown?.educationState}
               >
@@ -246,7 +251,7 @@ const ModifyProfile = () => {
               <C.Dropdown
                 name={'job'}
                 $src={arrow.src}
-                $size={'70dvw'}
+                $size={'104%'}
                 onChange={setDropdownState}
                 value={dropdown?.job}
               >
@@ -267,7 +272,7 @@ const ModifyProfile = () => {
       </C.view_wrap>
       <Spacer height="8rem" />
       <Footer>
-        <NextButton $size="91.1dvw" onClick={submit}>
+        <NextButton $size="91.1%" onClick={submit}>
           완료하기
         </NextButton>
       </Footer>

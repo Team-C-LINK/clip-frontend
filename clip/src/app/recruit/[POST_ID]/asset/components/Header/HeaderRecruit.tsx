@@ -1,26 +1,48 @@
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 import arrow from '@/app/SharedComponent/asset/image/arrow.svg';
 import uninterested_black from '@/app/SharedComponent/asset/image/uninterested_black.svg';
+import interested from '@/app/SharedComponent/asset/image/interested.svg';
 import share from '@/app/SharedComponent/asset/image/share.svg';
 import Image from 'next/image';
 
 const HeaderRecruit = ({
   setModalState,
+  isScraped,
 }: {
   setModalState: React.MouseEventHandler;
+  isScraped: boolean | undefined;
 }) => {
+  const [scraped, setIsScraped] = useState<boolean>();
+
+  const handleIsScraped = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsScraped(!scraped);
+  };
+
+  useEffect(() => {
+    setIsScraped(isScraped);
+  }, [isScraped]);
+
   return (
     <>
       <Wrap>
         <Header_Inner>
-          <Image src={arrow.src} alt="back" width={15} height={15} />
+          <Image
+            src={arrow.src}
+            alt="back"
+            width={15}
+            height={15}
+            onClick={() => (window.location.href = '/recruit')}
+          />
           <Header_title></Header_title>
           <Right_wrap>
             <Image
-              src={uninterested_black.src}
+              src={scraped ? interested.src : uninterested_black.src}
               alt="uninterested"
-              width={24}
-              height={24}
+              width={22}
+              height={22}
+              onClick={handleIsScraped}
             />
             <Image
               src={share.src}
@@ -49,7 +71,7 @@ const Wrap = styled.div`
 
 const Header_Inner = styled.div`
   position: relative;
-  width: 91.1dvw;
+  width: 91.1%;
   height: 5.6rem;
   display: flex;
   flex-direction: row;

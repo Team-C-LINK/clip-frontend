@@ -11,11 +11,12 @@ import Image from 'next/image';
 import Spacer from '../SharedComponent/Spacer/Spacer';
 import Header from '../SharedComponent/Header/Header';
 import HeaderBack from '../SharedComponent/Header/HeaderBack/HeaderBack';
+import useGetRecruitList from './asset/hook/useGetRecruitList';
 
 const Recruit = () => {
   const [isRecruiting, setIsRecruiting] = useState<boolean>(false);
   const [filterState, setFilterState] = useState<string>('전체 공고');
-
+  const { recruitList } = useGetRecruitList(false, 3);
   const handleIsRecruiting = () => {
     if (isRecruiting) setIsRecruiting(false);
     else setIsRecruiting(true);
@@ -29,13 +30,13 @@ const Recruit = () => {
     // 모집 중 상태가 변경 되었을 때 리스트 갱신 로직
   }, [isRecruiting]);
 
-  const filterList = ['전체 공고', '📝연구/인터뷰', '📊설문조사', '💬기타'];
+  const filterList = ['전체 공고', '📝연구/인터뷰', '📊설문조사'];
 
   return (
     <>
       <Spacer height="16rem"></Spacer>
       <Header>
-        <HeaderBack route={'/login'} text={'실시간 모집공고'}></HeaderBack>
+        <HeaderBack route={'/login'} text={'실시간 공고'}></HeaderBack>
         <C.header>
           <C.header_inner_wrap>
             {filterList.map((val, idx) => {
@@ -93,12 +94,9 @@ const Recruit = () => {
           </C.filter_inner>
         </C.filter_wrap>
       </Header>
-      <RecruitCard></RecruitCard>
-      <RecruitCard></RecruitCard>
-      <RecruitCard></RecruitCard>
-      <RecruitCard></RecruitCard>
-      <RecruitCard></RecruitCard>
-      <RecruitCard></RecruitCard>
+      {recruitList?.announcements?.map((val, idx) => {
+        return <RecruitCard info={val} key={val?.id}></RecruitCard>;
+      })}
       <Spacer height="8rem"></Spacer>
       <NavigationBar state={'recruit'}></NavigationBar>
     </>

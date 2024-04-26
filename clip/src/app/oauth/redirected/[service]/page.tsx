@@ -54,12 +54,7 @@ const Oauth = () => {
     },
   });
 
-  return (
-    <>
-      <div>ㅎㅇ요 토큰임</div>
-      {jwt}
-    </>
-  );
+  return <></>;
 };
 
 export default Oauth;

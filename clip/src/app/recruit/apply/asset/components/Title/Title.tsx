@@ -10,7 +10,7 @@ const Title = ({ children }: { children: React.ReactNode }) => {
 
 const Title_wrap = styled.div`
   position: relative;
-  width: 91.1dvw;
+  width: 91.1%;
   height: fit-content;
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.SemiBold.B3};
