@@ -57,15 +57,17 @@ const Calendar = () => {
         {calendarList?.map((weekList) => {
           const weekItem = weekList.map((date) => {
             return (
-              <Calendar_item onClick={handleCalendarItem}>{date}</Calendar_item>
+              <Calendar_item key={date} onClick={handleCalendarItem}>
+                {date}
+              </Calendar_item>
             );
           });
           return weekItem;
         })}
       </Calendar_wrap>
       <AvailableTimeList_wrap>
-        {availableTime?.map((val) => {
-          return <span>{val}</span>;
+        {availableTime?.map((val, idx) => {
+          return <span key={idx}>{val}</span>;
         })}
       </AvailableTimeList_wrap>
     </>
