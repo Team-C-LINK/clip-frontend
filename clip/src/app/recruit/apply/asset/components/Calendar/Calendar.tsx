@@ -54,10 +54,10 @@ const Calendar = () => {
         <span>{currentDate.getMonth() + 1}월</span>
       </div>
       <Calendar_wrap>
-        {calendarList?.map((weekList) => {
-          const weekItem = weekList.map((date) => {
+        {calendarList?.map((weekList, idx) => {
+          const weekItem = weekList.map((date, idx2) => {
             return (
-              <Calendar_item key={date} onClick={handleCalendarItem}>
+              <Calendar_item key={idx * 7 + idx2} onClick={handleCalendarItem}>
                 {date}
               </Calendar_item>
             );
