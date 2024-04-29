@@ -14,12 +14,10 @@ const RecruitCard = ({ info }: { info: AnnouncementType | undefined }) => {
   const handleIsScraped = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (isScraped) {
-      console.log('지우기');
       const res = await deleteEraseScrap(info?.id);
       if (res.status === 204) setIsScraped(!isScraped);
     } else {
       const res = await postAddScrap(info?.id);
-      console.log(res);
       if (res.status === 204) setIsScraped(!isScraped);
     }
   };

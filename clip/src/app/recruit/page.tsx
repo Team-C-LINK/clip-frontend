@@ -8,7 +8,6 @@ import Header from '../SharedComponent/Header/Header';
 import HeaderBack from '../SharedComponent/Header/HeaderBack/HeaderBack';
 import useGetRecruitList from './asset/hook/useGetRecruitList';
 import createFilteredList from '../utils/createFilteredList';
-
 import Filter from './asset/components/Filter/Filter';
 
 const Recruit = () => {
@@ -36,7 +35,6 @@ const Recruit = () => {
       )?.map((item) => {
         return <RecruitCard info={item} key={item?.id}></RecruitCard>;
       })}
-
       <Spacer height="8rem"></Spacer>
       <NavigationBar state={'recruit'}></NavigationBar>
     </>

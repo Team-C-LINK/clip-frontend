@@ -5,7 +5,9 @@ import uninterested_black from '@/app/SharedComponent/asset/image/uninterested_b
 import interested from '@/app/SharedComponent/asset/image/interested.svg';
 import share from '@/app/SharedComponent/asset/image/share.svg';
 import Image from 'next/image';
-
+import { useParams } from 'next/navigation';
+import deleteEraseScrap from '@/app/api/delete-eraseScrap';
+import postAddScrap from '@/app/api/post-addScrap';
 const HeaderRecruit = ({
   setModalState,
   isScraped,
@@ -14,10 +16,16 @@ const HeaderRecruit = ({
   isScraped: boolean | undefined;
 }) => {
   const [scraped, setIsScraped] = useState<boolean>();
-
-  const handleIsScraped = (e: React.MouseEvent) => {
+  const param = useParams();
+  const handleIsScraped = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsScraped(!scraped);
+    if (scraped) {
+      const res = await deleteEraseScrap(parseInt(param.POST_ID as string));
+      if (res.status === 204) setIsScraped(!scraped);
+    } else {
+      const res = await postAddScrap(parseInt(param.POST_ID as string));
+      if (res.status === 204) setIsScraped(!scraped);
+    }
   };
 
   useEffect(() => {
@@ -35,7 +43,6 @@ const HeaderRecruit = ({
             height={15}
             onClick={() => (window.location.href = '/recruit')}
           />
-          <Header_title></Header_title>
           <Right_wrap>
             <Image
               src={scraped ? interested.src : uninterested_black.src}
