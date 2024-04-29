@@ -54,7 +54,9 @@ const RecruitDetail = () => {
           <PrevBtn $size={'45dvw'}>문의하기</PrevBtn>
           <NextButton
             $size={'45dvw'}
-            onClick={() => (window.location.href = '/recruit/apply')}
+            onClick={() =>
+              (window.location.href = `/recruit/apply/${param.POST_ID}`)
+            }
           >
             간편 지원하기
           </NextButton>
