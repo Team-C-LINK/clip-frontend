@@ -3,14 +3,19 @@ import home from '../asset/image/home.svg';
 import my from '../asset/image/my.svg';
 import recruit from '../asset/image/recruit.svg';
 import shop from '../asset/image/shop.svg';
+import { useState, useEffect } from 'react';
+import useScroll from '@/app/utils/hook/useScroll';
 
 // 이미지 파일들 object로 만들어 놓기
 // state가 해당 네비게이션 컨텐츠면
 
 const NavigationBar = ({ state }: { state: string }) => {
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  useScroll(setIsNavVisible);
+
   return (
     <>
-      <C.wrapper>
+      <C.wrapper $isVisible={isNavVisible}>
         <C.navigation_content_wrapper>
           <C.navigation_img
             $status={state == 'home'}

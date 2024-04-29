@@ -5,13 +5,21 @@ import AnnouncementType from '@/app/type/Announcment';
 import GreenButton from '../Category/GreenButton';
 import GrayButton from '../Category/GrayButton';
 import { useEffect, useState } from 'react';
+import postAddScrap from '@/app/api/post-addScrap';
+import deleteEraseScrap from '@/app/api/delete-eraseScrap';
 
 const RecruitCard = ({ info }: { info: AnnouncementType | undefined }) => {
   const [isScraped, setIsScraped] = useState<boolean>();
 
-  const handleIsScraped = (e: React.MouseEvent) => {
+  const handleIsScraped = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsScraped(!isScraped);
+    if (isScraped) {
+      const res = await deleteEraseScrap(info?.id);
+      if (res.status === 204) setIsScraped(!isScraped);
+    } else {
+      const res = await postAddScrap(info?.id);
+      if (res.status === 204) setIsScraped(!isScraped);
+    }
   };
 
   useEffect(() => {

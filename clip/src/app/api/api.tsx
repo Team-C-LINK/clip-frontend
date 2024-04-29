@@ -21,11 +21,16 @@ api.interceptors.response.use(
     return res;
   },
   (error) => {
-    const token = localStorage.getItem('accessToken');
-    if (!token) {
-      alert('로그인이 필요한 서비스 입니다.');
+    const errorStatus = error.response.status;
+    if (errorStatus === 400) {
+      console.log(error);
+      alert('요청 인자 에러');
+      // window.location.href = '/login';
+    } else if (errorStatus === 401) {
+      alert('토큰 에러');
       window.location.href = '/login';
     }
+
     return Promise.reject(error);
   }
 );

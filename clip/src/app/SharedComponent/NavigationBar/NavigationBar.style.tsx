@@ -1,6 +1,28 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-export const wrapper = styled.div`
+type isVisibleType = {
+  $isVisible: boolean;
+};
+
+const slideIn = keyframes`
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+`;
+
+export const wrapper = styled.div<isVisibleType>`
   box-sizing: border-box;
   position: fixed;
   bottom: 0dvh;
@@ -12,6 +34,9 @@ export const wrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 5rem;
+  animation: ${({ $isVisible }) => ($isVisible ? slideIn : slideOut)} 0.3s
+    ease-out;
+  animation-fill-mode: forwards;
   border-top: 1px solid #d9d9d9;
 `;
 

@@ -1,4 +1,3 @@
-import { ImageFile, ImageFileData } from 'aws-sdk/clients/iotsitewise';
 import AWS from 'aws-sdk';
 
 export const uploadS3 = (imageFiles: File) => {
