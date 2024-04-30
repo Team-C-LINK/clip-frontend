@@ -13,14 +13,28 @@ import NextButton from '@/app/join/component/PrevNext/NextButton/NextButton';
 import SelectTime from './asset/components/SelectTime/SelectTime';
 import AdditionalInfo from './asset/components/AdditionalInfo/AdditionalInfo';
 import ModalSubmit from './asset/components/ModalSubmit/ModalSubmit';
+import RequestApplyType from '@/app/type/requestApplyType';
+import { useParams } from 'next/navigation';
+import postApplyResearch from '@/app/api/post-applyResearch';
 
 const Apply = () => {
+  const params = useParams();
   const [modalState, setModalState] = useState<boolean>(false);
-
-  const handleModalState = () => {
+  const [applyInfo, setApplyInfo] = useState<RequestApplyType>({
+    postId: parseInt(params.POST_ID as string),
+    scheduleId: 0,
+    date: {
+      date: '',
+    },
+  });
+  const handleModalState = async () => {
     if (!modalState) setModalState(true);
     else {
-      // 완료 api 비즈니스 로직
+      const res = await postApplyResearch(applyInfo);
+      if (res?.status === 204) {
+        alert('지원이 완료되었습니다');
+        window.location.href = '/recruit';
+      }
     }
   };
 
@@ -34,7 +48,7 @@ const Apply = () => {
       <Wrap>
         <CheckResearchInfo></CheckResearchInfo>
         <CheckMyInfo></CheckMyInfo>
-        <SelectTime></SelectTime>
+        <SelectTime setApplyInfo={setApplyInfo}></SelectTime>
         <AdditionalInfo></AdditionalInfo>
       </Wrap>
       {modalState && <ModalSubmit setModalState={setModalState}></ModalSubmit>}
