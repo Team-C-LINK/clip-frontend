@@ -59,7 +59,7 @@ const RecruitCard = ({ info }: { info: AnnouncementType | undefined }) => {
         </C.list_content_middle_wrap>
         <C.list_content_reward_wrap>
           <C.list_content_condition>사례비</C.list_content_condition>
-          <C.list_content_reward>{`${info?.fee.toLocaleString(
+          <C.list_content_reward>{`${info?.fee?.toLocaleString(
             'ko-KR'
           )}원`}</C.list_content_reward>
           <C.list_content_interested
