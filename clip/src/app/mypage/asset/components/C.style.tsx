@@ -5,18 +5,18 @@ export const view_wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 91.1%;
   overflow-y: auto;
 `;
 
 export const header_wrapper = styled.div`
   position: relative;
   display: flex;
-  width 100%;
-  height : fit-content;
+  width: 100%;
+  height: fit-content;
   flex-direction: column;
-  gap : 1.5rem;
-  margin-top : 2rem;
+  gap: 1.5rem;
+  margin-top: 2rem;
 `;
 
 export const profile_wrapper = styled.div`
@@ -24,7 +24,7 @@ export const profile_wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 91.1dvw;
+  width: 100%;
   gap: 1rem;
 `;
 
@@ -47,7 +47,7 @@ export const profile_nickname = styled.span`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 72.8dvw;
+  width: 72.8%;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
@@ -78,8 +78,8 @@ export const summary_wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 91.1dvw;
-  gap: 11dvw;
+  width: 100%;
+  gap: 11%;
   justify-content: center;
 `;
 
@@ -150,7 +150,7 @@ export const summary_point = styled.span`
 `;
 
 export const divider = styled.div`
-  width: 91.1dvw;
+  width: 100%;
   height: 0.1rem;
 
   background: #d9d9d9;
@@ -161,12 +161,14 @@ export const body_wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  width: 100%;
   margin-top: 8rem;
 `;
 
 export const body_content_wrapper = styled.div`
   position: relative;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
@@ -177,11 +179,11 @@ export const body_content = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 86.5dvw;
+  width: 100%;
 `;
 
 export const body_content_title = styled.div`
-  width: 91.1dvw;
+  width: 100%;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;

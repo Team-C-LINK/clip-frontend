@@ -100,7 +100,14 @@ const Address = () => {
       </C.view_wrap>
       <Footer>
         <PrevNext>
-          <PrevButton $size={'45dvw'}>이전으로</PrevButton>
+          <PrevButton
+            onClick={() => {
+              router.back();
+            }}
+            $size={'45dvw'}
+          >
+            이전으로
+          </PrevButton>
           {dropdown.sido && dropdown.gu ? (
             <NextButton $size={'45dvw'} onClick={next}>
               다음으로

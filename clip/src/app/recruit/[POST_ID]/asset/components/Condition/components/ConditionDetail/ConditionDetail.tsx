@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ConditionDetail = ({ list }: { list: string[] }) => {
+const ConditionDetail = ({ list }: { list: string[] | undefined }) => {
   return (
     <>
       <Wrap>
@@ -18,23 +18,23 @@ const Wrap = styled.div`
   position: relative;
   width: fit-content;
   display: flex;
-  width: 91.1dvw;
+  width: 100%;
   flex-direction: row;
   height: fit-content;
   background: ${(props) => props.theme.BACKGROUND._01};
   border-radius: 0.2rem;
-  justify-content: center;
+  justify-content: start;
 `;
 
 const Inner = styled.ul`
+  position: relative;
+  left: 2rem;
   display: flex;
   flex-direction: column;
   padding: 0rem 0.8rem;
   gap: 1rem;
-
-  width: 77.5dvw;
+  width: fit-content;
   height: fit-content;
-
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.Regular.B4};
   letter-spacing: 0.03em;

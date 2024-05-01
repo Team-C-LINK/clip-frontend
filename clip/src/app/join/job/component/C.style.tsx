@@ -22,7 +22,7 @@ export const Dropdown_wrap = styled.div`
   gap: 1.2rem;
   margin-top: 5rem;
   position: relative;
-  width: fit-content;
+  width: 100%;
   height: fit-content;
 `;
 
@@ -32,9 +32,8 @@ export const Dropdown_list_wrap = styled.div`
   align-items: flex-start;
   padding: 0px;
   gap: 2.3rem;
-
   position: relative;
-  width: fit-content;
+  width: 100%;
   height: fit-content;
 `;
 
@@ -69,7 +68,7 @@ export const Dropdown = styled.select<selectBox>`
   padding: 1rem 1.6rem;
   gap: 1.2rem;
 
-  width: 91.1dvw;
+  width: 100%;
   height: 4.4rem;
 
   background: url(${($props) => $props.src}) no-repeat right 1.3rem center;

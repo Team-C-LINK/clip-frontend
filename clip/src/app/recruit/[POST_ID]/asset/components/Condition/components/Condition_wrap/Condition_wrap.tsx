@@ -3,10 +3,10 @@ import ConditionInner from './ConditionInner/ConditionInner';
 
 type ConditionType = {
   index: string;
-  content: string;
+  content: string | undefined;
 };
 
-const Condition_wrap = ({ list }: { list: ConditionType[] }) => {
+const Condition_wrap = ({ list }: { list: ConditionType[] | undefined }) => {
   return (
     <>
       <Wrapper>
@@ -26,7 +26,7 @@ const Condition_wrap = ({ list }: { list: ConditionType[] }) => {
 
 const Wrapper = styled.div`
   position: relative;
-  width: 91.1dvw;
+  width: 100%;
   height: fit-content;
   display: flex;
   gap: 0.8rem;

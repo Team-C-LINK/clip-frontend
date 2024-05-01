@@ -2,12 +2,24 @@ import styled from 'styled-components';
 import copy from '@/app/SharedComponent/asset/image/copy.svg';
 import cancel from '@/app/SharedComponent/asset/image/cancel.svg';
 import Image from 'next/image';
+import { useRef } from 'react';
 
 const ModalShared = ({
   setModalState,
 }: {
   setModalState: React.MouseEventHandler;
 }) => {
+  const linkRef = useRef<HTMLElement>(null);
+
+  const handleCopyClipBoard = async () => {
+    try {
+      await navigator.clipboard.writeText(linkRef.current?.innerHTML as string);
+      alert('클립보드에 링크가 복사되었어요.');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <Wrap onClick={setModalState}></Wrap>
@@ -21,10 +33,16 @@ const ModalShared = ({
           지급해드립니다!
         </Content>
         <Link_wrap>
-          <Link_text>
+          <Link_text ref={linkRef}>
             http://clink.kr/share_page/linkresearcher/zzzzzzzzzzzzzzz
           </Link_text>
-          <Image src={copy.src} alt="copy" width={24} height={24} />
+          <Image
+            src={copy.src}
+            alt="copy"
+            width={24}
+            height={24}
+            onClick={handleCopyClipBoard}
+          />
         </Link_wrap>
       </Modal_Wrap>
     </>

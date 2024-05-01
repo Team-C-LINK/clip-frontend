@@ -6,7 +6,7 @@ type radioState = {
 
 export const alarm_title = styled.div`
   position: relative;
-  width: 91.1dvw;
+  width: 91.1%;
   height: 4.4rem;
   display: flex;
   flex-direction: row;
@@ -33,7 +33,7 @@ export const alarm_inner_wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 91.1dvw;
+  width: 91.1%;
 `;
 
 export const alarm_type = styled.div`

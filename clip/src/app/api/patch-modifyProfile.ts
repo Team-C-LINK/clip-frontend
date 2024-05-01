@@ -11,10 +11,8 @@ const patchModifyProfile = async (
   json: modifyProfileType,
   memberId: number
 ) => {
-  console.log(json);
   const res = await api.patch(`/members/${memberId}`, json);
-
-  console.log(res);
+  return res.status;
 };
 
 export default patchModifyProfile;

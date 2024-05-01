@@ -20,7 +20,7 @@ export const filter_inner = styled.div`
   flex-direction: row;
   justify-content: space-between;
   height: fit-content;
-  width: 91.1dvw;
+  width: 91.1%;
 `;
 
 export const filter_status_wrap = styled.div`

@@ -9,22 +9,13 @@ type profileWrap = {
   $gap: string;
 };
 
-export const wrap = styled.div`
-  position: reatlive;
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  background: #f9fafc;
-`;
-
 export const view_wrap = styled.div`
   position: relative;
-  width: 100%;
+  width: 91.1%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   overflow-y: auto;
-  flex: 1;
 `;
 
 export const auth_wrap = styled.div`
@@ -37,7 +28,7 @@ export const auth_wrap = styled.div`
   gap: 0.8rem;
 
   position: relative;
-  width: 91.1dvw;
+  width: 91.1%;
   height: fit-content;
   top: 3rem;
 `;
@@ -79,7 +70,7 @@ export const profile_content_wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 91.1dvw;
+  width: 100%;
   height: 4.8rem;
   gap: 3.2rem;
   align-items: center;
@@ -177,13 +168,12 @@ export const Dropdown = styled.select<dropbox>`
 `;
 
 export const dropdown_wrap = styled.div`
-  position: absolute;
-  right: 0rem;
+  position: relative;
   display: flex;
   flex-direction: row;
-  width: fit-content;
+  width: 70%;
   height: fit-content;
-  gap: 4dvw;
+  gap: 4%;
 `;
 
 export const profile_image_modify = styled.label`
