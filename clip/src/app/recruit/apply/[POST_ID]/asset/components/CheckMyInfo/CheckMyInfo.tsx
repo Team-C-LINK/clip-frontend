@@ -2,8 +2,17 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import arrow_right from '@/app/SharedComponent/asset/image/arrow_right.svg';
 import TilteWithIndex from '../TitleWithIndex/TitleWithIndex';
+import getUser from '@/app/api/get-user';
+import { useQuery } from '@tanstack/react-query';
+import UserInfoType from '@/app/type/UserInfoType';
+import phoneNumberFormatter from '@/app/join/auth/utils/phoneNumberFormatter';
 
 const CheckMyInfo = () => {
+  const { data: info } = useQuery<UserInfoType>({
+    queryKey: ['user'],
+    queryFn: getUser,
+  });
+
   return (
     <>
       <Wrap>
@@ -24,16 +33,24 @@ const CheckMyInfo = () => {
         </Top>
         <Detail_wrap>
           <Info_wrap>
-            <Index>이메일</Index>
-            <Content>abcdefg@gmail.com</Content>
+            <Index>이름</Index>
+            <Content>{info?.name}</Content>
           </Info_wrap>
           <Info_wrap>
-            <Index>연구분야</Index>
-            <Content>가나다라마</Content>
+            <Index>성별</Index>
+            <Content>{info?.gender}</Content>
           </Info_wrap>
           <Info_wrap>
-            <Index>대표주소</Index>
-            <Content>서울 성북구 안암로 145</Content>
+            <Index>출생년도</Index>
+            <Content>{info?.birthYear}년</Content>
+          </Info_wrap>
+          <Info_wrap>
+            <Index>거주지</Index>
+            <Content>{info?.address}</Content>
+          </Info_wrap>
+          <Info_wrap>
+            <Index>전화번호</Index>
+            <Content>{phoneNumberFormatter(info?.number!)}</Content>
           </Info_wrap>
         </Detail_wrap>
       </Wrap>
