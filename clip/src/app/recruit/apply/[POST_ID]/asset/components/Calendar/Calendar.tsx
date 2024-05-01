@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import getCheckResearchAvailableTime from '@/app/api/get-checkResearchAvailableTime';
 import ScheduleType from '@/app/type/ScheduleType';
-import RequestApplyType from '@/app/type/requestApplyType';
+import RequestApplyType from '@/app/type/RequestApplyType';
 
 const DAYS_OF_WEEK = ['일', '월', '화', '수', '목', '금', '토'];
 

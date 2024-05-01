@@ -13,7 +13,7 @@ import NextButton from '@/app/join/component/PrevNext/NextButton/NextButton';
 import SelectTime from './asset/components/SelectTime/SelectTime';
 import AdditionalInfo from './asset/components/AdditionalInfo/AdditionalInfo';
 import ModalSubmit from './asset/components/ModalSubmit/ModalSubmit';
-import RequestApplyType from '@/app/type/requestApplyType';
+import RequestApplyType from '@/app/type/RequestApplyType';
 import { useParams } from 'next/navigation';
 import postApplyResearch from '@/app/api/post-applyResearch';
 import ModalComplete from './asset/components/ModalComplete/ModalComplete';

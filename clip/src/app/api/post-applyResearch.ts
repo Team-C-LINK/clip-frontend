@@ -1,5 +1,5 @@
 import api from './api';
-import RequestApplyType from '../type/requestApplyType';
+import RequestApplyType from '../type/RequestApplyType';
 
 const postApplyResearch = async (request: RequestApplyType) => {
   try {

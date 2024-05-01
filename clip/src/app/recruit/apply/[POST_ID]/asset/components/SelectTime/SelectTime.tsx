@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import TilteWithIndex from '../TitleWithIndex/TitleWithIndex';
 import Calendar from '../Calendar/Calendar';
-import RequestApplyType from '@/app/type/requestApplyType';
+import RequestApplyType from '@/app/type/RequestApplyType';
 
 const SelectTime = ({
   setApplyInfo,
