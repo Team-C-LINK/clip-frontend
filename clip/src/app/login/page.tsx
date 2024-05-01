@@ -40,7 +40,9 @@ const Login = () => {
               <Image src={naver.src} alt="kakao" width={32} height={32} />
               네이버로 계속하기
             </C.NaverButton>
-            <C.ReturnHomeButton>클립 홈으로 돌아가기</C.ReturnHomeButton>
+            <C.ReturnHomeButton onClick={() => (window.location.href = '/')}>
+              클립 홈으로 돌아가기
+            </C.ReturnHomeButton>
           </C.ButtonFrame>
         </C.LoginInner>
       </C.view_wrap>
