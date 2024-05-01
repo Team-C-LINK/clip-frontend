@@ -12,7 +12,7 @@ const NextButton = styled.div<button>`
   border-radius: 0.4rem;
   font-family: Pretendard;
   font-size: 1.6rem;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 2.4rem;
   justify-content: center;
   align-items: center;

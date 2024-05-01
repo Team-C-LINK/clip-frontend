@@ -16,10 +16,12 @@ import ModalSubmit from './asset/components/ModalSubmit/ModalSubmit';
 import RequestApplyType from '@/app/type/requestApplyType';
 import { useParams } from 'next/navigation';
 import postApplyResearch from '@/app/api/post-applyResearch';
+import ModalComplete from './asset/components/ModalComplete/ModalComplete';
 
 const Apply = () => {
   const params = useParams();
   const [modalState, setModalState] = useState<boolean>(false);
+  const [modalCompleteState, setModalCompleteState] = useState<boolean>(false);
   const [applyInfo, setApplyInfo] = useState<RequestApplyType>({
     postId: parseInt(params.POST_ID as string),
     scheduleId: 0,
@@ -32,8 +34,8 @@ const Apply = () => {
     else {
       const res = await postApplyResearch(applyInfo);
       if (res?.status === 204) {
-        alert('지원이 완료되었습니다');
-        window.location.href = '/recruit';
+        setModalState(false);
+        setModalCompleteState(true);
       }
     }
   };
@@ -51,6 +53,7 @@ const Apply = () => {
         <SelectTime setApplyInfo={setApplyInfo}></SelectTime>
         <AdditionalInfo></AdditionalInfo>
       </Wrap>
+      {modalCompleteState && <ModalComplete></ModalComplete>}
       {modalState && <ModalSubmit setModalState={setModalState}></ModalSubmit>}
       <Spacer height="8rem"></Spacer>
       <Footer>
