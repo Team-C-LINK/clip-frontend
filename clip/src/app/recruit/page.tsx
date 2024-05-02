@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import NavigationBar from '../SharedComponent/NavigationBar/NaivgationBar';
 import RecruitCard from '../SharedComponent/RecruitCard/RecruitCard';
 import Spacer from '../SharedComponent/Spacer/Spacer';
@@ -14,6 +14,7 @@ const Recruit = () => {
   const [filterState, setFilterState] = useState<string>('전체 공고');
   const [isRecruiting, setIsRecruiting] = useState<boolean>(false);
   const { observerTarget, recruitList } = useInfinityScroll();
+
   return (
     <>
       <Spacer height={'16rem'}></Spacer>
