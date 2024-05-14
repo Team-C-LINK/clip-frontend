@@ -24,7 +24,7 @@ const NavigationBar = ({ state }: { state: string }) => {
           <C.navigation_text $status={state == 'home'}>홈</C.navigation_text>
         </C.navigation_content_wrapper>
         <C.navigation_content_wrapper
-          onClick={() => (window.location.href = '/recruit')}
+          onClick={() => (window.location.href = '/announcement')}
         >
           <C.navigation_img
             $status={state == 'recruit'}

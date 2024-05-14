@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import copy from '@/app/SharedComponent/asset/image/copy.svg';
 import cancel from '@/app/SharedComponent/asset/image/cancel.svg';
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import api from '@/app/api/api';
+import { useParams } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
 
 const ModalShared = ({
   setModalState,
@@ -10,6 +13,16 @@ const ModalShared = ({
   setModalState: React.MouseEventHandler;
 }) => {
   const linkRef = useRef<HTMLElement>(null);
+  const param = useParams();
+  const [link, setLink] = useState<string>('');
+
+  const getLink = async () => {
+    const res = await api.post(`/announcements/${param.POST_ID}/share-link`);
+    const link = await res.data;
+    return link;
+  };
+
+  const { data } = useQuery({ queryKey: ['test'], queryFn: getLink });
 
   const handleCopyClipBoard = async () => {
     try {
@@ -33,9 +46,7 @@ const ModalShared = ({
           지급해드립니다!
         </Content>
         <Link_wrap>
-          <Link_text ref={linkRef}>
-            http://clink.kr/share_page/linkresearcher/zzzzzzzzzzzzzzz
-          </Link_text>
+          <Link_text ref={linkRef}>http://localhost:3000/{data}</Link_text>
           <Image
             src={copy.src}
             alt="copy"

@@ -14,7 +14,7 @@ import Condition from './asset/components/Condition/Condition';
 import HeaderRecruit from './asset/components/Header/HeaderRecruit';
 import ModalShared from './asset/components/ModalShare/ModalShare';
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import getTargetRecruitInfo from '@/app/api/get-targetRecruitInfo';
 import PostType from '@/app/type/PostType';
@@ -25,6 +25,7 @@ const RecruitDetail = () => {
     setModalState(!modalState);
   };
   const param = useParams();
+  const queryParam = useSearchParams();
   const { data: info } = useQuery<PostType>({
     queryKey: ['post', param.POST_ID],
     queryFn: getTargetRecruitInfo,
@@ -55,7 +56,9 @@ const RecruitDetail = () => {
           <NextButton
             $size={'45dvw'}
             onClick={() =>
-              (window.location.href = `/recruit/apply/${param.POST_ID}`)
+              (window.location.href = `/announcement/apply/${
+                param.POST_ID
+              }?recommender_code=${queryParam.get('recommender_code')}`)
             }
           >
             간편 지원하기
