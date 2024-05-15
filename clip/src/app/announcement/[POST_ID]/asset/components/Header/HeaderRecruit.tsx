@@ -41,7 +41,7 @@ const HeaderRecruit = ({
             alt="back"
             width={15}
             height={15}
-            onClick={() => (window.location.href = '/recruit')}
+            onClick={() => (window.location.href = '/announcement')}
           />
           <Right_wrap>
             <Image

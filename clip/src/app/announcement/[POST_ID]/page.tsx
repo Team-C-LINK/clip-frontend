@@ -16,6 +16,7 @@ import ModalShared from './asset/components/ModalShare/ModalShare';
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import getTargetRecruitInfo from '@/app/api/get-targetRecruitInfo';
 import PostType from '@/app/type/PostType';
 
@@ -25,11 +26,20 @@ const RecruitDetail = () => {
     setModalState(!modalState);
   };
   const param = useParams();
+  const router = useRouter();
   const queryParam = useSearchParams();
   const { data: info } = useQuery<PostType>({
     queryKey: ['post', param.POST_ID],
     queryFn: getTargetRecruitInfo,
   });
+
+  const handleApplyBtn = (recommender_code: string | null) => {
+    if (recommender_code)
+      router.push(
+        `/announcement/apply/${param.POST_ID}?recommender_code=${recommender_code}`
+      );
+    else router.push(`/announcement/apply/${param.POST_ID}`);
+  };
 
   return (
     <>
@@ -55,11 +65,7 @@ const RecruitDetail = () => {
           <PrevBtn $size={'45dvw'}>문의하기</PrevBtn>
           <NextButton
             $size={'45dvw'}
-            onClick={() =>
-              (window.location.href = `/announcement/apply/${
-                param.POST_ID
-              }?recommender_code=${queryParam.get('recommender_code')}`)
-            }
+            onClick={() => handleApplyBtn(queryParam.get('recommender_code'))}
           >
             간편 지원하기
           </NextButton>

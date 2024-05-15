@@ -43,7 +43,10 @@ const Apply = () => {
   return (
     <>
       <Header>
-        <HeaderCancel route={'/recruit'} text="간편 지원하기"></HeaderCancel>
+        <HeaderCancel
+          route={'/announcement'}
+          text="간편 지원하기"
+        ></HeaderCancel>
         <Divider $size={'100%'}></Divider>
       </Header>
       <Spacer height="7.3rem"></Spacer>
