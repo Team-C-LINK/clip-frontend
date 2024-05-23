@@ -1,16 +1,13 @@
+import ScheduleItemType from './ScheduleItemType';
+
 type ScheduleType = {
   date: date[];
   researchAvailableTimeForEachDay: researchAvailableTimeForEachDayType[];
 };
 
-type Schedule = {
-  id: number;
-  time: string;
-};
-
 type researchAvailableTimeForEachDayType = {
   dayOfWeek: string;
-  Schedules: Schedule[];
+  Schedules: ScheduleItemType[];
 };
 
 type date = {

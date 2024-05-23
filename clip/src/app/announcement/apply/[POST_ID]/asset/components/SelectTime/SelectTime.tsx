@@ -11,7 +11,9 @@ const SelectTime = ({
   return (
     <>
       <Wrap>
-        <TilteWithIndex index="3" text="참여 시간 선택"></TilteWithIndex>
+        <Title_wrap>
+          <TilteWithIndex index="3" text="참여 시간 선택"></TilteWithIndex>
+        </Title_wrap>
         <Calendar setApplyInfo={setApplyInfo}></Calendar>
       </Wrap>
     </>
@@ -21,7 +23,12 @@ const SelectTime = ({
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1.5rem;
+  width: 100%;
+  align-items: center;
+`;
+
+const Title_wrap = styled.div`
   width: 100%;
 `;
 
