@@ -30,7 +30,7 @@ const Index = styled.div`
   width: 1.6rem;
   height: 1.6rem;
 
-  background: ${(props) => props.theme.PURPLE._00};
+  background: ${(props) => props.theme.TEXT._05};
 
   border-radius: 10rem;
 

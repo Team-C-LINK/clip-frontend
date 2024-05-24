@@ -58,7 +58,7 @@ const Apply = () => {
       </Wrap>
       {modalCompleteState && <ModalComplete></ModalComplete>}
       {modalState && <ModalSubmit setModalState={setModalState}></ModalSubmit>}
-      <Spacer height="8rem"></Spacer>
+      <Spacer height="9rem"></Spacer>
       <Footer>
         <NextButton $size="91.1%" onClick={handleModalState}>
           완료하기
