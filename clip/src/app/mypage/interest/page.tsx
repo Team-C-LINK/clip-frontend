@@ -9,6 +9,7 @@ import checkedbox from './asset/checkedBox.svg';
 import uncheckedbox from './asset/uncheckedBox.svg';
 import Image from 'next/image';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
+import api from '@/app/api/api';
 
 const Interest = () => {
   const [filterState, setFilterState] = useState<string>('신청 완료');
@@ -17,6 +18,13 @@ const Interest = () => {
   const handleFilterState = (e: any) => {
     const target = e.target.innerHTML;
     setFilterState(target);
+  };
+
+  const test = async () => {
+    const res = await api.get('/members/applied-announcements?size=1');
+    const data = await res.data;
+
+    console.log(data);
   };
 
   const handleIsRecruiting = () => {
@@ -31,6 +39,10 @@ const Interest = () => {
   useEffect(() => {
     // 모집 중 상태가 변경 되었을 때 리스트 갱신 로직
   }, [isRecruiting]);
+
+  useEffect(() => {
+    test();
+  }, []);
 
   return (
     <>
