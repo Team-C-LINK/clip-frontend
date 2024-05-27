@@ -4,11 +4,136 @@ import { useEffect, useState } from 'react';
 import Header from '@/app/SharedComponent/Header/Header';
 import HeaderBack from '@/app/SharedComponent/Header/HeaderBack/HeaderBack';
 import * as C from './asset/component/C.style';
-import checkedbox from './asset/image/checkedBox.svg';
-import uncheckedbox from './asset/image/uncheckedBox.svg';
 import Image from 'next/image';
-import RecruitCard from '@/app/SharedComponent/RecruitCard/RecruitCard';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
+import ApplyCard from './asset/component/ApplyCard/ApplyCard';
+import RecruitListType from '@/app/type/RecruitList';
+
+const test: RecruitListType = {
+  totalCount: 22,
+  announcements: [
+    {
+      id: 22,
+      isRecruiting: true,
+      remainingDay: 3,
+      title: '진행중인 테스트용 공고22입니다.',
+      category: '연구/인터뷰',
+      researcherAffiliation: '고려대학교 심리학과',
+      researcherName: '전민혁',
+      address: '서울특별시 성북구 고려대 연구소',
+      fee: 60000,
+      isScraped: false,
+    },
+    {
+      id: 21,
+      isRecruiting: true,
+      remainingDay: 3,
+      title: '진행중인 테스트용 공고21입니다.',
+      category: '연구/인터뷰',
+      researcherAffiliation: '고려대학교 심리학과',
+      researcherName: '전민혁',
+      address: '서울특별시 성북구 고려대 연구소',
+      fee: 60000,
+      isScraped: false,
+    },
+    {
+      id: 20,
+      isRecruiting: true,
+      remainingDay: 3,
+      title: '진행중인 테스트용 공고20입니다.',
+      category: '연구/인터뷰',
+      researcherAffiliation: '고려대학교 심리학과',
+      researcherName: '전민혁',
+      address: '서울특별시 성북구 고려대 연구소',
+      fee: 60000,
+      isScraped: false,
+    },
+    {
+      id: 19,
+      isRecruiting: true,
+      remainingDay: 3,
+      title: '진행중인 테스트용 공고19입니다.',
+      category: '연구/인터뷰',
+      researcherAffiliation: '고려대학교 심리학과',
+      researcherName: '전민혁',
+      address: '서울특별시 성북구 고려대 연구소',
+      fee: 60000,
+      isScraped: false,
+    },
+    {
+      id: 18,
+      isRecruiting: true,
+      remainingDay: 3,
+      title: '진행중인 테스트용 공고18입니다.',
+      category: '연구/인터뷰',
+      researcherAffiliation: '고려대학교 심리학과',
+      researcherName: '전민혁',
+      address: '서울특별시 성북구 고려대 연구소',
+      fee: 60000,
+      isScraped: false,
+    },
+    {
+      id: 17,
+      isRecruiting: true,
+      remainingDay: 3,
+      title: '진행중인 테스트용 공고17입니다.',
+      category: '설문조사',
+      researcherAffiliation: '고려대학교 심리학과',
+      researcherName: '전민혁',
+      address: '서울특별시 성북구 고려대 연구소',
+      fee: 60000,
+      isScraped: false,
+    },
+    {
+      id: 16,
+      isRecruiting: true,
+      remainingDay: 3,
+      title: '진행중인 테스트용 공고16입니다.',
+      category: '설문조사',
+      researcherAffiliation: '고려대학교 심리학과',
+      researcherName: '전민혁',
+      address: '서울특별시 성북구 고려대 연구소',
+      fee: 60000,
+      isScraped: false,
+    },
+    {
+      id: 15,
+      isRecruiting: true,
+      remainingDay: 3,
+      title: '진행중인 테스트용 공고15입니다.',
+      category: '설문조사',
+      researcherAffiliation: '고려대학교 심리학과',
+      researcherName: '전민혁',
+      address: '서울특별시 성북구 고려대 연구소',
+      fee: 60000,
+      isScraped: false,
+    },
+    {
+      id: 14,
+      isRecruiting: true,
+      remainingDay: 3,
+      title: '진행중인 테스트용 공고14입니다.',
+      category: '설문조사',
+      researcherAffiliation: '고려대학교 심리학과',
+      researcherName: '전민혁',
+      address: '서울특별시 성북구 고려대 연구소',
+      fee: 60000,
+      isScraped: false,
+    },
+    {
+      id: 13,
+      isRecruiting: true,
+      remainingDay: 3,
+      title: '진행중인 테스트용 공고13입니다.',
+      category: '설문조사',
+      researcherAffiliation: '고려대학교 심리학과',
+      researcherName: '전민혁',
+      address: '서울특별시 성북구 고려대 연구소',
+      fee: 60000,
+      isScraped: false,
+    },
+  ],
+};
 
 const Applications = () => {
   const [filterState, setFilterState] = useState<string>('신청 완료');
@@ -34,57 +159,16 @@ const Applications = () => {
 
   return (
     <>
-      <Spacer height="10.16rem" />
+      <Spacer height="8.16rem" />
       <Header>
         <HeaderBack text={'내 지원 목록'} route={'/mypage'}></HeaderBack>
-        <C.filter_wrap>
-          <C.filter_inner>
-            <C.filter_status_wrap>
-              {filterState === '신청 완료' ? (
-                <C.filter_text_selected>신청 완료</C.filter_text_selected>
-              ) : (
-                <C.filter_text_unselected onClick={handleFilterState}>
-                  신청 완료
-                </C.filter_text_unselected>
-              )}
-              {filterState === '신청 취소' ? (
-                <C.filter_text_selected>신청 취소</C.filter_text_selected>
-              ) : (
-                <C.filter_text_unselected onClick={handleFilterState}>
-                  신청 취소
-                </C.filter_text_unselected>
-              )}
-              {filterState === '매칭 완료' ? (
-                <C.filter_text_selected>매칭 완료</C.filter_text_selected>
-              ) : (
-                <C.filter_text_unselected onClick={handleFilterState}>
-                  매칭 완료
-                </C.filter_text_unselected>
-              )}
-            </C.filter_status_wrap>
-            <C.filter_recruiting_wrap>
-              {isRecruiting ? (
-                <Image
-                  src={checkedbox.src}
-                  alt="checkedbox"
-                  width={24}
-                  height={24}
-                  onClick={handleIsRecruiting}
-                ></Image>
-              ) : (
-                <Image
-                  src={uncheckedbox.src}
-                  alt="uncheckedbox"
-                  width={24}
-                  height={24}
-                  onClick={handleIsRecruiting}
-                ></Image>
-              )}
-              <C.filter_recruiting_text>모집중</C.filter_recruiting_text>
-            </C.filter_recruiting_wrap>
-          </C.filter_inner>
-        </C.filter_wrap>
       </Header>
+      <C.list_wrap>
+        {test.announcements?.map((item) => {
+          return <ApplyCard info={item} key={item?.id}></ApplyCard>;
+        })}
+      </C.list_wrap>
+      <Spacer height="3.6rem" />
     </>
   );
 };
