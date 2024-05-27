@@ -31,8 +31,8 @@ const Education = () => {
   const router = useRouter();
 
   const [dropdown, setDropdown] = useState<{ [key: string]: string }>({
-    educationLevel: '',
-    educationState: '',
+    educationName: '',
+    educationStatus: '',
   });
 
   const setDropdownState = (e: any) => {
@@ -44,9 +44,7 @@ const Education = () => {
 
   const next = () => {
     const signInfo = stringToJson(localStorage.getItem('signInfo')!);
-    let education = '';
-    for (const key in dropdown) education += `${dropdown[key]} `;
-    signInfo['education'] = education;
+    for (const key in dropdown) signInfo[key] = `${dropdown[key]}`;
     localStorage.setItem('signInfo', jsonToString(signInfo));
     router.push('/join/job');
   }; //
@@ -64,10 +62,10 @@ const Education = () => {
           <C.Dropdown_title>최종학력을 선택해주세요</C.Dropdown_title>
           <C.Dropdown_list_wrap>
             <C.Dropdown
-              {...register('educationLevel')}
-              backgroundcolor={watch('educationLevel') ? '#ffffff' : '#d9d9d9'}
+              {...register('educationName')}
+              backgroundcolor={watch('educationName') ? '#ffffff' : '#d9d9d9'}
               onClick={setDropdownState}
-              textcolor={dropdown.educationLevel ? '#252525' : '#8a8a8a'}
+              textcolor={dropdown.educationName ? '#252525' : '#8a8a8a'}
               src={arrow.src}
             >
               {EDUCATION_LEVEL_LIST?.map((val: string, idx) => {
@@ -79,9 +77,9 @@ const Education = () => {
               })}
             </C.Dropdown>
             <C.Dropdown
-              {...register('educationState')}
-              backgroundcolor={watch('educationState') ? '#ffffff' : '#d9d9d9'}
-              textcolor={dropdown.educationState ? '#252525' : '#8a8a8a'}
+              {...register('educationStatus')}
+              backgroundcolor={watch('educationStatus') ? '#ffffff' : '#d9d9d9'}
+              textcolor={dropdown.educationStatus ? '#252525' : '#8a8a8a'}
               src={arrow.src}
               onClick={setDropdownState}
             >
@@ -106,7 +104,7 @@ const Education = () => {
           >
             이전으로
           </PrevButton>
-          {dropdown.educationLevel && dropdown.educationState ? (
+          {dropdown.educationName && dropdown.educationStatus ? (
             <NextButton $size={'45dvw'} onClick={next}>
               다음으로
             </NextButton>

@@ -1,6 +1,5 @@
 'use client';
 
-import Layout from '@/app/SharedComponent/Background';
 import TopText from '../component/TopText/TopText';
 import ProgressBar from '../component/ProgressBar/ProgressBar';
 import * as C from './component/C.style';
@@ -23,8 +22,8 @@ const Address = () => {
   const router = useRouter();
 
   const [dropdown, setDropdown] = useState<{ [key: string]: string }>({
-    sido: '',
-    gu: '',
+    city: '',
+    district: '',
   });
 
   const setDropdownState = (e: any) => {
@@ -44,9 +43,7 @@ const Address = () => {
 
   const next = () => {
     const signInfo = stringToJson(localStorage.getItem('signInfo')!);
-    let address = '';
-    for (const key in dropdown) address += `${dropdown[key]} `;
-    signInfo['address'] = address;
+    for (const key in dropdown) signInfo[key] = `${dropdown[key]}`;
     localStorage.setItem('signInfo', jsonToString(signInfo));
     router.push('/join/education');
   };
@@ -64,11 +61,11 @@ const Address = () => {
           <C.Dropdown_title>거주지를 선택해주세요</C.Dropdown_title>
           <C.Dropdown_list_wrap>
             <C.Dropdown
-              {...register('sido')}
+              {...register('city')}
               onClick={setDropdownState}
               onChange={setDropdownState}
-              $background={dropdown.sido ? '#ffffff' : '#F9FAFC'}
-              $textcolor={dropdown.sido ? '#252525' : '#8a8a8a'}
+              $background={dropdown.city ? '#ffffff' : '#F9FAFC'}
+              $textcolor={dropdown.city ? '#252525' : '#8a8a8a'}
               $src={arrow.src}
             >
               {sidoList?.map((val, idx) => {
@@ -80,14 +77,14 @@ const Address = () => {
               })}
             </C.Dropdown>
             <C.Dropdown
-              {...register('gu')}
+              {...register('district')}
               onChange={setDropdownState}
-              $background={dropdown.gu ? '#ffffff' : '#F9FAFC'}
-              $textcolor={dropdown.gu ? '#252525' : '#8a8a8a'}
+              $background={dropdown.district ? '#ffffff' : '#F9FAFC'}
+              $textcolor={dropdown.district ? '#252525' : '#8a8a8a'}
               $src={arrow.src}
-              value={dropdown.gu}
+              value={dropdown.district}
             >
-              {siguList[dropdown.sido]?.map((val, idx) => {
+              {siguList[dropdown.city]?.map((val, idx) => {
                 return (
                   <option key={idx} value={val}>
                     {val}
@@ -108,7 +105,7 @@ const Address = () => {
           >
             이전으로
           </PrevButton>
-          {dropdown.sido && dropdown.gu ? (
+          {dropdown.city && dropdown.district ? (
             <NextButton $size={'45dvw'} onClick={next}>
               다음으로
             </NextButton>

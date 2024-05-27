@@ -8,12 +8,13 @@ import Header from '../SharedComponent/Header/Header';
 import HeaderBack from '../SharedComponent/Header/HeaderBack/HeaderBack';
 import createFilteredList from '../utils/createFilteredList';
 import Filter from './asset/components/Filter/Filter';
-import useInfinityScroll from './asset/hook/useInfinityScroll';
+import useInfinityScroll from '../utils/hook/useInfinityScroll';
+import getRecruitList from '../api/get-recruitList';
 
 const Recruit = () => {
   const [filterState, setFilterState] = useState<string>('전체 공고');
   const [isRecruiting, setIsRecruiting] = useState<boolean>(false);
-  const { observerTarget, recruitList } = useInfinityScroll();
+  const { observerTarget, recruitList } = useInfinityScroll(getRecruitList);
 
   return (
     <>
