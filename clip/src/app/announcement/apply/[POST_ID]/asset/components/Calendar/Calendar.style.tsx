@@ -41,6 +41,7 @@ export const Calendar_disable_item = styled.div`
   align-items: center;
   height: 4.4rem;
   width: 4.4rem;
+  text-decoration: line-through;
   color: ${(props) => props.theme.TEXT._03};
 `;
 
@@ -71,4 +72,9 @@ export const notice_time = styled.div`
   width: 100%;
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.SemiBold.B2};
+`;
+
+export const dummy_div = styled.div`
+  width: 1.5rem;
+  height: 1.5rem;
 `;

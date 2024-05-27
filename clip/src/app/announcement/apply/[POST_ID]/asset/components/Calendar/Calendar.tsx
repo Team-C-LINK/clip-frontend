@@ -16,6 +16,103 @@ import Divider from '@/app/SharedComponent/Divider/Divider';
 
 const DAYS_OF_WEEK = ['일', '월', '화', '수', '목', '금', '토'];
 
+const test = {
+  date: [
+    {
+      date: '2024-05-27',
+      dayOfWeek: '월',
+    },
+    {
+      date: '2024-05-28',
+      dayOfWeek: '화',
+    },
+    {
+      date: '2024-05-29',
+      dayOfWeek: '수',
+    },
+    {
+      date: '2024-05-30',
+      dayOfWeek: '목',
+    },
+    {
+      date: '2024-05-31',
+      dayOfWeek: '금',
+    },
+    {
+      date: '2024-06-01',
+      dayOfWeek: '토',
+    },
+    {
+      date: '2024-06-02',
+      dayOfWeek: '일',
+    },
+  ],
+  researchAvailableTimeForEachDay: [
+    {
+      dayOfWeek: '일',
+      Schedules: [
+        {
+          id: 5,
+          time: '09:00',
+        },
+        {
+          id: 6,
+          time: '10:00',
+        },
+        {
+          id: 7,
+          time: '11:00',
+        },
+        {
+          id: 8,
+          time: '12:00',
+        },
+      ],
+    },
+    {
+      dayOfWeek: '월',
+      Schedules: [],
+    },
+    {
+      dayOfWeek: '화',
+      Schedules: [],
+    },
+    {
+      dayOfWeek: '수',
+      Schedules: [],
+    },
+    {
+      dayOfWeek: '목',
+      Schedules: [],
+    },
+    {
+      dayOfWeek: '금',
+      Schedules: [],
+    },
+    {
+      dayOfWeek: '토',
+      Schedules: [
+        {
+          id: 1,
+          time: '09:00',
+        },
+        {
+          id: 2,
+          time: '10:00',
+        },
+        {
+          id: 3,
+          time: '11:00',
+        },
+        {
+          id: 4,
+          time: '12:00',
+        },
+      ],
+    },
+  ],
+};
+
 const Calendar = ({
   setApplyInfo,
 }: {
@@ -24,6 +121,7 @@ const Calendar = ({
   const param = useParams();
   const { calendarList, currentDate, setCurrentDate } = useCalendar();
   const [selectedDayOfWeek, setSelectedDayOfWeek] = useState<number>(-1);
+  const [monthList, setMonthList] = useState<number[]>([]);
   const [selectedDate, setSelectedDate] = useState<number>(-1);
   const [selectedTime, setSelectedTime] = useState<string>('');
   const { data: list } = useQuery<ScheduleType | undefined>({
@@ -34,23 +132,22 @@ const Calendar = ({
   const handleCalendarItem = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const dataset = e.currentTarget.dataset;
     const targetDay = parseInt(dataset.dayofweek!);
-    setSelectedDayOfWeek(targetDay);
     const _date = `${dataset.year}-${dataset.month}-${dataset.day}`;
+
+    setSelectedDayOfWeek(targetDay);
     setApplyInfo((prev) => ({
       ...prev,
       date: { date: _date },
       scheduleId: -1,
     }));
     setSelectedDate(parseInt(dataset.day!));
-
     setCurrentDate(
       new Date(
         currentDate.getFullYear(),
-        currentDate.getMonth(),
+        parseInt(dataset.month!) - 1,
         parseInt(dataset.day!)
       )
     );
-
     setSelectedTime('');
   };
 
@@ -62,38 +159,68 @@ const Calendar = ({
   };
 
   const getId = (time: string) => {
-    const target = list?.researchAvailableTimeForEachDay[
+    const target = test?.researchAvailableTimeForEachDay[
       selectedDayOfWeek
     ].Schedules.filter((val) => val.time === time);
     return target;
   };
 
+  const getMonths = (list: ScheduleType) => {
+    const dateList = list?.date.map((val) => {
+      return parseInt(val.date.split('-')[1]);
+    });
+    const months = dateList.filter((val, idx, arr) => arr.indexOf(val) === idx);
+    return months;
+  };
+
+  const isExistPrevMonth = (curMonth: number) => {
+    return monthList.includes(curMonth - 1);
+  };
+
+  const isExistNextMonth = (curMonth: number) => {
+    return monthList.includes(curMonth + 1);
+  };
+
+  useEffect(() => {
+    const months = getMonths(test);
+    setMonthList(months);
+  }, [list]);
+
   return (
     <>
       <C.month_select_wrap>
         <C.month_select_wrap_inner>
-          <Image
-            src={left.src}
-            alt="left"
-            width={15}
-            height={15}
-            onClick={() => {
-              setCurrentDate(subMonths(currentDate, 1));
-            }}
-          ></Image>
+          {isExistPrevMonth(currentDate.getMonth() + 1) ? (
+            <Image
+              src={left.src}
+              alt="left"
+              width={15}
+              height={15}
+              onClick={() => {
+                setCurrentDate(subMonths(currentDate, 1));
+              }}
+            ></Image>
+          ) : (
+            <C.dummy_div></C.dummy_div>
+          )}
+
           <div>
             <span>{currentDate.getFullYear()}.</span>
             <span>{currentDate.getMonth() + 1}</span>
           </div>
-          <Image
-            src={right.src}
-            alt="right"
-            width={15}
-            height={15}
-            onClick={() => {
-              setCurrentDate(subMonths(currentDate, -1));
-            }}
-          ></Image>
+          {isExistNextMonth(currentDate.getMonth() + 1) ? (
+            <Image
+              src={right.src}
+              alt="right"
+              width={15}
+              height={15}
+              onClick={() => {
+                setCurrentDate(subMonths(currentDate, -1));
+              }}
+            ></Image>
+          ) : (
+            <C.dummy_div></C.dummy_div>
+          )}
         </C.month_select_wrap_inner>
       </C.month_select_wrap>
       <C.Calendar_wrap>
@@ -107,7 +234,15 @@ const Calendar = ({
 
         {calendarList?.map((weekList, idx) => {
           const weekItem = weekList.map((date, idx2) => {
-            if (date[0])
+            const year = currentDate.getFullYear();
+            const month = date[0].toString().padStart(2, '0');
+            const day = date[1]?.toString().padStart(2, '0');
+            const fullDate = `${year}-${month}-${day}`;
+            const isPossibleToReserve = test.date
+              .map((val) => val.date)
+              .includes(fullDate);
+
+            if (isPossibleToReserve) {
               return (
                 <React.Fragment key={idx * 7 + idx2}>
                   {selectedDate === date[1] ? (
@@ -118,18 +253,16 @@ const Calendar = ({
                     <C.Calendar_unselected_item
                       onClick={handleCalendarItem}
                       data-dayofweek={`${idx2}`}
-                      data-year={currentDate.getFullYear()}
-                      data-month={(currentDate.getMonth() + 1)
-                        .toString()
-                        .padStart(2, '0')}
-                      data-day={date[1]?.toString().padStart(2, '0')}
+                      data-year={year}
+                      data-month={month}
+                      data-day={day}
                     >
                       {date[1]}
                     </C.Calendar_unselected_item>
                   )}
                 </React.Fragment>
               );
-            else
+            } else
               return (
                 <C.Calendar_disable_item key={idx * 7 + idx2}>
                   {date[1]}
@@ -143,13 +276,12 @@ const Calendar = ({
       {selectedDate !== -1 && (
         <AvailableTimeList
           availableTimeList={
-            list?.researchAvailableTimeForEachDay[selectedDayOfWeek]?.Schedules!
+            test?.researchAvailableTimeForEachDay[selectedDayOfWeek]?.Schedules!
           }
           selectedTime={selectedTime}
           handleSelectedTime={handleSelectedTime}
         ></AvailableTimeList>
       )}
-
       {selectedTime && (
         <>
           <Divider $size="100%"></Divider>
