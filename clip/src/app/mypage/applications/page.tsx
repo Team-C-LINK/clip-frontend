@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
 import ApplyCard from './asset/component/ApplyCard/ApplyCard';
 import RecruitListType from '@/app/type/RecruitList';
+import NoticeModal from './asset/component/NoticeModal/NoticeModal';
 
 const test: RecruitListType = {
   totalCount: 22,
@@ -138,6 +139,7 @@ const test: RecruitListType = {
 const Applications = () => {
   const [filterState, setFilterState] = useState<string>('신청 완료');
   const [isRecruiting, setIsRecruiting] = useState<boolean>(false);
+  const [isNoticeModalOn, setIsNoticeModalOn] = useState<boolean>(false);
 
   const handleFilterState = (e: any) => {
     const target = e.target.innerHTML;
