@@ -1,29 +1,27 @@
 import api from '@/app/api/api';
 import getRecruitList from '@/app/api/get-recruitList';
 import AnnouncementType from '@/app/type/Announcment';
-import RecruitListType from '@/app/type/RecruitList';
 import { useEffect, useRef, useState } from 'react';
 
 const DEFAULT_PAGE_SIZE = 10;
 
-const useInfinityScroll = () => {
+const useInfinityScroll = (getList: any) => {
   const observerTarget = useRef<any>(null);
   const [recruitList, setRecruitList] = useState<AnnouncementType[]>([]);
   const [listPointer, setListPointer] = useState<number>(0);
   const [firstCheck, setFirstCheck] = useState<boolean>(true);
 
   const init = async () => {
-    const res = await getRecruitList();
-    setRecruitList(res.announcements);
-    setListPointer(res.totalCount - DEFAULT_PAGE_SIZE);
+    const res = await getList();
+    setRecruitList(res?.announcements);
+    setListPointer(res?.totalCount - DEFAULT_PAGE_SIZE);
     setFirstCheck(false);
   };
 
   const updateList = async () => {
-    const res = await api.get(
-      `/announcements?lastAnnouncementId=${listPointer}&size=${DEFAULT_PAGE_SIZE}`
-    );
-    setRecruitList((prev) => [...prev, ...res.data.announcements]);
+    const res = await getList(listPointer);
+    console.log(res);
+    setRecruitList((prev) => [...prev, ...res?.announcements]);
     const nextListPointer = listPointer - DEFAULT_PAGE_SIZE;
     nextListPointer <= 0 ? setListPointer(0) : setListPointer(nextListPointer);
   };

@@ -21,11 +21,11 @@ export default function generateCalendar(date: Date) {
 
   // Add empty days for the first week
   for (let i = 0; i < firstDayOfMonth.getDay(); i++) {
-    week.push([false, lastDayOfPrevMonth - firstDayOfMonth.getDay() + 1 + i]);
+    week.push([month, lastDayOfPrevMonth - firstDayOfMonth.getDay() + 1 + i]);
   }
 
   for (let day = 1; day <= daysInMonth; day++) {
-    week.push([true, day]);
+    week.push([month + 1, day]);
     if (week.length === 7) {
       calendar.push(week);
       week = [];
@@ -36,7 +36,7 @@ export default function generateCalendar(date: Date) {
   if (week.length > 0) {
     let start = 1;
     while (week.length < 7) {
-      week.push([false, start++]);
+      week.push([month + 2, start++]);
     }
     calendar.push(week);
   }
