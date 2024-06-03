@@ -8,6 +8,8 @@ type AnnouncementType = {
   researcherName: string;
   address: string;
   fee: number;
+  reservationStatus: string;
+  reservationDate: string;
   isScraped: boolean;
 };
 
