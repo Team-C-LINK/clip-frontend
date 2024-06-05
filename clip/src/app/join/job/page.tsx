@@ -45,6 +45,7 @@ const Education = () => {
     } catch (e) {
       // alert('유효하지 않은 회원가입 요청입니다. 처음부터 다시 진행해주세요');
       // window.location.href = '/login';
+      console.log(e);
       alert(e);
     }
   }; //

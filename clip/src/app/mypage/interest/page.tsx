@@ -9,10 +9,13 @@ import checkedbox from './asset/checkedBox.svg';
 import uncheckedbox from './asset/uncheckedBox.svg';
 import Image from 'next/image';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
+import useInfinityScroll from '@/app/utils/hook/useInfinityScroll';
+import getScrapedList from '@/app/api/get-scrapedList';
 
 const Interest = () => {
   const [filterState, setFilterState] = useState<string>('신청 완료');
   const [isRecruiting, setIsRecruiting] = useState<boolean>(false);
+  const { observerTarget, recruitList } = useInfinityScroll(getScrapedList);
 
   const handleFilterState = (e: any) => {
     const target = e.target.innerHTML;
@@ -62,6 +65,10 @@ const Interest = () => {
           </C.filter_inner>
         </C.filter_wrap>
       </Header>
+      {recruitList?.map((item) => {
+        return <RecruitCard info={item} key={item?.id}></RecruitCard>;
+      })}
+      <div ref={observerTarget}></div>
     </>
   );
 };

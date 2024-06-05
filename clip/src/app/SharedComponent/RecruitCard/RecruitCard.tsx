@@ -28,7 +28,7 @@ const RecruitCard = ({ info }: { info: AnnouncementType | undefined }) => {
 
   return (
     <C.list_content_wrap
-      onClick={() => (window.location.href = `/recruit/${info?.id}`)}
+      onClick={() => (window.location.href = `/announcement/${info?.id}`)}
     >
       <C.list_content_wrap_inner>
         <C.list_content_recruit_wrap>

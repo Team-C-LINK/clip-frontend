@@ -10,7 +10,7 @@ import person from './asset/image/private.svg';
 import faq from './asset/image/faq.svg';
 import guide from './asset/image/guide.svg';
 import logout from './asset/image/logout.svg';
-import { useEffect } from 'react';
+import list from './asset/image/list.svg';
 import Spacer from '../SharedComponent/Spacer/Spacer';
 import getUser from '../api/get-user';
 import { useQuery } from '@tanstack/react-query';
@@ -62,7 +62,7 @@ const MyPage = () => {
               onClick={() => (window.location.href = '/mypage/applications')}
             >
               <Image
-                src={interest.src}
+                src={list.src}
                 alt={'interest'}
                 width={20}
                 height={20}
