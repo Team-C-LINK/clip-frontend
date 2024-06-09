@@ -20,11 +20,16 @@ const ModalComplete = () => {
         <PrevNext>
           <PrevBtn
             $size="43.5%"
-            onClick={() => (window.location.href = '/recruit')}
+            onClick={() => (window.location.href = '/announcement')}
           >
             돌아가기
           </PrevBtn>
-          <NextButton $size="43.5%">신청내역 보기</NextButton>
+          <NextButton
+            $size="43.5%"
+            onClick={() => (window.location.href = '/mypage/applications')}
+          >
+            신청내역 보기
+          </NextButton>
         </PrevNext>
       </Wrap>
     </>

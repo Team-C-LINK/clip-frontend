@@ -42,8 +42,8 @@ const AvailableTimeList = ({
                     <Selected_time>{time}</Selected_time>
                   ) : (
                     <Unselected_time
-                      data-id={id.toString()}
                       onClick={handleSelectedTime}
+                      data-time={time}
                     >
                       {time}
                     </Unselected_time>
@@ -64,11 +64,13 @@ const AvailableTimeList = ({
               return (
                 <React.Fragment key={id}>
                   {time === selectedTime ? (
-                    <Selected_time>{time}</Selected_time>
+                    <Selected_time>
+                      {`${hour - 12}:${minute.toString().padStart(2, '0')}`}
+                    </Selected_time>
                   ) : (
                     <Unselected_time
-                      data-id={id.toString()}
                       onClick={handleSelectedTime}
+                      data-time={time}
                     >
                       {`${hour - 12}:${minute.toString().padStart(2, '0')}`}
                     </Unselected_time>

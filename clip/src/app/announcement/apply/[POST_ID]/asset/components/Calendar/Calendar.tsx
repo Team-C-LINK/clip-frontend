@@ -55,7 +55,7 @@ const Calendar = ({
   };
 
   const handleSelectedTime = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    const selectedTime = e.currentTarget.innerHTML!;
+    const selectedTime = e.currentTarget.dataset.time!;
     const _scheduleId = getId(selectedTime)![0].id;
     setApplyInfo((prev) => ({ ...prev, scheduleId: _scheduleId }));
     setSelectedTime(selectedTime);
