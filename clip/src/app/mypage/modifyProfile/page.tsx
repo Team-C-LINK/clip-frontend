@@ -11,7 +11,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '@/app/SharedComponent/Footer/Footer';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
-import { uploadS3 } from './phone/assets/utils/s3upload';
+import { uploadS3 } from '@/app/utils/hook/uploadS3';
 import { useQuery } from '@tanstack/react-query';
 import getUser from '@/app/api/get-user';
 import {
