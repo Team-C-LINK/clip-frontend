@@ -31,7 +31,7 @@ const Oauth = () => {
       );
 
       if (!res.data.isMember) {
-        window.location.href = `http://localhost:3000/join/agreement`;
+        window.location.href = `/join/agreement`;
         const { isMember, ...other } = res.data;
         const gen = res.data.oauthMemberInformation['gender'];
         res.data.oauthMemberInformation['gender'] = GENDER[gen];
