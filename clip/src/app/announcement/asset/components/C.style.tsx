@@ -10,7 +10,7 @@ export const scroll_top_button = styled.div`
   width: 4.2rem;
   height: 4.2rem;
   right: 4%;
-  top: 84.1%;
+  bottom: 10rem;
   z-index: 2;
 
   background: #ffffff;
