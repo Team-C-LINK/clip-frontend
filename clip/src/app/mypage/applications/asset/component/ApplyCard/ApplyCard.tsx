@@ -15,11 +15,11 @@ const ApplyCard = ({ info }: { info: AnnouncementType | undefined }) => {
   return (
     <>
       <C.card_wrap onClick={handleCard}>
-        <C.apply_date>2024년 4월 7일 일요일 지원 완료</C.apply_date>
+        <C.apply_date>{info?.reservationDate} 지원 완료</C.apply_date>
         <C.list_content_wrap>
           <C.list_content_wrap_inner>
             <C.list_content_recruit_wrap>
-              <BlueButton>지원완료</BlueButton>
+              <BlueButton>{info?.reservationStatus}</BlueButton>
               {info?.isRecruiting ? (
                 <C.list_content_recruit_deadline>
                   D-{info?.remainingDay}
@@ -51,7 +51,11 @@ const ApplyCard = ({ info }: { info: AnnouncementType | undefined }) => {
         </C.list_content_wrap>
       </C.card_wrap>
       {isNoticeModalOn && (
-        <NoticeModal setModalState={setIsNoticeModalOn}></NoticeModal>
+        <NoticeModal
+          location={info?.address}
+          reservationTime={info?.reservationDate}
+          setModalState={setIsNoticeModalOn}
+        ></NoticeModal>
       )}
     </>
   );
