@@ -4,6 +4,7 @@ type RequestApplyType = {
   date: {
     date: string;
   };
+  announcementReservationImages: string[] | File[];
 };
 
 export default RequestApplyType;
