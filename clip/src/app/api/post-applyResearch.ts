@@ -5,7 +5,10 @@ const postApplyResearch = async (request: RequestApplyType) => {
   try {
     const res = api.post(
       `/announcements/${request.postId}/schedules/${request.scheduleId}`,
-      request.date
+      {
+        date: request.date.date,
+        announcementReservationImages: request.announcementReservationImages,
+      }
     );
     return res;
   } catch (e) {
