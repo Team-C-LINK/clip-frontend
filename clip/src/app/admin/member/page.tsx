@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 import DetailCategory from '@/app/SharedComponent/Admin/DetailCategory/DetailCategory';
-import SearchBar from '@/app/SharedComponent/Admin/SearchBar/SearchBar';
+import SearchBar from './asset/components/SearchBar/SearchBar';
 import HeaderAdmin from '@/app/SharedComponent/Header/HeaderAdmin/HeaderAdmin';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
 import TableContent from '@/app/admin/member/asset/components/Table/TableContent/TableContent';
@@ -12,8 +12,9 @@ import { useRecoilState } from 'recoil';
 import { dropdownOpenState } from '@/app/admin/member/Atoms/dropdownOpenStateAtom';
 import { useQuery } from '@tanstack/react-query';
 import getMemberList from '@/app/api/admin/get-memberList';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import GetMemberType from '@/app/type/GetMemberType';
+import MemberType from '@/app/type/Member';
 
 const test = [
   { name: '번호', size: '4.3rem' },
@@ -29,16 +30,21 @@ const test = [
 
 const Member = () => {
   const [text, setText] = useRecoilState(dropdownOpenState);
-  const { data: list } = useQuery<GetMemberType>({
-    queryKey: ['key'],
+  const { data: memberData } = useQuery<GetMemberType>({
+    queryKey: [],
     queryFn: getMemberList,
   });
+  const [list, setList] = useState<MemberType[]>();
 
   const hhh = (e: React.MouseEvent<HTMLDivElement>) => {
     for (const key in text) {
       setText((prev) => ({ ...prev, [key]: false }));
     }
   };
+
+  useEffect(() => {
+    setList(memberData?.members);
+  }, [memberData]);
 
   return (
     <>
@@ -56,7 +62,7 @@ const Member = () => {
               return <TableItem size={val.size}>{val.name}</TableItem>;
             })}
           </TableIndex>
-          {list?.members?.map((val: any, idx: number) => {
+          {list?.map((val: any, idx: number) => {
             return <TableContent info={val}></TableContent>;
           })}
         </List_wrap>
