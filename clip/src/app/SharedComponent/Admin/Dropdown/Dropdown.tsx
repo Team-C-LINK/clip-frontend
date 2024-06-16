@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { dropdownOpenState } from '@/app/admin/member/Atoms/dropdownOpenStateAtom';
 
+type DropDownItemType = {
+  $isLast: boolean;
+};
+
 const DropdownWrapper = styled.div`
   position: relative;
   width: 16.8rem;
@@ -24,9 +28,10 @@ const DropdownMenu = styled.ul`
   list-style: none;
 `;
 
-const DropdownItem = styled.li`
+const DropdownItem = styled.li<DropDownItemType>`
   padding: 10px;
   cursor: pointer;
+  ${(props) => (props.$isLast ? null : `border-bottom: 1px solid #d9d9d9`)};
   width: 16.8rem;
   &:hover {
     background-color: #f0f0f0;
@@ -55,8 +60,13 @@ const Dropdown: React.FC<DropdownProps> = ({ options, id }) => {
     <DropdownWrapper>
       {text[id] && (
         <DropdownMenu>
-          {options.map((option) => (
-            <DropdownItem key={option.value}>{option.label}</DropdownItem>
+          {options.map((option, idx) => (
+            <DropdownItem
+              $isLast={idx === options.length - 1}
+              key={option.value}
+            >
+              {option.label}
+            </DropdownItem>
           ))}
         </DropdownMenu>
       )}

@@ -49,7 +49,11 @@ const SearchBarDropdown: React.FC<DropdownProps> = ({
       {text[id] && (
         <C.DropdownMenu>
           {options?.map((option, idx) => (
-            <C.DropdownItem onClick={handleItem} key={idx}>
+            <C.DropdownItem
+              $isLast={idx === options.length - 1}
+              onClick={handleItem}
+              key={idx}
+            >
               {option}
             </C.DropdownItem>
           ))}
