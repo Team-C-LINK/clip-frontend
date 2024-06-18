@@ -1,15 +1,17 @@
 import api from '../api';
 
-const patchModifyMember = async (id: number, data: any) => {
+type ModifyMemberType = {
+  birthYear: 'string';
+  city: 'string';
+  district: 'string';
+  educationName: 'string';
+  educationStatus: 'string';
+  job: 'string';
+};
+
+const patchModifyMember = async (id: number, data: ModifyMemberType) => {
   try {
-    const res = await api.patch(`/admin/member/${id}`, {
-      birthYear: '1992',
-      city: '서울특별시',
-      district: '강남구',
-      educationName: '대학교(4년제)',
-      educationStatus: '졸업',
-      job: '무직',
-    });
+    const res = await api.patch(`/admin/member/${id}`, data);
     return res;
   } catch (e) {
     console.log(e);

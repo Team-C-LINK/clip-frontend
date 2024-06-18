@@ -13,35 +13,20 @@ import { dropdownOpenState } from '@/app/admin/member/Atoms/dropdownOpenStateAto
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { TABLEINDEX_OPTION_WITHDRAW } from '@/app/SharedComponent/DropdownOption/TableOption';
-import WithDrawMemberType from '@/app/type/WithdrawMemberType';
+import { TABLEINDEX_OPTION_RESEARCHER } from '@/app/SharedComponent/DropdownOption/TableOption';
 import plus from './asset/image/plus.svg';
 import RegisterModal from './asset/components/RegisterModal/RegisterModal';
-
-const dummy = [
-  {
-    birthYear: `1998`,
-    reason: `탈퇴 이유입니다.`,
-    withdrawDay: `2024.06.17`,
-    gender: `남성`,
-    id: 1,
-    name: `이진선`,
-    number: '010-0000-0000',
-  },
-  {
-    birthYear: `1998`,
-    reason: `탈퇴 이유입니다.`,
-    withdrawDay: `2024.06.17`,
-    gender: `남성`,
-    id: 2,
-    name: `이진선`,
-    number: '010-0000-0000',
-  },
-];
+import GetResearcherType from '@/app/type/GetResearcherType';
+import getResearcherList from '@/app/api/admin/get-researcherList';
 
 const ResearcherAll = () => {
   const [text, setText] = useRecoilState(dropdownOpenState);
-  const [list, setList] = useState<WithDrawMemberType[]>(dummy);
+  const { data: list } = useQuery<GetResearcherType>({
+    queryKey: [],
+    queryFn: getResearcherList,
+  });
+  const [isRegisterModalOpen, setIsRegisterModalOpen] =
+    useState<boolean>(false);
 
   const hhh = (e: React.MouseEvent<HTMLDivElement>) => {
     for (const key in text) {
@@ -49,28 +34,34 @@ const ResearcherAll = () => {
     }
   };
 
+  const handleRegisterNewResearcher = () => {
+    setIsRegisterModalOpen(true);
+  };
+
   return (
     <>
-      <HeaderAdmin></HeaderAdmin>
+      <HeaderAdmin state={'연구자 관리'}></HeaderAdmin>
       <Spacer height="9rem"></Spacer>
-      <RegisterModal></RegisterModal>
+      {isRegisterModalOpen && (
+        <RegisterModal setIsModalOpen={setIsRegisterModalOpen}></RegisterModal>
+      )}
       <Wrap onClick={hhh}>
         <DetailCategory
           category="연구자 관리"
           detailCategory="전체 연구자 리스트"
         ></DetailCategory>
-        <Register_new_researcher>
+        <Register_new_researcher onClick={handleRegisterNewResearcher}>
           <Image src={plus.src} alt="plus" width={10} height={10}></Image>새
           연구자 등록
         </Register_new_researcher>
         <SearchBar></SearchBar>
         <List_wrap>
           <TableIndex>
-            {TABLEINDEX_OPTION_WITHDRAW.map((val) => {
+            {TABLEINDEX_OPTION_RESEARCHER.map((val) => {
               return <TableItem size={val.size}>{val.name}</TableItem>;
             })}
           </TableIndex>
-          {list?.map((val: any, idx: number) => {
+          {list?.researchers.map((val: any, idx: number) => {
             return <TableContent info={val}></TableContent>;
           })}
         </List_wrap>

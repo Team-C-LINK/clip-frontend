@@ -5,7 +5,9 @@ type FileInputType = {
 };
 
 export const black_background = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
@@ -17,7 +19,7 @@ export const wrap = styled.div`
   flex-direction: column;
   align-items: center;
 
-  position: absolute;
+  position: fixed;
   width: 52rem;
   height: 65.6rem;
   left: calc(50% - 52rem / 2);

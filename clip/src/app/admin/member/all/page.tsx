@@ -48,7 +48,7 @@ const Member = () => {
 
   return (
     <>
-      <HeaderAdmin></HeaderAdmin>
+      <HeaderAdmin state={'회원 관리'}></HeaderAdmin>
       <Spacer height="9rem"></Spacer>
       <Wrap onClick={hhh}>
         <DetailCategory

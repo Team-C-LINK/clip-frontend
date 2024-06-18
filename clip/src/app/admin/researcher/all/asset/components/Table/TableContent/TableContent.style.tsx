@@ -20,11 +20,25 @@ export const modify_button = styled.div`
   justify-content: space-between;
   align-items: center;
   justify-content: center;
-  width: 15rem;
+  width: 10rem;
   height: 3.5rem;
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.Regular.B3};
   background: #f7f2ff;
+  border-radius: 4px;
+`;
+
+export const profile_button = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  width: 10rem;
+  height: 3.5rem;
+  font-family: 'Pretendard';
+  ${(props) => props.theme.FONT.Regular.B3};
+  background: ${(props) => props.theme.BACKGROUND._01};
   border-radius: 4px;
 `;
 
@@ -48,45 +62,32 @@ export const address_wrap = styled.div`
   flex-direction: row;
 `;
 
-export const confirm = styled.div`
+export const profile_wrap = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 
-  position: relative;
-  width: 7rem;
-  height: 3.5rem;
+  position: absolute;
+  box-sizing: border-box;
 
-  font-family: 'Pretendard';
-  ${(props) => props.theme.FONT.Medium.B3};
-  color: ${(props) => props.theme.TEXT._04};
-
-  background: #580f9f;
-  border-radius: 4px;
-`;
-
-export const cancel = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  position: relative;
-  width: 7rem;
-  height: 3.5rem;
-
-  font-family: 'Pretendard';
-  ${(props) => props.theme.FONT.Medium.B3};
-  color: ${(props) => props.theme.TEXT._01};
-
-  background: #f2f2f2;
-  border-radius: 4px;
-`;
-
-export const confirm_cancel_wrap = styled.div`
-  display: flex;
   width: 15rem;
-  gap: 1rem;
-  flex-direction: row;
+  height: 15rem;
+
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14), 0px 0px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  z-index: 2;
+`;
+
+export const profile_img = styled.img`
+  position: relative;
+  background: url(${(props) => props.src});
+
+  width: 12.3rem;
+  height: 12.3rem;
+
+  border-radius: 0.4rem;
 `;

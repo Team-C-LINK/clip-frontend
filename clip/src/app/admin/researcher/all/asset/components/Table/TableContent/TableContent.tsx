@@ -2,70 +2,55 @@ import styled from 'styled-components';
 import TableItem from '../TableItem/TableIndexItem';
 import { useEffect, useState } from 'react';
 import * as C from './TableContent.style';
-import { useForm } from 'react-hook-form';
-import patchModifyMember from '@/app/api/admin/patch-modifyMember';
-import WithDrawMemberType from '@/app/type/WithdrawMemberType';
-
-const TABLE_ITEM_OPTION_WITHDRAW = [
-  { name: 'id', size: '4.3rem' },
-  { name: 'name', size: '10rem' },
-  { name: 'number', size: '14.2rem' },
-  { name: 'birthYear', size: '10rem' },
-  { name: 'gender', size: '5rem' },
-  { name: 'reason', size: '20rem' },
-  { name: 'withdrawDay', size: '20rem' },
-];
-
+import ResearcherInfoType from '@/app/type/ResearcherInfoType';
+import { TABLEINDEX_OPTION_RESEARCHER } from '@/app/SharedComponent/DropdownOption/TableOption';
+import ModifyModal from '../../ModifyModal/ModifyModal';
 type TableContentProps = {
-  info: WithDrawMemberType;
+  info: ResearcherInfoType;
 };
 
 const TableContent: React.FC<TableContentProps> = ({ info }) => {
-  const [isModifyMode, setIsModifyMode] = useState<boolean>(false);
-  const {
-    register,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm({ mode: 'onChange' });
+  const [isModifyModalOpen, setIsModifyModalOpen] = useState<boolean>(false);
 
-  const handleMode = () => {
-    setIsModifyMode(!isModifyMode);
+  const handleModifyModal = () => {
+    setIsModifyModalOpen(true);
   };
-
-  const handleModfiyInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.id, e.target.value);
-  };
-
-  const submit = async () => {
-    const requestData = {
-      birthYear: watch('birthYear'),
-      city: watch('city'),
-      district: watch('district'),
-      educationName: watch('educationName'),
-      educationStatus: watch('educationStatus'),
-      job: watch('job'),
-    };
-
-    const res = await patchModifyMember(info?.id, requestData);
-
-    if (res?.status === 200) {
-      alert('수정 되었습니다.');
-      window.location.reload();
-    }
-  };
-
-  useEffect(() => {
-    for (const key in info) setValue(key, info[key]);
-  }, [info]);
 
   return (
     <C.wrap>
-      {TABLE_ITEM_OPTION_WITHDRAW.map((option) => {
-        return <TableItem size={option.size}>{info[option.name]}</TableItem>;
+      {isModifyModalOpen && (
+        <ModifyModal
+          info={info}
+          setIsModalOpen={setIsModifyModalOpen}
+        ></ModifyModal>
+      )}
+      {TABLEINDEX_OPTION_RESEARCHER.map((option) => {
+        if (option.id && option.id !== 'profile')
+          return <TableItem size={option.size}>{info[option.id]}</TableItem>;
       })}
-      <C.modify_button onClick={handleMode}>복구</C.modify_button>
+      <Profile src={info.profile}></Profile>
+      <C.modify_button onClick={handleModifyModal}>수정</C.modify_button>
     </C.wrap>
+  );
+};
+
+const Profile = ({ src }: { src: string }) => {
+  const [isOpen, setIsOpeon] = useState<boolean>(false);
+
+  return (
+    <>
+      <C.profile_button
+        onMouseEnter={() => setIsOpeon(true)}
+        onMouseLeave={() => setIsOpeon(false)}
+      >
+        보기
+        {isOpen && (
+          <C.profile_wrap>
+            <C.profile_img src={src} />
+          </C.profile_wrap>
+        )}
+      </C.profile_button>
+    </>
   );
 };
 

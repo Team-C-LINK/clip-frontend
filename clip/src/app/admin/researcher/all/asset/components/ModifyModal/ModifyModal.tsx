@@ -1,21 +1,30 @@
 import Divider from '@/app/SharedComponent/Divider/Divider';
-import * as C from './RegisterModal.style';
+import * as C from './ModifyModal.style';
 import Image from 'next/image';
 import plus from '../../image/plus.svg';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
 import cancel from '../../image/cancel.svg';
 import { useForm } from 'react-hook-form';
 import { uploadS3 } from '@/app/utils/hook/uploadS3';
-import postRegisterResearcher from '@/app/api/admin/post-registerResearcher';
+import putModifyResearcher from '@/app/api/admin/put-modifyResearcher';
 import RegisterResearcherType from '@/app/type/RegisterResearcherType';
+import ResearcherInfoType from '@/app/type/ResearcherInfoType';
+import { useEffect } from 'react';
 
 type RegisterModalProps = {
   setIsModalOpen: React.Dispatch<boolean>;
+  info: ResearcherInfoType;
 };
 
-const RegisterModal: React.FC<RegisterModalProps> = ({ setIsModalOpen }) => {
-  const { register, watch } = useForm<RegisterResearcherType>({
+const ModifyModal: React.FC<RegisterModalProps> = ({
+  setIsModalOpen,
+  info,
+}) => {
+  const { register, watch, setValue } = useForm<RegisterResearcherType>({
     mode: 'onChange',
+    defaultValues: {
+      profile: [],
+    },
   });
 
   const handleModalState = () => {
@@ -24,14 +33,20 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ setIsModalOpen }) => {
 
   const submit = async () => {
     const data = watch();
-    const profileUrl = await uploadS3(data.profile[0] as File);
-    data.profile = profileUrl as string;
-    const res = await postRegisterResearcher(data);
-    if (res?.status === 200) {
-      alert('연구자를 등록했습니다.');
+    if (watch('profile').length < 5) {
+      const profileUrl = await uploadS3(data.profile[0] as File);
+      data.profile = profileUrl as string;
+    }
+    const res = await putModifyResearcher(info.id, data);
+    if (res?.status === 204) {
+      alert('연구자를 수정했습니다.');
       window.location.reload();
     }
   };
+
+  useEffect(() => {
+    for (const key in info) setValue(key, info[key]);
+  }, [info]);
 
   return (
     <>
@@ -39,7 +54,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ setIsModalOpen }) => {
         <Image src={plus.src} alt="plus" width={10} height={10}></Image>
       </C.black_background>
       <C.wrap>
-        <C.title>새 연구자 등록</C.title>
+        <C.title>연구자 정보 수정</C.title>
         <C.cancel_button onClick={handleModalState}>
           <Image src={cancel.src} alt="plus" width={12} height={12}></Image>
         </C.cancel_button>
@@ -76,9 +91,9 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ setIsModalOpen }) => {
             <Image src={plus.src} alt="plus" width={10} height={10}></Image>
             사진 업로드
           </C.upload>
-          <C.selected_file $isExistFile={watch('profile') !== undefined}>
-            {watch('profile')
-              ? `${(watch('profile')[0] as File).name}`
+          <C.selected_file $isExistFile={watch('profile').length < 5}>
+            {watch('profile').length < 5
+              ? `${(watch('profile')[0] as File)?.name}`
               : `선택된 파일 없음`}
           </C.selected_file>
         </C.input_wrap>
@@ -89,4 +104,4 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ setIsModalOpen }) => {
   );
 };
 
-export default RegisterModal;
+export default ModifyModal;
