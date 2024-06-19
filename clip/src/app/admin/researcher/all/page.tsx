@@ -18,13 +18,16 @@ import plus from './asset/image/plus.svg';
 import RegisterModal from './asset/components/RegisterModal/RegisterModal';
 import GetResearcherType from '@/app/type/GetResearcherType';
 import getResearcherList from '@/app/api/admin/get-researcherList';
+import { useSearchParams } from 'next/navigation';
 
 const ResearcherAll = () => {
   const [text, setText] = useRecoilState(dropdownOpenState);
+  const params = useSearchParams();
   const { data: list } = useQuery<GetResearcherType>({
-    queryKey: [],
+    queryKey: [params.get('lastId')],
     queryFn: getResearcherList,
   });
+
   const [isRegisterModalOpen, setIsRegisterModalOpen] =
     useState<boolean>(false);
 
@@ -64,6 +67,24 @@ const ResearcherAll = () => {
           {list?.researchers.map((val: any, idx: number) => {
             return <TableContent info={val}></TableContent>;
           })}
+          <div>
+            {list &&
+              new Array(Math.ceil(list?.totalCount / 10))
+                .fill(0)
+                .map((val, idx) => (
+                  <span
+                    onClick={() =>
+                      (window.location.href = idx
+                        ? `/admin/researcher/all?lastId=${
+                            list?.totalCount - idx * 10
+                          }`
+                        : `/admin/researcher/all`)
+                    }
+                  >
+                    {idx + 1}
+                  </span>
+                ))}
+          </div>
         </List_wrap>
       </Wrap>
     </>
