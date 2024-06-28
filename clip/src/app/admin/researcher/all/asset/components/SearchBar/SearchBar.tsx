@@ -2,12 +2,19 @@ import * as C from './SearchBar.style';
 import { useEffect, useState } from 'react';
 
 import TextInput from './TextInput/TextInput';
+import { useSearchParams } from 'next/navigation';
 
 const SearchBar = () => {
-  const [inputValue, setInputValue] = useState('');
+  const params = useSearchParams();
+  const curInput = params.get('name') ? params.get('name') : '';
+  const [inputValue, setInputValue] = useState(curInput as string);
 
   const handleInputChange = (value: string) => {
     setInputValue(value);
+  };
+
+  const search = () => {
+    window.location.href = `?name=${inputValue}`;
   };
 
   return (
@@ -17,8 +24,7 @@ const SearchBar = () => {
         value={inputValue}
         onChange={handleInputChange}
       ></TextInput>
-
-      <C.search>검색</C.search>
+      <C.search onClick={search}>검색</C.search>
     </C.wrap>
   );
 };

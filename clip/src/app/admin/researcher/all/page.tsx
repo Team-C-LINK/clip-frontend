@@ -24,7 +24,7 @@ const ResearcherAll = () => {
   const [text, setText] = useRecoilState(dropdownOpenState);
   const params = useSearchParams();
   const { data: list } = useQuery<GetResearcherType>({
-    queryKey: [params.get('lastId')],
+    queryKey: [params.get('lastId'), params.get('name')],
     queryFn: getResearcherList,
   });
 
@@ -40,6 +40,8 @@ const ResearcherAll = () => {
   const handleRegisterNewResearcher = () => {
     setIsRegisterModalOpen(true);
   };
+
+  console.log(window.location.pathname);
 
   return (
     <>
@@ -75,10 +77,10 @@ const ResearcherAll = () => {
                   <span
                     onClick={() =>
                       (window.location.href = idx
-                        ? `/admin/researcher/all?lastId=${
+                        ? `${window.location.href}?lastId=${
                             list?.totalCount - idx * 10
                           }`
-                        : `/admin/researcher/all`)
+                        : `${window.location.href}`)
                     }
                   >
                     {idx + 1}
