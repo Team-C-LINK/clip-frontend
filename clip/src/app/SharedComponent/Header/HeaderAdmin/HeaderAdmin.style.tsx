@@ -10,6 +10,7 @@ export const wrap = styled.div`
   height: 8rem;
   width: 100%;
   box-shadow: 0px 1px 2px rgba(27, 40, 54, 0.2);
+  background-color: ${(props) => props.theme.BACKGROUND._01};
   z-index: 2;
 `;
 

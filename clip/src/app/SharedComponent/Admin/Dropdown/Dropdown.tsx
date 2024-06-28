@@ -34,13 +34,15 @@ const DropdownItem = styled.li<DropDownItemType>`
   ${(props) => (props.$isLast ? null : `border-bottom: 1px solid #d9d9d9`)};
   width: 16.8rem;
   &:hover {
-    background-color: #f0f0f0;
+    background-color: ${(props) => props.theme.PURPLE._04};
+    color: ${(props) => props.theme.PURPLE._00};
   }
 `;
 
 interface Option {
   label: string;
   value: string;
+  route: string;
 }
 
 interface DropdownProps {
@@ -50,20 +52,23 @@ interface DropdownProps {
 
 // 드롭다운 컴포넌트
 const Dropdown: React.FC<DropdownProps> = ({ options, id }) => {
-  const [text, setText] = useRecoilState(dropdownOpenState);
+  const [dropdownState, setDropdownState] = useRecoilState(dropdownOpenState);
 
   const handleClick = (e: React.MouseEvent<HTMLLIElement>) => {
     e.stopPropagation();
+    const route = e.currentTarget.dataset.route!;
+    window.location.href = route;
   };
-
   return (
     <DropdownWrapper>
-      {text[id] && (
+      {dropdownState[id] && (
         <DropdownMenu>
           {options.map((option, idx) => (
             <DropdownItem
               $isLast={idx === options.length - 1}
               key={option.value}
+              data-route={option.route}
+              onClick={handleClick}
             >
               {option.label}
             </DropdownItem>

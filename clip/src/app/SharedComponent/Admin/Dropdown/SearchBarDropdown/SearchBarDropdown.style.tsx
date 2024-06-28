@@ -32,8 +32,11 @@ export const DropdownItem = styled.span<DropdownItemType>`
   padding: 1rem;
   cursor: pointer;
   width: 100%;
+  font-family: 'Pretendard';
+  ${(props) => props.theme.FONT.Medium.B3};
   ${(props) => (props.$isLast ? null : `border-bottom: 1px solid #D9D9D9`)};
   &:hover {
-    background-color: #f0f0f0;
+    background-color: ${(props) => props.theme.PURPLE._04};
+    color: ${(props) => props.theme.PURPLE._00};
   }
 `;
