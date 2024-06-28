@@ -61,8 +61,12 @@ const TableContent: React.FC<TableContentProps> = ({ info }) => {
 
   return (
     <C.wrap>
-      {TABLE_ITEM_OPTION_WITHDRAW.map((option) => {
-        return <TableItem size={option.size}>{info[option.name]}</TableItem>;
+      {TABLE_ITEM_OPTION_WITHDRAW.map((option, idx) => {
+        return (
+          <TableItem key={idx} size={option.size}>
+            {info[option.name]}
+          </TableItem>
+        );
       })}
       <C.modify_button onClick={handleMode}>복구</C.modify_button>
     </C.wrap>

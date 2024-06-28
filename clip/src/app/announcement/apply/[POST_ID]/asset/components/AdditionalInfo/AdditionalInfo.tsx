@@ -44,8 +44,10 @@ const AdditionalInfo = ({
         </label>
         {images && (
           <div>
-            {images.map((val) => {
-              return <File_item>{val.name}&nbsp;&nbsp;&nbsp;</File_item>;
+            {images.map((val, idx) => {
+              return (
+                <File_item key={idx}>{val.name}&nbsp;&nbsp;&nbsp;</File_item>
+              );
             })}
           </div>
         )}

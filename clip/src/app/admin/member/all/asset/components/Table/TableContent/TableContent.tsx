@@ -64,20 +64,26 @@ const TableContent: React.FC<TableContentProps> = ({ info }) => {
     <C.wrap>
       {!isModifyMode && (
         <>
-          {test.map((val) => {
+          {test.map((val, idx) => {
             if (val.name === 'address')
               return (
                 <TableItem
+                  key={idx}
                   size={val.size}
                 >{`${info.city} ${info.district}`}</TableItem>
               );
             if (val.name === 'education')
               return (
                 <TableItem
+                  key={idx}
                   size={val.size}
                 >{`${info.educationName} ${info.educationStatus}`}</TableItem>
               );
-            return <TableItem size={val.size}>{info[val.name]}</TableItem>;
+            return (
+              <TableItem key={idx} size={val.size}>
+                {info[val.name]}
+              </TableItem>
+            );
           })}
           <C.modify_button onClick={handleMode}>수정</C.modify_button>
         </>
