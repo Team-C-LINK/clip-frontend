@@ -91,8 +91,8 @@ const ModifyModal: React.FC<RegisterModalProps> = ({
             <Image src={plus.src} alt="plus" width={10} height={10}></Image>
             사진 업로드
           </C.upload>
-          <C.selected_file $isExistFile={watch('profile').length < 5}>
-            {watch('profile').length < 5
+          <C.selected_file $isExistFile={watch('profile')?.length < 5}>
+            {watch('profile')?.length < 5
               ? `${(watch('profile')[0] as File)?.name}`
               : `선택된 파일 없음`}
           </C.selected_file>

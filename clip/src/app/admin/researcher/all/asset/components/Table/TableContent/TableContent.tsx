@@ -24,9 +24,13 @@ const TableContent: React.FC<TableContentProps> = ({ info }) => {
           setIsModalOpen={setIsModifyModalOpen}
         ></ModifyModal>
       )}
-      {TABLEINDEX_OPTION_RESEARCHER.map((option) => {
+      {TABLEINDEX_OPTION_RESEARCHER.map((option, idx) => {
         if (option.id && option.id !== 'profile')
-          return <TableItem size={option.size}>{info[option.id]}</TableItem>;
+          return (
+            <TableItem key={idx} size={option.size}>
+              {info[option.id]}
+            </TableItem>
+          );
       })}
       <Profile src={info.profile}></Profile>
       <C.modify_button onClick={handleModifyModal}>수정</C.modify_button>

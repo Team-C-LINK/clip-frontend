@@ -41,8 +41,6 @@ const ResearcherAll = () => {
     setIsRegisterModalOpen(true);
   };
 
-  console.log(window.location.pathname);
-
   return (
     <>
       <HeaderAdmin state={'연구자 관리'}></HeaderAdmin>
@@ -62,12 +60,16 @@ const ResearcherAll = () => {
         <SearchBar></SearchBar>
         <List_wrap>
           <TableIndex>
-            {TABLEINDEX_OPTION_RESEARCHER.map((val) => {
-              return <TableItem size={val.size}>{val.name}</TableItem>;
+            {TABLEINDEX_OPTION_RESEARCHER.map((val, idx) => {
+              return (
+                <TableItem key={idx} size={val.size}>
+                  {val.name}
+                </TableItem>
+              );
             })}
           </TableIndex>
-          {list?.researchers.map((val: any, idx: number) => {
-            return <TableContent info={val}></TableContent>;
+          {list?.researchers.map((val, idx: number) => {
+            return <TableContent key={val.id} info={val}></TableContent>;
           })}
           <div>
             {list &&
@@ -75,6 +77,7 @@ const ResearcherAll = () => {
                 .fill(0)
                 .map((val, idx) => (
                   <span
+                    key={idx}
                     onClick={() =>
                       (window.location.href = idx
                         ? `${window.location.href}?lastId=${
