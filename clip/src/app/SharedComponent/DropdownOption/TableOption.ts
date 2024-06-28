@@ -9,6 +9,18 @@ export const TABLEINDEX_OPTION_WITHDRAW = [
   { name: '관리', size: '15rem' },
 ];
 
+export const TABLEINDEX_OPTION_MEMBER = [
+  { name: '번호', size: '4.3rem' },
+  { name: '이름', size: '10rem' },
+  { name: '전화번호', size: '14.2rem' },
+  { name: '출생년도', size: '10rem' },
+  { name: '성별', size: '5rem' },
+  { name: '주소', size: '21rem' },
+  { name: '직업', size: '10rem' },
+  { name: '학력', size: '21rem' },
+  { name: '관리', size: '15rem' },
+];
+
 export const TABLEINDEX_OPTION_RESEARCHER = [
   { name: '번호', size: '4.3rem', id: 'id' },
   { name: '연구자 명', size: '10rem', id: 'name' },

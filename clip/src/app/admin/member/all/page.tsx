@@ -15,23 +15,25 @@ import getMemberList from '@/app/api/admin/get-memberList';
 import { useEffect, useState } from 'react';
 import GetMemberType from '@/app/type/GetMemberType';
 import MemberType from '@/app/type/Member';
-
-const test = [
-  { name: '번호', size: '4.3rem' },
-  { name: '이름', size: '10rem' },
-  { name: '전화번호', size: '14.2rem' },
-  { name: '출생년도', size: '10rem' },
-  { name: '성별', size: '5rem' },
-  { name: '주소', size: '21rem' },
-  { name: '직업', size: '10rem' },
-  { name: '학력', size: '21rem' },
-  { name: '관리', size: '15rem' },
-];
+import { useSearchParams } from 'next/navigation';
+import { TABLEINDEX_OPTION_MEMBER } from '@/app/SharedComponent/DropdownOption/TableOption';
 
 const Member = () => {
+  const params = useSearchParams();
   const [text, setText] = useRecoilState(dropdownOpenState);
   const { data: memberData } = useQuery<GetMemberType>({
-    queryKey: [],
+    queryKey: [
+      {
+        number: params.get('number'),
+        name: params.get('name'),
+        city: params.get('city'),
+        district: params.get('district'),
+        educationName: params.get('educationName'),
+        educationStatus: params.get('educationStatus'),
+        job: params.get('job'),
+        gender: params.get('gender'),
+      },
+    ],
     queryFn: getMemberList,
   });
   const [list, setList] = useState<MemberType[]>();
@@ -58,12 +60,16 @@ const Member = () => {
         <SearchBar></SearchBar>
         <List_wrap>
           <TableIndex>
-            {test.map((val) => {
-              return <TableItem size={val.size}>{val.name}</TableItem>;
+            {TABLEINDEX_OPTION_MEMBER.map((val, idx) => {
+              return (
+                <TableItem key={idx} size={val.size}>
+                  {val.name}
+                </TableItem>
+              );
             })}
           </TableIndex>
-          {list?.map((val: any, idx: number) => {
-            return <TableContent info={val}></TableContent>;
+          {list?.map((val, idx: number) => {
+            return <TableContent key={val.id} info={val}></TableContent>;
           })}
         </List_wrap>
       </Wrap>

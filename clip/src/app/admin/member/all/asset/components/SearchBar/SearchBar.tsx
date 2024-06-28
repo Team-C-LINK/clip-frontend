@@ -38,6 +38,27 @@ const SearchBar = () => {
     setSelectedOptionThird(value);
   };
 
+  const handleSearch = (e: React.MouseEvent<HTMLInputElement>) => {
+    let requestUrl = '';
+
+    if (selectedOption === '휴대폰 번호') requestUrl = `?number=${inputValue}`;
+
+    if (selectedOption === '이름') requestUrl = `?name=${inputValue}`;
+
+    if (selectedOption === '학력')
+      requestUrl = `?educationName=${selectedOptionSecond}&educationStatus=${selectedOptionThird}`;
+
+    if (selectedOption === '주소')
+      requestUrl = `?city=${selectedOptionSecond}&district=${selectedOptionThird}`;
+
+    if (selectedOption === '직업') requestUrl = `?job=${selectedOptionSecond}`;
+
+    if (selectedOption === '성별')
+      requestUrl = `?gender=${selectedOptionSecond}`;
+
+    window.location.href = requestUrl;
+  };
+
   useEffect(() => {
     if (selectedOption === '직업') setSelectedOptionSecond(JOB_LIST[0]);
     if (selectedOption === '성별') setSelectedOptionSecond(GENDER_LIST[0]);
@@ -127,7 +148,7 @@ const SearchBar = () => {
           ></SearchBarDropdown>
         </>
       )}
-      <C.search>검색</C.search>
+      <C.search onClick={handleSearch}>검색</C.search>
     </C.wrap>
   );
 };
