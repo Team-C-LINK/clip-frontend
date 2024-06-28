@@ -2,7 +2,11 @@ import { useState } from 'react';
 import generateCalendar from '@/app/utils/generateCalendar';
 
 const useCalendar = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  const [currentDate, setCurrentDate] = useState(tomorrow);
 
   const calendarList = generateCalendar(currentDate);
 

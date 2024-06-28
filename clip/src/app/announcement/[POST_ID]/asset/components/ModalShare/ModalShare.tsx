@@ -41,10 +41,6 @@ const ModalShared = ({
           공유하기
           <Cancel src={cancel.src} onClick={setModalState}></Cancel>
         </Title>
-        <Content>
-          연구와 어울리는 사람에게 공유해보세요, 지원자 선발 시 포인트를
-          지급해드립니다!
-        </Content>
         <Link_wrap>
           <Link_text ref={linkRef}>http://localhost:3000/{data}</Link_text>
           <Image
@@ -77,7 +73,7 @@ const Modal_Wrap = styled.div`
   justify-content: center;
   gap: 2.4rem;
   width: 29.2rem;
-  height: 20.8rem;
+  height: 13.6rem;
   margin: 0 auto;
   top: 0;
   left: 0;

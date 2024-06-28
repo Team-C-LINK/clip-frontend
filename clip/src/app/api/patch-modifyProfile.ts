@@ -2,8 +2,10 @@ import api from './api';
 
 type modifyProfileType = {
   profileUrl: string;
-  address: string;
-  education: string;
+  city: string;
+  district: string;
+  educationName: string;
+  educationStatus: string;
   job: string;
 };
 

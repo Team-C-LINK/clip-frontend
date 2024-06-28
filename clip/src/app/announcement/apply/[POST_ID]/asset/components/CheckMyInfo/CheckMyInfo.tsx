@@ -46,7 +46,7 @@ const CheckMyInfo = () => {
           </Info_wrap>
           <Info_wrap>
             <Index>거주지</Index>
-            <Content>{info?.address}</Content>
+            <Content>{`${info?.city} ${info?.district}`}</Content>
           </Info_wrap>
           <Info_wrap>
             <Index>전화번호</Index>

@@ -29,7 +29,7 @@ const Complete = () => {
       <C.Btn_wrap>
         <NextButton
           $size={'91.1%'}
-          onClick={() => (window.location.href = '/recruit')}
+          onClick={() => (window.location.href = '/announcement')}
         >
           로그인하기
         </NextButton>

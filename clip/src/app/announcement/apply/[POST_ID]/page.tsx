@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Divider from '@/app/SharedComponent/Divider/Divider';
 import Header from '@/app/SharedComponent/Header/Header';
 import HeaderCancel from '@/app/SharedComponent/Header/HeaderCancel/HeaderCancel';
@@ -17,13 +17,14 @@ import RequestApplyType from '@/app/type/RequestApplyType';
 import { useParams } from 'next/navigation';
 import postApplyResearch from '@/app/api/post-applyResearch';
 import ModalComplete from './asset/components/ModalComplete/ModalComplete';
-
+import { uploadS3Multiple } from '@/app/utils/uploadS3Multiple';
 const Apply = () => {
   const params = useParams();
   const [modalState, setModalState] = useState<boolean>(false);
   const [modalCompleteState, setModalCompleteState] = useState<boolean>(false);
   const [applyInfo, setApplyInfo] = useState<RequestApplyType>({
     postId: parseInt(params.POST_ID as string),
+    announcementReservationImages: [],
     scheduleId: 0,
     date: {
       date: '',
@@ -32,13 +33,22 @@ const Apply = () => {
   const handleModalState = async () => {
     if (!modalState) setModalState(true);
     else {
-      const res = await postApplyResearch(applyInfo);
-      if (res?.status === 204) {
+      const imageList = await uploadS3Multiple(
+        applyInfo?.announcementReservationImages as File[]
+      );
+      const requestData = applyInfo;
+      requestData.announcementReservationImages = imageList;
+      const res = await postApplyResearch(requestData);
+      if (res?.status === 200) {
         setModalState(false);
         setModalCompleteState(true);
       }
     }
   };
+
+  useEffect(() => {
+    console.log(applyInfo.announcementReservationImages);
+  }, [applyInfo]);
 
   return (
     <>
@@ -54,7 +64,7 @@ const Apply = () => {
         <CheckResearchInfo></CheckResearchInfo>
         <CheckMyInfo></CheckMyInfo>
         <SelectTime setApplyInfo={setApplyInfo}></SelectTime>
-        <AdditionalInfo></AdditionalInfo>
+        <AdditionalInfo setApplyInfo={setApplyInfo}></AdditionalInfo>
       </Wrap>
       {modalCompleteState && <ModalComplete></ModalComplete>}
       {modalState && <ModalSubmit setModalState={setModalState}></ModalSubmit>}

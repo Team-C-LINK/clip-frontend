@@ -16,103 +16,6 @@ import Divider from '@/app/SharedComponent/Divider/Divider';
 
 const DAYS_OF_WEEK = ['일', '월', '화', '수', '목', '금', '토'];
 
-const test = {
-  date: [
-    {
-      date: '2024-05-27',
-      dayOfWeek: '월',
-    },
-    {
-      date: '2024-05-28',
-      dayOfWeek: '화',
-    },
-    {
-      date: '2024-05-29',
-      dayOfWeek: '수',
-    },
-    {
-      date: '2024-05-30',
-      dayOfWeek: '목',
-    },
-    {
-      date: '2024-05-31',
-      dayOfWeek: '금',
-    },
-    {
-      date: '2024-06-01',
-      dayOfWeek: '토',
-    },
-    {
-      date: '2024-06-02',
-      dayOfWeek: '일',
-    },
-  ],
-  researchAvailableTimeForEachDay: [
-    {
-      dayOfWeek: '일',
-      Schedules: [
-        {
-          id: 5,
-          time: '09:00',
-        },
-        {
-          id: 6,
-          time: '10:00',
-        },
-        {
-          id: 7,
-          time: '11:00',
-        },
-        {
-          id: 8,
-          time: '12:00',
-        },
-      ],
-    },
-    {
-      dayOfWeek: '월',
-      Schedules: [],
-    },
-    {
-      dayOfWeek: '화',
-      Schedules: [],
-    },
-    {
-      dayOfWeek: '수',
-      Schedules: [],
-    },
-    {
-      dayOfWeek: '목',
-      Schedules: [],
-    },
-    {
-      dayOfWeek: '금',
-      Schedules: [],
-    },
-    {
-      dayOfWeek: '토',
-      Schedules: [
-        {
-          id: 1,
-          time: '09:00',
-        },
-        {
-          id: 2,
-          time: '10:00',
-        },
-        {
-          id: 3,
-          time: '11:00',
-        },
-        {
-          id: 4,
-          time: '12:00',
-        },
-      ],
-    },
-  ],
-};
-
 const Calendar = ({
   setApplyInfo,
 }: {
@@ -125,7 +28,7 @@ const Calendar = ({
   const [selectedDate, setSelectedDate] = useState<number>(-1);
   const [selectedTime, setSelectedTime] = useState<string>('');
   const { data: list } = useQuery<ScheduleType | undefined>({
-    queryKey: ['schedule', param.POST_ID, 2024, 4],
+    queryKey: ['schedule', param.POST_ID, 2024, 6],
     queryFn: getCheckResearchAvailableTime,
   });
 
@@ -152,14 +55,14 @@ const Calendar = ({
   };
 
   const handleSelectedTime = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    const selectedTime = e.currentTarget.innerHTML!;
+    const selectedTime = e.currentTarget.dataset.time!;
     const _scheduleId = getId(selectedTime)![0].id;
     setApplyInfo((prev) => ({ ...prev, scheduleId: _scheduleId }));
     setSelectedTime(selectedTime);
   };
 
   const getId = (time: string) => {
-    const target = test?.researchAvailableTimeForEachDay[
+    const target = list?.researchAvailableTimeForEachDay[
       selectedDayOfWeek
     ].Schedules.filter((val) => val.time === time);
     return target;
@@ -169,20 +72,22 @@ const Calendar = ({
     const dateList = list?.date.map((val) => {
       return parseInt(val.date.split('-')[1]);
     });
-    const months = dateList.filter((val, idx, arr) => arr.indexOf(val) === idx);
+    const months = dateList?.filter(
+      (val, idx, arr) => arr.indexOf(val) === idx
+    );
     return months;
   };
 
   const isExistPrevMonth = (curMonth: number) => {
-    return monthList.includes(curMonth - 1);
+    return monthList?.includes(curMonth - 1);
   };
 
   const isExistNextMonth = (curMonth: number) => {
-    return monthList.includes(curMonth + 1);
+    return monthList?.includes(curMonth + 1);
   };
 
   useEffect(() => {
-    const months = getMonths(test);
+    const months = getMonths(list!);
     setMonthList(months);
   }, [list]);
 
@@ -238,7 +143,7 @@ const Calendar = ({
             const month = date[0].toString().padStart(2, '0');
             const day = date[1]?.toString().padStart(2, '0');
             const fullDate = `${year}-${month}-${day}`;
-            const isPossibleToReserve = test.date
+            const isPossibleToReserve = list?.date
               .map((val) => val.date)
               .includes(fullDate);
 
@@ -276,7 +181,7 @@ const Calendar = ({
       {selectedDate !== -1 && (
         <AvailableTimeList
           availableTimeList={
-            test?.researchAvailableTimeForEachDay[selectedDayOfWeek]?.Schedules!
+            list?.researchAvailableTimeForEachDay[selectedDayOfWeek]?.Schedules!
           }
           selectedTime={selectedTime}
           handleSelectedTime={handleSelectedTime}

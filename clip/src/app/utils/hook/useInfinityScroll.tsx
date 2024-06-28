@@ -20,7 +20,6 @@ const useInfinityScroll = (getList: any) => {
 
   const updateList = async () => {
     const res = await getList(listPointer);
-    console.log(res);
     setRecruitList((prev) => [...prev, ...res?.announcements]);
     const nextListPointer = listPointer - DEFAULT_PAGE_SIZE;
     nextListPointer <= 0 ? setListPointer(0) : setListPointer(nextListPointer);
