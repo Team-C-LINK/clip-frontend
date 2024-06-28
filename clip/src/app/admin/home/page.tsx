@@ -13,15 +13,6 @@ const Home = () => {
     queryFn: getMemberList,
   });
 
-  const test = async () => {
-    const res = await patchModifyMember(1, 2);
-    console.log(res);
-  };
-
-  useEffect(() => {
-    console.log(list);
-  }, [list]);
-
   // useEffect(() => {
   //   const REGION = process.env.NEXT_PUBLIC_REGION;
   //   const ACESS_KEY_ID = process.env.NEXT_PUBLIC_ACCESS_KEY;
@@ -50,13 +41,7 @@ const Home = () => {
   //   });
   // }, []);
 
-  return (
-    <>
-      어드민 홈이다.
-      <div onClick={test}>테스트 버튼</div>
-      <div>{imageURL && <img src={imageURL} alt="S3 Image" />}</div>
-    </>
-  );
+  return <>어드민 홈이다.</>;
 };
 
 export default Home;

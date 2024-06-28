@@ -130,12 +130,16 @@ const Withdraw = () => {
         <SearchBar></SearchBar>
         <List_wrap>
           <TableIndex>
-            {TABLEINDEX_OPTION_WITHDRAW.map((val) => {
-              return <TableItem size={val.size}>{val.name}</TableItem>;
+            {TABLEINDEX_OPTION_WITHDRAW.map((val, idx) => {
+              return (
+                <TableItem key={idx} size={val.size}>
+                  {val.name}
+                </TableItem>
+              );
             })}
           </TableIndex>
           {list?.map((val: any, idx: number) => {
-            return <TableContent info={val}></TableContent>;
+            return <TableContent key={idx} info={val}></TableContent>;
           })}
         </List_wrap>
       </Wrap>

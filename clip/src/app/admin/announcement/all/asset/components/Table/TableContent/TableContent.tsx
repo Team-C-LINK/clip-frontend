@@ -17,11 +17,19 @@ const TableContent: React.FC<TableContentProps> = ({ info }) => {
 
   return (
     <C.wrap>
-      {TABLEINDEX_OPTION_ANNOUNCEMENT.map((option) => {
+      {TABLEINDEX_OPTION_ANNOUNCEMENT.map((option, idx) => {
         if (option.name === '상태')
-          return <TableItem size={option.size}>마감</TableItem>;
+          return (
+            <TableItem key={idx} size={option.size}>
+              마감
+            </TableItem>
+          );
         if (option.id)
-          return <TableItem size={option.size}>{info[option.id!]}</TableItem>;
+          return (
+            <TableItem key={idx} size={option.size}>
+              {info[option.id!]}
+            </TableItem>
+          );
       })}
       <C.modify_button onClick={handleModifyModal}>수정</C.modify_button>
     </C.wrap>
