@@ -30,7 +30,79 @@ const dummy = [
     reason: `탈퇴 이유입니다.`,
     withdrawDay: `2024.06.17`,
     gender: `남성`,
-    id: 1,
+    id: 2,
+    name: `이진선`,
+    number: '010-0000-0000',
+  },
+  {
+    birthYear: `1998`,
+    reason: `탈퇴 이유입니다.`,
+    withdrawDay: `2024.06.17`,
+    gender: `남성`,
+    id: 3,
+    name: `이진선`,
+    number: '010-0000-0000',
+  },
+  {
+    birthYear: `1998`,
+    reason: `탈퇴 이유입니다.`,
+    withdrawDay: `2024.06.17`,
+    gender: `남성`,
+    id: 4,
+    name: `이진선`,
+    number: '010-0000-0000',
+  },
+  {
+    birthYear: `1998`,
+    reason: `탈퇴 이유입니다.`,
+    withdrawDay: `2024.06.17`,
+    gender: `남성`,
+    id: 5,
+    name: `이진선`,
+    number: '010-0000-0000',
+  },
+  {
+    birthYear: `1998`,
+    reason: `탈퇴 이유입니다.`,
+    withdrawDay: `2024.06.17`,
+    gender: `남성`,
+    id: 6,
+    name: `이진선`,
+    number: '010-0000-0000',
+  },
+  {
+    birthYear: `1998`,
+    reason: `탈퇴 이유입니다.`,
+    withdrawDay: `2024.06.17`,
+    gender: `남성`,
+    id: 7,
+    name: `이진선`,
+    number: '010-0000-0000',
+  },
+  {
+    birthYear: `1998`,
+    reason: `탈퇴 이유입니다.`,
+    withdrawDay: `2024.06.17`,
+    gender: `남성`,
+    id: 8,
+    name: `이진선`,
+    number: '010-0000-0000',
+  },
+  {
+    birthYear: `1998`,
+    reason: `탈퇴 이유입니다.`,
+    withdrawDay: `2024.06.17`,
+    gender: `남성`,
+    id: 9,
+    name: `이진선`,
+    number: '010-0000-0000',
+  },
+  {
+    birthYear: `1998`,
+    reason: `탈퇴 이유입니다.`,
+    withdrawDay: `2024.06.17`,
+    gender: `남성`,
+    id: 10,
     name: `이진선`,
     number: '010-0000-0000',
   },
@@ -77,7 +149,7 @@ const Wrap = styled.div`
   flex-direction: column;
   gap: 2rem;
   width: 78.3%;
-  height: 100%;
+  height: fit-content;
 `;
 
 const List_wrap = styled.div`
