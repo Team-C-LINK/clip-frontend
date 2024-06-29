@@ -1,13 +1,21 @@
 import styled from 'styled-components';
 
-export const wrap = styled.div`
+export const manage_wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 2rem;
-  width: 78.3%;
+  width: 84.2%;
   height: 100%;
+`;
+
+export const wrap = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  height: 100dvh;
 `;
 
 export const list_wrap = styled.div`

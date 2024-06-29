@@ -14,6 +14,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { TABLEINDEX_OPTION_WITHDRAW } from '@/app/SharedComponent/DropdownOption/TableOption';
 import WithDrawMemberType from '@/app/type/WithdrawMemberType';
+import SideBar from '@/app/SharedComponent/Admin/SideBar/SideBar';
 
 const dummy = [
   {
@@ -121,39 +122,51 @@ const Withdraw = () => {
   return (
     <>
       <HeaderAdmin state={'회원 관리'}></HeaderAdmin>
-      <Spacer height="9rem"></Spacer>
-      <Wrap onClick={hhh}>
-        <DetailCategory
-          category="회원탈퇴"
-          detailCategory="탈퇴 회원 관리"
-        ></DetailCategory>
-        <SearchBar></SearchBar>
-        <List_wrap>
-          <TableIndex>
-            {TABLEINDEX_OPTION_WITHDRAW.map((val, idx) => {
-              return (
-                <TableItem key={idx} size={val.size}>
-                  {val.name}
-                </TableItem>
-              );
+      <Wrap>
+        <SideBar curCategory="withdraw"></SideBar>
+        <Manage_wrap onClick={hhh}>
+          <Spacer height="9rem"></Spacer>
+          <DetailCategory
+            category="회원탈퇴"
+            detailCategory="탈퇴 회원 관리"
+          ></DetailCategory>
+          <SearchBar></SearchBar>
+          <List_wrap>
+            <TableIndex>
+              {TABLEINDEX_OPTION_WITHDRAW.map((val, idx) => {
+                return (
+                  <TableItem key={idx} size={val.size}>
+                    {val.name}
+                  </TableItem>
+                );
+              })}
+            </TableIndex>
+            {list?.map((val: any, idx: number) => {
+              return <TableContent key={idx} info={val}></TableContent>;
             })}
-          </TableIndex>
-          {list?.map((val: any, idx: number) => {
-            return <TableContent key={idx} info={val}></TableContent>;
-          })}
-        </List_wrap>
+          </List_wrap>
+        </Manage_wrap>
       </Wrap>
     </>
   );
 };
 
-const Wrap = styled.div`
+const Manage_wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  width: 78.3%;
-  height: fit-content;
+  width: 84.2%;
+  height: 100%;
+`;
+
+const Wrap = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  height: 100dvh;
 `;
 
 const List_wrap = styled.div`
