@@ -1,7 +1,7 @@
 import Spacer from '../../Spacer/Spacer';
 import * as S from './SideBar.style';
 import hamburger_purple from './image/hamburger_purple.svg';
-import hamburger_gray from './image/hamburger_purple.svg';
+import hamburger_gray from './image/hamburger_gray.svg';
 import withdraw_gray from './image/withdraw_gray.svg';
 import withdraw_purple from './image/withdraw_purple.svg';
 import calendar_gray from './image/calendar_gray.svg';
@@ -45,7 +45,7 @@ const SideBar: React.FC<SideBarProps> = ({ curCategory }) => {
             <S.menu_item_text>전체 회원 관리</S.menu_item_text>
           </S.menu_item_selected>
         ) : (
-          <S.menu_item_unselected id={'all'} onClick={handleCategory}>
+          <S.menu_item_unselected id={'allMember'} onClick={handleCategory}>
             <S.menu_image src={hamburger_gray.src}></S.menu_image>
             <S.menu_item_text>전체 회원 관리</S.menu_item_text>
           </S.menu_item_unselected>
