@@ -88,11 +88,7 @@ const SearchBar = () => {
         size={'16.8rem'}
       ></SearchBarDropdown>
       {(selectedOption === '휴대폰 번호' || selectedOption === '이름') && (
-        <TextInput
-          placeholder={selectedOption}
-          value={inputValue}
-          onChange={handleInputChange}
-        ></TextInput>
+        <TextInput value={inputValue} onChange={handleInputChange}></TextInput>
       )}
       {selectedOption === '직업' && (
         <SearchBarDropdown

@@ -1,33 +1,5 @@
 import styled from 'styled-components';
 
-export const wrap = styled.div`
-  position: relative;
-  width: 100%;
-  height: 5.6rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 0px;
-  border-bottom: 1px solid ${(props) => props.theme.LINE._01};
-  border-left: 0px;
-  border-right: 0px;
-`;
-
-export const modify_button = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  justify-content: center;
-  width: 15rem;
-  height: 3.5rem;
-  font-family: 'Pretendard';
-  ${(props) => props.theme.FONT.Regular.B3};
-  background: #f7f2ff;
-  border-radius: 4px;
-`;
-
 export const tableItem_input = styled.input.attrs({ type: 'text' })`
   padding: 0px;
   width: 9.8rem;
@@ -41,52 +13,70 @@ export const tableItem_input = styled.input.attrs({ type: 'text' })`
   outline: none;
 `;
 
-export const address_wrap = styled.div`
-  display: flex;
-  width: 21rem;
-  gap: 1rem;
-  flex-direction: row;
+export const th = styled.th`
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  background-color: #f2f2f2;
 `;
 
-export const confirm = styled.div`
+export const td = styled.td`
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  ${(props) => props.theme.FONT.Regular.B3};
+
+  &:last-child {
+    display: flex;
+    height: 4.3rem;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+  }
+`;
+
+export const modify_button = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
-
-  position: relative;
-  width: 7rem;
-  height: 3.5rem;
-
-  font-family: 'Pretendard';
-  ${(props) => props.theme.FONT.Medium.B3};
-  color: ${(props) => props.theme.TEXT._04};
-
-  background: #580f9f;
-  border-radius: 4px;
-`;
-
-export const cancel = styled.div`
-  display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center;
-
-  position: relative;
-  width: 7rem;
-  height: 3.5rem;
-
-  font-family: 'Pretendard';
-  ${(props) => props.theme.FONT.Medium.B3};
-  color: ${(props) => props.theme.TEXT._01};
-
-  background: #f2f2f2;
-  border-radius: 4px;
+  width: 3rem;
+  height: 3rem;
+  background: rgba(56, 56, 56, 0.08);
+  border-radius: 0.8rem;
 `;
 
-export const confirm_cancel_wrap = styled.div`
+export const modify_mode_wrap = styled.div`
   display: flex;
-  width: 15rem;
-  gap: 1rem;
   flex-direction: row;
+  gap: 1rem;
+`;
+
+export const save_button = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  margin: 0 auto;
+  width: 4.8rem;
+  height: 3.2rem;
+
+  background: #f7f2ff;
+  border-radius: 0.8rem;
+
+  color: #580f9f;
+  ${(props) => props.theme.FONT.SemiBold.B3};
+`;
+
+export const cancel_button = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  background: rgba(56, 56, 56, 0.08);
+  border-radius: 0.8rem;
 `;

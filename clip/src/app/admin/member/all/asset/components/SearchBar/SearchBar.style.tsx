@@ -9,7 +9,6 @@ export const wrap = styled.div`
   align-items: center;
   justify-content: right;
   gap: 2rem;
-  background-color: #f9fafc;
 `;
 
 export const search = styled.div`
@@ -23,8 +22,8 @@ export const search = styled.div`
   color: ${(props) => props.theme.TEXT._04};
 
   position: relative;
-  width: 9.2rem;
-  height: 4rem;
+  width: 5.6rem;
+  height: 4.2rem;
 
   background: #1d2939;
   border-radius: 0.4rem;

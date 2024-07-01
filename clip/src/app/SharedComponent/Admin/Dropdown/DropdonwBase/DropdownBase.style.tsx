@@ -16,7 +16,7 @@ export const DropdownBase = styled.div`
   background: url(${downArrow.src}) no-repeat right 1.3rem center;
   background-color: ${(props) => props.theme.BACKGROUND._02};
 
-  border: 0.1rem solid #d9d9d9;
+  border: 0.1rem solid #828282;
   border-radius: 0.4rem;
 
   font-family: 'Pretendard';
