@@ -28,7 +28,7 @@ const Wrap = styled.div`
   flex-direction: row;
   align-items: center;
   font-family: 'Pretendard';
-  ${(props) => props.theme.FONT.Regular.B1};
+  ${(props) => props.theme.FONT.Header.H4};
 `;
 
 export default DetailCategory;
