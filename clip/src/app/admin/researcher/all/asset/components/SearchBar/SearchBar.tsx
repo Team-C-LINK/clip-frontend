@@ -1,7 +1,7 @@
 import * as C from './SearchBar.style';
 import React, { useEffect, useState } from 'react';
 
-import TextInput from './TextInput/TextInput';
+import Search_input from './TextInput/TextInput';
 import { useSearchParams } from 'next/navigation';
 
 const SearchBar = () => {
@@ -24,12 +24,12 @@ const SearchBar = () => {
 
   return (
     <C.wrap>
-      <TextInput
-        placeholder={'연구자 이름'}
+      <Search_input
+        placeholder={'연구자 검색하기'}
         value={inputValue}
         onChange={handleInputChange}
         onKeyUp={handleEnter}
-      ></TextInput>
+      ></Search_input>
       <C.search onClick={search}>검색</C.search>
     </C.wrap>
   );

@@ -27,5 +27,4 @@ export const search = styled.div`
 
   background: #1d2939;
   border-radius: 0.4rem;
-  margin-right: 2.5rem;
 `;

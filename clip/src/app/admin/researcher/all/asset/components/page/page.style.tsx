@@ -4,7 +4,7 @@ export const manage_wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 0rem;
   width: 84.2%;
   height: 100%;
 `;
@@ -36,8 +36,15 @@ export const register_new_researcher = styled.div`
   right: 0rem;
   width: 14.2rem;
   height: 4.2rem;
+  top: 10rem;
   background: #ffffff;
   border: 1px solid #d9d9d9;
   border-radius: 10rem;
   cursor: pointer;
+`;
+
+export const total = styled.span`
+  position: absolute;
+  top: 20rem;
+  ${(props) => props.theme.FONT.Regular.B3};
 `;

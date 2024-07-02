@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import searchIcon from '@/app/admin/asset/image/searchIcon.svg';
-import Image from 'next/image';
 interface PhoneNumberInputProps {
   value: string;
   onChange: (value: string) => void;

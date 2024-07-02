@@ -69,7 +69,6 @@ const Manage_wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   width: 84.2%;
   height: 100%;
 `;
@@ -91,7 +90,7 @@ const List_wrap = styled.div`
 
 const Total = styled.span`
   position: absolute;
-  top: 22rem;
+  top: 20rem;
   ${(props) => props.theme.FONT.Regular.B3};
 `;
 
