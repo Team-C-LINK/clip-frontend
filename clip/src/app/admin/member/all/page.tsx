@@ -1,6 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
+import * as Manage from '@/app/admin/asset/components/Manage/Manage.style';
 import DetailCategory from '@/app/SharedComponent/Admin/DetailCategory/DetailCategory';
 import SearchBar from './asset/components/SearchBar/SearchBar';
 import HeaderAdmin from '@/app/SharedComponent/Header/HeaderAdmin/HeaderAdmin';
@@ -49,38 +50,23 @@ const Member = () => {
   return (
     <>
       <HeaderAdmin state={'회원 관리'}></HeaderAdmin>
-      <Wrap>
+      <Manage.wrap>
         <SideBar curCategory={'allMember'}></SideBar>
-        <Manage_wrap onClick={hhh}>
-          <Spacer height="9rem"></Spacer>
-          <DetailCategory category="전체 회원 관리"></DetailCategory>
-          <SearchBar></SearchBar>
-          <Total>Total : {list?.length}</Total>
-          <List_wrap>
-            <Table info={list} />
-          </List_wrap>
-        </Manage_wrap>
-      </Wrap>
+        <Manage.manage_wrap onClick={hhh}>
+          <Manage.manage_wrap_inner>
+            <Spacer height="9rem"></Spacer>
+            <DetailCategory category="전체 회원 관리"></DetailCategory>
+            <SearchBar></SearchBar>
+            <Total>Total : {list?.length}</Total>
+            <List_wrap>
+              <Table info={list} />
+            </List_wrap>
+          </Manage.manage_wrap_inner>
+        </Manage.manage_wrap>
+      </Manage.wrap>
     </>
   );
 };
-
-const Manage_wrap = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 84.2%;
-  height: 100%;
-`;
-
-const Wrap = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  width: 100%;
-  height: 100dvh;
-`;
 
 const List_wrap = styled.div`
   position: relative;

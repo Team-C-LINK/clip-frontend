@@ -1,19 +1,26 @@
 import styled from 'styled-components';
 
-export const manage_wrap = styled.div`
+export const manage_wrap_inner = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0rem;
-  width: 84.2%;
+  width: 95%;
   height: 100%;
+`;
+
+export const manage_wrap = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
 `;
 
 export const wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+
   width: 100%;
   height: 100dvh;
 `;
