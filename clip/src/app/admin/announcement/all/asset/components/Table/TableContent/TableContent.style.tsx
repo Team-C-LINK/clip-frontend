@@ -20,11 +20,12 @@ export const modify_button = styled.div`
   justify-content: space-between;
   align-items: center;
   justify-content: center;
-  width: 8rem;
-  height: 3.5rem;
+  width: 3rem;
+  margin: auto;
+  height: 3rem;
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.Regular.B3};
-  background: #f7f2ff;
+  background: rgba(56, 56, 56, 0.08);
   border-radius: 4px;
 `;
 
