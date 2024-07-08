@@ -28,20 +28,6 @@ export const modify_button = styled.div`
   border-radius: 4px;
 `;
 
-export const profile_button = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  justify-content: center;
-  width: 10rem;
-  height: 3.5rem;
-  font-family: 'Pretendard';
-  ${(props) => props.theme.FONT.Regular.B3};
-  background: ${(props) => props.theme.BACKGROUND._01};
-  border-radius: 4px;
-`;
-
 export const tableItem_input = styled.input.attrs({ type: 'text' })`
   padding: 0px;
   width: 9.8rem;
@@ -52,42 +38,17 @@ export const tableItem_input = styled.input.attrs({ type: 'text' })`
   border-radius: 4px;
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.Regular.B3};
-  outline: none;
+  outline: none;0
 `;
 
-export const address_wrap = styled.div`
-  display: flex;
-  width: 21rem;
-  gap: 1rem;
-  flex-direction: row;
-`;
+export const td = styled.td`
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  ${(props) => props.theme.FONT.Regular.B3};
 
-export const profile_wrap = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  position: absolute;
-  box-sizing: border-box;
-
-  width: 15rem;
-  height: 15rem;
-
-  background: #ffffff;
-  border: 1px solid #d9d9d9;
-
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14), 0px 0px 2px rgba(0, 0, 0, 0.12);
-  border-radius: 16px;
-  z-index: 2;
-`;
-
-export const profile_img = styled.img`
-  position: relative;
-  background: url(${(props) => props.src});
-
-  width: 12.3rem;
-  height: 12.3rem;
-
-  border-radius: 0.4rem;
+  &:last-child {
+    height: 4.3rem;
+    text-align: center;
+  }
 `;

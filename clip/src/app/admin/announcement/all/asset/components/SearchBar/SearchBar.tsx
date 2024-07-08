@@ -13,6 +13,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ setList }) => {
   const params = useSearchParams();
   const [inputValue, setInputValue] = useState('');
   const category = params.get('announcementType');
+
   const handleInputChange = (value: string) => {
     setInputValue(value);
   };
