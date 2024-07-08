@@ -9,7 +9,6 @@ export const wrap = styled.div`
   align-items: center;
   justify-content: right;
   gap: 2rem;
-  background-color: #f9fafc;
 `;
 
 export const search = styled.div`
@@ -28,5 +27,4 @@ export const search = styled.div`
 
   background: #1d2939;
   border-radius: 0.4rem;
-  margin-right: 2.5rem;
 `;

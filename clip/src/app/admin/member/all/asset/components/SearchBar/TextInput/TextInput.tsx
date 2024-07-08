@@ -1,26 +1,16 @@
 import styled from 'styled-components';
-
+import searchIcon from '@/app/admin/asset/image/searchIcon.svg';
 interface PhoneNumberInputProps {
   value: string;
   onChange: (value: string) => void;
-  placeholder: string;
 }
 
-const TextInput: React.FC<PhoneNumberInputProps> = ({
-  value,
-  onChange,
-  placeholder,
-}) => {
-  const test: { [key: string]: string } = {
-    '휴대폰 번호': '010-0000-0000',
-    이름: '이름 입력',
-  };
-
+const TextInput: React.FC<PhoneNumberInputProps> = ({ value, onChange }) => {
   return (
     <Search_input
       type="text"
       value={value}
-      placeholder={test[placeholder]}
+      placeholder={'검색하기'}
       onChange={(e) => onChange(e.target.value)}
     />
   );
@@ -28,16 +18,20 @@ const TextInput: React.FC<PhoneNumberInputProps> = ({
 
 const Search_input = styled.input.attrs({ type: 'text' })`
   position: relative;
-  width: 25.7rem;
-  height: 4rem;
+  width: 34.6rem;
+  height: 3.8rem;
   border: 0;
   padding-left: 1.5rem;
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   ${(props) => props.theme.FONT.Medium.B3};
+  background-image: url(${searchIcon.src});
+  background-position: 1rem center;
+  background-repeat: no-repeat;
   text-align: center;
   color: #252525;
   outline: none;
-  border-bottom: 0.1rem solid #d9d9d9;
+  border: 0.1rem solid #828282;
+  border-radius: 0.4rem;
 `;
 
 export default TextInput;

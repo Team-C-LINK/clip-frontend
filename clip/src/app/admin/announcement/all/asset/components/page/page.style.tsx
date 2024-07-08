@@ -1,28 +1,14 @@
 import styled from 'styled-components';
 
-export const manage_wrap = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  width: 84.2%;
-  height: 100%;
-`;
-
-export const wrap = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  width: 100%;
-  height: 100dvh;
-`;
-
 export const list_wrap = styled.div`
   position: relative;
   width: 100%;
+  height: 69rem;
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  padding: 0.1rem;
+  margin-top: 1.5rem;
 `;
 
 export const register_new_researcher = styled.div`
@@ -35,6 +21,7 @@ export const register_new_researcher = styled.div`
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.SemiBold.B3};
   right: 0rem;
+  top: 10rem;
   width: 14.2rem;
   height: 4.2rem;
   background: #ffffff;
@@ -119,4 +106,10 @@ export const filter_item_selected = styled.div`
   flex: none;
   order: 1;
   flex-grow: 0;
+`;
+
+export const total = styled.span`
+  position: absolute;
+  top: 20rem;
+  ${(props) => props.theme.FONT.Regular.B3};
 `;

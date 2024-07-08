@@ -1,9 +1,8 @@
-import styled from 'styled-components';
-import TableItem from '../TableItem/TableIndexItem';
 import { useEffect, useState } from 'react';
-import * as C from './TableContent.style';
+import * as S from './TableContent.style';
 import ResearcherInfoType from '@/app/type/ResearcherInfoType';
-import { TABLEINDEX_OPTION_RESEARCHER } from '@/app/SharedComponent/DropdownOption/TableOption';
+import Image from 'next/image';
+import modifyIcon from '@/app/admin/member/all/asset/image/modifyIcon.svg';
 import ModifyModal from '../../ModifyModal/ModifyModal';
 type TableContentProps = {
   info: ResearcherInfoType;
@@ -17,24 +16,35 @@ const TableContent: React.FC<TableContentProps> = ({ info }) => {
   };
 
   return (
-    <C.wrap>
+    <>
       {isModifyModalOpen && (
         <ModifyModal
           info={info}
           setIsModalOpen={setIsModifyModalOpen}
         ></ModifyModal>
       )}
-      {TABLEINDEX_OPTION_RESEARCHER.map((option, idx) => {
-        if (option.id && option.id !== 'profile')
-          return (
-            <TableItem key={idx} size={option.size}>
-              {info[option.id]}
-            </TableItem>
-          );
-      })}
-      <Profile src={info.profile}></Profile>
-      <C.modify_button onClick={handleModifyModal}>수정</C.modify_button>
-    </C.wrap>
+      <tr key={info.id}>
+        <S.td>{info.id}</S.td>
+        <S.td>{info.name}</S.td>
+        <S.td>{info.affiliation}</S.td>
+        <S.td>{info.email}</S.td>
+        <S.td>{info.researchField}</S.td>
+        <S.td>{info.detailAddress}</S.td>
+        <S.td>
+          <Profile src={info.profile}></Profile>
+        </S.td>
+        <S.td>
+          <S.modify_button onClick={handleModifyModal}>
+            <Image
+              src={modifyIcon.src}
+              alt="modifyIcon"
+              width={17}
+              height={17}
+            ></Image>
+          </S.modify_button>
+        </S.td>
+      </tr>
+    </>
   );
 };
 
@@ -43,17 +53,17 @@ const Profile = ({ src }: { src: string }) => {
 
   return (
     <>
-      <C.profile_button
+      <S.profile_button
         onMouseEnter={() => setIsOpeon(true)}
         onMouseLeave={() => setIsOpeon(false)}
       >
-        보기
+        미리 보기
         {isOpen && (
-          <C.profile_wrap>
-            <C.profile_img src={src} />
-          </C.profile_wrap>
+          <S.profile_wrap>
+            <S.profile_img src={src} />
+          </S.profile_wrap>
         )}
-      </C.profile_button>
+      </S.profile_button>
     </>
   );
 };

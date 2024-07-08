@@ -3,8 +3,8 @@ import arrow_black from '../../asset/image/arrow_right_black.svg';
 import Image from 'next/image';
 
 interface DetailCategoryProps {
-  category: string;
-  detailCategory: string;
+  category?: string;
+  detailCategory?: string;
 }
 
 const DetailCategory: React.FC<DetailCategoryProps> = ({
@@ -14,14 +14,7 @@ const DetailCategory: React.FC<DetailCategoryProps> = ({
   return (
     <Wrap>
       {category}
-      &nbsp; &nbsp;
-      <Image
-        src={arrow_black.src}
-        alt="arrow_black"
-        width={12}
-        height={12}
-      ></Image>
-      &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp;
       {detailCategory}
     </Wrap>
   );
@@ -35,7 +28,7 @@ const Wrap = styled.div`
   flex-direction: row;
   align-items: center;
   font-family: 'Pretendard';
-  ${(props) => props.theme.FONT.Regular.B1};
+  ${(props) => props.theme.FONT.Header.H4};
 `;
 
 export default DetailCategory;
