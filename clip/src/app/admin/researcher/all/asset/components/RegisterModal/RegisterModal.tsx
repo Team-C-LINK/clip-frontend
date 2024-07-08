@@ -96,8 +96,6 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ setIsModalOpen }) => {
                 : `선택된 파일 없음`}
             </C.selected_file>
           </C.upload_wrap>
-
-          <Spacer height="3rem"></Spacer>
         </C.left_wrap>
         <C.left_wrap>
           <Spacer height="8rem"></Spacer>

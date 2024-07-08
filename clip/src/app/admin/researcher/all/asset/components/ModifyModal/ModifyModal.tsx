@@ -9,7 +9,8 @@ import { uploadS3 } from '@/app/utils/hook/uploadS3';
 import putModifyResearcher from '@/app/api/admin/put-modifyResearcher';
 import RegisterResearcherType from '@/app/type/RegisterResearcherType';
 import ResearcherInfoType from '@/app/type/ResearcherInfoType';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import previewImage from '../../image/preview.svg';
 
 type RegisterModalProps = {
   setIsModalOpen: React.Dispatch<boolean>;
@@ -20,6 +21,7 @@ const ModifyModal: React.FC<RegisterModalProps> = ({
   setIsModalOpen,
   info,
 }) => {
+  const [preview, setPreview] = useState<string>('');
   const { register, watch, setValue } = useForm<RegisterResearcherType>({
     mode: 'onChange',
     defaultValues: {
@@ -46,7 +48,21 @@ const ModifyModal: React.FC<RegisterModalProps> = ({
 
   useEffect(() => {
     for (const key in info) setValue(key, info[key]);
+    setPreview(info.profile);
   }, [info]);
+
+  useEffect(() => {
+    if (watch('profile')?.length < 5) {
+      const file = (watch('profile') as File[])[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setPreview(reader.result?.toString() as string);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  }, [watch('profile')]);
 
   return (
     <>
@@ -54,51 +70,72 @@ const ModifyModal: React.FC<RegisterModalProps> = ({
         <Image src={plus.src} alt="plus" width={10} height={10}></Image>
       </C.black_background>
       <C.wrap>
-        <C.title>연구자 정보 수정</C.title>
-        <C.cancel_button onClick={handleModalState}>
-          <Image src={cancel.src} alt="plus" width={12} height={12}></Image>
-        </C.cancel_button>
-        <Divider $size="100%"></Divider>
-        <Spacer height="3rem"></Spacer>
-        <C.input_wrap>
-          <C.index>연구자 명</C.index> <C.input {...register('name')}></C.input>
-        </C.input_wrap>
-        <C.input_wrap>
-          <C.index>연구자 소속</C.index>
-          <C.input {...register('affiliation')}></C.input>
-        </C.input_wrap>
-        <C.input_wrap>
-          <C.index>이메일</C.index> <C.input {...register('email')}></C.input>
-        </C.input_wrap>
-        <C.input_wrap>
-          <C.index>연구 분야</C.index>
-          <C.input {...register('researchField')}></C.input>
-        </C.input_wrap>
-        <C.input_wrap>
-          <C.index>대표 주소</C.index>
-          <C.input {...register('detailAddress')}></C.input>
-        </C.input_wrap>
-        <Spacer height="3rem"></Spacer>
-        <C.input_wrap>
-          <input
-            {...register('profile')}
-            id="profile"
-            type="file"
-            accept="image/*"
-            hidden={true}
-          ></input>
-          <C.upload htmlFor="profile">
-            <Image src={plus.src} alt="plus" width={10} height={10}></Image>
-            사진 업로드
-          </C.upload>
-          <C.selected_file $isExistFile={watch('profile')?.length < 5}>
-            {watch('profile')?.length < 5
-              ? `${(watch('profile')[0] as File)?.name}`
-              : `선택된 파일 없음`}
-          </C.selected_file>
-        </C.input_wrap>
-        <Spacer height="3rem"></Spacer>
-        <C.sumbit onClick={submit}>완료하기</C.sumbit>
+        <C.title>
+          연구자 정보 수정
+          <C.cancel_button onClick={handleModalState}>
+            <Image src={cancel.src} alt="plus" width={12} height={12}></Image>
+          </C.cancel_button>
+        </C.title>
+        <C.left_wrap>
+          <Spacer height="8rem"></Spacer>
+          <C.preview $previewSrc={preview ? preview : ''}>
+            {preview ? null : (
+              <>
+                <Image
+                  src={previewImage.src}
+                  alt="preview"
+                  width={24}
+                  height={24}
+                ></Image>
+                미리보기 없음
+              </>
+            )}
+          </C.preview>
+          <C.upload_wrap>
+            <input
+              {...register('profile')}
+              id="profile"
+              type="file"
+              accept="image/*"
+              hidden={true}
+            ></input>
+            <C.upload htmlFor="profile">
+              <Image src={plus.src} alt="plus" width={10} height={10}></Image>
+              사진 업로드
+            </C.upload>
+            <C.selected_file $isExistFile={watch('profile')?.length < 5}>
+              {watch('profile')?.length < 5
+                ? `${(watch('profile')[0] as File)?.name}`
+                : `선택된 파일 없음`}
+            </C.selected_file>
+          </C.upload_wrap>
+        </C.left_wrap>
+        <C.left_wrap>
+          <Spacer height="8rem"></Spacer>
+          <C.input_wrap>
+            <C.index>연구자 명</C.index>
+            <C.input {...register('name')}></C.input>
+          </C.input_wrap>
+          <C.input_wrap>
+            <C.index>연구자 소속</C.index>
+            <C.input {...register('affiliation')}></C.input>
+          </C.input_wrap>
+          <C.input_wrap>
+            <C.index>이메일</C.index> <C.input {...register('email')}></C.input>
+          </C.input_wrap>
+          <C.input_wrap>
+            <C.index>연구 분야</C.index>
+            <C.input {...register('researchField')}></C.input>
+          </C.input_wrap>
+          <C.input_wrap>
+            <C.index>대표 주소</C.index>
+            <C.input {...register('detailAddress')}></C.input>
+          </C.input_wrap>
+          <C.button_wrap>
+            <C.cancel_gray onClick={handleModalState}>취소하기</C.cancel_gray>
+            <C.sumbit onClick={submit}>완료하기</C.sumbit>
+          </C.button_wrap>
+        </C.left_wrap>
       </C.wrap>
     </>
   );

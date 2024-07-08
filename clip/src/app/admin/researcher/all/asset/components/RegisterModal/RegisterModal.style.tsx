@@ -37,8 +37,8 @@ export const wrap = styled.div`
   position: absolute;
   width: 80rem;
   height: 65.6rem;
-  left: calc(50% - 52rem / 2);
-  top: calc(50% - 65rem / 2);
+  left: calc(50% - 80rem / 2);
+  top: calc(50% - 65.6rem / 2);
 
   background: #ffffff;
 
