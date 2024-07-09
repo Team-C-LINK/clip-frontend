@@ -4,10 +4,9 @@ export const wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 77%;
   height: 100dvh;
-  justify-content: center;
-  gap: 3rem;
+  gap: 2.5rem;
   background: #f9fafc;
 `;
 
@@ -17,7 +16,7 @@ export const left_wrap = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 2.6rem;
-  width: 50%;
+  width: 65%;
   height: 70%;
   top: 10rem;
   background-color: #fff;
@@ -25,7 +24,7 @@ export const left_wrap = styled.div`
 `;
 export const right_wrap = styled.div`
   position: relative;
-  width: 26.6%;
+  width: 35%;
   height: 70%;
   top: 10rem;
   background-color: #fff;
