@@ -1,6 +1,6 @@
 import * as S from '@/app/admin/announcement/write/asset/components/Header/Header.style';
 import clip from '../../image/clip.svg';
-import calendarImage from '@/app/admin/announcement/write/asset/image/calendar_gray.svg';
+import calendarImage from '@/app/admin/announcement/write/asset/image/calendar_check_gray.svg';
 import arrow_right from '@/app/admin/announcement/write/asset/image/arrow_right.svg';
 import Image from 'next/image';
 

@@ -4,7 +4,7 @@ export const wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 77%;
+  width: fit-content;
   height: 100dvh;
   gap: 2.5rem;
   background: #f9fafc;
@@ -16,19 +16,31 @@ export const left_wrap = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 2.6rem;
-  width: 65%;
-  height: 70%;
+  width: 72rem;
+  height: 85%;
   top: 10rem;
   background-color: #fff;
   border-radius: 0.4rem;
 `;
 export const right_wrap = styled.div`
   position: relative;
-  width: 35%;
-  height: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 38.4rem;
+  height: 85%;
   top: 10rem;
   background-color: #fff;
   border-radius: 0.4rem;
+`;
+
+export const right_wrap_inner = styled.div`
+  position: relative;
+  display: flex;
+  top: 4rem;
+  width: 33.6rem;
+  flex-direction: column;
+  gap: 2.6rem;
 `;
 
 export const input_wrap = styled.div`
@@ -75,6 +87,29 @@ export const input = styled.input.attrs({ type: 'text' })`
   outline: none;
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.Medium.B3};
+`;
+
+export const input_calendar = styled.input.attrs({ type: 'text' })`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  position: relative;
+  width: ${(props) => props.width};
+  height: 4.4rem;
+  background: #ffffff;
+
+  background-image: url(${(props) => props.src});
+  background-position: 30rem center;
+  background-repeat: no-repeat;
+  padding: 1.2rem 1.5rem;
+
+  border: 0.1rem solid #828282;
+  border-radius: 0.4rem;
+  outline: none;
+  font-family: 'Pretendard';
+  ${(props) => props.theme.FONT.Regular.B2};
 `;
 
 export const input_list = styled.div`
