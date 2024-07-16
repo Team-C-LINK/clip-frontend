@@ -12,7 +12,21 @@ import right from './asset/image/right.svg';
 
 const DAYS_OF_WEEK = ['일', '월', '화', '수', '목', '금', '토'];
 
-const CalendarModal = () => {
+interface CalendarModalProps {
+  isCalendarModalOpen: boolean;
+  setStartDate: React.Dispatch<any>;
+  setEndDate: React.Dispatch<any>;
+  startDate: any;
+  endDate: any;
+}
+
+const CalendarModal: React.FC<CalendarModalProps> = ({
+  isCalendarModalOpen,
+  setStartDate,
+  setEndDate,
+  startDate,
+  endDate,
+}) => {
   const param = useParams();
   const { calendarList, currentDate, setCurrentDate } = useCalendar();
   const [selectedDayOfWeek, setSelectedDayOfWeek] = useState<number>(-1);
@@ -23,9 +37,20 @@ const CalendarModal = () => {
     queryFn: getCheckResearchAvailableTime,
   });
 
-  const handleCalendarItem = (
-    e: React.MouseEvent<HTMLElement, MouseEvent>
-  ) => {};
+  const handleCalendarItem = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const targetDate = parseInt(
+      `${e.currentTarget.dataset.year}${e.currentTarget.dataset.month}${e.currentTarget.dataset.day}`
+    );
+
+    if (!startDate) setStartDate(targetDate);
+    else {
+      if (targetDate < startDate) {
+        setStartDate(targetDate);
+        setEndDate('');
+      }
+      if (targetDate > startDate) setEndDate(targetDate);
+    }
+  };
 
   const getMonths = (list: ScheduleType) => {
     const dateList = list?.date.map((val) => {
@@ -37,24 +62,48 @@ const CalendarModal = () => {
     return months;
   };
 
+  const isDisableDate = (month: number, day: number) => {
+    const today = new Date();
+    return today.getMonth() === month && day < today.getDate();
+  };
+
+  const isSelectedDate = (year: string, month: string, day: string) => {
+    return (
+      year + month + day === startDate?.toString() ||
+      year + month + day === endDate?.toString()
+    );
+  };
+
+  const isMiddleDate = (year: string, month: string, day: string) => {
+    const targetDate = parseInt(year + month + day);
+
+    if (startDate < targetDate && targetDate < endDate) return true;
+
+    return false;
+  };
+
   useEffect(() => {
     const months = getMonths(list!);
     setMonthList(months);
   }, [list]);
 
   return (
-    <S.wrap>
+    <S.wrap $isOpen={isCalendarModalOpen}>
       <S.month_select_wrap>
         <S.month_select_wrap_inner>
-          <Image
-            src={left.src}
-            alt="left"
-            width={15}
-            height={15}
-            onClick={() => {
-              setCurrentDate(subMonths(currentDate, 1));
-            }}
-          ></Image>
+          {currentDate.getMonth() === new Date().getMonth() ? (
+            <S.dummy_div></S.dummy_div>
+          ) : (
+            <Image
+              src={left.src}
+              alt="right"
+              width={15}
+              height={15}
+              onClick={() => {
+                setCurrentDate(subMonths(currentDate, +1));
+              }}
+            />
+          )}
           <div>
             <span>{currentDate.getFullYear()}.</span>
             <span>{currentDate.getMonth() + 1}</span>
@@ -87,25 +136,48 @@ const CalendarModal = () => {
             const showingDay =
               curMonth + 1 === parseInt(month) ? date[1] : null;
 
-            if (selectedDate === date[1])
+            if (!showingDay)
+              return <S.Calendar_unselected_item></S.Calendar_unselected_item>;
+
+            if (isDisableDate(date[0] - 1, date[1]))
+              return (
+                <S.Calendar_disable_item key={idx * 7 + idx2}>
+                  {showingDay}
+                </S.Calendar_disable_item>
+              );
+
+            if (isSelectedDate(year.toString(), month, day))
               return (
                 <S.Calendar_selected_item key={idx * 7 + idx2}>
                   {showingDay}
                 </S.Calendar_selected_item>
               );
-            else
+
+            if (isMiddleDate(year.toString(), month, day))
               return (
-                <S.Calendar_unselected_item
+                <S.Calendar_middle_item
                   key={idx * 7 + idx2}
                   onClick={handleCalendarItem}
-                  data-dayofweek={`${idx2}`}
                   data-year={year}
                   data-month={month}
                   data-day={day}
                 >
                   {showingDay}
-                </S.Calendar_unselected_item>
+                </S.Calendar_middle_item>
               );
+
+            return (
+              <S.Calendar_unselected_item
+                key={idx * 7 + idx2}
+                onClick={handleCalendarItem}
+                data-dayofweek={`${idx2}`}
+                data-year={year}
+                data-month={month}
+                data-day={day}
+              >
+                {showingDay}
+              </S.Calendar_unselected_item>
+            );
           });
           return weekItem;
         })}

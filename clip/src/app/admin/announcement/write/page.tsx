@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import * as S from '@/app/admin/announcement/write/page.style';
 import HeaderWrite from './asset/components/Header/Header';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
@@ -10,10 +11,23 @@ import { useForm } from 'react-hook-form';
 import CalendarModal from './asset/components/CalendarModal/CalendarModal';
 import calendar_gray from '@/app/admin/announcement/write/asset/image/calendar_gray.svg';
 import Calendar from './asset/components/Calendar/Calendar';
-import Divider from '@/app/SharedComponent/Divider/Divider';
 
 const Write = () => {
   const { register } = useForm();
+  const [isCalendarModalOpen, setIsCalendarModalOpen] =
+    useState<boolean>(false);
+  const [test, setTest] = useState('');
+  const [startDate, setStartDate] = useState<any>('');
+  const [endDate, setEndDate] = useState<any>('');
+
+  const handleCalendarModal = (e: React.MouseEvent<HTMLInputElement>) => {
+    if (e.currentTarget === e.target)
+      setIsCalendarModalOpen(!isCalendarModalOpen);
+  };
+
+  useEffect(() => {
+    if (startDate || endDate) setTest(`${startDate}      /     ${endDate}`);
+  }, [startDate, endDate]);
 
   return (
     <>
@@ -91,24 +105,24 @@ const Write = () => {
             <S.input_wrap>
               <S.index>시작일 / 마감일 *</S.index>
               <S.input_calendar
-                {...(register('replace'),
-                {
-                  placeholder: 'YYYY.MM.DD      /     YYYY.MM.DD',
-                })}
                 src={calendar_gray.src}
+                placeholder="YYYY.MM.DD      /     YYYY.MM.DD"
                 width={'33.6rem'}
+                onClick={handleCalendarModal}
+                value={test}
               ></S.input_calendar>
+              {isCalendarModalOpen && (
+                <CalendarModal
+                  isCalendarModalOpen={isCalendarModalOpen}
+                  setStartDate={setStartDate}
+                  setEndDate={setEndDate}
+                  startDate={startDate}
+                  endDate={endDate}
+                ></CalendarModal>
+              )}
             </S.input_wrap>
             <Calendar></Calendar>
-            <Divider $size="100%"></Divider>
-            <S.input
-              {...(register('replace'),
-              {
-                placeholder: '시간 설정하기',
-              })}
-              src={searchIcon.src}
-              width={'100%'}
-            ></S.input>
+            <Spacer height="10rem"></Spacer>
           </S.right_wrap_inner>
         </S.right_wrap>
       </S.wrap>

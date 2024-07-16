@@ -5,7 +5,7 @@ export const wrap = styled.div`
   display: flex;
   flex-direction: row;
   width: fit-content;
-  height: 100dvh;
+  height: fit-content;
   gap: 2.5rem;
   background: #f9fafc;
 `;
@@ -17,7 +17,7 @@ export const left_wrap = styled.div`
   align-items: center;
   gap: 2.6rem;
   width: 72rem;
-  height: 85%;
+  height: 77.4rem;
   top: 10rem;
   background-color: #fff;
   border-radius: 0.4rem;
@@ -28,7 +28,7 @@ export const right_wrap = styled.div`
   flex-direction: row;
   justify-content: center;
   width: 38.4rem;
-  height: 85%;
+  height: fit-content;
   top: 10rem;
   background-color: #fff;
   border-radius: 0.4rem;
@@ -39,6 +39,7 @@ export const right_wrap_inner = styled.div`
   display: flex;
   top: 4rem;
   width: 33.6rem;
+  height: fit-content;
   flex-direction: column;
   gap: 2.6rem;
 `;

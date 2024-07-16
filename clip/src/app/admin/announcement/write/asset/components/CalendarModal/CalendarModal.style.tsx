@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 
-export const wrap = styled.div`
+export const wrap = styled.div<{ $isOpen: boolean }>`
   box-sizing: border-box;
-  position: relative;
-  display: flex;
+  position: absolute;
+  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  z-index: 2;
+  top: 8rem;
   width: 27.7rem;
   height: 27.55rem;
-
   background: #ffffff;
   border: 0.758929px solid #d9d9d9;
   box-shadow: 0px 6.07143px 9.10714px 4.55357px rgba(0, 0, 0, 0.15),
@@ -30,6 +31,20 @@ export const Calendar_wrap = styled.div`
   height: fit-content;
   gap: 1rem;
 `;
+
+export const Calendar_middle_item = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 2.277rem;
+  width: 2.277rem;
+
+  color: ${(props) => props.theme.TEXT._01};
+  background: ${(props) => props.theme.PURPLE._04};
+`;
+
 export const Calendar_unselected_item = styled.div`
   position: relative;
   display: flex;
