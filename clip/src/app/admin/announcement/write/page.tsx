@@ -15,6 +15,8 @@ import ResearcherModal from './asset/components/ResearcherModal/ResearcherModal'
 import { useRecoilState } from 'recoil';
 import { ModalState } from './asset/Atoms/ModalState';
 import { selectedResearcherState } from './asset/Atoms/jwtAtom';
+import plus from '@/app/admin/researcher/all/asset/image/plus.svg';
+import cancel from '@/app/admin/announcement/write/asset/image/cancel.svg';
 
 const Write = () => {
   const { register } = useForm();
@@ -26,6 +28,9 @@ const Write = () => {
   const [selectedResearcher, setSelectedResearcher] = useRecoilState(
     selectedResearcherState
   );
+
+  const [screeningInput, setScreeningInput] = useState<string[]>(['']);
+
   const [isResearcherModalStateOn, setIsResearcherModalStateOn] =
     useRecoilState(ModalState);
 
@@ -37,6 +42,16 @@ const Write = () => {
   const handleResearcherModalState = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget === e.target)
       setIsResearcherModalStateOn(!isResearcherModalStateOn);
+  };
+
+  const addScreeningInput = () => {
+    setScreeningInput([...screeningInput, '']);
+  };
+
+  const handleEraseScreeningInput = (index: number) => {
+    const copiedArray = screeningInput.slice();
+    copiedArray.splice(index, 1);
+    setScreeningInput(copiedArray);
   };
 
   useEffect(() => {
@@ -65,44 +80,78 @@ const Write = () => {
                 width={'67.2rem'}
               ></S.input>
             </S.input_wrap>
+            <S.input_wrap>
+              <S.index>연구자 *</S.index>
+              <S.input
+                {...(register('researcher'),
+                {
+                  placeholder: '연구자 등록하기',
+                  value: `${selectedResearcher.name}`,
+                })}
+                src={searchIcon.src}
+                width={'67.2rem'}
+                onClick={handleResearcherModalState}
+              ></S.input>
+              {isResearcherModalStateOn && <ResearcherModal></ResearcherModal>}
+            </S.input_wrap>
             <S.double_input_wrap>
               <S.input_wrap>
-                <S.index>연구자 *</S.index>
+                <S.index>연구 장소(시,도)*</S.index>
                 <S.input
-                  {...(register('researcher'),
+                  {...(register('city'),
                   {
-                    placeholder: '연구자 등록하기',
-                    value: `${selectedResearcher.name}`,
+                    placeholder: '시, 도를 입력하세요',
                   })}
-                  src={searchIcon.src}
-                  width={'21.7rem'}
-                  onClick={handleResearcherModalState}
+                  width={'15.1rem'}
                 ></S.input>
-                {isResearcherModalStateOn && (
-                  <ResearcherModal></ResearcherModal>
-                )}
               </S.input_wrap>
               <S.input_wrap>
-                <S.index>연구 장소 *</S.index>
+                <S.index>연구 장소(시, 군, 구) *</S.index>
                 <S.input
-                  {...(register('replace'),
+                  {...(register('district'),
                   {
-                    placeholder: '주소를 입력해주세요',
+                    placeholder: '구, 군을 입력하세요',
                   })}
-                  width={'43.1rem'}
+                  width={'15.1rem'}
+                ></S.input>
+              </S.input_wrap>
+              <S.input_wrap>
+                <S.index>연구 장소(상세 주소)*</S.index>
+                <S.input
+                  {...(register('detailAddress'),
+                  {
+                    placeholder: '상제 주소를 입력해주세요',
+                  })}
+                  width={'32.1rem'}
                 ></S.input>
               </S.input_wrap>
             </S.double_input_wrap>
             <S.input_wrap>
               <S.index>스크리닝 정보 *</S.index>
-              <S.input
-                {...(register('replace'),
-                {
-                  placeholder: '스크리닝 정보 등록하기',
-                })}
-                src={searchIcon.src}
-                width={'67.2rem'}
-              ></S.input>
+              {screeningInput?.map((item, index) => {
+                return (
+                  <div style={{ position: 'relative', display: 'flex' }}>
+                    <S.input
+                      {...(register(`screeningInfo${index}`),
+                      {
+                        placeholder: '스크리닝 정보 등록하기' + index,
+                      })}
+                      src={searchIcon.src}
+                      width={'67.2rem'}
+                    ></S.input>
+                    {index === screeningInput.length - 1 && (
+                      <S.cancel
+                        src={cancel.src}
+                        onClick={() => handleEraseScreeningInput(index)}
+                      ></S.cancel>
+                    )}
+                  </div>
+                );
+              })}
+              <S.add_screening onClick={addScreeningInput}>
+                <Image src={plus.src} alt="plus" width={10} height={10}></Image>
+                스크리닝 정보 추가
+              </S.add_screening>
             </S.input_wrap>
             <S.input_wrap>
               <S.index>구글 예약 폼 링크 *</S.index>

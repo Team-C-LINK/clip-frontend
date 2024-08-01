@@ -17,7 +17,8 @@ export const left_wrap = styled.div`
   align-items: center;
   gap: 2.6rem;
   width: 72rem;
-  height: 77.4rem;
+  height: fit-content;
+  padding: 2rem;
   top: 10rem;
   background-color: #fff;
   border-radius: 0.4rem;
@@ -146,7 +147,6 @@ export const detail = styled.span`
 
 export const input_textarea = styled.textarea`
   box-sizing: border-box;
-
   position: relative;
   width: 67.2rem;
   height: 15.1rem;
@@ -155,7 +155,34 @@ export const input_textarea = styled.textarea`
   border-radius: 0.4rem;
   outline: none;
   padding: 1.2rem 1.6rem;
-
+  margin-bottom: 3rem;
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.Medium.B3};
+`;
+
+export const add_screening = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  ${(props) => props.theme.FONT.SemiBold.B3};
+  position: relative;
+  width: 15.2rem;
+  padding: 0rem 1rem;
+  height: 4.4rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  flex-shrink: 0;
+  cursor: pointer;
+`;
+
+export const cancel = styled.img`
+  position: absolute;
+  width: 1.6rem;
+  height: 1.6rem;
+  top: 1.2rem;
+  z-index: 2;
+  right: 1rem;
 `;
