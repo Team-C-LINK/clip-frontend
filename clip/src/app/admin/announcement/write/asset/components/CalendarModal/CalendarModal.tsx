@@ -14,6 +14,7 @@ const DAYS_OF_WEEK = ['일', '월', '화', '수', '목', '금', '토'];
 
 interface CalendarModalProps {
   isCalendarModalOpen: boolean;
+  setIsCalendarModalOpen: React.Dispatch<boolean>;
   setStartDate: React.Dispatch<any>;
   setEndDate: React.Dispatch<any>;
   startDate: any;
@@ -22,6 +23,7 @@ interface CalendarModalProps {
 
 const CalendarModal: React.FC<CalendarModalProps> = ({
   isCalendarModalOpen,
+  setIsCalendarModalOpen,
   setStartDate,
   setEndDate,
   startDate,
@@ -48,7 +50,10 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
         setStartDate(targetDate);
         setEndDate('');
       }
-      if (targetDate > startDate) setEndDate(targetDate);
+      if (targetDate > startDate) {
+        setEndDate(targetDate);
+        setIsCalendarModalOpen(false);
+      }
     }
   };
 

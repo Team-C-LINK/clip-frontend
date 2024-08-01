@@ -11,6 +11,10 @@ import { useForm } from 'react-hook-form';
 import CalendarModal from './asset/components/CalendarModal/CalendarModal';
 import calendar_gray from '@/app/admin/announcement/write/asset/image/calendar_gray.svg';
 import Calendar from './asset/components/Calendar/Calendar';
+import ResearcherModal from './asset/components/ResearcherModal/ResearcherModal';
+import { useRecoilState } from 'recoil';
+import { ModalState } from './asset/Atoms/ModalState';
+import { selectedResearcherState } from './asset/Atoms/jwtAtom';
 
 const Write = () => {
   const { register } = useForm();
@@ -19,10 +23,20 @@ const Write = () => {
   const [test, setTest] = useState('');
   const [startDate, setStartDate] = useState<any>('');
   const [endDate, setEndDate] = useState<any>('');
+  const [selectedResearcher, setSelectedResearcher] = useRecoilState(
+    selectedResearcherState
+  );
+  const [isResearcherModalStateOn, setIsResearcherModalStateOn] =
+    useRecoilState(ModalState);
 
   const handleCalendarModal = (e: React.MouseEvent<HTMLInputElement>) => {
     if (e.currentTarget === e.target)
       setIsCalendarModalOpen(!isCalendarModalOpen);
+  };
+
+  const handleResearcherModalState = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.currentTarget === e.target)
+      setIsResearcherModalStateOn(!isResearcherModalStateOn);
   };
 
   useEffect(() => {
@@ -58,10 +72,15 @@ const Write = () => {
                   {...(register('researcher'),
                   {
                     placeholder: '연구자 등록하기',
+                    value: `${selectedResearcher.name}`,
                   })}
                   src={searchIcon.src}
                   width={'21.7rem'}
+                  onClick={handleResearcherModalState}
                 ></S.input>
+                {isResearcherModalStateOn && (
+                  <ResearcherModal></ResearcherModal>
+                )}
               </S.input_wrap>
               <S.input_wrap>
                 <S.index>연구 장소 *</S.index>
@@ -80,6 +99,17 @@ const Write = () => {
                 {...(register('replace'),
                 {
                   placeholder: '스크리닝 정보 등록하기',
+                })}
+                src={searchIcon.src}
+                width={'67.2rem'}
+              ></S.input>
+            </S.input_wrap>
+            <S.input_wrap>
+              <S.index>구글 예약 폼 링크 *</S.index>
+              <S.input
+                {...(register('reservationLink'),
+                {
+                  placeholder: '예약 폼 링크',
                 })}
                 src={searchIcon.src}
                 width={'67.2rem'}
@@ -109,11 +139,13 @@ const Write = () => {
                 placeholder="YYYY.MM.DD      /     YYYY.MM.DD"
                 width={'33.6rem'}
                 onClick={handleCalendarModal}
+                onChange={() => {}}
                 value={test}
               ></S.input_calendar>
               {isCalendarModalOpen && (
                 <CalendarModal
                   isCalendarModalOpen={isCalendarModalOpen}
+                  setIsCalendarModalOpen={setIsCalendarModalOpen}
                   setStartDate={setStartDate}
                   setEndDate={setEndDate}
                   startDate={startDate}

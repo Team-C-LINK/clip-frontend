@@ -2,16 +2,13 @@ import * as C from './Calendar.style';
 import React, { useEffect, useState } from 'react';
 import useCalendar from './asset/hook/useCalendar';
 import { subMonths } from 'date-fns';
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'next/navigation';
-import getCheckResearchAvailableTime from '@/app/api/get-checkResearchAvailableTime';
-import ScheduleType from '@/app/type/ScheduleType';
 import Image from 'next/image';
 import left from './asset/image/left.svg';
 import right from './asset/image/right.svg';
 import searchIcon from '@/app/admin/asset/image/searchIcon.svg';
 import Divider from '@/app/SharedComponent/Divider/Divider';
 import SelectCard from './asset/components/SelectCard/SelectCard';
+
 const DAYS_OF_WEEK = ['일', '월', '화', '수', '목', '금', '토'];
 const DAYS_OF_WEEKS = [
   '09:00',
@@ -23,20 +20,44 @@ const DAYS_OF_WEEKS = [
   '12:00',
 ];
 
+interface SelectCardInfo {
+  detail: string;
+  person: number;
+}
+
+type SelectedDateType = {
+  year: string;
+  month: string;
+  day: string;
+};
+
+type ReserveInfoType = {
+  date: string;
+  time: SelectCardInfo[];
+};
+
 const Calendar = () => {
   const { calendarList, currentDate, setCurrentDate } = useCalendar();
-  const [selectedDayOfWeek, setSelectedDayOfWeek] = useState<number>(-1);
-  const [selectedDate, setSelectedDate] = useState<number>(-1);
-  const [selectedTime, setSelectedTime] = useState<string>('');
+  const [selectedDate, setSelectedDate] = useState<SelectedDateType>({
+    year: '',
+    month: '',
+    day: '',
+  });
   const [isTimeSelectModalOpen, setIsTimeSelectModalOpen] =
     useState<boolean>(false);
 
+  const [reserveInfo, setReserveInfo] = useState<ReserveInfoType[]>([]);
   const handleCalendarItem = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const dataset = e.currentTarget.dataset;
     const targetDay = parseInt(dataset.dayofweek!);
     const _date = `${dataset.year}-${dataset.month}-${dataset.day}`;
-    setSelectedDayOfWeek(targetDay);
-    setSelectedDate(parseInt(dataset.day!));
+
+    // setSelectedDayOfWeek(targetDay);
+    setSelectedDate({
+      year: dataset.year!,
+      month: dataset.month!,
+      day: dataset.day!,
+    });
     setCurrentDate(
       new Date(
         currentDate.getFullYear(),
@@ -44,12 +65,47 @@ const Calendar = () => {
         parseInt(dataset.day!)
       )
     );
-    setSelectedTime('');
+  };
+
+  const findIdx = (date: string) => {
+    const idx = reserveInfo.findIndex((item) => item.date === date);
+    return idx;
+  };
+
+  const handleSelectTime = (e: React.MouseEvent<HTMLDivElement>) => {
+    /**
+     * 1. 이미 존재하는 날짜라면 배열만 업데이트
+     * 2. 존재하지 않는 날짜라면 새롭게 추가
+     * 3. 시간을 설정하면 모달이 닫기
+     * 4. 업데이트 해주기
+     */
+    const _date = `${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`;
+    const selectTime = e.currentTarget.innerHTML;
+    const idx = findIdx(_date);
+
+    if (idx === -1) {
+      const ddd = reserveInfo.slice(0);
+      ddd.push({ date: _date, time: [{ detail: selectTime, person: 1 }] });
+      setReserveInfo(ddd);
+    }
+
+    if (idx >= 0) {
+      const target = reserveInfo.slice(0);
+      const timeIdx = target[idx].time.findIndex(
+        (item) => item.detail === selectTime
+      );
+      if (timeIdx === -1) {
+        target[idx].time.push({ detail: selectTime, person: 1 });
+      }
+      setReserveInfo(target);
+    }
+
+    setIsTimeSelectModalOpen(false);
   };
 
   return (
     <>
-      <C.month_select_wrap>
+      {/* <C.month_select_wrap>
         <C.month_select_wrap_inner>
           {currentDate.getMonth() === new Date().getMonth() ? (
             <C.dummy_div></C.dummy_div>
@@ -97,7 +153,7 @@ const Calendar = () => {
 
             return (
               <React.Fragment key={idx * 7 + idx2}>
-                {selectedDate === date[1] ? (
+                {parseInt(selectedDate?.day) === date[1] ? (
                   <C.Calendar_selected_item>{date[1]}</C.Calendar_selected_item>
                 ) : (
                   <C.Calendar_unselected_item
@@ -130,6 +186,7 @@ const Calendar = () => {
               <C.DropdownItem
                 $isLast={idx === DAYS_OF_WEEK.length - 1}
                 key={idx}
+                onClick={handleSelectTime}
               >
                 {option}
               </C.DropdownItem>
@@ -137,7 +194,20 @@ const Calendar = () => {
           </C.DropdownMenu>
         )}
       </C.input_wrap>
-      <SelectCard></SelectCard>
+      {reserveInfo[
+        findIdx(
+          `${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`
+        )
+      ]?.time.map((val) => {
+        return (
+          <SelectCard
+            date={selectedDate}
+            info={val}
+            reserveInfo={reserveInfo}
+            setReserveInfo={setReserveInfo}
+          ></SelectCard>
+        );
+      })} */}
     </>
   );
 };
