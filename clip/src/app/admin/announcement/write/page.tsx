@@ -55,6 +55,10 @@ const Write = () => {
   };
 
   useEffect(() => {
+    console.log(watch('profile'));
+  }, [watch('profile')]);
+
+  useEffect(() => {
     if (startDate || endDate) setTest(`${startDate}      /     ${endDate}`);
   }, [startDate, endDate]);
 
@@ -187,7 +191,7 @@ const Write = () => {
               사진 업로드
             </S.upload>
             <S.selected_file>
-              {watch('profile') !== undefined
+              {watch('profile')?.length
                 ? `${(watch('profile')[0] as File)?.name}`
                 : `선택된 파일 없음`}
             </S.selected_file>
@@ -220,7 +224,7 @@ const Write = () => {
                 ></CalendarModal>
               )}
             </S.input_wrap>
-            <Calendar></Calendar>
+            {startDate && endDate && <Calendar></Calendar>}
             <Spacer height="10rem"></Spacer>
           </S.right_wrap_inner>
         </S.right_wrap>
