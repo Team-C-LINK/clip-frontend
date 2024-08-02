@@ -167,6 +167,7 @@ export const add_screening = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1.2rem;
+  font-family: 'Pretendard';
   ${(props) => props.theme.FONT.SemiBold.B3};
   position: relative;
   width: 15.2rem;
@@ -185,4 +186,43 @@ export const cancel = styled.img`
   top: 1.2rem;
   z-index: 2;
   right: 1rem;
+`;
+
+export const upload = styled.label`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  ${(props) => props.theme.FONT.SemiBold.B3};
+  position: relative;
+  width: 11.2rem;
+  height: 4.4rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  flex-shrink: 0;
+`;
+
+export const selected_file = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0rem 1.6rem;
+
+  position: relative;
+  width: 28.4rem;
+  height: 4.4rem;
+
+  background: #f2f2f2;
+  border-radius: 4px;
+`;
+
+export const upload_wrap = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 67.2rem;
+  height: fit-content;
+  gap: 1rem;
 `;

@@ -19,7 +19,7 @@ import plus from '@/app/admin/researcher/all/asset/image/plus.svg';
 import cancel from '@/app/admin/announcement/write/asset/image/cancel.svg';
 
 const Write = () => {
-  const { register } = useForm();
+  const { register, watch } = useForm();
   const [isCalendarModalOpen, setIsCalendarModalOpen] =
     useState<boolean>(false);
   const [test, setTest] = useState('');
@@ -174,6 +174,24 @@ const Write = () => {
               })}
             ></S.input_textarea>
           </S.input_wrap>
+          <input
+            {...register('profile')}
+            id="profile"
+            type="file"
+            accept="image/*"
+            hidden={true}
+          ></input>
+          <S.upload_wrap>
+            <S.upload htmlFor="profile">
+              <Image src={plus.src} alt="plus" width={10} height={10}></Image>
+              사진 업로드
+            </S.upload>
+            <S.selected_file>
+              {watch('profile') !== undefined
+                ? `${(watch('profile')[0] as File)?.name}`
+                : `선택된 파일 없음`}
+            </S.selected_file>
+          </S.upload_wrap>
         </S.left_wrap>
         <S.right_wrap>
           <S.right_wrap_inner>
