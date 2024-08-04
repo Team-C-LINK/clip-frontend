@@ -25,6 +25,11 @@ interface SelectCardInfo {
   person: number;
 }
 
+interface CalendarProps {
+  startDate: number;
+  endDate: number;
+}
+
 type SelectedDateType = {
   year: string;
   month: string;
@@ -36,7 +41,7 @@ type ReserveInfoType = {
   time: SelectCardInfo[];
 };
 
-const Calendar = () => {
+const Calendar: React.FC<CalendarProps> = ({ startDate, endDate }) => {
   const { calendarList, currentDate, setCurrentDate } = useCalendar();
   const [selectedDate, setSelectedDate] = useState<SelectedDateType>({
     year: '',

@@ -8,6 +8,7 @@ interface ResearcherModalInfoType {
   name: string;
   affiliation: string;
   email: string;
+  id: number;
 }
 
 interface TableProps {

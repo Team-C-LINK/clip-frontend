@@ -15,11 +15,14 @@ import ResearcherModal from './asset/components/ResearcherModal/ResearcherModal'
 import { useRecoilState } from 'recoil';
 import { ModalState } from './asset/Atoms/ModalState';
 import { selectedResearcherState } from './asset/Atoms/jwtAtom';
+import { announceInfoState } from './asset/Atoms/announcementInfoState';
+import { imageFileState } from './asset/Atoms/imageFileState';
 import plus from '@/app/admin/researcher/all/asset/image/plus.svg';
 import cancel from '@/app/admin/announcement/write/asset/image/cancel.svg';
 
 const Write = () => {
-  const { register, watch } = useForm();
+  const { register, watch, setValue } = useForm<any>({ mode: 'onChange' });
+
   const [isCalendarModalOpen, setIsCalendarModalOpen] =
     useState<boolean>(false);
   const [test, setTest] = useState('');
@@ -28,11 +31,11 @@ const Write = () => {
   const [selectedResearcher, setSelectedResearcher] = useRecoilState(
     selectedResearcherState
   );
-
   const [screeningInput, setScreeningInput] = useState<string[]>(['']);
-
   const [isResearcherModalStateOn, setIsResearcherModalStateOn] =
     useRecoilState(ModalState);
+  const [announceInfo, setAnnouncementInfo] = useRecoilState(announceInfoState);
+  const [imageFiles, setImageFiles] = useRecoilState(imageFileState);
 
   const handleCalendarModal = (e: React.MouseEvent<HTMLInputElement>) => {
     if (e.currentTarget === e.target)
@@ -54,13 +57,43 @@ const Write = () => {
     setScreeningInput(copiedArray);
   };
 
-  useEffect(() => {
-    console.log(watch('profile'));
-  }, [watch('profile')]);
+  const handleScreeningInfo = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    idx: number
+  ) => {
+    const temp = screeningInput.slice();
+    temp[idx] = e.target.value;
+    setScreeningInput(temp);
+  };
+
+  const handleImageFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const copy = e.target.files as unknown as File[];
+    setImageFiles(copy);
+  };
 
   useEffect(() => {
     if (startDate || endDate) setTest(`${startDate}      /     ${endDate}`);
+
+    if (endDate) {
+      const endDateStr = endDate.toString();
+      const formattedDate = `${endDateStr.slice(0, 4)}-${endDateStr.slice(
+        4,
+        6
+      )}-${endDateStr.slice(6)}`;
+      setAnnouncementInfo((prev) => ({ ...prev, endDate: formattedDate }));
+    }
   }, [startDate, endDate]);
+
+  useEffect(() => {
+    setAnnouncementInfo((prev) => ({ ...prev, ...watch() }));
+  }, [watch()]);
+
+  useEffect(() => {
+    setAnnouncementInfo((prev) => ({
+      ...prev,
+      applicationConditions: screeningInput,
+    }));
+  }, [screeningInput]);
 
   return (
     <>
@@ -77,21 +110,17 @@ const Write = () => {
             <S.input_wrap>
               <S.index>제목 *</S.index>
               <S.input
-                {...(register('title'),
-                {
-                  placeholder: '제목을 입력해주세요',
-                })}
+                {...register('title')}
+                placeholder={'제목을 입력하세요'}
+                id={'title'}
                 width={'67.2rem'}
               ></S.input>
             </S.input_wrap>
             <S.input_wrap>
               <S.index>연구자 *</S.index>
               <S.input
-                {...(register('researcher'),
-                {
-                  placeholder: '연구자 등록하기',
-                  value: `${selectedResearcher.name}`,
-                })}
+                placeholder={'연구자 등록하기'}
+                value={selectedResearcher.name}
                 src={searchIcon.src}
                 width={'67.2rem'}
                 onClick={handleResearcherModalState}
@@ -102,30 +131,24 @@ const Write = () => {
               <S.input_wrap>
                 <S.index>연구 장소(시,도)*</S.index>
                 <S.input
-                  {...(register('city'),
-                  {
-                    placeholder: '시, 도를 입력하세요',
-                  })}
+                  {...register('city')}
                   width={'15.1rem'}
+                  placeholder={'시, 도를 입력하세요'}
                 ></S.input>
               </S.input_wrap>
               <S.input_wrap>
                 <S.index>연구 장소(시, 군, 구) *</S.index>
                 <S.input
-                  {...(register('district'),
-                  {
-                    placeholder: '구, 군을 입력하세요',
-                  })}
+                  {...register('district')}
+                  placeholder={'구, 군을 입력하세요'}
                   width={'15.1rem'}
                 ></S.input>
               </S.input_wrap>
               <S.input_wrap>
                 <S.index>연구 장소(상세 주소)*</S.index>
                 <S.input
-                  {...(register('detailAddress'),
-                  {
-                    placeholder: '상제 주소를 입력해주세요',
-                  })}
+                  {...register('detailAddress')}
+                  placeholder={'상세 주소를 입력해주세요'}
                   width={'32.1rem'}
                 ></S.input>
               </S.input_wrap>
@@ -136,12 +159,12 @@ const Write = () => {
                 return (
                   <div style={{ position: 'relative', display: 'flex' }}>
                     <S.input
-                      {...(register(`screeningInfo${index}`),
-                      {
-                        placeholder: '스크리닝 정보 등록하기' + index,
-                      })}
+                      placeholder={'스크리닝 정보 등록하기' + index}
                       src={searchIcon.src}
                       width={'67.2rem'}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        handleScreeningInfo(e, index)
+                      }
                     ></S.input>
                     {index === screeningInput.length - 1 && (
                       <S.cancel
@@ -160,10 +183,16 @@ const Write = () => {
             <S.input_wrap>
               <S.index>구글 예약 폼 링크 *</S.index>
               <S.input
-                {...(register('reservationLink'),
-                {
-                  placeholder: '예약 폼 링크',
-                })}
+                placeholder={'예약 폼 링크'}
+                src={searchIcon.src}
+                width={'67.2rem'}
+              ></S.input>
+            </S.input_wrap>
+            <S.input_wrap>
+              <S.index>사례금 *</S.index>
+              <S.input
+                {...register('fee')}
+                placeholder={'사례금'}
                 src={searchIcon.src}
                 width={'67.2rem'}
               ></S.input>
@@ -172,27 +201,25 @@ const Write = () => {
           <S.input_wrap>
             <S.index>내용 설명</S.index>
             <S.input_textarea
-              {...(register('content'),
-              {
-                placeholder: '연구 / 인터뷰에 관한 설명을 입력해주세요',
-              })}
+              {...register('content')}
+              placeholder={'연구 / 인터뷰에 관한 설명을 입력해주세요'}
             ></S.input_textarea>
           </S.input_wrap>
           <input
-            {...register('profile')}
-            id="profile"
+            id="image"
             type="file"
             accept="image/*"
             hidden={true}
+            onChange={handleImageFile}
           ></input>
           <S.upload_wrap>
-            <S.upload htmlFor="profile">
+            <S.upload htmlFor="image">
               <Image src={plus.src} alt="plus" width={10} height={10}></Image>
               사진 업로드
             </S.upload>
             <S.selected_file>
-              {watch('profile')?.length
-                ? `${(watch('profile')[0] as File)?.name}`
+              {watch('image')?.length
+                ? `${(watch('image')[0] as File)?.name}`
                 : `선택된 파일 없음`}
             </S.selected_file>
           </S.upload_wrap>
@@ -224,7 +251,9 @@ const Write = () => {
                 ></CalendarModal>
               )}
             </S.input_wrap>
-            {startDate && endDate && <Calendar></Calendar>}
+            {startDate && endDate && (
+              <Calendar startDate={startDate} endDate={endDate}></Calendar>
+            )}
             <Spacer height="10rem"></Spacer>
           </S.right_wrap_inner>
         </S.right_wrap>

@@ -1,37 +1,17 @@
 import Table from './Table/Table';
-
-const dummy = [
-  {
-    name: '김연구1',
-    affiliation: '어디일까',
-    email: 'abc@defg.kr',
-  },
-  {
-    name: '김연구2',
-    affiliation: '어디일까',
-    email: 'abc@defg.kr',
-  },
-  {
-    name: '김연구3',
-    affiliation: '어디일까',
-    email: 'abc@defg.kr',
-  },
-  {
-    name: '김연구4',
-    affiliation: '어디일까',
-    email: 'abc@defg.kr',
-  },
-  {
-    name: '김연구5',
-    affiliation: '어디일까',
-    email: 'abc@defg.kr',
-  },
-];
+import { useQuery } from '@tanstack/react-query';
+import getResearcherList from '@/app/api/admin/get-researcherList';
+import { useEffect } from 'react';
 
 const ResearcherModal = () => {
+  const { data: info } = useQuery({
+    queryKey: [''],
+    queryFn: getResearcherList,
+  });
+
   return (
     <>
-      <Table info={dummy}></Table>
+      <Table info={info?.researchers}></Table>
     </>
   );
 };

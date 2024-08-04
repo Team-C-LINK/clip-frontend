@@ -5,6 +5,8 @@ export const uploadS3Multiple = async (imageFiles: File[]) => {
   const ACCESS_KEY_ID = process.env.NEXT_PUBLIC_ACCESS_KEY;
   const SECRET_ACESS_KEY_ID = process.env.NEXT_PUBLIC_SECRET_ACCESS_KEY;
 
+  console.log(imageFiles);
+
   const imageList = [];
 
   AWS.config.update({
