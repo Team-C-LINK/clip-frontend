@@ -25,7 +25,7 @@ const CheckResearchInfo = () => {
   const conditionList = [
     { index: '기한', content: info?.endDate! },
     { index: '지역', content: info?.researchLocation! },
-    { index: '시간', content: info?.researchAvailableTime! },
+    // { index: '시간', content: info?.researchAvailableTime! },
     { index: '지원 조건', content: '모든 성별 ·  20대 (1996년~2005년생)' },
   ];
 

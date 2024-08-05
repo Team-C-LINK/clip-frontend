@@ -7,6 +7,7 @@ export const wrap = styled.div`
   flex-direction: column;
   width: 22.8rem;
   align-items: center;
+  background: #ffffff;
   border-right: 1px solid ${(props) => props.theme.LINE._01};
   height: 100%;
   z-index: 1;

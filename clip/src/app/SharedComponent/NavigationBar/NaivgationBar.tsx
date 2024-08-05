@@ -34,7 +34,7 @@ const NavigationBar = ({ state }: { state: string }) => {
             실시간 공고
           </C.navigation_text>
         </C.navigation_content_wrapper>
-        <C.navigation_content_wrapper>
+        {/* <C.navigation_content_wrapper>
           <C.navigation_img
             $status={state == 'shop'}
             src={shop.src}
@@ -51,7 +51,7 @@ const NavigationBar = ({ state }: { state: string }) => {
             src={my.src}
           ></C.navigation_img>
           <C.navigation_text $status={state == 'my'}>My 클립</C.navigation_text>
-        </C.navigation_content_wrapper>
+        </C.navigation_content_wrapper> */}
       </C.wrapper>
     </>
   );

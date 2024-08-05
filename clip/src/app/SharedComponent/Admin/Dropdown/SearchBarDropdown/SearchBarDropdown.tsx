@@ -3,7 +3,6 @@ import * as C from './SearchBarDropdown.style';
 import { DropdownBase } from '../DropdonwBase/DropdownBase.style';
 import { useRecoilState } from 'recoil';
 import { dropdownOpenState } from '@/app/admin/member/Atoms/dropdownOpenStateAtom';
-// 드롭다운 컴포넌트 스타일
 
 interface Option {
   label: string;

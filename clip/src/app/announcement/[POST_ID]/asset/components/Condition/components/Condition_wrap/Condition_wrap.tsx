@@ -3,10 +3,10 @@ import ConditionInner from './ConditionInner/ConditionInner';
 
 type ConditionType = {
   index: string;
-  content: string | undefined;
+  content?: string | React.ReactNode;
 };
 
-const Condition_wrap = ({ list }: { list: ConditionType[] | undefined }) => {
+const Condition_wrap = ({ list }: { list: ConditionType[] }) => {
   return (
     <>
       <Wrapper>

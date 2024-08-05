@@ -44,7 +44,7 @@ const HeaderRecruit = ({
             onClick={() => (window.location.href = '/announcement')}
           />
           <Right_wrap>
-            <Image
+            {/* <Image
               src={scraped ? interested.src : uninterested_black.src}
               alt="uninterested"
               width={22}
@@ -57,7 +57,7 @@ const HeaderRecruit = ({
               width={24}
               height={24}
               onClick={setModalState}
-            />
+            /> */}
           </Right_wrap>
         </Header_Inner>
       </Wrap>
