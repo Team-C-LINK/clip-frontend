@@ -6,12 +6,20 @@ import Condition_wrap from './components/Condition_wrap/Condition_wrap';
 import ConditionDetail from './components/ConditionDetail/ConditionDetail';
 import PostType from '@/app/type/PostType';
 
-const Condition = ({ props }: { props: PostType | undefined }) => {
+const Condition = ({ props }: { props?: PostType }) => {
   const conditionList = [
-    { index: '기한', content: props?.endDate },
+    {
+      index: '기한',
+      content: (
+        <span>
+          {`${props?.endDate} 까지 · `}
+          <Purple>{`D-${props?.remainingDay}`}</Purple>
+        </span>
+      ),
+    },
     { index: '지역', content: props?.researchLocation },
-    { index: '시간', content: props?.researchAvailableTime },
-    { index: '지원 조건', content: '모든 성별 ·  20대 (1996년~2005년생)' },
+    // { index: '시간', content: props?.researchAvailableTime },
+    { index: '지원 조건', content: '' },
   ];
 
   return (
@@ -46,6 +54,11 @@ const Title_Divider_wrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+`;
+
+const Purple = styled.span`
+  color: ${(props) => props.theme.PURPLE._00};
+  ${(props) => props.theme.FONT.SemiBold.B4};
 `;
 
 export default Condition;

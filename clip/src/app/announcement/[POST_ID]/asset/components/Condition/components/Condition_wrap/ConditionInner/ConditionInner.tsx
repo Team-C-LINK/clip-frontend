@@ -5,7 +5,7 @@ const ConditionInner = ({
   content,
 }: {
   index: string;
-  content: string | undefined;
+  content?: string | React.ReactNode;
 }) => {
   return (
     <>
