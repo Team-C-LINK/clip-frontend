@@ -157,7 +157,10 @@ const Write = () => {
               <S.index>스크리닝 정보 *</S.index>
               {screeningInput?.map((item, index) => {
                 return (
-                  <div style={{ position: 'relative', display: 'flex' }}>
+                  <div
+                    style={{ position: 'relative', display: 'flex' }}
+                    key={index}
+                  >
                     <S.input
                       placeholder={'스크리닝 정보 등록하기' + index}
                       src={searchIcon.src}

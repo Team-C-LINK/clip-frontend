@@ -203,9 +203,10 @@ const Calendar: React.FC<CalendarProps> = ({ startDate, endDate }) => {
         findIdx(
           `${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`
         )
-      ]?.time.map((val) => {
+      ]?.time.map((val, idx) => {
         return (
           <SelectCard
+            key={idx}
             date={selectedDate}
             info={val}
             reserveInfo={reserveInfo}

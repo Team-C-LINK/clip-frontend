@@ -142,7 +142,11 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
               curMonth + 1 === parseInt(month) ? date[1] : null;
 
             if (!showingDay)
-              return <S.Calendar_unselected_item></S.Calendar_unselected_item>;
+              return (
+                <S.Calendar_unselected_item
+                  key={idx * 7 + idx2}
+                ></S.Calendar_unselected_item>
+              );
 
             if (isDisableDate(date[0] - 1, date[1]))
               return (
