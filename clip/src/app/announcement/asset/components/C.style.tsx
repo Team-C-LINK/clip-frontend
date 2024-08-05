@@ -1,32 +1,20 @@
 import styled, { keyframes } from 'styled-components';
 
-type isVisibleType = {
-  $isVisible: boolean;
-};
-
-const slideIn = keyframes`
-  from {
-    transform: translateY(-105%);
-  }
-  to {
-    transform: translateY(0%);
-  }
-`;
-
-const slideOut = keyframes`
-  from {
-    transform: translateY(0%);
-  }
-  to {
-    transform: translateY(-105%);
-  }
-`;
-
-export const view_wrap = styled.div`
-  position: relative;
+export const scroll_top_button = styled.div`
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  overflow-y: auto;
-  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  width: 4.2rem;
+  height: 4.2rem;
+  right: 4%;
+  bottom: 10rem;
+  z-index: 2;
+
+  background: #ffffff;
+  border: 1px solid #790de4;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14), 0px 0px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 100%;
 `;

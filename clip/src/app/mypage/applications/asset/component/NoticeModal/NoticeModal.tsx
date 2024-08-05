@@ -7,7 +7,15 @@ import PrevBtn from '@/app/join/component/PrevNext/PrevButton/PrevButton';
 import PrevNext from '@/app/join/component/PrevNext/PrevNext';
 import Image from 'next/image';
 
-const NoticeModal = ({ setModalState }: { setModalState: Function }) => {
+const NoticeModal = ({
+  setModalState,
+  reservationTime,
+  location,
+}: {
+  setModalState: Function;
+  reservationTime: string | undefined;
+  location: string | undefined;
+}) => {
   const handleModalState = () => {
     setModalState(false);
   };
@@ -18,12 +26,12 @@ const NoticeModal = ({ setModalState }: { setModalState: Function }) => {
       <Modal_wrap>
         <Inner>
           <StyledListItem>
-            <Image src={time.src} alt="time" width={18} height={18}></Image> 4월
-            9일 오전 10시
+            <Image src={time.src} alt="time" width={18} height={18}></Image>{' '}
+            {reservationTime}
           </StyledListItem>
           <StyledListItem>
             <Image src={mark.src} alt="mark" width={18} height={18}></Image>
-            서울시 강남대로 어디어디 상세주소
+            {location}
           </StyledListItem>
         </Inner>
       </Modal_wrap>

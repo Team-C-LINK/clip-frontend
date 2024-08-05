@@ -11,10 +11,13 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '@/app/SharedComponent/Footer/Footer';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
-import { uploadS3 } from './phone/assets/utils/s3upload';
+import { uploadS3 } from '@/app/utils/hook/uploadS3';
 import { useQuery } from '@tanstack/react-query';
 import getUser from '@/app/api/get-user';
-import { sidoList, siguList } from '@/app/join/address/hooks/sidoList';
+import {
+  sidoList as cityList,
+  siguList as districtList,
+} from '@/app/join/address/hooks/sidoList';
 import {
   JOB_LIST,
   EDUCATION_STATE,
@@ -32,8 +35,8 @@ const ModifyProfile = () => {
   const [checkbit, setCheckbit] = useState(false);
 
   const [dropdown, setDropdown] = useState<{ [key: string]: string }>({
-    sido: '',
-    sigu: '',
+    city: '',
+    district: '',
     education: '',
     educationState: '',
     job: '',
@@ -68,14 +71,12 @@ const ModifyProfile = () => {
   };
 
   const dropdownInit = () => {
-    const [si, gu] = user.address.split(' ');
-    const [edu1, edu2] = user.education.split(' ');
     setDropdown((prev) => ({
       ...prev,
-      sido: si,
-      sigu: gu,
-      education: edu1,
-      educationState: edu2,
+      city: user?.city,
+      district: user?.district,
+      educationName: user?.educationName,
+      educationStatus: user?.educationStatus,
       job: user?.job,
     }));
   };
@@ -83,8 +84,10 @@ const ModifyProfile = () => {
   const submit = async () => {
     const request = {
       profileUrl: '',
-      address: `${dropdown.sido} ${dropdown.sigu}`,
-      education: `${dropdown.education} ${dropdown.educationState}`,
+      city: dropdown.city,
+      district: dropdown.district,
+      educationName: dropdown.educationName,
+      educationStatus: dropdown.educationStatus,
       job: dropdown.job,
     };
     const status = await patchModifyProfile(
@@ -96,9 +99,12 @@ const ModifyProfile = () => {
   };
 
   useEffect(() => {
-    if (dropdown?.sido && checkbit)
-      setDropdown((prev) => ({ ...prev, sigu: siguList[dropdown?.sido][0] }));
-  }, [dropdown.sido]);
+    if (dropdown?.city && checkbit)
+      setDropdown((prev) => ({
+        ...prev,
+        district: districtList[dropdown?.city][0],
+      }));
+  }, [dropdown.city]);
 
   useEffect(() => {
     if (user) dropdownInit();
@@ -179,13 +185,13 @@ const ModifyProfile = () => {
             <C.profile_content_tag>거주지</C.profile_content_tag>
             <C.dropdown_wrap>
               <C.Dropdown
-                name={'sido'}
+                name={'city'}
                 $src={arrow.src}
                 $size={'50%'}
                 onChange={setDropdownState}
-                value={dropdown?.sido}
+                value={dropdown?.city}
               >
-                {sidoList?.map((val, idx) => {
+                {cityList?.map((val, idx) => {
                   return (
                     <option key={idx} value={val}>
                       {val}
@@ -194,13 +200,13 @@ const ModifyProfile = () => {
                 })}
               </C.Dropdown>
               <C.Dropdown
-                name={'sigu'}
+                name={'district'}
                 $src={arrow.src}
                 $size={'50%'}
                 onChange={setDropdownState}
-                value={dropdown?.sigu}
+                value={dropdown?.district}
               >
-                {siguList[dropdown?.sido]?.map((val, idx) => {
+                {districtList[dropdown?.city]?.map((val, idx) => {
                   return (
                     <option key={idx} value={val}>
                       {val}
@@ -214,11 +220,11 @@ const ModifyProfile = () => {
             <C.profile_content_tag>학력</C.profile_content_tag>
             <C.dropdown_wrap>
               <C.Dropdown
-                name={'education'}
+                name={'educationName'}
                 $src={arrow.src}
                 $size={'50%'}
                 onChange={setDropdownState}
-                value={dropdown?.education}
+                value={dropdown?.educationName}
               >
                 {EDUCATION_LEVEL_LIST?.map((val, idx) => {
                   return (
@@ -229,11 +235,11 @@ const ModifyProfile = () => {
                 })}
               </C.Dropdown>
               <C.Dropdown
-                name={'educationState'}
+                name={'educationStatus'}
                 $src={arrow.src}
                 $size={'50%'}
                 onChange={setDropdownState}
-                value={dropdown?.educationState}
+                value={dropdown?.educationStatus}
               >
                 {EDUCATION_STATE?.map((val, idx) => {
                   return (

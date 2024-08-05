@@ -10,11 +10,20 @@ import createFilteredList from '../utils/createFilteredList';
 import Filter from './asset/components/Filter/Filter';
 import useInfinityScroll from '../utils/hook/useInfinityScroll';
 import getRecruitList from '../api/get-recruitList';
+import * as C from './asset/components/C.style';
+import Image from 'next/image';
+import down_arrow from './asset/image/down_arrow.svg';
 
 const Recruit = () => {
   const [filterState, setFilterState] = useState<string>('전체 공고');
   const [isRecruiting, setIsRecruiting] = useState<boolean>(false);
   const { observerTarget, recruitList } = useInfinityScroll(getRecruitList);
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <>
@@ -34,6 +43,9 @@ const Recruit = () => {
         }
       )}
       <div ref={observerTarget}></div>
+      <C.scroll_top_button onClick={scrollToTop}>
+        <Image src={down_arrow} alt="down_arrow" width={24} height={24}></Image>
+      </C.scroll_top_button>
       <Spacer height="8rem"></Spacer>
       <NavigationBar state={'recruit'}></NavigationBar>
     </>
