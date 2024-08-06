@@ -21,7 +21,7 @@ const HeaderWrite = () => {
   const [selectedResearcher, setSelectedResearcher] = useRecoilState(
     selectedResearcherState
   );
-  const handleTest = async () => {
+  const handleSubmit = async () => {
     const imageFileUrl = await uploadS3Multiple(imageFiles);
 
     const info: AnnouncementInfoType = JSON.parse(JSON.stringify(announceInfo));
@@ -72,8 +72,12 @@ const HeaderWrite = () => {
           <S.detail_category>연구/인터뷰 등록</S.detail_category>
         </S.category_wrap>
         <S.button_wrap>
-          <S.cancel>취소하기</S.cancel>
-          <S.sumbit onClick={handleTest}>완료하기</S.sumbit>
+          <S.cancel
+            onClick={() => (window.location.href = '/admin/announcement/all')}
+          >
+            취소하기
+          </S.cancel>
+          <S.sumbit onClick={handleSubmit}>완료하기</S.sumbit>
         </S.button_wrap>
       </S.wrap_inner>
     </S.wrap>
