@@ -8,12 +8,17 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import deleteEraseScrap from '@/app/api/delete-eraseScrap';
 import postAddScrap from '@/app/api/post-addScrap';
-const HeaderRecruit = ({
+
+interface HeaderRecruitProps {
+  title?: string;
+  setModalState: React.MouseEventHandler;
+  isScraped?: boolean;
+}
+
+const HeaderRecruit: React.FC<HeaderRecruitProps> = ({
+  title,
   setModalState,
   isScraped,
-}: {
-  setModalState: React.MouseEventHandler;
-  isScraped: boolean | undefined;
 }) => {
   const [scraped, setIsScraped] = useState<boolean>();
   const param = useParams();
@@ -43,6 +48,7 @@ const HeaderRecruit = ({
             height={15}
             onClick={() => (window.location.href = '/announcement')}
           />
+          {title}
           <Right_wrap>
             {/* <Image
               src={scraped ? interested.src : uninterested_black.src}
@@ -85,6 +91,8 @@ const Header_Inner = styled.div`
   align-items: center;
   justify-content: space-between;
   z-index: 1;
+  font-family: 'Pretendard';
+  ${(props) => props.theme.FONT.Header.H4};
 `;
 
 const Header_title = styled.span`

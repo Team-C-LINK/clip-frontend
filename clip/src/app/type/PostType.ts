@@ -11,6 +11,7 @@ type PostType = {
   category: 'string';
   title: 'string';
   endDate: 'string';
+  image: string;
   remainingDay: number;
   researchLocation: 'string';
   researchAvailableTime: 'string';

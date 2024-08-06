@@ -16,7 +16,7 @@ const getAnnouncementList = async (queryContext: QueryFunctionContext) => {
       if (params[key]) query += `&${key}=${params[key]}`;
     }
 
-    const res = await api.get(`/admin/announcements?size=22${query}`);
+    const res = await api.get(`/admin/announcements?size=100${query}`);
     return res.data;
   } catch (e) {
     console.log(e);

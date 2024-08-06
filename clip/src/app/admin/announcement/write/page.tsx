@@ -221,8 +221,8 @@ const Write = () => {
               사진 업로드
             </S.upload>
             <S.selected_file>
-              {watch('image')?.length
-                ? `${(watch('image')[0] as File)?.name}`
+              {imageFiles?.length
+                ? `${imageFiles[0]?.name}`
                 : `선택된 파일 없음`}
             </S.selected_file>
           </S.upload_wrap>
