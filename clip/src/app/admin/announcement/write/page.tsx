@@ -19,10 +19,11 @@ import { announceInfoState } from './asset/Atoms/announcementInfoState';
 import { imageFileState } from './asset/Atoms/imageFileState';
 import plus from '@/app/admin/researcher/all/asset/image/plus.svg';
 import cancel from '@/app/admin/announcement/write/asset/image/cancel.svg';
+import { useSearchParams } from 'next/navigation';
 
 const Write = () => {
   const { register, watch, setValue } = useForm<any>({ mode: 'onChange' });
-
+  const queryParam = useSearchParams();
   const [isCalendarModalOpen, setIsCalendarModalOpen] =
     useState<boolean>(false);
   const [test, setTest] = useState('');
@@ -101,7 +102,7 @@ const Write = () => {
       <S.wrap>
         <S.left_wrap>
           <Spacer height="2rem;"></Spacer>
-          <S.title>연구 / 인터뷰 등록</S.title>
+          <S.title>{queryParam.get('type') as string} 등록</S.title>
           <S.input_list>
             <S.detail>
               <Image src={note.src} alt="note" width={20} height={20}></Image>

@@ -66,15 +66,26 @@ const AnnouncementAll = () => {
             <Spacer height="9rem"></Spacer>
             <DetailCategory category="전체 공고 관리"></DetailCategory>
             <S.total>Total : {announcementInfo?.totalCount}</S.total>
-            <S.register_new_researcher
-              onClick={() =>
-                (window.location.href =
-                  '/admin/announcement/write?type=연구/인터뷰')
-              }
-            >
-              <Image src={plus.src} alt="plus" width={10} height={10}></Image>새
-              공고 등록
-            </S.register_new_researcher>
+            <S.register_announcement_wrap>
+              <S.register_announcement
+                onClick={() =>
+                  (window.location.href =
+                    '/admin/announcement/write?type=연구/인터뷰')
+                }
+              >
+                <Image src={plus.src} alt="plus" width={10} height={10}></Image>
+                연구/인터뷰 등록
+              </S.register_announcement>
+              <S.register_announcement
+                onClick={() =>
+                  (window.location.href =
+                    '/admin/announcement/write?type=설문조사')
+                }
+              >
+                <Image src={plus.src} alt="plus" width={10} height={10}></Image>
+                설문조사 등록
+              </S.register_announcement>
+            </S.register_announcement_wrap>
             <SearchBar setList={setList}></SearchBar>
             <S.list_wrap>
               <Table info={announcementInfo?.announcements}></Table>

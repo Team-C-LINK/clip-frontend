@@ -69,7 +69,9 @@ const HeaderWrite = () => {
             width={15}
             height={15}
           ></Image>
-          <S.detail_category>연구/인터뷰 등록</S.detail_category>
+          <S.detail_category>
+            {queryParam.get('type') as string} 등록
+          </S.detail_category>
         </S.category_wrap>
         <S.button_wrap>
           <S.cancel
