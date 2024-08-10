@@ -1,12 +1,18 @@
 import styled from 'styled-components';
 import Title from '../Title/Title';
 
-const ResearchInfo = ({ children }: { children: React.ReactNode }) => {
+interface ResearcherInfoProps {
+  content?: string;
+  imageUrl?: string;
+}
+
+const ResearchInfo: React.FC<ResearcherInfoProps> = ({ content, imageUrl }) => {
   return (
     <>
       <Wrap>
         <Title>연구 상세 정보</Title>
-        <Content>{children}</Content>
+        <img src={imageUrl}></img>
+        <Content>{content}</Content>
       </Wrap>
     </>
   );
@@ -30,5 +36,7 @@ const Content = styled.div`
   ${(props) => props.theme.FONT.Regular.B3};
   color: ${(props) => props.theme.TEXT._01};
 `;
+
+const test = styled.img``;
 
 export default ResearchInfo;

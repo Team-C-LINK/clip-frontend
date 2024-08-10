@@ -24,7 +24,7 @@ export const Calendar_unselected_item = styled.div`
 export const Calendar_selected_item = styled.div`
   position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 4.4rem;
@@ -155,4 +155,24 @@ export const input_wrap = styled.div`
   gap: 0.6rem;
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.Medium.B2};
+`;
+
+export const calendar_item_person = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 3rem;
+  width: 29px;
+  height: 20px;
+
+  background: #f7f2ff;
+  border-radius: 4px;
+
+  font-family: 'Pretendard';
+  ${(props) => props.theme.FONT.Regular.B4};
+
+  color: #000000;
 `;

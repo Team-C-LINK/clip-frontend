@@ -72,6 +72,7 @@ export const cancel = styled.div`
 
   background: ${(props) => props.theme.BACKGROUND._DISABLE};
   border-radius: 4px;
+  cursor: pointer;
 `;
 
 export const sumbit = styled.div`
@@ -90,4 +91,5 @@ export const sumbit = styled.div`
 
   background: ${(props) => props.theme.BACKGROUND._DARK};
   border-radius: 4px;
+  cursor: pointer;
 `;

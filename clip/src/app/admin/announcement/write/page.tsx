@@ -19,10 +19,11 @@ import { announceInfoState } from './asset/Atoms/announcementInfoState';
 import { imageFileState } from './asset/Atoms/imageFileState';
 import plus from '@/app/admin/researcher/all/asset/image/plus.svg';
 import cancel from '@/app/admin/announcement/write/asset/image/cancel.svg';
+import { useSearchParams } from 'next/navigation';
 
 const Write = () => {
   const { register, watch, setValue } = useForm<any>({ mode: 'onChange' });
-
+  const queryParam = useSearchParams();
   const [isCalendarModalOpen, setIsCalendarModalOpen] =
     useState<boolean>(false);
   const [test, setTest] = useState('');
@@ -101,7 +102,7 @@ const Write = () => {
       <S.wrap>
         <S.left_wrap>
           <Spacer height="2rem;"></Spacer>
-          <S.title>연구 / 인터뷰 등록</S.title>
+          <S.title>{queryParam.get('type') as string} 등록</S.title>
           <S.input_list>
             <S.detail>
               <Image src={note.src} alt="note" width={20} height={20}></Image>
@@ -183,14 +184,14 @@ const Write = () => {
                 스크리닝 정보 추가
               </S.add_screening>
             </S.input_wrap>
-            <S.input_wrap>
+            {/* <S.input_wrap>
               <S.index>구글 예약 폼 링크 *</S.index>
               <S.input
                 placeholder={'예약 폼 링크'}
                 src={searchIcon.src}
                 width={'67.2rem'}
               ></S.input>
-            </S.input_wrap>
+            </S.input_wrap> */}
             <S.input_wrap>
               <S.index>사례금 *</S.index>
               <S.input
@@ -221,8 +222,8 @@ const Write = () => {
               사진 업로드
             </S.upload>
             <S.selected_file>
-              {watch('image')?.length
-                ? `${(watch('image')[0] as File)?.name}`
+              {imageFiles?.length
+                ? `${imageFiles[0]?.name}`
                 : `선택된 파일 없음`}
             </S.selected_file>
           </S.upload_wrap>
