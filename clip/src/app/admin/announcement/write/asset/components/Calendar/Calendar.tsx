@@ -77,6 +77,22 @@ const Calendar: React.FC<CalendarProps> = ({ startDate, endDate }) => {
     return idx;
   };
 
+  const isValidDate = (
+    startDate: number,
+    endDate: number,
+    year: number,
+    month: string,
+    day: string
+  ): boolean => {
+    const str = `${year}${month}${day}`;
+
+    const dateNumber = parseInt(str);
+
+    if (startDate <= dateNumber && dateNumber <= endDate) return true;
+
+    return false;
+  };
+
   const handleSelectTime = (e: React.MouseEvent<HTMLDivElement>) => {
     /**
      * 1. 이미 존재하는 날짜라면 배열만 업데이트
@@ -155,24 +171,45 @@ const Calendar: React.FC<CalendarProps> = ({ startDate, endDate }) => {
             const month = date[0].toString().padStart(2, '0');
             const day = date[1]?.toString().padStart(2, '0');
             const fullDate = `${year}-${month}-${day}`;
+            const reserveInfoIdx = findIdx(fullDate);
 
-            return (
-              <React.Fragment key={idx * 7 + idx2}>
-                {parseInt(selectedDate?.day) === date[1] ? (
-                  <C.Calendar_selected_item>{date[1]}</C.Calendar_selected_item>
-                ) : (
-                  <C.Calendar_unselected_item
-                    onClick={handleCalendarItem}
-                    data-dayofweek={`${idx2}`}
-                    data-year={year}
-                    data-month={month}
-                    data-day={day}
-                  >
-                    {date[1]}
-                  </C.Calendar_unselected_item>
-                )}
-              </React.Fragment>
-            );
+            if (isValidDate(startDate, endDate, year, month, day)) {
+              return (
+                <React.Fragment key={idx * 7 + idx2}>
+                  {parseInt(selectedDate?.day) === date[1] ? (
+                    <C.Calendar_selected_item>
+                      {date[1]}
+                    </C.Calendar_selected_item>
+                  ) : (
+                    <C.Calendar_unselected_item
+                      onClick={handleCalendarItem}
+                      data-dayofweek={`${idx2}`}
+                      data-year={year}
+                      data-month={month}
+                      data-day={day}
+                    >
+                      {date[1]}
+                      {reserveInfoIdx >= 0 && (
+                        <C.calendar_item_person>
+                          {reserveInfo[reserveInfoIdx]?.time.reduce(
+                            (cur, acc) => {
+                              return cur + acc.person;
+                            },
+                            0
+                          )}
+                          명
+                        </C.calendar_item_person>
+                      )}
+                    </C.Calendar_unselected_item>
+                  )}
+                </React.Fragment>
+              );
+            } else
+              return (
+                <React.Fragment key={idx * 7 + idx2}>
+                  <C.Calendar_disable_item>{date[1]}</C.Calendar_disable_item>
+                </React.Fragment>
+              );
           });
           return weekItem;
         })}
