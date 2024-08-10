@@ -46,6 +46,7 @@ const RecruitDetail = () => {
       <Spacer height="7rem"></Spacer>
       <Header>
         <HeaderRecruit
+          title={info?.title}
           isScraped={info?.isScraped}
           setModalState={setShareModalState}
         ></HeaderRecruit>
@@ -55,12 +56,15 @@ const RecruitDetail = () => {
       )}
       <C.Wrap>
         <Condition props={info}></Condition>
-        <ResearchInfo>{info?.content}</ResearchInfo>
+        <ResearchInfo
+          imageUrl={info?.image}
+          content={info?.content}
+        ></ResearchInfo>
         <Map address="인천 서구 경명대로 676"></Map>
         <ResearcherInfo props={info}></ResearcherInfo>
       </C.Wrap>
       <Spacer height="8rem" />
-      <Footer>
+      {/* <Footer>
         <PrevNext>
           <PrevBtn $size={'45dvw'}>문의하기</PrevBtn>
           <NextButton
@@ -70,7 +74,7 @@ const RecruitDetail = () => {
             간편 지원하기
           </NextButton>
         </PrevNext>
-      </Footer>
+      </Footer> */}
     </>
   );
 };

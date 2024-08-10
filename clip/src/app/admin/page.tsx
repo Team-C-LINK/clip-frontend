@@ -23,15 +23,11 @@ const Admin = () => {
     };
 
     const res = await postAdminLogin(loginInfo);
-    console.log(res);
+
     if (res) {
       localStorage.setItem('accessToken', res);
-      window.location.href = '/admin/home';
+      window.location.href = '/admin/announcement/all';
     }
-  };
-
-  const onError = (e: any) => {
-    console.log(e);
   };
 
   return (

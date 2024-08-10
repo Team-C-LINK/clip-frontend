@@ -11,8 +11,8 @@ export const list_wrap = styled.div`
   margin-top: 1.5rem;
 `;
 
-export const register_new_researcher = styled.div`
-  position: absolute;
+export const register_announcement = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -27,6 +27,21 @@ export const register_new_researcher = styled.div`
   background: #ffffff;
   border: 1px solid #d9d9d9;
   border-radius: 10rem;
+  cursor: pointer;
+`;
+
+export const register_announcement_wrap = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Pretendard';
+  ${(props) => props.theme.FONT.SemiBold.B3};
+  right: 0rem;
+  top: 0rem;
+  background: #ffffff;
   cursor: pointer;
 `;
 
