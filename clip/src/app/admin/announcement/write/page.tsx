@@ -184,14 +184,14 @@ const Write = () => {
                 스크리닝 정보 추가
               </S.add_screening>
             </S.input_wrap>
-            <S.input_wrap>
+            {/* <S.input_wrap>
               <S.index>구글 예약 폼 링크 *</S.index>
               <S.input
                 placeholder={'예약 폼 링크'}
                 src={searchIcon.src}
                 width={'67.2rem'}
               ></S.input>
-            </S.input_wrap>
+            </S.input_wrap> */}
             <S.input_wrap>
               <S.index>사례금 *</S.index>
               <S.input
