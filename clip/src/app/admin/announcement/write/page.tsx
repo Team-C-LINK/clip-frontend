@@ -73,7 +73,14 @@ const Write = () => {
   };
 
   useEffect(() => {
-    if (startDate || endDate) setTest(`${startDate}      /     ${endDate}`);
+    if (startDate || endDate)
+      setTest(
+        `${startDate
+          .toString()
+          .replace(/(\d{4})(\d{2})(\d{2})/, '$1.$2.$3')}      /     ${endDate
+          ?.toString()
+          .replace(/(\d{4})(\d{2})(\d{2})/, '$1.$2.$3')}`
+      );
 
     if (endDate) {
       const endDateStr = endDate.toString();
