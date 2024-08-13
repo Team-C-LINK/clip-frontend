@@ -47,15 +47,7 @@ const LandingPageMobile = () => {
         <>
           <C.LandingPageFrame isMobile={true}>
             <C.join_wrap>
-              <C.Join onClick={moveToChannel}>
-                <Image
-                  src={KaKaoChannel.src}
-                  alt={'KaKaoChannel'}
-                  width={28}
-                  height={28}
-                ></Image>
-                채널 추가 바로가기
-              </C.Join>
+              <C.Join onClick={moveToChannel}>실시간 공고 확인하기</C.Join>
             </C.join_wrap>
             <LandingPage></LandingPage>
           </C.LandingPageFrame>
@@ -67,7 +59,7 @@ const LandingPageMobile = () => {
 
 const LandingPageWeb = () => {
   const moveToChannel = () => {
-    window.location.href = 'https://pf.kakao.com/_uRgmG';
+    window.location.href = '/announcement';
   };
 
   const [isClient, setIsClient] = useState(false);
@@ -88,26 +80,8 @@ const LandingPageWeb = () => {
               <C.MiddleImageFrame>
                 <C.MiddleImage src={clipPhoneImage.src}></C.MiddleImage>
               </C.MiddleImageFrame>
-              <C.BottomFrame>
-                <C.BottomTopText>
-                  지금 클립 <strong>카카오 채널</strong> 추가하면,<br></br>
-                  <strong>베타테스트</strong> 이용 가능!
-                </C.BottomTopText>
-                <C.BottomLowText>
-                  *지금은 베타 테스트 운영 기간으로, 카카오 채널을 통해,{' '}
-                  <br></br>내 주변 참여 가능 연구 매칭 기능만 임시 제공 됩니다.{' '}
-                  <br></br>
-                  베타 테스트 신청 혜택은 아래 설명을 참고해 주세요.
-                </C.BottomLowText>
-              </C.BottomFrame>
               <C.AddChannelButton onClick={moveToChannel}>
-                <Image
-                  src={KaKaoChannel.src}
-                  alt={'KaKaoChannel'}
-                  width={28}
-                  height={28}
-                ></Image>
-                채널 추가 바로가기
+                실시간 공고 확인하기
               </C.AddChannelButton>
             </C.LeftInner>
           </C.LeftWrapper>
@@ -116,7 +90,6 @@ const LandingPageWeb = () => {
               <Second></Second>
               <Third></Third>
               <Fourth></Fourth>
-              <Sixth></Sixth>
             </C.LandingPageFrame>
           </C.RightWrapper>
         </C.LandingWrapper>
