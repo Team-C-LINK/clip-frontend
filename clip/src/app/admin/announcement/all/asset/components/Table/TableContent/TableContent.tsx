@@ -28,7 +28,9 @@ const TableContent: React.FC<TableContentProps> = ({ info }) => {
       </S.td>
       <S.td>{info.category}</S.td>
       <S.td>{info.remainingDay}</S.td>
-      <S.td>{info.title}</S.td>
+      <S.td>
+        <a href={`/announcement/${info?.id}`}>{info.title}</a>
+      </S.td>
       <S.td>{info.researcherName}</S.td>
       <S.td>{info.researcherAffiliation}</S.td>
       <S.td>
