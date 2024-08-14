@@ -29,7 +29,6 @@ export const Calendar_wrap = styled.div`
   flex-wrap: wrap;
   width: 22rem;
   height: fit-content;
-  gap: 1rem;
 `;
 
 export const Calendar_middle_item = styled.div`
@@ -40,6 +39,8 @@ export const Calendar_middle_item = styled.div`
   align-items: center;
   height: 2.277rem;
   width: 2.277rem;
+  margin: 0.4rem 0rem;
+  padding: 0rem 0.4rem;
 
   color: ${(props) => props.theme.TEXT._01};
   background: ${(props) => props.theme.PURPLE._04};
@@ -53,6 +54,7 @@ export const Calendar_unselected_item = styled.div`
   align-items: center;
   height: 2.277rem;
   width: 2.277rem;
+  padding: 0.4rem;
 `;
 
 export const Calendar_selected_item = styled.div`
@@ -66,6 +68,7 @@ export const Calendar_selected_item = styled.div`
   border-radius: 50%;
   color: ${(props) => props.theme.TEXT._04};
   background: ${(props) => props.theme.PURPLE._00};
+  padding: 0.4rem;
 `;
 
 export const Calendar_disable_item = styled.div`
@@ -78,6 +81,7 @@ export const Calendar_disable_item = styled.div`
   width: 2.277rem;
   text-decoration: line-through;
   color: ${(props) => props.theme.TEXT._03};
+  padding: 0.4rem;
 `;
 
 export const month_select_wrap = styled.div`
