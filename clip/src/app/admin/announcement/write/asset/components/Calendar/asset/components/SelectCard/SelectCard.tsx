@@ -3,6 +3,7 @@ import Image from 'next/image';
 import plus_black from '@/app/admin/announcement/write/asset/components/Calendar/asset/image/plus_black.svg';
 import minus_gray from '@/app/admin/announcement/write/asset/components/Calendar/asset/image/minus.gray.svg';
 import minus_black from '@/app/admin/announcement/write/asset/components/Calendar/asset/image/minus_black.svg';
+import cancel from '@/app/admin/announcement/write/asset/components/Calendar/asset/image/cancel.svg';
 import { useState } from 'react';
 
 interface SelectCardProps {
@@ -56,6 +57,24 @@ const SelectCard: React.FC<SelectCardProps> = ({
     }
   };
 
+  const handleCancelButton = (e: React.MouseEvent<HTMLImageElement>) => {
+    const _date = `${date?.year}-${date?.month}-${date?.day}`;
+    const idx = findIdx(_date)!;
+
+    const target = reserveInfo?.slice(0);
+    const timeIdx = target[idx]?.time.findIndex(
+      (item) => item.detail === info.detail
+    );
+
+    if (target[idx]?.time.length > 1) {
+      target[idx]?.time.splice(timeIdx, 1);
+      setReserveInfo(target);
+    } else {
+      target.splice(idx, 1);
+      setReserveInfo(target);
+    }
+  };
+
   return (
     <S.wrap>
       <S.row>
@@ -63,6 +82,20 @@ const SelectCard: React.FC<SelectCardProps> = ({
           {date?.month}월 {date?.day}일
         </strong>
         &nbsp;({info?.detail}시)
+        <Image
+          src={cancel.src}
+          alt="cancel"
+          id="cancel"
+          width={12}
+          height={12}
+          style={{
+            position: 'absolute',
+            right: '1rem',
+            top: '2rem',
+            cursor: 'pointer',
+          }}
+          onClick={handleCancelButton}
+        ></Image>
       </S.row>
       <S.row>
         <S.counter>

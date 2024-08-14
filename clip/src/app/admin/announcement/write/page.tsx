@@ -170,7 +170,7 @@ const Write = () => {
                     key={index}
                   >
                     <S.input
-                      placeholder={'스크리닝 정보 등록하기' + index}
+                      placeholder={'스크리닝 정보 등록하기'}
                       src={searchIcon.src}
                       width={'67.2rem'}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
