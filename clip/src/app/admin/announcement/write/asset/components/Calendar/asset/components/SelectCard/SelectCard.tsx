@@ -2,6 +2,7 @@ import * as S from './SelectCard.style';
 import Image from 'next/image';
 import plus_black from '@/app/admin/announcement/write/asset/components/Calendar/asset/image/plus_black.svg';
 import minus_gray from '@/app/admin/announcement/write/asset/components/Calendar/asset/image/minus.gray.svg';
+import minus_black from '@/app/admin/announcement/write/asset/components/Calendar/asset/image/minus_black.svg';
 import { useState } from 'react';
 
 interface SelectCardProps {
@@ -66,7 +67,7 @@ const SelectCard: React.FC<SelectCardProps> = ({
       <S.row>
         <S.counter>
           <Image
-            src={minus_gray.src}
+            src={info?.person > 1 ? minus_black.src : minus_gray.src}
             alt="minus_gray"
             id="minus"
             width={24}
