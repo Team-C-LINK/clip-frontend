@@ -16,7 +16,9 @@ const NavigationBar = ({ state }: { state: string }) => {
   return (
     <>
       <C.wrapper $isVisible={isNavVisible}>
-        <C.navigation_content_wrapper>
+        <C.navigation_content_wrapper
+          onClick={() => (window.location.href = '/')}
+        >
           <C.navigation_img
             $status={state == 'home'}
             src={home.src}
