@@ -94,12 +94,6 @@ const Calendar: React.FC<CalendarProps> = ({ startDate, endDate }) => {
   };
 
   const handleSelectTime = (e: React.MouseEvent<HTMLDivElement>) => {
-    /**
-     * 1. 이미 존재하는 날짜라면 배열만 업데이트
-     * 2. 존재하지 않는 날짜라면 새롭게 추가
-     * 3. 시간을 설정하면 모달이 닫기
-     * 4. 업데이트 해주기
-     */
     const _date = `${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`;
     const selectTime = e.currentTarget.innerHTML;
     const idx = findIdx(_date);
@@ -173,10 +167,12 @@ const Calendar: React.FC<CalendarProps> = ({ startDate, endDate }) => {
             const fullDate = `${year}-${month}-${day}`;
             const reserveInfoIdx = findIdx(fullDate);
 
+            const selectedDateStr = `${selectedDate?.year}-${selectedDate?.month}-${selectedDate?.day}`;
+
             if (isValidDate(startDate, endDate, year, month, day)) {
               return (
                 <React.Fragment key={idx * 7 + idx2}>
-                  {parseInt(selectedDate?.day) === date[1] ? (
+                  {selectedDateStr === fullDate ? (
                     <C.Calendar_selected_item>
                       {date[1]}
                     </C.Calendar_selected_item>
