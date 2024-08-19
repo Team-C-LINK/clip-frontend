@@ -40,8 +40,6 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
   });
 
   const handleCalendarItem = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    e.stopPropagation();
-
     const targetDate = parseInt(
       `${e.currentTarget.dataset.year}${e.currentTarget.dataset.month}${e.currentTarget.dataset.day}`
     );

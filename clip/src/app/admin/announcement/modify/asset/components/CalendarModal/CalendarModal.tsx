@@ -95,7 +95,10 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
   }, [list]);
 
   return (
-    <S.wrap $isOpen={isCalendarModalOpen}>
+    <S.wrap
+      $isOpen={isCalendarModalOpen}
+      onClick={(e: React.MouseEvent<HTMLElement>) => e.stopPropagation()}
+    >
       <S.month_select_wrap>
         <S.month_select_wrap_inner>
           {currentDate.getMonth() === new Date().getMonth() ? (

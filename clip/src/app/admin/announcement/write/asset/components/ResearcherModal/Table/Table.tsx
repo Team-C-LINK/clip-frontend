@@ -19,7 +19,9 @@ const Table: React.FC<TableProps> = ({ info }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
   return (
-    <S.table>
+    <S.table
+      onClick={(e: React.MouseEvent<HTMLElement>) => e.stopPropagation()}
+    >
       <thead>
         <tr>
           <S.th>선택</S.th>
