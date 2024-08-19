@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import * as S from './TableContent.style';
 import { useRecoilState } from 'recoil';
-import { announcementModalStateWriteModify } from '@/app/Atoms/announcementModalStateWriteModify';
-import { selectedResearcherState } from '@/app/Atoms/selectedResearcherState';
+import { announcementModalStateWriteModify } from '../../../../../../../../Atoms/announcementModalStateWriteModify';
+import { selectedResearcherState } from '../../../../../../../../Atoms/selectedResearcherState';
 
 interface ResearcherModalInfoType {
   name: string;

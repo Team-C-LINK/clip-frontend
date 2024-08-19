@@ -8,11 +8,11 @@ import { useRecoilState } from 'recoil';
 import {
   announceInfoState,
   AnnouncementInfoType,
-} from '@/app/Atoms/announcementInfoState';
-import { imageFileState } from '@/app/Atoms/imageFileState';
+} from '../../../../../../Atoms/announcementInfoState';
+import { imageFileState } from '../../../../../../Atoms/imageFileState';
 import { useSearchParams } from 'next/navigation';
-import { selectedResearcherState } from '@/app/Atoms/selectedResearcherState';
-import postAnnouncement from '@/app/api/admin/post-announcement';
+import { selectedResearcherState } from '../../../../../../Atoms/selectedResearcherState';
+import putModifyAnnouncement from '@/app/api/admin/put-modifyAnnouncement';
 
 const HeaderWrite = () => {
   const queryParam = useSearchParams();
@@ -21,6 +21,7 @@ const HeaderWrite = () => {
   const [selectedResearcher, setSelectedResearcher] = useRecoilState(
     selectedResearcherState
   );
+
   const handleSubmit = async () => {
     const imageFileUrl = await uploadS3Multiple(imageFiles);
 
@@ -34,12 +35,17 @@ const HeaderWrite = () => {
 
     console.log(info);
 
-    const res = await postAnnouncement(info);
+    // const res = await putModifyAnnouncement(
+    //   info,
+    //   queryParam.get('id') as string
+    // );
 
-    if (res?.status === 200) {
-      alert('공고가 등록되었습니다.');
-      window.location.href = '/admin/announcement/all';
-    }
+    // console.log(res);
+
+    // if (res?.status === 204) {
+    //   alert('공고가 수정되었습니다.');
+    //   window.location.href = '/admin/announcement/all';
+    // }
   };
 
   return (
@@ -71,9 +77,7 @@ const HeaderWrite = () => {
             width={15}
             height={15}
           ></Image>
-          <S.detail_category>
-            {queryParam.get('type') as string} 등록
-          </S.detail_category>
+          <S.detail_category>수정</S.detail_category>
         </S.category_wrap>
         <S.button_wrap>
           <S.cancel
@@ -81,7 +85,7 @@ const HeaderWrite = () => {
           >
             취소하기
           </S.cancel>
-          <S.sumbit onClick={handleSubmit}>완료하기</S.sumbit>
+          <S.sumbit onClick={handleSubmit}>수정하기</S.sumbit>
         </S.button_wrap>
       </S.wrap_inner>
     </S.wrap>

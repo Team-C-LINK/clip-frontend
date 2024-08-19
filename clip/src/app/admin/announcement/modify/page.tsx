@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import * as S from '@/app/admin/announcement/write/page.style';
+import * as S from './page.style';
 import HeaderWrite from './asset/components/Header/Header';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
 import note from '@/app/admin/announcement/write/asset/image/note.svg';
@@ -13,23 +13,35 @@ import calendar_gray from '@/app/admin/announcement/write/asset/image/calendar_g
 import Calendar from './asset/components/Calendar/Calendar';
 import ResearcherModal from './asset/components/ResearcherModal/ResearcherModal';
 import { useRecoilState } from 'recoil';
-import { announcementModalStateWriteModify } from '@/app/Atoms/announcementModalStateWriteModify';
-import { selectedResearcherState } from '@/app/Atoms/selectedResearcherState';
-import { imageFileState } from '@/app/Atoms/imageFileState';
-import {
-  AnnouncementInfoType,
-  announceInfoState,
-} from '@/app/Atoms/announcementInfoState';
+import { announcementModalStateWriteModify } from '../../../Atoms/announcementModalStateWriteModify';
+import { selectedResearcherState } from '../../../Atoms/selectedResearcherState';
+import { announceInfoState } from '../../../Atoms/announcementInfoState';
+import { imageFileState } from '../../../Atoms/imageFileState';
 import plus from '@/app/admin/researcher/all/asset/image/plus.svg';
 import cancel from '@/app/admin/announcement/write/asset/image/cancel.svg';
 import { useSearchParams } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import getTargetRecruitInfo from '@/app/api/get-targetRecruitInfo';
+import PostType from '@/app/type/PostType';
+import getResearcherList from '@/app/api/admin/get-researcherList';
+import { researcherListState } from '../../../Atoms/researcehrList';
+import deleteAnnouncement from '@/app/api/admin/delete-announcement';
 
-const Write = () => {
+const Page = () => {
   const { register, watch, setValue, control } = useForm<any>({
-    mode: 'onChange',
+    mode: 'all',
   });
-  const queryParam = useSearchParams();
   const watchValues = useWatch({ control });
+  const queryParam = useSearchParams();
+  const { data: info } = useQuery<PostType>({
+    queryKey: ['post', queryParam.get('id')],
+    queryFn: getTargetRecruitInfo,
+  });
+  const { data: researcherInfo } = useQuery({
+    queryKey: [''],
+    queryFn: getResearcherList,
+    enabled: !!info,
+  });
   const [isCalendarModalOpen, setIsCalendarModalOpen] =
     useState<boolean>(false);
   const [test, setTest] = useState('');
@@ -38,17 +50,18 @@ const Write = () => {
   const [selectedResearcher, setSelectedResearcher] = useRecoilState(
     selectedResearcherState
   );
+  const [researcherList, setResearcherList] =
+    useRecoilState(researcherListState);
   const [screeningInput, setScreeningInput] = useState<string[]>(['']);
-  const [modalState, setModalState] = useRecoilState(
-    announcementModalStateWriteModify
-  );
+  const [isResearcherModalStateOn, setIsResearcherModalStateOn] =
+    useRecoilState(announcementModalStateWriteModify);
   const [announceInfo, setAnnouncementInfo] = useRecoilState(announceInfoState);
   const [imageFiles, setImageFiles] = useRecoilState(imageFileState);
 
   const handleCalendarModal = (e: React.MouseEvent<HTMLInputElement>) => {
     e.stopPropagation();
 
-    setModalState((prev) => ({
+    setIsResearcherModalStateOn((prev) => ({
       ...prev,
       calendarModalState: !prev.calendarModalState,
     }));
@@ -57,7 +70,7 @@ const Write = () => {
   const handleResearcherModalState = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     if (e.currentTarget === e.target)
-      setModalState((prev) => ({
+      setIsResearcherModalStateOn((prev) => ({
         ...prev,
         reseracherModalState: !prev.reseracherModalState,
       }));
@@ -87,7 +100,7 @@ const Write = () => {
     setImageFiles(copy);
   };
 
-  useEffect(() => {
+  const handleDate = () => {
     if (startDate || endDate)
       setTest(
         `${startDate
@@ -105,7 +118,31 @@ const Write = () => {
       )}-${endDateStr.slice(6)}`;
       setAnnouncementInfo((prev) => ({ ...prev, endDate: formattedDate }));
     }
-  }, [startDate, endDate]);
+  };
+
+  const handleEraseButton = async () => {
+    console.log(queryParam.get('id'));
+
+    const res = await deleteAnnouncement(queryParam.get('id') as string);
+
+    console.log(res);
+  };
+
+  const initInput = () => {
+    if (info) {
+      const [city, district, detailAddress] = info?.researchLocation.split(' ');
+      const [year, month, day] = info?.endDate.split('-');
+      setValue('title', info?.title);
+      setValue('city', city);
+      setValue('district', district);
+      setValue('detailAddress', detailAddress);
+      setScreeningInput(info?.applicationConditions);
+      setValue('content', info?.content);
+      setEndDate(`${year}.${month}.${day}`);
+    }
+  };
+
+  useEffect(handleDate, [startDate, endDate]);
 
   useEffect(() => {
     setAnnouncementInfo((prev) => ({ ...prev, ...watchValues }));
@@ -118,13 +155,25 @@ const Write = () => {
     }));
   }, [screeningInput]);
 
+  useEffect(initInput, [info]);
+
+  useEffect(() => {
+    if (researcherInfo) {
+      setResearcherList(researcherInfo?.researchers);
+      const target = researcherInfo?.researchers.filter(
+        (item: any) => item.name === info?.researcherName
+      );
+      setSelectedResearcher(target[0]);
+    }
+  }, [researcherInfo]);
+
   return (
     <>
       <HeaderWrite></HeaderWrite>
       <S.wrap>
         <S.left_wrap>
           <Spacer height="2rem;"></Spacer>
-          <S.title>{queryParam.get('type') as string} 등록</S.title>
+          <S.title>공고 수정</S.title>
           <S.input_list>
             <S.detail>
               <Image src={note.src} alt="note" width={20} height={20}></Image>
@@ -148,7 +197,7 @@ const Write = () => {
                 width={'67.2rem'}
                 onClick={handleResearcherModalState}
               ></S.input>
-              {modalState.reseracherModalState && (
+              {isResearcherModalStateOn.reseracherModalState && (
                 <ResearcherModal></ResearcherModal>
               )}
             </S.input_wrap>
@@ -190,6 +239,7 @@ const Write = () => {
                       placeholder={'스크리닝 정보 등록하기'}
                       src={searchIcon.src}
                       width={'67.2rem'}
+                      value={screeningInput[index]}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         handleScreeningInfo(e, index)
                       }
@@ -251,6 +301,7 @@ const Write = () => {
                 : `선택된 파일 없음`}
             </S.selected_file>
           </S.upload_wrap>
+          <S.erase onClick={handleEraseButton}>공고 삭제</S.erase>
         </S.left_wrap>
         <S.right_wrap>
           <S.right_wrap_inner>
@@ -268,9 +319,11 @@ const Write = () => {
                 onChange={() => {}}
                 value={test}
               ></S.input_calendar>
-              {modalState?.calendarModalState && (
+              {isResearcherModalStateOn?.calendarModalState && (
                 <CalendarModal
-                  isCalendarModalOpen={modalState?.calendarModalState}
+                  isCalendarModalOpen={
+                    isResearcherModalStateOn?.calendarModalState
+                  }
                   setIsCalendarModalOpen={setIsCalendarModalOpen}
                   setStartDate={setStartDate}
                   setEndDate={setEndDate}
@@ -291,4 +344,4 @@ const Write = () => {
   );
 };
 
-export default Write;
+export default Page;
