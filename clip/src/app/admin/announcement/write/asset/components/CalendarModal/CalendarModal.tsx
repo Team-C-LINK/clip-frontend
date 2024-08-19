@@ -95,7 +95,12 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
   }, [list]);
 
   return (
-    <S.wrap $isOpen={isCalendarModalOpen}>
+    <S.wrap
+      $isOpen={isCalendarModalOpen}
+      onClick={(e: React.MouseEvent<HTMLElement>) => {
+        e.stopPropagation();
+      }}
+    >
       <S.month_select_wrap>
         <S.month_select_wrap_inner>
           {currentDate.getMonth() === new Date().getMonth() ? (
@@ -106,7 +111,8 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
               alt="right"
               width={15}
               height={15}
-              onClick={() => {
+              onClick={(e: React.MouseEvent<HTMLImageElement>) => {
+                e.stopPropagation();
                 setCurrentDate(subMonths(currentDate, +1));
               }}
             />
@@ -120,7 +126,8 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
             alt="right"
             width={15}
             height={15}
-            onClick={() => {
+            onClick={(e: React.MouseEvent<HTMLImageElement>) => {
+              e.stopPropagation();
               setCurrentDate(subMonths(currentDate, -1));
             }}
           ></Image>
