@@ -25,7 +25,6 @@ const Map = ({ address }: { address: string | undefined }) => {
           <MapBox id="map"></MapBox>
           <Address>
             <span onClick={handleCopyClipBoard}>{address}</span>
-
             <Purple>지도보기</Purple>
           </Address>
         </div>

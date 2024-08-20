@@ -29,8 +29,11 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ setIsModalOpen }) => {
 
   const submit = async () => {
     const data = watch();
+
+    console.log(watch('name'));
     const profileUrl = await uploadS3(data?.profile[0] as File);
     data.profile = profileUrl as string;
+    console.log(data);
     const res = await postRegisterResearcher(data);
     if (res?.status === 200) {
       alert('연구자를 등록했습니다.');
@@ -102,46 +105,36 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ setIsModalOpen }) => {
           <C.input_wrap>
             <C.index>연구자 명</C.index>
             <C.input
-              {...(register('name'),
-              {
-                placeholder: '연구자 이름을 입력해주세요',
-              })}
+              {...register('name')}
+              placeholder="연구자 이름을 입력해주세요"
             ></C.input>
           </C.input_wrap>
           <C.input_wrap>
             <C.index>연구자 소속</C.index>
             <C.input
-              {...(register('affiliation'),
-              {
-                placeholder: '연구자 소속을 입력해주세요',
-              })}
+              {...register('affiliation')}
+              placeholder="연구자 소속을 입력해주세요"
             ></C.input>
           </C.input_wrap>
           <C.input_wrap>
             <C.index>이메일</C.index>{' '}
             <C.input
-              {...(register('email'),
-              {
-                placeholder: '이메일을 입력해주세요',
-              })}
+              {...register('email')}
+              placeholder="이메일을 입력해주세요"
             ></C.input>
           </C.input_wrap>
           <C.input_wrap>
             <C.index>연구 분야</C.index>
             <C.input
-              {...(register('researchField'),
-              {
-                placeholder: '연구 분야를 입력해주세요',
-              })}
+              {...register('researchField')}
+              placeholder="연구 분야를 입력해주세요"
             ></C.input>
           </C.input_wrap>
           <C.input_wrap>
             <C.index>대표 주소</C.index>
             <C.input
-              {...(register('detailAddress'),
-              {
-                placeholder: '주소를 입력해주세요',
-              })}
+              {...register('detailAddress')}
+              placeholder="주소를 입력해주세요"
             ></C.input>
           </C.input_wrap>
           <C.button_wrap>

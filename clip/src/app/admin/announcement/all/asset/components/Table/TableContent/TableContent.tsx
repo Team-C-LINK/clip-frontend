@@ -12,8 +12,8 @@ type TableContentProps = {
 const TableContent: React.FC<TableContentProps> = ({ info }) => {
   const [isModifyModalOpen, setIsModifyModalOpen] = useState<boolean>(false);
 
-  const handleModifyModal = () => {
-    setIsModifyModalOpen(true);
+  const handleModifyButton = () => {
+    window.location.href = `/admin/announcement/modify?id=${info?.id}`;
   };
 
   return (
@@ -28,11 +28,13 @@ const TableContent: React.FC<TableContentProps> = ({ info }) => {
       </S.td>
       <S.td>{info.category}</S.td>
       <S.td>{info.remainingDay}</S.td>
-      <S.td>{info.title}</S.td>
+      <S.td>
+        <a href={`/announcement/${info?.id}`}>{info.title}</a>
+      </S.td>
       <S.td>{info.researcherName}</S.td>
       <S.td>{info.researcherAffiliation}</S.td>
       <S.td>
-        <S.modify_button onClick={handleModifyModal}>
+        <S.modify_button onClick={handleModifyButton}>
           <Image
             src={modifyIcon.src}
             alt="modifyIcon"

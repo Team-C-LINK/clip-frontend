@@ -8,10 +8,10 @@ import { useRecoilState } from 'recoil';
 import {
   announceInfoState,
   AnnouncementInfoType,
-} from '../../Atoms/announcementInfoState';
-import { imageFileState } from '../../Atoms/imageFileState';
+} from '@/app/Atoms/announcementInfoState';
+import { imageFileState } from '@/app/Atoms/imageFileState';
 import { useSearchParams } from 'next/navigation';
-import { selectedResearcherState } from '../../Atoms/jwtAtom';
+import { selectedResearcherState } from '@/app/Atoms/selectedResearcherState';
 import postAnnouncement from '@/app/api/admin/post-announcement';
 
 const HeaderWrite = () => {
@@ -31,6 +31,8 @@ const HeaderWrite = () => {
     info.type = queryParam.get('type') as string;
 
     info.researcherId = selectedResearcher.id;
+
+    console.log(info);
 
     const res = await postAnnouncement(info);
 

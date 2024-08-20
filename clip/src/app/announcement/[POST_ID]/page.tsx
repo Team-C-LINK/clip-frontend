@@ -60,8 +60,8 @@ const RecruitDetail = () => {
           imageUrl={info?.image}
           content={info?.content}
         ></ResearchInfo>
-        <Map address="인천 서구 경명대로 676"></Map>
-        <ResearcherInfo props={info}></ResearcherInfo>
+        <Map address={info?.researchLocation}></Map>
+        <ResearcherInfo info={info}></ResearcherInfo>
       </C.Wrap>
       <Spacer height="8rem" />
       {/* <Footer>

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import * as S from './TableContent.style';
 import { useRecoilState } from 'recoil';
-import { ModalState } from '../../../../Atoms/ModalState';
-import { selectedResearcherState } from '../../../../Atoms/jwtAtom';
+import { announcementModalStateWriteModify } from '@/app/Atoms/announcementModalStateWriteModify';
+import { selectedResearcherState } from '@/app/Atoms/selectedResearcherState';
 
 interface ResearcherModalInfoType {
   name: string;
@@ -29,7 +29,7 @@ const TableContent: React.FC<TableContentProps> = ({
     selectedResearcherState
   );
   const [isResearcherModalStateOn, setIsResearcherModalStateOn] =
-    useRecoilState(ModalState);
+    useRecoilState(announcementModalStateWriteModify);
 
   const handleCheckboxChange = (index: number) => {
     setSelectedIndex(index);
@@ -40,7 +40,10 @@ const TableContent: React.FC<TableContentProps> = ({
     e: React.MouseEvent<HTMLInputElement>
   ) => {
     e.stopPropagation();
-    setIsResearcherModalStateOn(!isResearcherModalStateOn);
+    setIsResearcherModalStateOn((prev) => ({
+      ...prev,
+      reseracherModalState: !isResearcherModalStateOn.reseracherModalState,
+    }));
   };
 
   return (
