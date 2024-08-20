@@ -43,6 +43,11 @@ const TableContent: React.FC<TableContentProps> = ({ info }) => {
           ></Image>
         </S.modify_button>
       </S.td>
+      <S.td>
+        <S.modify_button onClick={handleModifyButton}>
+          상세 보기
+        </S.modify_button>
+      </S.td>
     </tr>
   );
 };

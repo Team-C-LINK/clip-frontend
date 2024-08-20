@@ -134,6 +134,7 @@ const Table: React.FC<TableProps> = ({ info }) => {
           <S.th>연구자 이름</S.th>
           <S.th>소속</S.th>
           <S.th>수정</S.th>
+          <S.th>모집 현황</S.th>
         </tr>
       </thead>
       <tbody>
