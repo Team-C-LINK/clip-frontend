@@ -16,6 +16,10 @@ const TableContent: React.FC<TableContentProps> = ({ info }) => {
     window.location.href = `/admin/announcement/modify?id=${info?.id}`;
   };
 
+  const handleDetailButton = () => {
+    window.location.href = `/admin/announcement/manage?id=${info?.id}`;
+  };
+
   return (
     <tr>
       <S.td>{info.id}</S.td>
@@ -44,7 +48,7 @@ const TableContent: React.FC<TableContentProps> = ({ info }) => {
         </S.modify_button>
       </S.td>
       <S.td>
-        <S.modify_button onClick={handleModifyButton}>
+        <S.modify_button onClick={handleDetailButton}>
           상세 보기
         </S.modify_button>
       </S.td>
