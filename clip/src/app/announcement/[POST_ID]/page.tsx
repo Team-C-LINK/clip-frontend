@@ -61,7 +61,7 @@ const RecruitDetail = () => {
           content={info?.content}
         ></ResearchInfo>
         <Map address={info?.researchLocation}></Map>
-        <ResearcherInfo props={info}></ResearcherInfo>
+        <ResearcherInfo info={info}></ResearcherInfo>
       </C.Wrap>
       <Spacer height="8rem" />
       {/* <Footer>
