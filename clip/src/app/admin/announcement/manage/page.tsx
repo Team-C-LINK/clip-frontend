@@ -1,7 +1,13 @@
 'use client';
 
+import HeaderManage from './asset/components/Header/Header';
+
 const Page = () => {
-  return <>수정과</>;
+  return (
+    <>
+      <HeaderManage></HeaderManage>
+    </>
+  );
 };
 
 export default Page;
