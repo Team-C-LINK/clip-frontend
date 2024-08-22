@@ -29,23 +29,21 @@ const HeaderWrite = () => {
 
     info.image = imageFileUrl[0] as string;
 
-    info.type = queryParam.get('type') as string;
-
     info.researcherId = selectedResearcher.id;
 
-    console.log(info);
+    info.type = '연구/인터뷰';
 
-    // const res = await putModifyAnnouncement(
-    //   info,
-    //   queryParam.get('id') as string
-    // );
+    const res = await putModifyAnnouncement(
+      info,
+      queryParam.get('id') as string
+    );
 
-    // console.log(res);
+    console.log(res);
 
-    // if (res?.status === 204) {
-    //   alert('공고가 수정되었습니다.');
-    //   window.location.href = '/admin/announcement/all';
-    // }
+    if (res?.status === 204) {
+      alert('공고가 수정되었습니다.');
+      window.location.href = '/admin/announcement/all';
+    }
   };
 
   return (

@@ -139,6 +139,7 @@ const Page = () => {
       setScreeningInput(info?.applicationConditions);
       setValue('content', info?.content);
       setEndDate(`${year}.${month}.${day}`);
+      setValue('fee', info?.fee);
     }
   };
 
@@ -164,6 +165,11 @@ const Page = () => {
         (item: any) => item.name === info?.researcherName
       );
       setSelectedResearcher(target[0]);
+      console.log(researcherInfo?.type);
+      setAnnouncementInfo((prev) => ({
+        ...prev,
+        type: researcherInfo?.category,
+      }));
     }
   }, [researcherInfo]);
 
