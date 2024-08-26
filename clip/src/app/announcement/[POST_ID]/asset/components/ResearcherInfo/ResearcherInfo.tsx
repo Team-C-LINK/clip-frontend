@@ -10,7 +10,6 @@ const ResearcherInfo = ({ info }: { info?: PostType }) => {
         <Title>연구자 정보</Title>
         <Inner>
           <Profile_wrapper>
-            <Profile_img src={clippy.src}></Profile_img>
             <Profile_right_wrapper>
               <Profile_nickname>{info?.researcherName}</Profile_nickname>
               <Profile_email>{info?.researcherAffiliation}</Profile_email>
@@ -114,7 +113,7 @@ const Detail_wrap = styled.div`
 
 const Info_wrap = styled.div`
   position: relative;
-  width: 95%;
+  width: 100%;
   height: fit-content;
   display: flex;
   flex-direction: row;

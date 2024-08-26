@@ -64,17 +64,19 @@ const RecruitDetail = () => {
         <ResearcherInfo info={info}></ResearcherInfo>
       </C.Wrap>
       <Spacer height="8rem" />
-      {/* <Footer>
+      <Footer>
         <PrevNext>
-          <PrevBtn $size={'45dvw'}>문의하기</PrevBtn>
           <NextButton
-            $size={'45dvw'}
-            onClick={() => handleApplyBtn(queryParam.get('recommender_code'))}
+            $size={'90dvw'}
+            // onClick={() => handleApplyBtn(queryParam.get('recommender_code'))}
+            onClick={() =>
+              window.open(`https://${info?.registerLink as string}`)
+            }
           >
             간편 지원하기
           </NextButton>
         </PrevNext>
-      </Footer> */}
+      </Footer>
     </>
   );
 };
