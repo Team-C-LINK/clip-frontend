@@ -32,7 +32,7 @@ const Landing = () => {
 
 const LandingPageMobile = () => {
   const moveToChannel = () => {
-    window.location.href = 'https://pf.kakao.com/_uRgmG';
+    window.location.href = '/announcement';
   };
 
   const [isClient, setIsClient] = useState(false);
