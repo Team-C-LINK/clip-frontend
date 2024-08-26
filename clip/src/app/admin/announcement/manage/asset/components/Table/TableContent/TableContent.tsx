@@ -15,14 +15,14 @@ interface TableContentProps {
 
 const TableContent: React.FC<TableContentProps> = ({ info }) => {
   return (
-    <S.tr>
+    <tr>
       <S.td>{info?.gender}</S.td>
       <S.td>{info?.age}</S.td>
       <S.td>
         {info?.recruited} / {info?.total}
       </S.td>
       <S.td>보기</S.td>
-    </S.tr>
+    </tr>
   );
 };
 

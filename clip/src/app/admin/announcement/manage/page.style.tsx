@@ -16,6 +16,7 @@ export const middle_wrap = styled.div`
   flex-direction: row;
   width: fit-content;
   height: fit-content;
+  gap: 3rem;
 `;
 
 export const left_wrap = styled.div`

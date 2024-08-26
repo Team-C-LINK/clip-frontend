@@ -18,8 +18,8 @@ const Table: React.FC<TableProps> = ({ info }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
   return (
-    <>
-      안녕ㅇ하세요
+    <S.wrap>
+      <S.title>총 : 53명 (여성 : 22명 남성 11명 무관 20명)</S.title>
       <S.table
         onClick={(e: React.MouseEvent<HTMLElement>) => e.stopPropagation()}
       >
@@ -31,11 +31,13 @@ const Table: React.FC<TableProps> = ({ info }) => {
             <S.th>보기</S.th>
           </tr>
         </thead>
-        {info?.map((item, index) => {
-          return <TableContent key={index} info={item}></TableContent>;
-        })}
+        <tbody>
+          {info?.map((item, index) => {
+            return <TableContent key={index} info={item}></TableContent>;
+          })}
+        </tbody>
       </S.table>
-    </>
+    </S.wrap>
   );
 };
 

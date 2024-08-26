@@ -13,7 +13,3 @@ export const td = styled.td`
     text-align: center;
   }
 `;
-
-export const tr = styled.tr`
-  height: 1rem;
-`;
