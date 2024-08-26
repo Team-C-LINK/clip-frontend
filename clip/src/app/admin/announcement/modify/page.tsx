@@ -121,11 +121,12 @@ const Page = () => {
   };
 
   const handleEraseButton = async () => {
-    console.log(queryParam.get('id'));
-
     const res = await deleteAnnouncement(queryParam.get('id') as string);
 
-    console.log(res);
+    if (res?.status === 204) {
+      alert('공고가 삭제되었습니다.');
+      window.location.href = '/admin/announcement/all';
+    }
   };
 
   const initInput = () => {
@@ -138,8 +139,9 @@ const Page = () => {
       setValue('detailAddress', detailAddress);
       setScreeningInput(info?.applicationConditions);
       setValue('content', info?.content);
-      setEndDate(`${year}.${month}.${day}`);
+      setEndDate(parseInt(`${year}${month}${day}`));
       setValue('fee', info?.fee);
+      setValue('registerLink', info?.registerLink);
     }
   };
 
@@ -267,6 +269,7 @@ const Page = () => {
             <S.input_wrap>
               <S.index>구글 예약 폼 링크 *</S.index>
               <S.input
+                {...register('registerLink')}
                 placeholder={'예약 폼 링크'}
                 src={searchIcon.src}
                 width={'67.2rem'}
