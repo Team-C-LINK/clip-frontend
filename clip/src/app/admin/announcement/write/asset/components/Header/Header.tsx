@@ -26,13 +26,19 @@ const HeaderWrite = () => {
 
     const info: AnnouncementInfoType = JSON.parse(JSON.stringify(announceInfo));
 
+    const announcementCategory = queryParam.get('type') as string;
+
+    if (announcementCategory === '설문조사') {
+      info.city = '서울특별시';
+      info.district = '송파구';
+      info.detailAddress = '온라인';
+    }
+
     info.image = imageFileUrl[0] as string;
 
-    info.type = queryParam.get('type') as string;
+    info.type = announcementCategory;
 
     info.researcherId = selectedResearcher.id;
-
-    console.log(info);
 
     const res = await postAnnouncement(info);
 
