@@ -205,32 +205,35 @@ const Page = () => {
                 <ResearcherModal></ResearcherModal>
               )}
             </S.input_wrap>
-            <S.double_input_wrap>
-              <S.input_wrap>
-                <S.index>연구 장소(시,도)*</S.index>
-                <S.input
-                  {...register('city')}
-                  width={'15.1rem'}
-                  placeholder={'시, 도를 입력하세요'}
-                ></S.input>
-              </S.input_wrap>
-              <S.input_wrap>
-                <S.index>연구 장소(시, 군, 구) *</S.index>
-                <S.input
-                  {...register('district')}
-                  placeholder={'구, 군을 입력하세요'}
-                  width={'15.1rem'}
-                ></S.input>
-              </S.input_wrap>
-              <S.input_wrap>
-                <S.index>연구 장소(상세 주소)*</S.index>
-                <S.input
-                  {...register('detailAddress')}
-                  placeholder={'상세 주소를 입력해주세요'}
-                  width={'32.1rem'}
-                ></S.input>
-              </S.input_wrap>
-            </S.double_input_wrap>
+            {info?.category === '연구/인터뷰' && (
+              <S.double_input_wrap>
+                <S.input_wrap>
+                  <S.index>연구 장소(시,도)*</S.index>
+                  <S.input
+                    {...register('city')}
+                    width={'15.1rem'}
+                    placeholder={'시, 도를 입력하세요'}
+                  ></S.input>
+                </S.input_wrap>
+                <S.input_wrap>
+                  <S.index>연구 장소(시, 군, 구) *</S.index>
+                  <S.input
+                    {...register('district')}
+                    placeholder={'구, 군을 입력하세요'}
+                    width={'15.1rem'}
+                  ></S.input>
+                </S.input_wrap>
+                <S.input_wrap>
+                  <S.index>연구 장소(상세 주소)*</S.index>
+                  <S.input
+                    {...register('detailAddress')}
+                    placeholder={'상세 주소를 입력해주세요'}
+                    width={'32.1rem'}
+                  ></S.input>
+                </S.input_wrap>
+              </S.double_input_wrap>
+            )}
+
             <S.input_wrap>
               <S.index>스크리닝 정보 *</S.index>
               {screeningInput?.map((item, index) => {
