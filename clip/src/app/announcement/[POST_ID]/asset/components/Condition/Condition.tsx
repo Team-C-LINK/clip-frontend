@@ -17,7 +17,11 @@ const Condition = ({ props }: { props?: PostType }) => {
         </span>
       ),
     },
-    { index: '지역', content: props?.researchLocation },
+    {
+      index: '지역',
+      content:
+        props?.category === '연구/인터뷰' ? props?.researchLocation : '온라인',
+    },
     // { index: '시간', content: props?.researchAvailableTime },
     { index: '지원 조건', content: '' },
   ];
