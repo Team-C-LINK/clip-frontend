@@ -31,14 +31,10 @@ const HeaderWrite = () => {
 
     info.researcherId = selectedResearcher.id;
 
-    info.type = '연구/인터뷰';
-
     const res = await putModifyAnnouncement(
       info,
       queryParam.get('id') as string
     );
-
-    console.log(res);
 
     if (res?.status === 204) {
       alert('공고가 수정되었습니다.');

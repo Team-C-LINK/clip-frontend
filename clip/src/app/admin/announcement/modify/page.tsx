@@ -29,7 +29,7 @@ import deleteAnnouncement from '@/app/api/admin/delete-announcement';
 
 const Page = () => {
   const { register, watch, setValue, control } = useForm<any>({
-    mode: 'all',
+    mode: 'onChange',
   });
   const watchValues = useWatch({ control });
   const queryParam = useSearchParams();
@@ -142,6 +142,7 @@ const Page = () => {
       setEndDate(parseInt(`${year}${month}${day}`));
       setValue('fee', info?.fee);
       setValue('registerLink', info?.registerLink);
+      setAnnouncementInfo((prev) => ({ ...prev, type: info?.category }));
     }
   };
 
@@ -167,11 +168,6 @@ const Page = () => {
         (item: any) => item.name === info?.researcherName
       );
       setSelectedResearcher(target[0]);
-      console.log(researcherInfo?.type);
-      setAnnouncementInfo((prev) => ({
-        ...prev,
-        type: researcherInfo?.category,
-      }));
     }
   }, [researcherInfo]);
 

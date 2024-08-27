@@ -243,4 +243,5 @@ export const erase = styled.div`
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.SemiBold.B3};
   color: #fff;
+  cursor: pointer;
 `;

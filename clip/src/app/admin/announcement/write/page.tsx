@@ -211,6 +211,7 @@ const Write = () => {
             <S.input_wrap>
               <S.index>구글 예약 폼 링크 *</S.index>
               <S.input
+                {...register('registerLink')}
                 placeholder={'예약 폼 링크'}
                 src={searchIcon.src}
                 width={'67.2rem'}
