@@ -107,6 +107,7 @@ export const modify_button = styled.div`
   background: rgba(56, 56, 56, 0.08);
   border-radius: 0.8rem;
   margin: auto;
+  cursor: pointer;
 `;
 
 export const modify_mode_wrap = styled.div`

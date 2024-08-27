@@ -78,7 +78,7 @@ const Profile_nickname = styled.span`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 72.8%;
+  width: fit-content;
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.Medium.B4};
   color: #252525;
