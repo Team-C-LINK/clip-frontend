@@ -60,7 +60,9 @@ const RecruitDetail = () => {
           imageUrl={info?.image}
           content={info?.content}
         ></ResearchInfo>
-        <Map address={info?.researchLocation}></Map>
+        {info?.category === '연구/인터뷰' && (
+          <Map address={info?.researchLocation}></Map>
+        )}
         <ResearcherInfo info={info}></ResearcherInfo>
       </C.Wrap>
       <Spacer height="8rem" />
@@ -73,7 +75,9 @@ const RecruitDetail = () => {
               window.open(`https://${info?.registerLink as string}`)
             }
           >
-            간편 지원하기
+            {info?.category === '연구/인터뷰'
+              ? '간편 지원하기'
+              : '설문 참여하기'}
           </NextButton>
         </PrevNext>
       </Footer>
