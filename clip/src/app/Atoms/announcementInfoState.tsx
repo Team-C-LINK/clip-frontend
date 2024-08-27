@@ -27,8 +27,8 @@ export const announceInfoState = atom<AnnouncementInfoType>({
     content: '',
     image: '',
     fee: 0,
-    registerLink: '',
     type: '',
     endDate: '',
+    registerLink: '',
   },
 });
