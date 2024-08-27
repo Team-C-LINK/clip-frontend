@@ -16,8 +16,8 @@ function useMap(address: string | undefined) {
         if (status === 200) {
           const item = response.v2.addresses[0];
           const point = new naver.maps.Point(
-            parseFloat(item.x),
-            parseFloat(item.y)
+            parseFloat(item?.x),
+            parseFloat(item?.y)
           );
           setMyLocation({ latitude: point.y, longitude: point.x });
         } else {

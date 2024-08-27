@@ -20,7 +20,6 @@ const LandingPage = () => {
       <Second></Second>
       <Third></Third>
       <Fourth></Fourth>
-      <Sixth></Sixth>
     </>
   );
 };

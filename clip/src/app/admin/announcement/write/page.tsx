@@ -7,23 +7,29 @@ import Spacer from '@/app/SharedComponent/Spacer/Spacer';
 import note from '@/app/admin/announcement/write/asset/image/note.svg';
 import searchIcon from '@/app/admin/asset/image/searchIcon.svg';
 import Image from 'next/image';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import CalendarModal from './asset/components/CalendarModal/CalendarModal';
 import calendar_gray from '@/app/admin/announcement/write/asset/image/calendar_gray.svg';
 import Calendar from './asset/components/Calendar/Calendar';
 import ResearcherModal from './asset/components/ResearcherModal/ResearcherModal';
 import { useRecoilState } from 'recoil';
-import { ModalState } from './asset/Atoms/ModalState';
-import { selectedResearcherState } from './asset/Atoms/jwtAtom';
-import { announceInfoState } from './asset/Atoms/announcementInfoState';
-import { imageFileState } from './asset/Atoms/imageFileState';
+import { announcementModalStateWriteModify } from '@/app/Atoms/announcementModalStateWriteModify';
+import { selectedResearcherState } from '@/app/Atoms/selectedResearcherState';
+import { imageFileState } from '@/app/Atoms/imageFileState';
+import {
+  AnnouncementInfoType,
+  announceInfoState,
+} from '@/app/Atoms/announcementInfoState';
 import plus from '@/app/admin/researcher/all/asset/image/plus.svg';
 import cancel from '@/app/admin/announcement/write/asset/image/cancel.svg';
 import { useSearchParams } from 'next/navigation';
 
 const Write = () => {
-  const { register, watch, setValue } = useForm<any>({ mode: 'onChange' });
+  const { register, watch, setValue, control } = useForm<any>({
+    mode: 'onChange',
+  });
   const queryParam = useSearchParams();
+  const watchValues = useWatch({ control });
   const [isCalendarModalOpen, setIsCalendarModalOpen] =
     useState<boolean>(false);
   const [test, setTest] = useState('');
@@ -33,19 +39,28 @@ const Write = () => {
     selectedResearcherState
   );
   const [screeningInput, setScreeningInput] = useState<string[]>(['']);
-  const [isResearcherModalStateOn, setIsResearcherModalStateOn] =
-    useRecoilState(ModalState);
+  const [modalState, setModalState] = useRecoilState(
+    announcementModalStateWriteModify
+  );
   const [announceInfo, setAnnouncementInfo] = useRecoilState(announceInfoState);
   const [imageFiles, setImageFiles] = useRecoilState(imageFileState);
 
   const handleCalendarModal = (e: React.MouseEvent<HTMLInputElement>) => {
-    if (e.currentTarget === e.target)
-      setIsCalendarModalOpen(!isCalendarModalOpen);
+    e.stopPropagation();
+
+    setModalState((prev) => ({
+      ...prev,
+      calendarModalState: !prev.calendarModalState,
+    }));
   };
 
   const handleResearcherModalState = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     if (e.currentTarget === e.target)
-      setIsResearcherModalStateOn(!isResearcherModalStateOn);
+      setModalState((prev) => ({
+        ...prev,
+        reseracherModalState: !prev.reseracherModalState,
+      }));
   };
 
   const addScreeningInput = () => {
@@ -93,8 +108,8 @@ const Write = () => {
   }, [startDate, endDate]);
 
   useEffect(() => {
-    setAnnouncementInfo((prev) => ({ ...prev, ...watch() }));
-  }, [watch()]);
+    setAnnouncementInfo((prev) => ({ ...prev, ...watchValues }));
+  }, [watchValues]);
 
   useEffect(() => {
     setAnnouncementInfo((prev) => ({
@@ -133,7 +148,9 @@ const Write = () => {
                 width={'67.2rem'}
                 onClick={handleResearcherModalState}
               ></S.input>
-              {isResearcherModalStateOn && <ResearcherModal></ResearcherModal>}
+              {modalState.reseracherModalState && (
+                <ResearcherModal></ResearcherModal>
+              )}
             </S.input_wrap>
             <S.double_input_wrap>
               <S.input_wrap>
@@ -170,7 +187,7 @@ const Write = () => {
                     key={index}
                   >
                     <S.input
-                      placeholder={'스크리닝 정보 등록하기' + index}
+                      placeholder={'스크리닝 정보 등록하기'}
                       src={searchIcon.src}
                       width={'67.2rem'}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -191,14 +208,15 @@ const Write = () => {
                 스크리닝 정보 추가
               </S.add_screening>
             </S.input_wrap>
-            {/* <S.input_wrap>
+            <S.input_wrap>
               <S.index>구글 예약 폼 링크 *</S.index>
               <S.input
+                {...register('registerLink')}
                 placeholder={'예약 폼 링크'}
                 src={searchIcon.src}
                 width={'67.2rem'}
               ></S.input>
-            </S.input_wrap> */}
+            </S.input_wrap>
             <S.input_wrap>
               <S.index>사례금 *</S.index>
               <S.input
@@ -251,9 +269,9 @@ const Write = () => {
                 onChange={() => {}}
                 value={test}
               ></S.input_calendar>
-              {isCalendarModalOpen && (
+              {modalState?.calendarModalState && (
                 <CalendarModal
-                  isCalendarModalOpen={isCalendarModalOpen}
+                  isCalendarModalOpen={modalState?.calendarModalState}
                   setIsCalendarModalOpen={setIsCalendarModalOpen}
                   setStartDate={setStartDate}
                   setEndDate={setEndDate}
@@ -269,6 +287,7 @@ const Write = () => {
           </S.right_wrap_inner>
         </S.right_wrap>
       </S.wrap>
+      <Spacer height="10rem"></Spacer>
     </>
   );
 };

@@ -3,31 +3,30 @@ import Title from '../Title/Title';
 import clippy from '@/../public/clippy.png';
 import PostType from '@/app/type/PostType';
 
-const ResearcherInfo = ({ props }: { props: PostType | undefined }) => {
+const ResearcherInfo = ({ info }: { info?: PostType }) => {
   return (
     <>
       <Wrap>
         <Title>연구자 정보</Title>
         <Inner>
           <Profile_wrapper>
-            <Profile_img src={clippy.src}></Profile_img>
             <Profile_right_wrapper>
-              <Profile_nickname>{props?.researcherName}</Profile_nickname>
-              <Profile_email>{props?.researcherAffiliation}</Profile_email>
+              <Profile_nickname>{info?.researcherName}</Profile_nickname>
+              <Profile_email>{info?.researcherAffiliation}</Profile_email>
             </Profile_right_wrapper>
           </Profile_wrapper>
           <Detail_wrap>
             <Info_wrap>
               <Index>이메일</Index>
-              <Content>{props?.researcherEmail}</Content>
+              <Content>{info?.researcherEmail}</Content>
             </Info_wrap>
             <Info_wrap>
               <Index>연구분야</Index>
-              <Content>{props?.researchField}</Content>
+              <Content>{info?.researchField}</Content>
             </Info_wrap>
             <Info_wrap>
               <Index>대표주소</Index>
-              <Content>{props?.researcherAddress}</Content>
+              <Content>{info?.researcherAddress}</Content>
             </Info_wrap>
           </Detail_wrap>
         </Inner>
@@ -114,7 +113,7 @@ const Detail_wrap = styled.div`
 
 const Info_wrap = styled.div`
   position: relative;
-  width: 95%;
+  width: 100%;
   height: fit-content;
   display: flex;
   flex-direction: row;

@@ -15,18 +15,21 @@ export const wrap = styled.div`
 `;
 
 export const modify_button = styled.div`
+  box-sizing: border-box;
+  padding: 0rem 0.7rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   justify-content: center;
-  width: 3rem;
+  width: fit-content;
   margin: auto;
   height: 3rem;
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.Regular.B3};
   background: rgba(56, 56, 56, 0.08);
   border-radius: 4px;
+  cursor: pointer;
 `;
 
 export const tableItem_input = styled.input.attrs({ type: 'text' })`

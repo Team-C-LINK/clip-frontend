@@ -9,7 +9,7 @@ const HeaderBack = ({ text, route }: { text: string; route: string }) => {
   return (
     <>
       <C.header>
-        <C.prev onClick={routing} src={arrow.src}></C.prev>
+        <C.prev onClick={routing}></C.prev>
         <C.header_title>{text}</C.header_title>
       </C.header>
     </>

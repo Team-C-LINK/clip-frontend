@@ -225,4 +225,5 @@ export const upload_wrap = styled.div`
   width: 67.2rem;
   height: fit-content;
   gap: 1rem;
+  z-index: 2;
 `;

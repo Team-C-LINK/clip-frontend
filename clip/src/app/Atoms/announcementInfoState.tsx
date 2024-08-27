@@ -12,10 +12,11 @@ export interface AnnouncementInfoType {
   fee: number;
   type: string;
   endDate: string;
+  registerLink?: string;
 }
 
 export const announceInfoState = atom<AnnouncementInfoType>({
-  key: '',
+  key: 'announceInfoState',
   default: {
     title: '',
     researcherId: 0,
@@ -28,6 +29,6 @@ export const announceInfoState = atom<AnnouncementInfoType>({
     fee: 0,
     type: '',
     endDate: '',
+    registerLink: '',
   },
-  dangerouslyAllowMutability: true,
 });

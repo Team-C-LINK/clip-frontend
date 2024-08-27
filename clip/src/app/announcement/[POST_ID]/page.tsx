@@ -60,21 +60,27 @@ const RecruitDetail = () => {
           imageUrl={info?.image}
           content={info?.content}
         ></ResearchInfo>
-        <Map address="인천 서구 경명대로 676"></Map>
-        <ResearcherInfo props={info}></ResearcherInfo>
+        {info?.category === '연구/인터뷰' && (
+          <Map address={info?.researchLocation}></Map>
+        )}
+        <ResearcherInfo info={info}></ResearcherInfo>
       </C.Wrap>
       <Spacer height="8rem" />
-      {/* <Footer>
+      <Footer>
         <PrevNext>
-          <PrevBtn $size={'45dvw'}>문의하기</PrevBtn>
           <NextButton
-            $size={'45dvw'}
-            onClick={() => handleApplyBtn(queryParam.get('recommender_code'))}
+            $size={'90dvw'}
+            // onClick={() => handleApplyBtn(queryParam.get('recommender_code'))}
+            onClick={() =>
+              window.open(`https://${info?.registerLink as string}`)
+            }
           >
-            간편 지원하기
+            {info?.category === '연구/인터뷰'
+              ? '간편 지원하기'
+              : '설문 참여하기'}
           </NextButton>
         </PrevNext>
-      </Footer> */}
+      </Footer>
     </>
   );
 };
