@@ -53,7 +53,9 @@ const RecruitCard = ({ info }: { info: AnnouncementType | undefined }) => {
               {`| ${info?.researcherAffiliation} | ${info?.researcherName} 교수`}
             </C.list_content_condition>
             <C.list_content_condition>
-              {`장소 | ${info?.address}`}
+              {`장소 | ${
+                info?.category === '연구/인터뷰' ? info?.address : '온라인'
+              }`}
             </C.list_content_condition>
           </C.list_content_condition_wrap>
         </C.list_content_middle_wrap>
