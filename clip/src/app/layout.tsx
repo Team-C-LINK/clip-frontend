@@ -1,15 +1,13 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Noto_Sans } from 'next/font/google';
 import QueryProvider from './Provider/QueryProvider/query-provider';
 import './globals.css';
 import '../../public/fonts/style.css';
 import PaletteProvider from './Provider/PaletteProvider/PaletteProvider';
-import { GoogleAnalytics } from './Provider/GoogleAnalytics/GoogleAnalytics';
 import Wrapper from './SharedComponent/Wrapper/Wrapper';
 import RecoilProvider from './Provider/RecoilProvider/RecoilProvider';
-import Script from 'next/script';
-import GlobalStyle from './globalstyle';
-const inter = Inter({ subsets: ['latin'] });
+
+const noto_Sans = Noto_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Clip!',
@@ -26,15 +24,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <GoogleAnalytics />
+      <head>
+        <link
+          rel="stylesheet preload"
+          as="style"
+          crossOrigin=""
+          href={`https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov.min.css`}
+        />
+      </head>
+      <body className={noto_Sans.className}>
         <QueryProvider>
           <PaletteProvider>
             <RecoilProvider>
-              <Script
-                strategy="beforeInteractive"
-                src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAPS_CLIENT_ID}&submodules=geocoder`}
-              />
               <Wrapper>{children}</Wrapper>
             </RecoilProvider>
           </PaletteProvider>
