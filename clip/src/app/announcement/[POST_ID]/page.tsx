@@ -13,13 +13,14 @@ import ResearcherInfo from './asset/components/ResearcherInfo/ResearcherInfo';
 import Condition from './asset/components/Condition/Condition';
 import HeaderRecruit from './asset/components/Header/HeaderRecruit';
 import ModalShared from './asset/components/ModalShare/ModalShare';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import getTargetRecruitInfo from '@/app/api/get-targetRecruitInfo';
 import PostType from '@/app/type/PostType';
 import NextButtonGray from '@/app/SharedComponent/NextButton/NextButtonGray';
+import Script from 'next/script';
 
 const RecruitDetail = () => {
   const [modalState, setModalState] = useState(false);
@@ -44,6 +45,10 @@ const RecruitDetail = () => {
 
   return (
     <>
+      <Script
+        strategy="lazyOnload"
+        src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAPS_CLIENT_ID}&submodules=geocoder`}
+      />
       <Spacer height="7rem"></Spacer>
       <Header>
         <HeaderRecruit
@@ -56,7 +61,7 @@ const RecruitDetail = () => {
         <ModalShared setModalState={setShareModalState}></ModalShared>
       )}
       <C.Wrap>
-        <Condition props={info}></Condition>
+        <Condition info={info}></Condition>
         <ResearchInfo
           imageUrl={info?.image}
           content={info?.content}
@@ -69,7 +74,7 @@ const RecruitDetail = () => {
       <Spacer height="8rem" />
       <Footer>
         <PrevNext>
-          {info?.isRecruiting ? (
+          {info?.isRecruiting && info?.remainingDay ? (
             <NextButton
               $size={'90dvw'}
               // onClick={() => handleApplyBtn(queryParam.get('recommender_code'))}

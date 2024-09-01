@@ -6,21 +6,21 @@ import Condition_wrap from './components/Condition_wrap/Condition_wrap';
 import ConditionDetail from './components/ConditionDetail/ConditionDetail';
 import PostType from '@/app/type/PostType';
 
-const Condition = ({ props }: { props?: PostType }) => {
+const Condition = ({ info }: { info?: PostType }) => {
   const conditionList = [
     {
       index: '기한',
       content: (
         <span>
-          {`${props?.endDate} 까지 · `}
-          <Purple>{`D-${props?.remainingDay}`}</Purple>
+          {`${info?.endDate} 까지 · `}
+          <Purple>{`D-${info?.remainingDay}`}</Purple>
         </span>
       ),
     },
     {
       index: '지역',
       content:
-        props?.category === '연구/인터뷰' ? props?.researchLocation : '온라인',
+        info?.category === '연구/인터뷰' ? info?.researchLocation : '온라인',
     },
     // { index: '시간', content: props?.researchAvailableTime },
     { index: '지원 조건', content: '' },
@@ -30,15 +30,15 @@ const Condition = ({ props }: { props?: PostType }) => {
     <>
       <Wrap>
         <StatusBar
-          recruitStatus={props?.isRecruiting}
-          category={props?.category}
+          recruitStatus={info?.isRecruiting && info?.remainingDay !== 0}
+          category={info?.category}
         ></StatusBar>
         <Title_Divider_wrap>
-          <Title>{props?.title}</Title>
+          <Title>{info?.title}</Title>
           <Divider $size={'100%'}></Divider>
         </Title_Divider_wrap>
         <Condition_wrap list={conditionList}></Condition_wrap>
-        <ConditionDetail list={props?.applicationConditions}></ConditionDetail>
+        <ConditionDetail list={info?.applicationConditions}></ConditionDetail>
       </Wrap>
     </>
   );
