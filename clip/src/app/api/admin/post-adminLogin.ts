@@ -9,9 +9,7 @@ const postAdminLogin = async (data: FormValues) => {
   try {
     const res = await api.post('/admin/login', data);
     return res.data;
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 };
 
 export default postAdminLogin;
