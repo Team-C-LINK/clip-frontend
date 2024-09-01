@@ -131,17 +131,19 @@ const Page = () => {
 
   const initInput = () => {
     if (info) {
-      const [city, district, detailAddress] = info?.researchLocation.split(' ');
+      const [city, district, ...detailAddress] =
+        info?.researchLocation.split(' ');
       const [year, month, day] = info?.endDate.split('-');
       setValue('title', info?.title);
       setValue('city', city);
       setValue('district', district);
-      setValue('detailAddress', detailAddress);
+      setValue('detailAddress', detailAddress.join(' '));
       setScreeningInput(info?.applicationConditions);
       setValue('content', info?.content);
       setEndDate(parseInt(`${year}${month}${day}`));
       setValue('fee', info?.fee);
       setValue('registerLink', info?.registerLink);
+      setAnnouncementInfo((prev) => ({ ...prev, image: info?.image }));
       setAnnouncementInfo((prev) => ({ ...prev, type: info?.category }));
     }
   };
@@ -306,7 +308,7 @@ const Page = () => {
             <S.selected_file>
               {imageFiles?.length
                 ? `${imageFiles[0]?.name}`
-                : `선택된 파일 없음`}
+                : `수정할 파일을 업로드해 주세요`}
             </S.selected_file>
           </S.upload_wrap>
           <S.erase onClick={handleEraseButton}>공고 삭제</S.erase>
