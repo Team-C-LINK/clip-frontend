@@ -13,7 +13,7 @@ import ResearcherInfo from './asset/components/ResearcherInfo/ResearcherInfo';
 import Condition from './asset/components/Condition/Condition';
 import HeaderRecruit from './asset/components/Header/HeaderRecruit';
 import ModalShared from './asset/components/ModalShare/ModalShare';
-import { useEffect, useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
@@ -29,7 +29,7 @@ const RecruitDetail = () => {
   const param = useParams();
   const router = useRouter();
   const queryParam = useSearchParams();
-  const { data: info } = useQuery<PostType>({
+  const { data: info, isLoading } = useQuery<PostType>({
     queryKey: ['post', param.POST_ID],
     queryFn: getTargetRecruitInfo,
   });
@@ -55,21 +55,18 @@ const RecruitDetail = () => {
       {modalState && (
         <ModalShared setModalState={setShareModalState}></ModalShared>
       )}
-      <C.Wrap>
-        <Condition props={info}></Condition>
-        <ResearchInfo
-          imageUrl={info?.image}
-          content={info?.content}
-        ></ResearchInfo>
-        {info?.category === '연구/인터뷰' && (
-          <Map address={info?.researchLocation}></Map>
-        )}
-        <ResearcherInfo info={info}></ResearcherInfo>
-      </C.Wrap>
+      {isLoading ? null : (
+        <C.Wrap>
+          <Condition info={info}></Condition>
+          <ResearchInfo info={info}></ResearchInfo>
+          <Map info={info}></Map>
+          <ResearcherInfo info={info}></ResearcherInfo>
+        </C.Wrap>
+      )}
       <Spacer height="8rem" />
       <Footer>
         <PrevNext>
-          {info?.isRecruiting ? (
+          {info?.isRecruiting && info?.remainingDay ? (
             <NextButton
               $size={'90dvw'}
               // onClick={() => handleApplyBtn(queryParam.get('recommender_code'))}

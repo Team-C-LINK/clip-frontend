@@ -1,18 +1,32 @@
 import styled from 'styled-components';
 import Title from '../Title/Title';
-
+import Image from 'next/image';
+import PostType from '@/app/type/PostType';
+import clip from '@/app/SharedComponent/asset/image/clip.svg';
 interface ResearcherInfoProps {
-  content?: string;
-  imageUrl?: string;
+  info?: PostType;
 }
 
-const ResearchInfo: React.FC<ResearcherInfoProps> = ({ content, imageUrl }) => {
+const ResearchInfo: React.FC<ResearcherInfoProps> = ({ info }) => {
   return (
     <>
       <Wrap>
         <Title>연구 상세 정보</Title>
-        <img src={imageUrl}></img>
-        <Content>{content}</Content>
+        <Content>{info?.content}</Content>
+        {info?.image && (
+          <Image
+            src={info?.image}
+            alt="announcementImage"
+            width={500}
+            height={500}
+            quality={100}
+            style={{
+              height: '100%',
+              width: '100%',
+            }}
+            priority
+          ></Image>
+        )}
       </Wrap>
     </>
   );
@@ -27,12 +41,19 @@ const Wrap = styled.div`
   height: fit-content;
 `;
 
+const Image_Container = styled.div`
+  position: relative;
+  height: 400px;
+  width: 350;
+`;
+
 const Content = styled.div`
   position: relative;
   width: 100%;
   white-space: pre-wrap;
   height: fit-content;
   font-family: 'Pretendard';
+
   ${(props) => props.theme.FONT.Regular.B3};
   color: ${(props) => props.theme.TEXT._01};
 `;

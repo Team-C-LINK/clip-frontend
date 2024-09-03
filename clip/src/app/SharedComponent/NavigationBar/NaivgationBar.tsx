@@ -5,9 +5,7 @@ import recruit from '../asset/image/recruit.svg';
 import shop from '../asset/image/shop.svg';
 import { useState, useEffect } from 'react';
 import useScroll from '@/app/utils/hook/useScroll';
-
-// 이미지 파일들 object로 만들어 놓기
-// state가 해당 네비게이션 컨텐츠면
+import Image from 'next/image';
 
 const NavigationBar = ({ state }: { state: string }) => {
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -19,19 +17,25 @@ const NavigationBar = ({ state }: { state: string }) => {
         <C.navigation_content_wrapper
           onClick={() => (window.location.href = '/')}
         >
-          <C.navigation_img
-            $status={state == 'home'}
+          <Image
             src={home.src}
-          ></C.navigation_img>
+            alt="annoucement"
+            width={0}
+            height={0}
+            style={{ width: 'fit-content', height: 'fit-content' }}
+          ></Image>
           <C.navigation_text $status={state == 'home'}>홈</C.navigation_text>
         </C.navigation_content_wrapper>
         <C.navigation_content_wrapper
           onClick={() => (window.location.href = '/announcement')}
         >
-          <C.navigation_img
-            $status={state == 'recruit'}
+          <Image
             src={recruit.src}
-          ></C.navigation_img>
+            alt="annoucement"
+            width={0}
+            height={0}
+            style={{ width: 'fit-content', height: 'fit-content' }}
+          ></Image>
           <C.navigation_text $status={state == 'recruit'}>
             실시간 공고
           </C.navigation_text>

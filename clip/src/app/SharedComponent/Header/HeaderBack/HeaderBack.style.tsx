@@ -24,7 +24,6 @@ export const header_title = styled.span`
   height: fit-content;
 
   /* Semi Bold/B1 */
-  font-family: 'Pretendard';
   font-style: normal;
   font-weight: 600;
   font-size: 1.8rem;

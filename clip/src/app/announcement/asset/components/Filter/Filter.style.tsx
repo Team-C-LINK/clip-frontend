@@ -72,7 +72,6 @@ export const filter_text_selected = styled.span`
   order: 0;
   flex-grow: 0;
 
-  font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
   font-size: 1.4rem;
@@ -89,7 +88,6 @@ export const filter_text_unselected = styled.span`
   width: fit-content;
   height: 2.6rem;
 
-  font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
   font-size: 1.4rem;
@@ -107,7 +105,6 @@ export const filter_recruiting_wrap = styled.div`
 `;
 
 export const filter_recruiting_text = styled.span`
-  font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
   font-size: 1.4rem;
@@ -193,7 +190,6 @@ export const header_content_unselected = styled.div`
 `;
 
 export const header_content_text = styled.span`
-  font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
   font-size: 1.4rem;

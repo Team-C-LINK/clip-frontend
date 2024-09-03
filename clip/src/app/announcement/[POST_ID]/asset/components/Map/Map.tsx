@@ -1,9 +1,19 @@
+'use client';
+
 import styled from 'styled-components';
 import useMap from '../../hook/useMap';
 import Title from '../Title/Title';
 import React from 'react';
+import PostType from '@/app/type/PostType';
+import Script from 'next/script';
 
-const Map = ({ address }: { address: string | undefined }) => {
+const Map = ({ info }: { info?: PostType }) => {
+  if (info?.category === '연구/인터뷰')
+    return <Maps address={info?.researchLocation}></Maps>;
+  else return null;
+};
+
+const Maps = ({ address }: { address?: string }) => {
   useMap(address);
 
   const handleCopyClipBoard = async (
@@ -18,18 +28,20 @@ const Map = ({ address }: { address: string | undefined }) => {
   };
 
   return (
-    <>
-      <Wrap>
-        <Title>연구 장소</Title>
-        <div>
-          <MapBox id="map"></MapBox>
-          <Address>
-            <span onClick={handleCopyClipBoard}>{address}</span>
-            <Purple>지도보기</Purple>
-          </Address>
-        </div>
-      </Wrap>
-    </>
+    <Wrap>
+      <Script
+        strategy="lazyOnload"
+        src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAPS_CLIENT_ID}&submodules=geocoder`}
+      />
+      <Title>연구 장소</Title>
+      <div>
+        <MapBox id="map"></MapBox>
+        <Address>
+          <span onClick={handleCopyClipBoard}>{address}</span>
+          <Purple>지도보기</Purple>
+        </Address>
+      </div>
+    </Wrap>
   );
 };
 

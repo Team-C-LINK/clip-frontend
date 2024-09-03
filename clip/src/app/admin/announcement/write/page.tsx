@@ -20,10 +20,15 @@ import { announceInfoState } from '@/app/Atoms/announcementInfoState';
 import plus from '@/app/admin/researcher/all/asset/image/plus.svg';
 import cancel from '@/app/admin/announcement/write/asset/image/cancel.svg';
 import { useSearchParams } from 'next/navigation';
+import { sidoList, siguList } from '@/app/join/address/hooks/sidoList';
 
 const Write = () => {
   const { register, watch, setValue, control } = useForm<any>({
     mode: 'onChange',
+    defaultValues: {
+      city: '서울특별시',
+      district: '종로구',
+    },
   });
   const queryParam = useSearchParams();
   const watchValues = useWatch({ control });
@@ -109,6 +114,10 @@ const Write = () => {
   }, [watchValues]);
 
   useEffect(() => {
+    setValue('district', siguList[watch('city')][0]);
+  }, [watch('city')]);
+
+  useEffect(() => {
     setAnnouncementInfo((prev) => ({
       ...prev,
       applicationConditions: screeningInput,
@@ -153,19 +162,27 @@ const Write = () => {
               <S.double_input_wrap>
                 <S.input_wrap>
                   <S.index>연구 장소(시,도)*</S.index>
-                  <S.input
-                    {...register('city')}
-                    width={'15.1rem'}
-                    placeholder={'시, 도를 입력하세요'}
-                  ></S.input>
+                  <S.select {...register('city')}>
+                    {sidoList.map((item, idx) => {
+                      return (
+                        <option key={idx} value={item}>
+                          {item}
+                        </option>
+                      );
+                    })}
+                  </S.select>
                 </S.input_wrap>
                 <S.input_wrap>
                   <S.index>연구 장소(시, 군, 구) *</S.index>
-                  <S.input
-                    {...register('district')}
-                    placeholder={'구, 군을 입력하세요'}
-                    width={'15.1rem'}
-                  ></S.input>
+                  <S.select {...register('district')}>
+                    {siguList[watch('city')]?.map((item, idx) => {
+                      return (
+                        <option key={idx} value={item}>
+                          {item}
+                        </option>
+                      );
+                    })}
+                  </S.select>
                 </S.input_wrap>
                 <S.input_wrap>
                   <S.index>연구 장소(상세 주소)*</S.index>

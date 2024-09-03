@@ -22,6 +22,7 @@ const Filter = ({
   const [isNavVisible, setIsNavVisible] = useState(true);
 
   useScroll(setIsNavVisible);
+
   const handleFilter = (e: any) => {
     setFilterState(e.currentTarget.id);
   };

@@ -24,7 +24,7 @@ const TableContent: React.FC<TableContentProps> = ({ info }) => {
     <tr>
       <S.td>{info.id}</S.td>
       <S.td>
-        {info.isRecruiting ? (
+        {info.isRecruiting && info?.remainingDay ? (
           <GreenButton>모집중</GreenButton>
         ) : (
           <GrayButton>마감</GrayButton>

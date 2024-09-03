@@ -27,7 +27,7 @@ const HeaderWrite = () => {
 
     const info: AnnouncementInfoType = JSON.parse(JSON.stringify(announceInfo));
 
-    info.image = imageFileUrl[0] as string;
+    if (imageFileUrl.length) info.image = imageFileUrl[0] as string;
 
     info.researcherId = selectedResearcher.id;
 

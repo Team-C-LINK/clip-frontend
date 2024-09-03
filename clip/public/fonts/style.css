@@ -2,24 +2,30 @@
   font-family: 'Gmarket Sans';
   font-style: normal;
   font-weight: 100;
-  src: url('GmarketSansTTFMedium.ttf');
+  src: url('GmarketSansTTFMedium.ttf') format('woff2');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Gmarket Sans Bold';
   font-style: normal;
   font-weight: 100;
-  src: url('GmarketSansTTFBold.ttf');
+  src: url('GmarketSansTTFBold.ttf') format('woff2');
+  font-display: swap;
 }
 @font-face {
   font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov.min.css')
+    format('font-woff');
+  font-display: swap;
+  font-weight: 700;
+  preload: false;
   font-style: normal;
-  font-weight: 100;
-  src: url('Pretendard-Medium.woff');
 }
 @font-face {
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 100;
-  src: url('NotoSansKR-Medium.otf');
+  src: url('NotoSansKR-Medium.otf') format('woff2');
+  font-display: swap;
 }

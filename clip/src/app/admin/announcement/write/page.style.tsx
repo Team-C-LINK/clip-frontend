@@ -54,7 +54,7 @@ export const input_wrap = styled.div`
 
   justify-content: space-between;
   gap: 0.6rem;
-  font-family: 'Pretendard';
+
   ${(props) => props.theme.FONT.Medium.B2};
 `;
 
@@ -62,6 +62,25 @@ export const index = styled.span`
   width: fit-content;
   color: #616161;
   ${(props) => props.theme.FONT.Regular.B3};
+`;
+
+export const select = styled.select`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  position: relative;
+  width: 15.1rem;
+  height: 4rem;
+  background: #ffffff;
+  padding: 1rem;
+  border: 0.1rem solid #828282;
+  border-radius: 0.4rem;
+  outline: none;
+
+  font-family: 'Pretendard';
+  ${(props) => props.theme.FONT.Medium.B3};
 `;
 
 export const input = styled.input.attrs({ type: 'text' })`
