@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import postAddScrap from '@/app/api/post-addScrap';
 import deleteEraseScrap from '@/app/api/delete-eraseScrap';
 
-const RecruitCard = ({ info }: { info: AnnouncementType | undefined }) => {
+const RecruitCard = ({ info }: { info?: AnnouncementType }) => {
   const [isScraped, setIsScraped] = useState<boolean>();
 
   const handleIsScraped = async (e: React.MouseEvent) => {
@@ -32,12 +32,12 @@ const RecruitCard = ({ info }: { info: AnnouncementType | undefined }) => {
     >
       <C.list_content_wrap_inner>
         <C.list_content_recruit_wrap>
-          {info?.isRecruiting ? (
+          {info?.isRecruiting && info?.remainingDay ? (
             <GreenButton>모집중</GreenButton>
           ) : (
             <GrayButton>마감</GrayButton>
           )}
-          {info?.isRecruiting ? (
+          {info?.isRecruiting && info?.remainingDay ? (
             <C.list_content_recruit_deadline>
               D-{info?.remainingDay}
             </C.list_content_recruit_deadline>
