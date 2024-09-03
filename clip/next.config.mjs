@@ -12,6 +12,12 @@ const nextConfig = {
         port: '',
         pathname: '/upload/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'clip-s3.s3.amazonaws.com',
+        port: '',
+        pathname: '/upload/**',
+      },
     ],
   },
 };
