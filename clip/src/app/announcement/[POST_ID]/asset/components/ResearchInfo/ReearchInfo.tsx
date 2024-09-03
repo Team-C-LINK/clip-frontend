@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Title from '../Title/Title';
 import Image from 'next/image';
 import PostType from '@/app/type/PostType';
-import clip from '@/app/SharedComponent/asset/image/clip.svg';
+
 interface ResearcherInfoProps {
   info?: PostType;
 }
