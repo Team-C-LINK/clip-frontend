@@ -7,6 +7,7 @@ import * as C from './asset/components/C.style';
 import clip from './asset/image/clip.svg';
 import Image from 'next/image';
 import NextButton from '../join/component/PrevNext/NextButton/NextButton';
+import { useEffect } from 'react';
 
 type FormValues = {
   id: string;
@@ -15,6 +16,9 @@ type FormValues = {
 
 const Admin = () => {
   const { register, watch, handleSubmit } = useForm<FormValues>();
+
+  const token = localStorage.getItem('accessToken');
+  if (token) window.location.href = `/admin/announcement/all`;
 
   const onSubmit: SubmitHandler<FormValues> = async (data, e) => {
     const loginInfo = {
