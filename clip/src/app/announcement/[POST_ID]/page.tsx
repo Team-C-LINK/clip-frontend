@@ -13,14 +13,13 @@ import ResearcherInfo from './asset/components/ResearcherInfo/ResearcherInfo';
 import Condition from './asset/components/Condition/Condition';
 import HeaderRecruit from './asset/components/Header/HeaderRecruit';
 import ModalShared from './asset/components/ModalShare/ModalShare';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import getTargetRecruitInfo from '@/app/api/get-targetRecruitInfo';
 import PostType from '@/app/type/PostType';
 import NextButtonGray from '@/app/SharedComponent/NextButton/NextButtonGray';
-import Script from 'next/script';
 
 const RecruitDetail = () => {
   const [modalState, setModalState] = useState(false);
@@ -30,7 +29,7 @@ const RecruitDetail = () => {
   const param = useParams();
   const router = useRouter();
   const queryParam = useSearchParams();
-  const { data: info } = useQuery<PostType>({
+  const { data: info, isLoading } = useQuery<PostType>({
     queryKey: ['post', param.POST_ID],
     queryFn: getTargetRecruitInfo,
   });
@@ -45,10 +44,6 @@ const RecruitDetail = () => {
 
   return (
     <>
-      <Script
-        strategy="lazyOnload"
-        src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAPS_CLIENT_ID}&submodules=geocoder`}
-      />
       <Spacer height="7rem"></Spacer>
       <Header>
         <HeaderRecruit
@@ -60,17 +55,14 @@ const RecruitDetail = () => {
       {modalState && (
         <ModalShared setModalState={setShareModalState}></ModalShared>
       )}
-      <C.Wrap>
-        <Condition info={info}></Condition>
-        <ResearchInfo
-          imageUrl={info?.image}
-          content={info?.content}
-        ></ResearchInfo>
-        {info?.category === '연구/인터뷰' && (
-          <Map address={info?.researchLocation}></Map>
-        )}
-        <ResearcherInfo info={info}></ResearcherInfo>
-      </C.Wrap>
+      {isLoading ? null : (
+        <C.Wrap>
+          <Condition info={info}></Condition>
+          <ResearchInfo info={info}></ResearchInfo>
+          <Map info={info}></Map>
+          <ResearcherInfo info={info}></ResearcherInfo>
+        </C.Wrap>
+      )}
       <Spacer height="8rem" />
       <Footer>
         <PrevNext>
