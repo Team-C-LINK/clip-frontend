@@ -19,7 +19,6 @@ const ResearchInfo: React.FC<ResearcherInfoProps> = ({ info }) => {
             alt="announcementImage"
             width={500}
             height={500}
-            quality={100}
             style={{
               height: '100%',
               width: '100%',
