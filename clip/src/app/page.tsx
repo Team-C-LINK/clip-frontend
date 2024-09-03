@@ -1,10 +1,6 @@
 'use client';
 
-import Layout from './SharedComponent/Background';
-import addChannel from '../../public/image/addChannel.svg';
-import KaKaoChannel from '../../public/image/KaKaoChannel.svg';
 import clipPhoneImage from '../../public/image/ClipPhoneImage.svg';
-import Image from 'next/image';
 import * as C from './component/C.style';
 import { useMediaQuery } from 'react-responsive';
 import { useState, useEffect } from 'react';
@@ -12,7 +8,7 @@ import LandingPage from './Landing/page';
 import Second from './Landing/components/Second/Second';
 import Third from './Landing/components/Third/Third';
 import Fourth from './Landing/components/Fourth/Fourth';
-import Sixth from './Landing/components/Sixth/Sixth';
+
 const Landing = () => {
   const isMobile = useMediaQuery({
     query: '(max-width:899px)',
