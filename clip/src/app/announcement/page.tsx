@@ -1,18 +1,19 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, Suspense } from 'react';
 import NavigationBar from '../SharedComponent/NavigationBar/NaivgationBar';
-import RecruitCard from '../SharedComponent/RecruitCard/RecruitCard';
 import Spacer from '../SharedComponent/Spacer/Spacer';
 import Header from '../SharedComponent/Header/Header';
 import HeaderBack from '../SharedComponent/Header/HeaderBack/HeaderBack';
 import createFilteredList from '../utils/createFilteredList';
 import Filter from './asset/components/Filter/Filter';
+import RecruitCard from '../SharedComponent/RecruitCard/RecruitCard';
 import useInfinityScroll from '../utils/hook/useInfinityScroll';
 import getRecruitList from '../api/get-recruitList';
 import * as C from './asset/components/C.style';
 import Image from 'next/image';
 import down_arrow from './asset/image/down_arrow.svg';
+import Script from 'next/script';
 
 const Recruit = () => {
   const [filterState, setFilterState] = useState<string>('전체 공고');
