@@ -31,15 +31,17 @@ const HeaderWrite = () => {
 
     info.researcherId = selectedResearcher.id;
 
-    const res = await putModifyAnnouncement(
-      info,
-      queryParam.get('id') as string
-    );
+    console.log(info);
 
-    if (res?.status === 204) {
-      alert('공고가 수정되었습니다.');
-      window.location.href = '/admin/announcement/all';
-    }
+    // const res = await putModifyAnnouncement(
+    //   info,
+    //   queryParam.get('id') as string
+    // );
+
+    // if (res?.status === 204) {
+    //   alert('공고가 수정되었습니다.');
+    //   window.location.href = '/admin/announcement/all';
+    // }
   };
 
   return (

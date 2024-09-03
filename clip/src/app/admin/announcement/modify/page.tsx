@@ -26,6 +26,7 @@ import PostType from '@/app/type/PostType';
 import getResearcherList from '@/app/api/admin/get-researcherList';
 import { researcherListState } from '../../../Atoms/researcehrList';
 import deleteAnnouncement from '@/app/api/admin/delete-announcement';
+import { sidoList, siguList } from '@/app/join/address/hooks/sidoList';
 
 const Page = () => {
   const { register, watch, setValue, control } = useForm<any>({
@@ -37,6 +38,7 @@ const Page = () => {
     queryKey: ['post', queryParam.get('id')],
     queryFn: getTargetRecruitInfo,
   });
+  const [initCheck, setInitCheck] = useState<boolean>(false);
   const { data: researcherInfo } = useQuery({
     queryKey: [''],
     queryFn: getResearcherList,
@@ -131,13 +133,8 @@ const Page = () => {
 
   const initInput = () => {
     if (info) {
-      const [city, district, ...detailAddress] =
-        info?.researchLocation.split(' ');
       const [year, month, day] = info?.endDate.split('-');
       setValue('title', info?.title);
-      setValue('city', city);
-      setValue('district', district);
-      setValue('detailAddress', detailAddress.join(' '));
       setScreeningInput(info?.applicationConditions);
       setValue('content', info?.content);
       setEndDate(parseInt(`${year}${month}${day}`));
@@ -162,6 +159,18 @@ const Page = () => {
   }, [screeningInput]);
 
   useEffect(initInput, [info]);
+
+  useEffect(() => {
+    if (info && !initCheck) {
+      const [city, district, ...detailAddress] =
+        info?.researchLocation.split(' ');
+      setValue('city', city);
+      setValue('district', district);
+      setValue('detailAddress', detailAddress.join(' '));
+      setTimeout(() => setInitCheck(true), 500);
+    }
+    if (initCheck) setValue('district', siguList[watch('city')][0]);
+  }, [watch('city')]);
 
   useEffect(() => {
     if (researcherInfo) {
@@ -211,19 +220,27 @@ const Page = () => {
               <S.double_input_wrap>
                 <S.input_wrap>
                   <S.index>연구 장소(시,도)*</S.index>
-                  <S.input
-                    {...register('city')}
-                    width={'15.1rem'}
-                    placeholder={'시, 도를 입력하세요'}
-                  ></S.input>
+                  <S.select {...register('city')}>
+                    {sidoList.map((item, idx) => {
+                      return (
+                        <option key={idx} value={item}>
+                          {item}
+                        </option>
+                      );
+                    })}
+                  </S.select>
                 </S.input_wrap>
                 <S.input_wrap>
                   <S.index>연구 장소(시, 군, 구) *</S.index>
-                  <S.input
-                    {...register('district')}
-                    placeholder={'구, 군을 입력하세요'}
-                    width={'15.1rem'}
-                  ></S.input>
+                  <S.select {...register('district')} value={watch('district')}>
+                    {siguList[watch('city')]?.map((item, idx) => {
+                      return (
+                        <option key={idx} value={item}>
+                          {item}
+                        </option>
+                      );
+                    })}
+                  </S.select>
                 </S.input_wrap>
                 <S.input_wrap>
                   <S.index>연구 장소(상세 주소)*</S.index>

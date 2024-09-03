@@ -65,6 +65,25 @@ export const index = styled.span`
   ${(props) => props.theme.FONT.Regular.B3};
 `;
 
+export const select = styled.select`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  position: relative;
+  width: 15.1rem;
+  height: 4rem;
+  background: #ffffff;
+  padding: 1rem;
+  border: 0.1rem solid #828282;
+  border-radius: 0.4rem;
+  outline: none;
+
+  font-family: 'Pretendard';
+  ${(props) => props.theme.FONT.Medium.B3};
+`;
+
 export const input = styled.input.attrs({ type: 'text' })`
   box-sizing: border-box;
   display: flex;
