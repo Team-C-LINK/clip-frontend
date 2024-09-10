@@ -43,6 +43,14 @@ api.interceptors.response.use(
       ) {
         alert('로그인 정보를 확인해주세요');
       }
+
+      if (
+        data?.message ===
+        '만료된 토큰입니다. 올바른 토큰으로 다시 시도해주세요.'
+      ) {
+        localStorage.removeItem('accessToken');
+        window.location.reload();
+      }
     }
 
     return Promise.reject(error);
