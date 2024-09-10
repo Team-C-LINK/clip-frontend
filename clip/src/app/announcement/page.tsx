@@ -13,11 +13,12 @@ import getRecruitList from '../api/get-recruitList';
 import * as C from './asset/components/C.style';
 import Image from 'next/image';
 import down_arrow from './asset/image/down_arrow.svg';
-import Script from 'next/script';
+import AnnouncementType from '../type/Announcment';
 
 const Recruit = () => {
   const [filterState, setFilterState] = useState<string>('전체 공고');
   const [isRecruiting, setIsRecruiting] = useState<boolean>(false);
+  const [filteredList, setFilteredList] = useState<AnnouncementType[]>([]);
   const { observerTarget, recruitList } = useInfinityScroll(getRecruitList);
   const scrollToTop = () => {
     window.scrollTo({
@@ -25,6 +26,12 @@ const Recruit = () => {
       behavior: 'smooth',
     });
   };
+
+  useEffect(() => {
+    setFilteredList(
+      createFilteredList(recruitList!, isRecruiting, filterState)
+    );
+  }, [recruitList, isRecruiting, filterState]);
 
   return (
     <>
@@ -38,11 +45,14 @@ const Recruit = () => {
         isRecruiting={isRecruiting}
         setIsRecruiting={setIsRecruiting}
       ></Filter>
-      {createFilteredList(recruitList!, isRecruiting, filterState)?.map(
-        (item) => {
+      {filteredList.length ? (
+        filteredList.map((item) => {
           return <RecruitCard info={item} key={item?.id}></RecruitCard>;
-        }
+        })
+      ) : (
+        <C.no_content>아직 등록된 공고가 없어요</C.no_content>
       )}
+
       <div ref={observerTarget}></div>
       <C.scroll_top_button onClick={scrollToTop}>
         <Image src={down_arrow} alt="down_arrow" width={24} height={24}></Image>

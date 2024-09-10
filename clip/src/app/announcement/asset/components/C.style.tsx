@@ -18,3 +18,11 @@ export const scroll_top_button = styled.div`
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14), 0px 0px 2px rgba(0, 0, 0, 0.12);
   border-radius: 100%;
 `;
+
+export const no_content = styled.span`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  ${(props) => props.theme.FONT.Header.H3};
+  color: ${(props) => props.theme.TEXT._03};
+`;
