@@ -155,6 +155,7 @@ export const AddChannelButton = styled.div`
   font-weight: 700;
   line-height: 3.6rem;
   color: #fff;
+  z-index: 2;
 `;
 
 export const join_wrap = styled.div`
@@ -169,7 +170,7 @@ export const join_wrap = styled.div`
   align-items: center;
   transform: translateX(-50%);
   background-color: #ffffff;
-  z-index: 2;
+  z-index: 4;
 `;
 
 export const Join = styled.div`
@@ -190,6 +191,7 @@ export const Join = styled.div`
   font-weight: 700;
   line-height: 3.6rem;
   color: #fff;
+  z-index: 5;
 `;
 
 export const LandingPageFrame = styled.div<isMobile>`

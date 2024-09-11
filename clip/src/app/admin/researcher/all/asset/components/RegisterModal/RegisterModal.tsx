@@ -29,11 +29,8 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ setIsModalOpen }) => {
 
   const submit = async () => {
     const data = watch();
-
-    console.log(watch('name'));
     const profileUrl = await uploadS3(data?.profile[0] as File);
     data.profile = profileUrl as string;
-    console.log(data);
     const res = await postRegisterResearcher(data);
     if (res?.status === 200) {
       alert('연구자를 등록했습니다.');

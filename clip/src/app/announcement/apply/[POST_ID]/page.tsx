@@ -46,10 +46,6 @@ const Apply = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(applyInfo.announcementReservationImages);
-  }, [applyInfo]);
-
   return (
     <>
       <Header>
