@@ -19,7 +19,8 @@ const Recruit = () => {
   const [filterState, setFilterState] = useState<string>('전체 공고');
   const [isRecruiting, setIsRecruiting] = useState<boolean>(false);
   const [filteredList, setFilteredList] = useState<AnnouncementType[]>([]);
-  const { observerTarget, recruitList } = useInfinityScroll(getRecruitList);
+  const { observerTarget, recruitList, isLoading } =
+    useInfinityScroll(getRecruitList);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -45,14 +46,13 @@ const Recruit = () => {
         isRecruiting={isRecruiting}
         setIsRecruiting={setIsRecruiting}
       ></Filter>
-      {filteredList.length ? (
+      {isLoading ? null : filteredList.length ? (
         filteredList.map((item) => {
           return <RecruitCard info={item} key={item?.id}></RecruitCard>;
         })
       ) : (
         <C.no_content>아직 등록된 공고가 없어요</C.no_content>
       )}
-
       <div ref={observerTarget}></div>
       <C.scroll_top_button onClick={scrollToTop}>
         <Image src={down_arrow} alt="down_arrow" width={24} height={24}></Image>

@@ -1,5 +1,3 @@
-import api from '@/app/api/api';
-import getRecruitList from '@/app/api/get-recruitList';
 import AnnouncementType from '@/app/type/Announcment';
 import { useEffect, useRef, useState } from 'react';
 
@@ -10,12 +8,14 @@ const useInfinityScroll = (getList: any) => {
   const [recruitList, setRecruitList] = useState<AnnouncementType[]>([]);
   const [listPointer, setListPointer] = useState<number>(0);
   const [firstCheck, setFirstCheck] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const init = async () => {
     const res = await getList();
     setRecruitList(res?.announcements);
     setListPointer(res?.totalCount - DEFAULT_PAGE_SIZE);
     setFirstCheck(false);
+    setIsLoading(false);
   };
 
   const updateList = async () => {
@@ -46,7 +46,7 @@ const useInfinityScroll = (getList: any) => {
     return () => observer.disconnect();
   }, [firstCheck, listPointer]);
 
-  return { observerTarget, recruitList };
+  return { observerTarget, recruitList, isLoading };
 };
 
 export default useInfinityScroll;
