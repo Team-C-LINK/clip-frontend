@@ -35,7 +35,7 @@ const ModifyModal: React.FC<RegisterModalProps> = ({
 
   const submit = async () => {
     const data = watch();
-    if (watch('profile').length < 5) {
+    if (watch('profile')?.length < 5) {
       const profileUrl = await uploadS3(data.profile[0] as File);
       data.profile = profileUrl as string;
     }
