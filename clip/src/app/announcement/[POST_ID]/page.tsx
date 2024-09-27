@@ -70,9 +70,7 @@ const RecruitDetail = () => {
             <NextButton
               $size={'90dvw'}
               // onClick={() => handleApplyBtn(queryParam.get('recommender_code'))}
-              onClick={() =>
-                window.open(`https://${info?.registerLink as string}`)
-              }
+              onClick={() => window.open(`${info?.registerLink as string}`)}
             >
               {info?.category === '연구/인터뷰'
                 ? '간편 지원하기'
