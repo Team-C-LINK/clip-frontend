@@ -8,9 +8,11 @@ import PostType from '@/app/type/PostType';
 import Script from 'next/script';
 
 const Map = ({ info }: { info?: PostType }) => {
-  if (info?.category === '연구/인터뷰')
+  if (info?.category === '연구/인터뷰') {
+    const [city, district, detail] = info?.researchLocation.split(' ');
+    if (detail === '온라인') return null;
     return <Maps address={info?.researchLocation}></Maps>;
-  else return null;
+  } else return null;
 };
 
 const Maps = ({ address }: { address?: string }) => {
