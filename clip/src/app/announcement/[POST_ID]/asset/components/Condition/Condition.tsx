@@ -10,7 +10,7 @@ const Condition = ({ info }: { info?: PostType }) => {
   const addressFilter = (info?: PostType) => {
     if (info?.category === '연구/인터뷰') {
       const [city, district, detail] = info?.researchLocation.split(' ');
-      if (detail === '줌') return '온라인';
+      if (detail === '온라인') return '온라인';
       else return info?.researchLocation;
     }
 

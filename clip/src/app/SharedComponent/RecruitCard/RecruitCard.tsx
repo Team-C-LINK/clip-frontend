@@ -25,7 +25,7 @@ const RecruitCard = ({ info }: { info?: AnnouncementType }) => {
   const addressFilter = (info?: AnnouncementType) => {
     if (info?.category === '연구/인터뷰') {
       const [city, district, detail] = info?.address.split(' ');
-      if (detail === '줌') return '온라인';
+      if (detail === '온라인') return '온라인';
       else return info?.address;
     }
 
