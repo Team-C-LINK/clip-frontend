@@ -6,9 +6,9 @@ type AgeDistributionType = {
 };
 
 type PostType = {
-  isScraped: true;
+  isScraped: boolean;
   fee: number;
-  isRecruiting: true;
+  isRecruiting: boolean;
   category: string;
   title: string;
   endDate: string;

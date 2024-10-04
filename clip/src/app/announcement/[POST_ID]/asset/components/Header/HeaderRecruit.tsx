@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import arrow from '@/app/SharedComponent/asset/image/arrow.svg';
@@ -5,23 +7,34 @@ import uninterested_black from '@/app/SharedComponent/asset/image/uninterested_b
 import interested from '@/app/SharedComponent/asset/image/interested.svg';
 import share from '@/app/SharedComponent/asset/image/share.svg';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
 import deleteEraseScrap from '@/app/api/delete-eraseScrap';
 import postAddScrap from '@/app/api/post-addScrap';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'next/navigation';
+import getTargetRecruitInfo from '@/app/api/get-targetRecruitInfo';
+import PostType from '@/app/type/PostType';
+import ModalShared from '../ModalShare/ModalShare';
 
 interface HeaderRecruitProps {
   title?: string;
-  setModalState: React.MouseEventHandler;
+  setModalState?: React.MouseEventHandler;
   isScraped?: boolean;
 }
 
-const HeaderRecruit: React.FC<HeaderRecruitProps> = ({
-  title,
-  setModalState,
-  isScraped,
-}) => {
-  const [scraped, setIsScraped] = useState<boolean>();
+const HeaderRecruit: React.FC<HeaderRecruitProps> = () => {
   const param = useParams();
+  const { data: info, isLoading } = useQuery<PostType>({
+    queryKey: ['post', param.POST_ID],
+    queryFn: getTargetRecruitInfo,
+  });
+
+  const [modalState, setModalState] = useState(false);
+
+  const setShareModalState = () => {
+    setModalState(!modalState);
+  };
+
+  const [scraped, setIsScraped] = useState<boolean>();
   const handleIsScraped = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (scraped) {
@@ -34,8 +47,8 @@ const HeaderRecruit: React.FC<HeaderRecruitProps> = ({
   };
 
   useEffect(() => {
-    setIsScraped(isScraped);
-  }, [isScraped]);
+    setIsScraped(info?.isScraped);
+  }, [info?.isScraped]);
 
   return (
     <>
@@ -48,7 +61,7 @@ const HeaderRecruit: React.FC<HeaderRecruitProps> = ({
             height={15}
             onClick={() => (window.location.href = '/announcement')}
           />
-          {title}
+          {info?.title}
           <Right_wrap>
             {/* <Image
               src={scraped ? interested.src : uninterested_black.src}
@@ -66,6 +79,9 @@ const HeaderRecruit: React.FC<HeaderRecruitProps> = ({
             /> */}
           </Right_wrap>
         </Header_Inner>
+        {modalState && (
+          <ModalShared setModalState={setShareModalState}></ModalShared>
+        )}
       </Wrap>
     </>
   );
