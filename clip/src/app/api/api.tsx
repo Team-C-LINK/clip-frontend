@@ -13,13 +13,15 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// api.interceptors.request.use((config: any) => {
-//   const token = localStorage?.getItem('accessToken');
-//   if (token) {
-//     config.headers.Authorization = `Bearer ${token}`;
-//   }
-//   return config;
-// });
+api.interceptors.request.use((config: any) => {
+  if (typeof window !== 'undefined') {
+    const token = localStorage?.getItem('accessToken');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+  }
+  return config;
+});
 
 api.interceptors.response.use(
   (res) => {
@@ -33,7 +35,7 @@ api.interceptors.response.use(
     } else if (errorStatus === 401) {
       const data: CustomErrorType = error?.response?.data as CustomErrorType;
       if (data?.message === '토큰이 누락되었습니다.') {
-        alert('로그인이 필요합니다.');
+        // alert('로그인이 필요합니다.');
         window.location.href = '/admin';
       }
 

@@ -17,9 +17,6 @@ type FormValues = {
 const Admin = () => {
   const { register, watch, handleSubmit } = useForm<FormValues>();
 
-  const token = localStorage.getItem('accessToken');
-  if (token) window.location.href = `/admin/announcement/all`;
-
   const onSubmit: SubmitHandler<FormValues> = async (data, e) => {
     const loginInfo = {
       id: data.id,
@@ -33,6 +30,11 @@ const Admin = () => {
       window.location.href = '/admin/announcement/all';
     }
   };
+
+  useEffect(() => {
+    const token = localStorage?.getItem('accessToken');
+    if (token) window.location.href = `/admin/announcement/all`;
+  }, []);
 
   return (
     <C.wrap onSubmit={handleSubmit(onSubmit)}>
