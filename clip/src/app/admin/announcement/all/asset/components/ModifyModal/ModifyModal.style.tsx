@@ -121,7 +121,6 @@ export const sumbit = styled.div`
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.Regular.B3};
   color: ${(props) => props.theme.TEXT._04};
-
   background: ${(props) => props.theme.BACKGROUND._DARK};
   border-radius: 4px;
 `;

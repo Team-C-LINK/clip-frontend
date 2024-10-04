@@ -29,12 +29,10 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      {isClient && (
-        <Wrap onClick={handleModalState}>
-          <GlobalStyle $isMobile={isMobile} />
-          {children}
-        </Wrap>
-      )}
+      <Wrap onClick={handleModalState}>
+        <GlobalStyle $isMobile={isMobile} />
+        {children}
+      </Wrap>
     </>
   );
 };

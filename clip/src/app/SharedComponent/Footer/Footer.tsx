@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+
 import * as C from './Footer.style';
 
 const Footer = ({ children }: { children: React.ReactNode }) => {

@@ -1,6 +1,3 @@
-'use client';
-
-import * as C from './asset/components/C.style';
 import Header from '@/app/SharedComponent/Header/Header';
 import Spacer from '@/app/SharedComponent/Spacer/Spacer';
 import ResearchInfo from './asset/components/ResearchInfo/ReearchInfo';
@@ -15,72 +12,50 @@ import HeaderRecruit from './asset/components/Header/HeaderRecruit';
 import ModalShared from './asset/components/ModalShare/ModalShare';
 import { Suspense, useState } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
-import { useQuery } from '@tanstack/react-query';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+  useQuery,
+} from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import getTargetRecruitInfo from '@/app/api/get-targetRecruitInfo';
 import PostType from '@/app/type/PostType';
 import NextButtonGray from '@/app/SharedComponent/NextButton/NextButtonGray';
+import api from '@/app/api/api';
+import Content from './asset/components/Content/Content';
 
-const RecruitDetail = () => {
-  const [modalState, setModalState] = useState(false);
-  const setShareModalState = () => {
-    setModalState(!modalState);
+interface RecruitDetailProps {
+  params: {
+    POST_ID: string;
   };
-  const param = useParams();
-  const router = useRouter();
-  const queryParam = useSearchParams();
-  const { data: info, isLoading } = useQuery<PostType>({
-    queryKey: ['post', param.POST_ID],
+}
+
+const RecruitDetail: React.FC<RecruitDetailProps> = async ({ params }) => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ['post', params.POST_ID],
     queryFn: getTargetRecruitInfo,
   });
 
-  const handleApplyBtn = (recommender_code: string | null) => {
-    if (recommender_code)
-      router.push(
-        `/announcement/apply/${param.POST_ID}?recommender_code=${recommender_code}`
-      );
-    else router.push(`/announcement/apply/${param.POST_ID}`);
-  };
+  // const handleApplyBtn = (recommender_code: string | null) => {
+  //   if (recommender_code)
+  //     router.push(
+  //       `/announcement/apply/${param.POST_ID}?recommender_code=${recommender_code}`
+  //     );
+  //   else router.push(`/announcement/apply/${param.POST_ID}`);
+  // };
 
   return (
     <>
       <Spacer height="7rem"></Spacer>
-      <Header>
-        <HeaderRecruit
-          title={info?.title}
-          isScraped={info?.isScraped}
-          setModalState={setShareModalState}
-        ></HeaderRecruit>
-      </Header>
-      {modalState && (
-        <ModalShared setModalState={setShareModalState}></ModalShared>
-      )}
-      {isLoading ? null : (
-        <C.Wrap>
-          <Condition info={info}></Condition>
-          <ResearchInfo info={info}></ResearchInfo>
-          <Map info={info}></Map>
-          <ResearcherInfo info={info}></ResearcherInfo>
-        </C.Wrap>
-      )}
-      <Spacer height="8rem" />
-      <Footer>
-        <PrevNext>
-          {info?.isRecruiting && info?.remainingDay ? (
-            <NextButton
-              $size={'90dvw'}
-              // onClick={() => handleApplyBtn(queryParam.get('recommender_code'))}
-              onClick={() => window.open(`${info?.registerLink as string}`)}
-            >
-              {info?.category === '연구/인터뷰'
-                ? '간편 지원하기'
-                : '설문 참여하기'}
-            </NextButton>
-          ) : (
-            <NextButtonGray $size={'90dvw'}>마감된 공고입니다.</NextButtonGray>
-          )}
-        </PrevNext>
-      </Footer>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <Header>
+          <HeaderRecruit></HeaderRecruit>
+        </Header>
+        <Content></Content>
+      </HydrationBoundary>
     </>
   );
 };

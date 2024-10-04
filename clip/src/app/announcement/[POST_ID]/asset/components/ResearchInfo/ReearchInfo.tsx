@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import Title from '../Title/Title';
 import Image from 'next/image';

@@ -1,8 +1,6 @@
 'use client';
 
 import styled from 'styled-components';
-import NextButton from './NextButton/NextButton';
-import PrevButton from './PrevButton/PrevButton';
 
 const PrevNextFrame = styled.div`
   position: relative;

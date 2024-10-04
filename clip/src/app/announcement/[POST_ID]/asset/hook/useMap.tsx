@@ -27,7 +27,7 @@ function useMap(address?: string) {
             }
           }
         );
-      }, 300);
+      }, 500);
     }
   }, [address]);
 

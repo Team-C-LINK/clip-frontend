@@ -16,13 +16,13 @@ const ModalShared = ({
   const param = useParams();
   const [link, setLink] = useState<string>('');
 
-  const getLink = async () => {
-    const res = await api.post(`/announcements/${param.POST_ID}/share-link`);
-    const link = await res.data;
-    return link;
-  };
+  // const getLink = async () => {
+  //   const res = await api.post(`/announcements/${param.POST_ID}/share-link`);
+  //   const link = await res.data;
+  //   return link;
+  // };
 
-  const { data } = useQuery({ queryKey: ['test'], queryFn: getLink });
+  // const { data } = useQuery({ queryKey: ['test'], queryFn: getLink });
 
   const handleCopyClipBoard = async () => {
     try {
@@ -42,7 +42,7 @@ const ModalShared = ({
           <Cancel src={cancel.src} onClick={setModalState}></Cancel>
         </Title>
         <Link_wrap>
-          <Link_text ref={linkRef}>http://localhost:3000/{data}</Link_text>
+          {/* <Link_text ref={linkRef}>http://localhost:3000/{data}</Link_text> */}
           <Image
             src={copy.src}
             alt="copy"
@@ -57,11 +57,12 @@ const ModalShared = ({
 };
 
 const Wrap = styled.div`
-  position: absolute;
+  position: fixed;
   width: 100%;
-  height: 100%;
+  height: 100dvh;
+  top: 0;
   background: rgba(0, 0, 0, 0.4);
-  z-index: 2;
+  z-index: 3;
 `;
 
 const Modal_Wrap = styled.div`
@@ -94,19 +95,6 @@ const Title = styled.span`
   font-family: 'Pretendard';
   ${(props) => props.theme.FONT.Medium.B1};
   /* identical to box height, or 156% */
-  text-align: center;
-
-  color: ${(props) => props.theme.TEXT._01};
-`;
-
-const Content = styled.span`
-  width: 25.6rem;
-  height: 4.8rem;
-
-  font-family: 'Pretendard';
-  ${(props) => props.theme.FONT.Medium.B2};
-  display: flex;
-  align-items: center;
   text-align: center;
 
   color: ${(props) => props.theme.TEXT._01};

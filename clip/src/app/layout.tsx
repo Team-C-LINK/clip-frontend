@@ -6,6 +6,7 @@ import '../../public/fonts/style.css';
 import PaletteProvider from './Provider/PaletteProvider/PaletteProvider';
 import Wrapper from './SharedComponent/Wrapper/Wrapper';
 import RecoilProvider from './Provider/RecoilProvider/RecoilProvider';
+import StyledComponentsRegistry from './Provider/StyledComponentsRegistry/StyledComponentsRedgistry';
 
 const noto_Sans = Noto_Sans({ subsets: ['latin'] });
 
@@ -34,11 +35,13 @@ export default function RootLayout({
       </head>
       <body className={noto_Sans.className}>
         <QueryProvider>
-          <PaletteProvider>
-            <RecoilProvider>
-              <Wrapper>{children}</Wrapper>
-            </RecoilProvider>
-          </PaletteProvider>
+          <StyledComponentsRegistry>
+            <PaletteProvider>
+              <RecoilProvider>
+                <Wrapper>{children}</Wrapper>
+              </RecoilProvider>
+            </PaletteProvider>
+          </StyledComponentsRegistry>
         </QueryProvider>
       </body>
     </html>
