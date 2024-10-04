@@ -4,6 +4,10 @@ const nextConfig = {
     styledComponents: true,
   },
 
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
+
   images: {
     remotePatterns: [
       {
