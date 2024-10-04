@@ -14,7 +14,6 @@ import * as C from './asset/components/C.style';
 import Image from 'next/image';
 import down_arrow from './asset/image/down_arrow.svg';
 import AnnouncementType from '../type/Announcment';
-import Dashboard from '../pages/dashboard';
 
 const Recruit = () => {
   const [filterState, setFilterState] = useState<string>('전체 공고');
